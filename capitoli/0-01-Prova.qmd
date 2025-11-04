@@ -1,12 +1,13 @@
 ---
 title: "Prova capitolo"
 subtitle: "sottotitolo prova capitolo"
+bibliography: ../references.bib
 ---
 
-<div class="abstract">
+::: abstract
 prova abstract
-</div>
+:::
 
----
+------------------------------------------------------------------------
 
-Prova del contenuto 
+Prova del contenuto @astle2020core

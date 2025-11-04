@@ -2,8 +2,13 @@
 format:
   html:
     number-sections: false
+bibliography: ../references.bib
+include-in-header: figure/header.html
 ---
 
 # Domande & Risposte {.unnumbered}
 
-pagina di domande e risposte per divulgazione
+::: {.callout collapse="true"}
+## Prova domanda 1
+Prova risposta
+:::

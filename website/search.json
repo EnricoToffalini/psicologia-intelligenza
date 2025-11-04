@@ -4,27 +4,17 @@
     "href": "index.html",
     "title": "Psicologia dell’Intelligenza Umana",
     "section": "",
-    "text": "introduzione contenuto",
+    "text": "Questo sito raccoglierà in costruzione raccoglierà materiali didattici e divulgativi (dispense, slide, letture di approfondimento e risorse multimediali) relativi al tema della Psicologia dell’Intelligenza Umana. L’obiettivo è offrire uno spazio di riferimento aggiornato e accessibile per studenti e interessati al tema, favorendo una comprensione integrata dei diversi approcci teorici, metodologici e applicativi allo studio dell’intelligenza umana.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduzione</span>"
+      "Introduzione"
     ]
   },
   {
-    "objectID": "capitoli/0-01-Prova.html",
-    "href": "capitoli/0-01-Prova.html",
-    "title": "2  Prova capitolo",
-    "section": "",
-    "text": "prova abstract\n\n\nProva del contenuto",
-    "crumbs": [
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Prova capitolo</span>"
-    ]
-  },
-  {
-    "objectID": "divulgazione/domande-risposte.html",
-    "href": "divulgazione/domande-risposte.html",
+    "objectID": "Divulgazione/domande-risposte.html",
+    "href": "Divulgazione/domande-risposte.html",
     "title": "Domande & Risposte",
     "section": "",
-    "text": "pagina di domande e risposte per divulgazione",
+    "text": "Prova domanda 1\n\n\n\n\n\nProva risposta",
     "crumbs": [
       "<b>Divulgazione</b>",
       "Domande & Risposte"

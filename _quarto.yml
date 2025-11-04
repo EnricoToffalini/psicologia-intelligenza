@@ -14,12 +14,22 @@ format:
          <link rel="shortcut icon" href="figure/favicon.png"/>
 
 book:
+  title: "Psicologia dell'Intelligenza Umana"
+  author:
+    - name: "Enrico Toffalini"
+      affiliation: "Dipartimento di Psicologia Generale, Università di Padova" 
   chapters:
     - file: index.qmd
       text: "Introduzione"
-    - capitoli/0-01-Prova.qmd
-
+    - file: references.qmd
+      text: "Riferimenti bibliografici"
+    
     - part: "<b>Divulgazione</b>"
       chapters:
-        - divulgazione/domande-risposte.qmd
+        - Divulgazione/domande-risposte.qmd
+
+bibliography: references.bib
+csl: apa.csl
+
+
     
