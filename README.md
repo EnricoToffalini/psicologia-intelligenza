@@ -1,3 +1,5 @@
+Libro online: https://enricotoffalini.github.io/psicologia-intelligenza/
+
 Repository di supporto a insegnamento e divulgazione sulla psicologia dell'intelligenza umana. Questa repo raccoglie materiali didattici e divulgativi (dispense, slide, letture di approfondimento e risorse multimediali) relativi al tema della Psicologia dell’Intelligenza Umana. L’obiettivo è offrire uno spazio di riferimento aggiornato e accessibile per studenti e interessati al tema, favorendo una comprensione integrata dei diversi approcci teorici, metodologici e applicativi allo studio dell’intelligenza umana.
 
 ## Licenza

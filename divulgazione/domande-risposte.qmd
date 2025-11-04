@@ -9,6 +9,66 @@ include-in-header: figure/header.html
 # Domande & Risposte {.unnumbered}
 
 ::: {.callout collapse="true"}
-## Prova domanda 1
-Prova risposta
+## Cos’è l’intelligenza?
+L'intelligenza è una cosa che siamo più bravi a misurare che a capire, ma a cui come umani così sensibili che in qualche modo anche i bambini la intuiscono
+:::
+
+::: {.callout collapse="true"}
+## Si può essere intelligenti “in tanti modi” o in un modo solo?
+La ricerca ci si interroga da oltre un secolo; l'evidenza empirica propende per "un modo solo", ma non tutti sono d'accordo.
+:::
+
+::: {.callout collapse="true"}
+## È più importante “quanto sei intelligente” (QI) o “come sei intelligente”?
+Se proprio dovessimo dire, conta prima e molto il "quanto", poi e in non tutti i casi il "come"
+:::
+
+::: {.callout collapse="true"}
+## L’intelligenza si può davvero ridurre a un numero (QI)?
+Forse no, ma è quello che fanno i test di intelligenza, tra i più usati ed efficaci nella pratica psicologica
+:::
+
+::: {.callout collapse="true"}
+## Ma perché il QI è così dannatamente importante?
+Perché in un'ora, anche meno, hai un riscontro che è terribilmente predittivo del potenziale futuro di una persona (successo scolastico, capacità lavorativa, perfino longevità) e del suo bisogno di supporto
+:::
+
+::: {.callout collapse="true"}
+## Il QI misura davvero “quanto sei intelligente” o “quanto sei diverso dalla media”?
+E qui scopriamo le carte: misura solo quanto sei diverso dalla media. Il "quanto sei intelligente" in assoluto è indeterminabile
+:::
+
+::: {.callout collapse="true"}
+## Invecchiando si diventa meno intelligenti?
+I processi cognitivi di base si indeboliscono, ma non tutti allo stesso modo, e per alcuni aspetti potremmo perfino migliorare la nostra capacità di comportarci in modo intelligente. Quindi qui tende a prevalere il "come" si è intelligenti
+:::
+
+::: {.callout collapse="true"}
+## Intelligenti si nasce o si diventa? (conta la genetica o l'ambiente/esperienza?)
+La genetica conta per oltre la metà, forse oltre i due terzi, del QI. Ma ci sono molti però...
+:::
+
+::: {.callout collapse="true"}
+## Stiamo diventando più intelligenti o stiamo diventando più stupidi?
+Nel tempo siamo certamente diventati più "intellettualmente performativi"... ma forse arrivati oggi stiamo declinando
+:::
+
+::: {.callout collapse="true"}
+## Possiamo aumentare la nostra intelligenza con i training, lo sforzo mentale, la musica o i videogiochi?
+Lasciate perdere, fate queste cose solo se vi piacciono. Se danno un piccolo beneficio all'intelligenza, e non ne siamo sicuri, lo darebbero dedicandocisi per tutta la vita
+:::
+
+::: {.callout collapse="true"}
+## Un bambino con dislessia, ADHD o autismo è “meno intelligente”?
+No, ma potrebbe esserlo in modo un po' diverso. La scuola li ha fraintesi a lungo proprio per il loro essere, per definizione, "diversi" (che poi, siamo tutti "diversi")
+:::
+
+::: {.callout collapse="true"}
+## Esiste l’intelligenza emotiva?
+Forse non andrebbe chiamata "intelligenza", rientra in altri ambiti di studio. (In psicologia si può sempre definire una cosa e credere che sia una cosa reale; d'altra parte anche noi ci chiediamo ancora se l'intelligenza, quella ufficiale, sia davvero una "cosa" reale)
+:::
+
+::: {.callout collapse="true"}
+## Un QI troppo alto (plusdotazione) è un problema?
+No, anzi in generale bene per chi ce l'ha. (Ma è vero che se a 8 anni hai interessi intellettuali da tardo adolescente a scuola potresti fare fatica)
 :::

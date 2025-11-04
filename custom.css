@@ -1,6 +1,9 @@
 
-/* GENERAL TEXT */
-
+/* GENERAL TEXT AND SETTINGS*/
+body {
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
 a {
   color: #9B0014;
   text-decoration: none;
@@ -25,10 +28,13 @@ a:hover {
 
 /* CALLOUTS */
 .callout {
-  border-left: 4px solid #9B0014;
+  border-color: #aaa !important;
+  border-left: 4px solid #9B0014 !important;
   border-left-color: #9B0014 !important;
   background-color: #fff;
   border-radius: 8px;
+  border-width: 2px !important;
+  border-left-width: 6px !important;
   padding: 1rem 1.25rem; 
   margin: 1em 0;
   font-size: 0.95rem;
