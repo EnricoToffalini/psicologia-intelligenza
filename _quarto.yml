@@ -26,7 +26,7 @@ book:
     
     - part: "<b>Divulgazione</b>"
       chapters:
-        - Divulgazione/domande-risposte.qmd
+        - divulgazione/domande-risposte.qmd
 
 bibliography: references.bib
 csl: apa.csl
