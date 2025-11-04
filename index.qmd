@@ -1,0 +1,11 @@
+---
+title: "Psicologia dell'Intelligenza Umana"
+author: "Enrico Toffalini"
+unnumbered: true
+format:
+  html:
+    number-sections: false
+---
+
+introduzione contenuto
+

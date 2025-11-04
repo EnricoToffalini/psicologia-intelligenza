@@ -1,0 +1,33 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Psicologia dell’Intelligenza Umana",
+    "section": "",
+    "text": "introduzione contenuto",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduzione</span>"
+    ]
+  },
+  {
+    "objectID": "capitoli/0-01-Prova.html",
+    "href": "capitoli/0-01-Prova.html",
+    "title": "2  Prova capitolo",
+    "section": "",
+    "text": "prova abstract\n\n\nProva del contenuto",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Prova capitolo</span>"
+    ]
+  },
+  {
+    "objectID": "divulgazione/domande-risposte.html",
+    "href": "divulgazione/domande-risposte.html",
+    "title": "Domande & Risposte",
+    "section": "",
+    "text": "pagina di domande e risposte per divulgazione",
+    "crumbs": [
+      "<b>Divulgazione</b>",
+      "Domande & Risposte"
+    ]
+  }
+]

@@ -1,0 +1,25 @@
+project:
+  type: book
+  title: "Psicologia dell'Intelligenza Umana"
+  output-dir: website 
+
+format:
+  html:
+    number-sections: true
+    toc: false
+    css: custom.css
+    page-layout: full
+    include-in-header:
+       text: |
+         <link rel="shortcut icon" href="figure/favicon.png"/>
+
+book:
+  chapters:
+    - file: index.qmd
+      text: "Introduzione"
+    - capitoli/0-01-Prova.qmd
+
+    - part: "<b>Divulgazione</b>"
+      chapters:
+        - divulgazione/domande-risposte.qmd
+    
