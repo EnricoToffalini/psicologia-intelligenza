@@ -27,12 +27,12 @@ book:
     - part: "<b>Divulgazione</b>"
       chapters:
         - divulgazione/domande-risposte.qmd
+        - divulgazione/flynn-effetto-flynn.qmd
 
 bibliography: references.bib
 csl: apa.csl
 
 execute:
-  freeze: auto
-  
+  freeze: false
 
     

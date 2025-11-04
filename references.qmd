@@ -1,5 +1,7 @@
 ---
 nocite: "@*"
+execute:
+  freeze: false
 ---
 
 # Riferimenti bibliografici {.unnumbered}

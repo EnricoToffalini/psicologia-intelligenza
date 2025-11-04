@@ -1,0 +1,26 @@
+---
+format:
+  html:
+    number-sections: false
+bibliography: ../references.bib
+include-in-header: figure/header.html
+---
+
+# James Flynn parla dell'effetto Flynn {.unnumbered}
+## i risvolti progressisti dell'intelligenza {.unnumbered}
+
+::: abstract
+La ricerca sull'intelligenza spesso non piace: forse perché ci fa sentire ridotti a un numero, forse perché quel numero ci fa sentire giudicati, inchiodati a una sentenza irrevocabile, e forse anche per i sinistri rimandi all'eugenetica. Nel seguente brano, estratto da @flynnSecularChangesIntelligence2020 lo scopritore dell'omonimo effetto Flynn ci mostra gli inattesi risvolti "progressisti" dello studio dell'intelligenza. Ovvero, perché fare attenzione al QI può dirci qualcosa della direzione in cui la società sta andando. Il brano è tradotto in italiano dall'articolo intitolato <b>Secular changes in intelligence: The flynn effect</b>.
+:::
+
+<div style="font-size:50px">❝</div>
+
+Fino al 1984, la maggior parte delle persone credeva che il QI medio fosse relativamente stabile nel tempo, almeno nei paesi sviluppati. (...) Prima che venissero documentati enormi miglioramenti del QI, gli studiosi tendevano a valutare l'intelligenza (in seguito chiamata "g" o fattore di intelligenza generale) delle masse popolari in un dato momento e a trarre conclusioni pessimiste. Prima della Prima Guerra Mondiale pochi intellettuali (Bertrand Russell e i marxisti erano eccezioni) pensavano che le masse fossero collettivamente capaci di svolgere i ruoli sociali cognitivamente complessi che erano prerogativa delle classi superiori.
+
+Molti sostenevano l'istruzione di massa, ma con un feroce pessimismo. Virginia Woolf si riferiva all'operaio autodidatta come a qualcuno che "tutti sapevamo" essere egoista, petulante, grezzo, fastidioso e, in definitiva, nauseante. E. M. Forster non aveva alcuna simpatia per un impiegato i cui tentativi di istruirsi erano "infruttuosi". È semplicemente inferiore alla maggior parte dei ricchi (meno intelligente) e tipico dei lavoratori rurali urbanizzati (...)
+
+Durante il ventesimo secolo, quando la società ha intensificato le sue richieste cognitive, il QI medio è aumentato. Nel ventunesimo secolo, se la società ridurrà le sue richieste, il QI medio diminuirà. Entro certi limiti (non possiamo essere tutti degli Einstein), la società può ottenere qualsiasi livello di capacità cognitiva sia necessaria allo svolgimento di qualsiasi ruolo decida di assegnare alle persone. Ora, la società sta abbassando il proprio QI a causa di tendenze di ogni sorta che non hanno nulla a che fare coi limiti della nostra mente. Se le tendenze economiche favoriscono la disoccupazione di massa e il lavori di servizio poco impegnativi a scapito dei lavori cognitivamente più impegnativi, se le università istruiscono meno e diventano i parchi giochi di giovani edonisti, se gli adolescenti trovano intollerabile l'istruzione formale, se le persone leggono meno e uccidono marziani su Internet, se il cambiamento climatico distrugge il tessuto sociale, i punteggi finiranno per scendere.
+
+Durante il ventesimo secolo il mercato, semplicemente crescendo, ha fatto cose meravigliose. Ha alleviato la povertà, promosso l'istruzione formale, migliorato le condizioni dei posti di lavoro e liberato le donne; e ha fatto elevare il QI senza nemmeno che ce ne accorgessimo. Ma accontentarsi semplicemente degli effetti delle richieste del mercato non può risolvere i problemi del ventunesimo secolo. Questi richiedono più di una crescita economica continua e molto più che un QI elevato. Richiedono quella che Aristotele chiamava "saggezza pratica", uno sforzo collettivo per umanizzare le nostre società con intelligenza critica e conoscenza a un prezzo elevato. L'ignoranza paralizza ogni generazione, per quanto alto sia il loro QI medio (...)
+
+\
