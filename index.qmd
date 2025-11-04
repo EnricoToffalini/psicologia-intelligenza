@@ -8,5 +8,5 @@ bibliography: references.bib
 
 # {.unnumbered}
 
-Questo sito raccoglierà in costruzione raccoglierà materiali didattici e divulgativi (dispense, slide, letture di approfondimento e risorse multimediali) relativi al tema della Psicologia dell’Intelligenza Umana. L’obiettivo è offrire uno spazio di riferimento aggiornato e accessibile per studenti e interessati al tema, favorendo una comprensione integrata dei diversi approcci teorici, metodologici e applicativi allo studio dell’intelligenza umana.
+Questo sito in costruzione raccoglierà materiali didattici e divulgativi (dispense, slide, letture di approfondimento e risorse multimediali) relativi al tema della Psicologia dell’Intelligenza Umana. L’obiettivo è offrire uno spazio di riferimento aggiornato e accessibile per studenti e interessati al tema, favorendo una comprensione integrata dei diversi approcci teorici, metodologici e applicativi allo studio dell’intelligenza umana.
 
