@@ -8,5 +8,13 @@ bibliography: references.bib
 
 # {.unnumbered}
 
-Questo sito in costruzione raccoglierà materiali didattici e divulgativi (dispense, slide, letture di approfondimento e risorse multimediali) relativi al tema della Psicologia dell’Intelligenza Umana. L’obiettivo è offrire uno spazio di riferimento aggiornato e accessibile per studenti e interessati al tema, favorendo una comprensione integrata dei diversi approcci teorici, metodologici e applicativi allo studio dell’intelligenza umana.
+**SITO IN COSTRUZIONE**
+
+Lo studio scientifico dell’intelligenza in Italia non gode della stessa attenzione e maturità teorica che ha raggiunto in altri paesi. Eppure, psicologhe e psicologi si trovano quotidianamente a valutare il funzionamento intellettivo di bambini, adulti, pazienti, in ogni genere di contesto, utilizzando strumenti complessi come le scale di QI e altri test cognitivi. Farlo senza un'adeguata consapevolezza dei modelli teorici, della storia, dei limiti e dei punti di forza della misurazione rischia di ridurre la valutazione a un gesto tecnico, anziché renderla un atto scientifico e interpretativo. 
+
+Cos'è l'intelligenza? Come si misura? È innata o appresa? Cosa significa il QI? Stiamo diventando più intelligenti o meno? Esistono le intelligenze multiple? Questo libro, e il progetto più ampio da cui nasce, mira a fornire gli strumenti concettuali per capire queste domande e le loro risposte, nonché a fornire una base di competenze pratiche per chi deve utilizzare i test quotidianamente. 
+
+Questo libro online raccoglie materiali didattici e divulgativi dedicati alla psicologia dell’intelligenza umana, offrendo uno spazio di riferimento aggiornato, accessibile e scientificamente fondato, pensato per studentesse e studenti universitari, ma anche per chiunque desideri comprendere meglio cosa significhi “essere intelligenti”.
+
+I capitoli esplorano le teorie classiche e contemporanee sull’intelligenza, la sua storia e le sue basi biologiche, la misurazione psicometrica, la genetica delle differenze individuali, i fenomeni sociali e culturali che la influenzano e i test più utilizzati in ambito clinico, scolastico e di ricerca. Un’attenzione particolare è dedicata all’interpretazione dei punteggi, alla comprensione critica dei limiti dei test e ai temi più attuali, come la neurodiversità, la plusdotazione, il funzionamento intellettivo limite e la disabilità. L’obiettivo è promuovere una riflessione informata e critica sul modo in cui la psicologia studia, misura e comunica l'intelligenza.
 
