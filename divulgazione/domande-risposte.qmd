@@ -45,17 +45,17 @@ Ecco alcuni esempi di compiti simili a quelli usati dalle più diffuse batterie 
 :::
 
 ::: {.callout collapse="true"}
-## Si può essere intelligenti "in tanti modi" o "in un modo solo"?
+## Si può essere intelligenti "in un modo solo" o "in tanti modi"?
 
 > 🎯 Tende a prevalere "un modo solo".
 
-Domanda molto dibattuta. Dopo un secolo di studi, la ricerca psicometrica, genetica e neuroscientifica tende ad accettare l'esistenza di un fattore generale di intelligenza (spesso indicato come *"fattore g"*). È il fattore che spiegherebbe perché le persone che ottengono buoni risultati in un tipo di test cognitivo tendono a ottenere buoni risultati anche in altri, apparentemente diversi tra loro (es. conoscenza del vocabolario, rotazione mentale di figure, velocità di esecuzione di compiti, memoria a breve termine, soluzione di problemi logici). L’idea risale addirittura all'inizio del Novecento, quando Charles Spearman osservò questa regolarità e ipotizzò che le prestazioni cognitive dovessero condividere una causa comune (*"generale"* appunto).
+Domanda molto dibattuta, e forse la risposta non piacerà. Dopo un secolo di studi, la ricerca psicometrica, genetica e neuroscientifica tende ad accettare l'esistenza e la preponderanza di un fattore generale di intelligenza (spesso indicato come *"fattore g"*). È il fattore che spiegherebbe perché le persone che ottengono buoni risultati in un tipo di test cognitivo tendono a ottenere buoni risultati anche in altri, apparentemente diversi tra loro (es. conoscenza del vocabolario, rotazione mentale di figure, velocità di esecuzione di compiti, memoria a breve termine, soluzione di problemi logici). L’idea risale addirittura all'inizio del Novecento, quando Charles Spearman osservò questa regolarità e ipotizzò che le prestazioni cognitive dovessero condividere una causa comune (*"generale"* appunto).
 
 Il "fattore g", comunque, non è tutto. Oggi i modelli più accettati sono gerarchici (es. CHC): a fianco di un "fattore g" sovraordinato e centrale, riconoscono l'esistenza di aree di abilità specifiche. Solo considerando al tempo stesso l'abilità generale e le abilità specifiche possiamo descrivere adeguatamente l'intelligenza nel suo insieme. Tuttavia, g tende a essere predominante rispetto alle aree specifiche sia nel riassumere la prestazione ai test di intelligenza che a predire esiti rilevanti nella vita reale.
 
 Alcuni studiosi, come Howard Gardner con la teoria delle intelligenze multiple, o Robert Sternberg con la teoria triarchica, hanno proposto visioni articolate secondo cui l’intelligenza si manifesta in modi distinti nella creatività, nel problem solving pratico, nelle competenze sociali, e in svariati domini di abilità in modi distinti. Tuttavia, queste prospettive, pur stimolanti e utili in ambito educativo, non hanno ricevuto un supporto empirico paragonabile a quello del fattore *g*.
 
-Come rappresentante onesto ed esplicito del "mainstream" sullo studio dell'intelligenza ritengo che una concezione accurata debba ammettere la predominanza di un'abilità generale rispetto alle abilità specifiche. In altre parole, le persone sono possono essere intelligenti “in tanti modi”, ma questi modi tendono a essere, soprattutto, diverse espressioni di un’unica capacità generale di adattamento mentale.
+Come rappresentante onesto ed esplicito del "mainstream" sullo studio dell'intelligenza ritengo che una concezione accurata debba ammettere la predominanza di un'abilità generale rispetto alle abilità specifiche. In altre parole, le persone sono possono essere intelligenti “in tanti modi”, ma questi modi tendono a essere, soprattutto, diverse espressioni di un’unica capacità generale di adattamento mentale. Un piccolo dettaglio interessante, però, è che quanto più ci si concentra su persone con alto livello intellettivo (alto QI) tanto più i punti di forza tendono a differenziarsi e a diventare specifici: come dire che se il "quanto" è comunque molto, allora il "come" comincia a predominare. 
 :::
 
 ::: {.callout collapse="true"}
