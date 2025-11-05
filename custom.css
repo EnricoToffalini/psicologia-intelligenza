@@ -1,8 +1,10 @@
 
 /* GENERAL TEXT AND SETTINGS*/
-body {
-  margin-left: 2rem;
-  margin-right: 3rem;
+@media (min-width: 900px) {
+  body {
+    margin-left: 2rem;
+    margin-right: 3rem;
+  }
 }
 a {
   color: #9B0014;
