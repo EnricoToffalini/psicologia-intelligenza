@@ -75,9 +75,9 @@ Come detto sopra, vanno considerati sia il "quanto" che il "come", ma a conti fa
 
 > 🎯 No, ma approssima abbastanza bene.
 
-Il QI è calcolato da tutti i principali test di intelligenza, che sono tra le misure più usate ed efficaci nella pratica psicologica.
+Il QI è calcolato da tutti i principali test di intelligenza, che sono tra le misure più usate ed efficaci nella pratica psicologica, e uno dei prodotti di maggiore "successo" della ricerca in psicologia.
 
-Il QI non dice tutto: a fianco a esso, molti test forniscono anche indici di abilità specifiche. Tuttavia, come già detto sopra, l'abilità generale tende a prevalere rispetto a quelle specifiche. Cioè, è raro che un'abilità specifica sia fortemente sbilanciata rispetto a quella generale, e anche laddove ciò accade, è raro che l'abilità specifica "sbilanciata" abbia un forte impatto sulla vita reale (ovviamente esistono eccezioni). Per queste ragioni l'abilità generale (approssimata dal QI) si ritiene di solito una buona sintesi complessiva.
+Il QI, comunque, non dice tutto: a fianco a esso, molti test forniscono anche indici di abilità specifiche. Tuttavia, l'abilità generale (g) tende a prevalere rispetto a quelle specifiche. Cioè, è raro che un'abilità specifica sia fortemente sbilanciata rispetto a quella generale, e anche laddove ciò accade, è raro che l'abilità specifica "sbilanciata" abbia un forte impatto sulla vita reale. Ovviamente, esistono sempre le eccezioni, ma quello che guardiamo come prima cosa è il dato statistico complessivo. Per queste ragioni l'abilità generale (approssimata dal QI) si ritiene di solito una buona sintesi complessiva, e spesso è sufficiente.
 :::
 
 ::: {.callout collapse="true"}
@@ -136,7 +136,7 @@ Nel corso del Novecento, almeno nei paesi occidentali dove sono state fatte le r
 
 Si può discutere se questo rappresenti un vero aumento dell'intelligenza, ma di certo ha rispecchiato un aumento della capacità di usare l'intelletto. Le ragioni non sono genetiche, ma ambientali: in cento anni la genetica di una popolazione non cambia in modo apprezzabile, ma sono cambiate l'alimentazione, le condizioni igienico-sanitarie, la scolarizzazione, il tipo di lavoro svolto, e in generale l'ambiente sociale, culturale, ed economico è diventato più stimolante per lo sviluppo mentale. È interessante notare che a crescere più di tutto, più che le conoscenze generali legate a scolarizzazione e cultura, sia stata l'abilità di ragionare in termini astratti.
 
-Oggi sembra però che questo effetto sia rallentato o addirittura scomparso, almeno nei paesi dove prima era stato rilevato, tra cui l'Italia. Nei paesi scandinavi (es. la Norvegia, dove il QI è regolarmente misurato a intere coorti di giovani sottoposti/e al servizio militare) sembra addirittura si stia andando verso un lieve declino. Forse la crescita era arrivata al "massimo" che poteva raggiungere, o forse oggi assistiamo a un genuino deterioramento della qualità degli "stimoli mentali". Fatto sta che
+Oggi sembra però che questo effetto sia rallentato o addirittura scomparso, almeno nei paesi dove prima era stato rilevato, tra cui l'Italia. Nei paesi scandinavi (es. la Norvegia, dove il QI è regolarmente misurato a intere coorti di giovani sottoposti/e al servizio militare) sembra addirittura si stia andando verso un lieve declino. Forse la crescita era arrivata al "massimo" che poteva raggiungere, o forse oggi assistiamo a un genuino deterioramento della qualità degli "stimoli mentali". 
 :::
 
 ::: {.callout collapse="true"}

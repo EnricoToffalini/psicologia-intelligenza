@@ -6,6 +6,9 @@
     margin-right: 3rem;
   }
 }
+p {
+  font-size: 18px !important;
+}
 a {
   color: #9B0014;
   text-decoration: none;
