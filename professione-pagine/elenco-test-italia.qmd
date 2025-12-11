@@ -14,7 +14,13 @@ include-in-header: ../figure/header.html
 
 Questa pagina tenta di offrire un elenco degli strumenti standarizzati per la valutazione dell’intelligenza attualmente disponibili in Italia nelle loro versioni più recenti. L'elenco è esaustivo e mantenuto aggiornato per quanto possibile (si prega di segnalare a <a href="mailto:enrico.toffalini@unipd.it">enrico.toffalini\@unipd.it</a> eventuali aggiornamenti necessari). Per ogni strumento si elencano informazioni essenziali reperibili da fonti pubbliche (pagine ufficiali, cataloghi editoriali) e, dove possibile, da una consultazione diretta dei manuali. Si offrono inoltre brevi considerazioni teoriche e pratiche su punti di forza e debolezza.
 
-Complessivamente, il panorama italiano è dominato da due case editrici: *Hogrefe* e *Giunti Psychometrics*. Una nota, seria diatriba sorta di recente riguarda il crescente uso di scoring online e, cosa più problematica, l'opacità degli algoritmi e la mancata disponibilità dei dati normativi in chiaro sui manuali dei test, politica seguita specialmente da *Giunti Psychometrics* (es. <a href="https://www.rivisteweb.it/doi/10.1449/113146" target="_blank">Frinco et al., 2024</a>; <a href="https://rivisteweb.it/doi/10.1421/116921" target="_blank">Zanon & Priftis, 2025</a>). In questa pagina non ci occuperemo del problema, se non facendo un rimando dove strettamente necessario. Infine, dove un'informazione si riporta come *"non dichiarata nel link pubblico"* (es. gli anni di pubblicazione di tutti gli strumenti di *Giunti Psychometrics*) si intende verificata a dicembre 2025. 
+Alcuni appunti: 
+
+- Complessivamente, il panorama italiano è dominato da due case editrici: *Hogrefe* e *Giunti Psychometrics*. 
+- Una nota, seria diatriba sorta di recente riguarda il crescente uso di scoring online e, cosa più problematica, l'opacità degli algoritmi e la mancata disponibilità dei dati normativi in chiaro sui manuali dei test, politica seguita specialmente da *Giunti Psychometrics* (es. <a href="https://www.rivisteweb.it/doi/10.1449/113146" target="_blank">Frinco et al., 2024</a>; <a href="https://rivisteweb.it/doi/10.1421/116921" target="_blank">Zanon & Priftis, 2025</a>). In questa pagina non ci occuperemo del problema, se non facendo un rimando laddove strettamente necessario. 
+- L'elenco sotto riporta solo i dettagli essenziali dei test, più alcune riflessioni elaborate dalla propria esperienza accademica e dal confronto con esperte e esperti clinici; per ogni ulteriore informazione si faccia riferimento al link pubblico riportato per ogni strumento. 
+- Si è scelto di non riportare un campo "validità psicometrica" per ciascun test (salvo alcuni specifici commento in certi casi), perché un'interpretazione reale e onesta non si può fermare alla considerazione degli indici elaborati dagli editori, ma richiederebbe un approfondito esame e riflessione sui dati, cosa non è ancora stata fatta per tutti i test - tanto più che i dati minimi spesso non sono neppure disponibili (vedi il caso *Giunti Psychometrics* di cui sopra).
+- Dove un'informazione si riporta come *"non dichiarata nel link pubblico"* (es. gli anni di pubblicazione di tutti gli strumenti di *Giunti Psychometrics*) si intende verificata a dicembre 2025. 
 
 ------------------------------------------------------------------------
 
@@ -68,7 +74,7 @@ Complessivamente, il panorama italiano è dominato da due case editrici: *Hogref
 
 **Multicomponenziale**: No - prevede una prova suddivisa in diverse serie di item, ma non fornisce né sarebbe adeguato fornire indici differenziati.
 
-**Commento generale**: Classico test di "intelligenza fluida", basato su materiale interamente non-verbale. Monocomponenziale e di relativamente rapida somministrazione.
+**Commento generale**: Classico test di "intelligenza fluida", basato su materiale interamente non-verbale. Monocomponenziale e di relativamente rapida somministrazione. Avrebbe il potenziale per diventare un test per l'intero arco di vita (in altri paesi presumibilmente lo è già), ma questa edizione è validata solo per l'età evolutiva, in base a quanto riportato.
 
 **Punti di forza**: Possibilità di somministrazione individuale e collettiva. Relativamente rapida somministrazione (meno di 30 minuti).
 
