@@ -66,6 +66,25 @@ a:hover {
   border-left-color: #9B0014 !important;
 }
 
+/* Detail Boxes */
+details{
+ padding: 10px;
+ border-radius: 4px;
+}
+details > summary{
+ padding: 3px;
+ border-radius: 4px;
+}
+details > summary > p{
+ font-size: 130% !important;
+}
+details[open]{
+  background-color: #f4f4f4;
+}
+details[open] > summary{
+  color: #333333;
+}
+
 
 /* CUSTOM STYLE TYPES */
 .abstract {

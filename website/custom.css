@@ -11,11 +11,9 @@ p {
 }
 a {
   color: #9B0014;
-  text-decoration: none;
 }
 a:hover {
-  color: #666666;
-  text-decoration: underline;
+  color: #555555;
 }
 ::selection {
   background-color: #9B0014;
@@ -66,6 +64,25 @@ a:hover {
 .callout:active {
   outline: none;
   border-left-color: #9B0014 !important;
+}
+
+/* Detail Boxes */
+details{
+ padding: 10px;
+ border-radius: 4px;
+}
+details > summary{
+ padding: 3px;
+ border-radius: 4px;
+}
+details > summary > p{
+ font-size: 130% !important;
+}
+details[open]{
+  background-color: #f4f4f4;
+}
+details[open] > summary{
+  color: #333333;
 }
 
 

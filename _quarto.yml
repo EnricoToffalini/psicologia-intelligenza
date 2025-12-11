@@ -11,12 +11,12 @@ format:
     page-layout: full
     include-in-header:
        text: |
-         <link rel="shortcut icon" href="figure/favicon.png"/>
+         <link rel="shortcut icon" href="figure/favicon2.png"/>
 
 book:
   title: "Psicologia dell'Intelligenza Umana"
   author:
-    - name: "Enrico Toffalini"
+    - name: '<a href="https://enricotoffalini.github.io" target="_blank">Enrico Toffalini</a>'
       affiliation: "Dipartimento di Psicologia Generale, Università di Padova" 
   chapters:
     - file: index.qmd
@@ -26,9 +26,12 @@ book:
     
     - part: "<b>Divulgazione</b>"
       chapters:
-        - divulgazione/domande-risposte.qmd
-        - divulgazione/flynn-effetto-flynn.qmd
-
+        - divulgazione-pagine/domande-risposte.qmd
+        - divulgazione-pagine/flynn-effetto-flynn.qmd
+    - part: "<b>Professione</b>"
+      chapters:
+        - professione-pagine/elenco-test-italia.qmd
+        
 bibliography: references.bib
 csl: apa.csl
 
