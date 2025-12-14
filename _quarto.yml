@@ -23,15 +23,15 @@ book:
       text: "Introduzione"
     - file: references.qmd
       text: "Riferimenti bibliografici"
-    
+
+    - part: "<b>Professione</b>"
+      chapters:
+        - professione-pagine/elenco-test-italia.qmd    
     - part: "<b>Divulgazione</b>"
       chapters:
         - divulgazione-pagine/domande-risposte.qmd
         - divulgazione-pagine/flynn-effetto-flynn.qmd
-    - part: "<b>Professione</b>"
-      chapters:
-        - professione-pagine/elenco-test-italia.qmd
-        
+
 bibliography: references.bib
 csl: apa.csl
 
