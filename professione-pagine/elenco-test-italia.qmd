@@ -67,7 +67,7 @@ Alcuni appunti:
 
 **Anno di pubblicazione**: 2019
 
-**Popolazione target**: 8.5-18 anni
+**Popolazione target**: 8.5-18.11 anni
 
 **Numerosità del campione**: 550 partecipanti
 
@@ -75,7 +75,7 @@ Alcuni appunti:
 
 **Multicomponenziale**: No - prevede una prova suddivisa in diverse serie di item, ma non fornisce né sarebbe adeguato fornire indici differenziati.
 
-**Commento generale**: Classico test di "intelligenza fluida", basato su materiale interamente non-verbale. Monocomponenziale e di relativamente rapida somministrazione. Avrebbe il potenziale per diventare un test per l'intero arco di vita (in altri paesi presumibilmente lo è già), ma questa edizione è validata solo per l'età evolutiva, in base a quanto riportato.
+**Commento generale**: Classico test di "intelligenza fluida", basato su materiale interamente non-verbale. Monocomponenziale e di relativamente rapida somministrazione. Avrebbe il potenziale per diventare un efficace e agile test per l'intero arco di vita (in altri paesi presumibilmente lo è già), ma questa edizione in Italia è validata solo per l'età evolutiva, in base a quanto riportato.
 
 **Punti di forza**: Possibilità di somministrazione individuale e collettiva. Relativamente rapida somministrazione (meno di 30 minuti).
 
@@ -250,9 +250,9 @@ Alcuni appunti:
 
 **Popolazione target**: 2.6-7.7 anni
 
-**Numerosità del campione**: 1025 partecipanti
+**Numerosità del campione**: 1025 partecipanti (di cui il 20% è campione clinico, e non è chiaro se sia escluso dal contributo alle norme - vedi sotto)
 
-**Continuous norming**: \[da valutare, presumibilmente no\]
+**Continuous norming**: Presumibilmente sì - parla di norme derivate da "modello lineare polinomiale".
 
 **Multicomponenziale**: Sì - oltre al QI totale offre indici principali per *Comprensione verbale*, *Abilità visuospaziali*, *Ragionamento fluido*, *Memoria di lavoro* e *Velocità di elaborazione*. Sono inoltre disponibili indici secondari per *Acquisizione del vocabolario*, *Abilità non verbale*, *Abilità Generale* (IAG),*Competenza cognitiva* (ICC).
 
@@ -261,7 +261,7 @@ Alcuni appunti:
 
 **Punti di forza**: Buona copertura delle principali aree cognitive rilevanti per questa fascia d’età: copre un'adeguata selezione di aree del modello CHC, garantendo parsimonia e bilanciamento. Continuità teorica e metodologica con le altre scale Wechsler (stessa struttura della WISC-V), utile per follow-up.
 
-**Punti di debolezza**: [In corso di valutazione la trasparenza dei dati normativi, ma se confermata l'opacità] lo scoring online privo di dati normativi in chiaro, combinato all'assenza di statistiche descrittive dettagliate per i dati grezzi (aspetto che riguarda anche molti altri test, purtroppo), rende impossibile un accertamento indipendente e trasparente delle proprietà psicometriche e della bontà dei dati normativi stessi. La comparabilità longitudinale potrebbe essere limitata tra le due fasce d’età previste dalla batteria (ma è inevitabile a causa dell'applicazione a età molto precoci).
+**Punti di debolezza**: Lo scoring online privo di dati normativi in chiaro, combinato all'assenza di statistiche descrittive dettagliate per i dati grezzi (aspetto che riguarda anche molti altri test, purtroppo), rende impossibile un accertamento indipendente e trasparente delle proprietà psicometriche e della bontà dei dati normativi stessi. C'è il dubbio che lo strumento sovrastimi il QI: circa il 20% del campione totale è "clinico" (quindi è sovrarappresentato, e ha funzionamento medio sotto la norma); sebbene esso sia distinto dal campione "normativo", le statistiche descrittive riportate nel manuale per i punteggi ponderati del campione *totale* risultano con media circa 10, che è più di quanto ci si aspetterebbe se il campione clinico non concorresse a definire le norme. La comparabilità longitudinale potrebbe essere limitata tra le due fasce d’età previste dalla batteria (ma è inevitabile a causa dell'applicazione a età molto precoci).
 
 </details>
 
@@ -341,17 +341,17 @@ Alcuni appunti:
 
 **Popolazione target**: 6-90 anni
 
-**Numerosità del campione**: Non dichiarato nel link pubblico - presumibilmente oltre 8000 partecipanti sommando quelli di CPM + SPM + APM \[ma da verificare\].
+**Numerosità del campione**: Non dichiarato nel link pubblico - 1293 da manuale.
 
-**Continuous norming**: \[da valutare\]
+**Continuous norming**: Sì
 
 **Multicomponenziale**: No
 
-**Commento generale**:
+**Commento generale**: Versione più recente e integrata delle Matrici Progressive di Raven, che unifica in un'unica batteria le versioni storiche CPM, SPM e APM con item completamente rinnovati e norme aggiornate. Strumento monocomponenziale, interamente non verbale, mirato a stimare rapidamente e con precisione l’abilità cognitiva generale, con particolare enfasi sull'intelligenza fluida. È pensato come test agile e flessibile, utilizzabile in un ampio arco di età e in contesti clinici, educativi e di screening. Il manuale insiste sull'utilizzo dei modelli IRT per stima della difficoltà degli item e dell'abilità del soggetto: le proprietà psicometriche sono, presumibilmente, molto buone.
 
-**Punti di forza**:
+**Punti di forza**: Ampia copertura dell’arco di vita, utile anche in presenza di difficoltà linguistiche, disturbi del neurosviluppo o differenze culturali che potrebbero compromettere l’uso di batterie verbali, e modulabile su diversi livelli di abilità. Struttura unificata che semplifica la scelta dello strumento rispetto al "pacchetto" CPM–SPM–APM. Somministrazione relativamente rapida, con possibilità di uso individuale o collettivo e opzioni sia cartacee sia digitali. 
 
-**Punti di debolezza**:
+**Punti di debolezza**: Lo scoring online privo di dati normativi in chiaro, combinato all'assenza di statistiche descrittive dettagliate per i dati grezzi (aspetto che riguarda anche molti altri test, purtroppo), rende impossibile un accertamento indipendente e trasparente delle proprietà psicometriche e della bontà dei dati normativi stessi; il manuale non fornisce nemmeno le risposte corrette agli item (il calcolo "manuale" non sarebbe comunque impresa da tentare: il punteggio finale si basa in ogni caso su un algoritmo psicometrico, presumibilmente valido ma comunque opaco). Non essendo multicomponenziale, non offre un vero profilo delle diverse aree di abilità intellettiva e non sostituisce batterie estese (es. Wechsler, IDS-2) quando serve una valutazione articolata. La letteratura indipendente specifica su Raven’s 2, rispetto alle versioni classiche, è per ora inevitabilmente più limitata. 
 
 </details>
 
@@ -379,15 +379,15 @@ Alcuni appunti:
 
 **Numerosità del campione**: 5263 per CPM; 6283 per SPM; 1766 per APM
 
-**Continuous norming**: No
+**Continuous norming**: Presumibilmente no
 
 **Multicomponenziale**: No
 
-**Commento generale**:
+**Commento generale**: Le tre versioni storiche delle Matrici Progressive di Raven (CPM, SPM e APM) costituiscono un classico strumento monocomponenziale per la misura dell'intelligenza non verbale e del ragionamento analogico. Ognuna è pensata per un diverso livello di età e di abilità, dalla prima infanzia (CPM) ai livelli più elevati di funzionamento cognitivo (APM). Lungo decenni di utilizzo, queste forme hanno accumulato una vasta tradizione di impiego in ambito clinico, educativo e di ricerca, rendendole un riferimento importante nello studio di g e dell'intelligenza fluida. ⚠️ Almeno per le finalità cliniche, si devono considerare di fatto sostituite da Raven's 2.
 
-**Punti di forza**:
+**Punti di forza**: Struttura semplice e interamente non verbale, che riduce il peso del linguaggio (pur non eliminandolo nelle istruzioni) e del background scolastico, rendendo le matrici particolarmente adatte per valutazioni in contesti multiculturali o in presenza di difficoltà linguistiche. Le differenti versioni coprono l’intero arco di sviluppo intellettivo, con CPM più sensibili ai livelli bassi e medi e APM pensate per i livelli più alti di abilità. Le norme italiane, pur non recentissime, si basano su campioni ampi. Ampia tradizione di ricerca.
 
-**Punti di debolezza**:
+**Punti di debolezza**: Norme non più aggiornate, con rischio di distorsioni legate all’effetto Flynn e ai cambiamenti socioculturali intercorsi negli anni successivi alla standardizzazione. Mancanza di continuous norming potrebbe limitare la precisione nella stima dei punteggi nelle diverse fasce d’età. Struttura separata in CPM, SPM e APM che richiede una scelta preliminare della forma più adatta e può complicare l’uso (soprattutto in percorsi di valutazione longitudinale). L’ampia diffusione delle matrici e la conoscenza di alcuni item in contesti educativi o training può aumentare il rischio di effetti di pratica. Non essendo multicomponenziali, non offrono un vero profilo delle diverse aree di abilità intellettiva e non sostituiscono batterie estese quando serve una valutazione articolata. 
 
 </details>
 
@@ -409,15 +409,15 @@ Alcuni appunti:
 
 **Numerosità del campione**: 2133 partecipanti
 
-**Continuous norming**: \[da valutare, presumibilmente no\]
+**Continuous norming**: Presumibilmente sì - parla di punteggi standardizzati "elaborati con procedure di smoothing verticale (entro le fasce d'età) e orizzontale (attraverso le fasce di età)".
 
-**Multicomponenziale**: Parzialmente - oltre al QI totale offre indici per *QI Verbale* e un *QI Non Verbale*.
+**Multicomponenziale**: In misura minima - oltre al QI totale offre indici per *QI Verbale* e un *QI Non Verbale* (quest'ultimo in realtà basato sul solo subtest *Matrici*).
 
 **Commento generale**: Strumento rapido per la stima del funzionamento intellettivo generale, utilizzabile su un ampio arco di vita. La struttura è intenzionalmente semplice e orientata a una valutazione rapida, più che a una descrizione articolata del profilo cognitivo. Il QI totale è ottenuto combinando prestazioni verbali e non verbali, con una logica coerente con i test di screening dell’intelligenza, che antepongono agilità e robustezza (che spesso è ciò che serve) a un profilo dettagliato. 
 
 **Punti di forza**: Somministrazione abbastanza rapida (stima del QI entro 30 minuti), il che lo rende utile in diversi contesti (eventualmente anche ricerca) come via di mezzo tra screening e stima robusta. Copertura molto ampia dell’arco di vita.
 
-**Punti di debolezza**: Multicomponenzialità limitata: non consente (ma nemmeno è progettato per) un'analisi dettagliata delle diverse componenti cognitive. 
+**Punti di debolezza**: Multicomponenzialità minima: non consente (ma nemmeno è progettato per) un'analisi dettagliata delle diverse componenti cognitive. 
 
 </details>
 
