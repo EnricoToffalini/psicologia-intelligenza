@@ -19,7 +19,7 @@ Questa pagina tenta di offrire un elenco degli strumenti standarizzati per la va
 ## ▶ Note e appunti importanti per la consultazione
 
 - Complessivamente, il panorama italiano è dominato da due case editrici: *Hogrefe* e *Giunti Psychometrics*. 
-- Una nota, seria diatriba sorta di recente riguarda il crescente uso di scoring online e, cosa più problematica, l'opacità degli algoritmi e la mancata disponibilità dei dati normativi in chiaro sui manuali dei test, politica seguita specialmente da *Giunti Psychometrics* (es. <a href="https://www.rivisteweb.it/doi/10.1449/113146" target="_blank">Frinco et al., 2024</a>; <a href="https://rivisteweb.it/doi/10.1421/116921" target="_blank">Zanon & Priftis, 2025</a>). In questa pagina non ci occuperemo del problema, se non facendo un rimando laddove strettamente necessario. 
+- Una nota, seria <a href="https://enricotoffalini.github.io/trasparenza-dati-normativi/" target="_blank">diatriba sorta di recente riguarda il crescente uso di scoring online e, cosa più problematica, l'opacità degli algoritmi e la mancata disponibilità dei dati normativi</a> in chiaro sui manuali dei test, politica seguita specialmente da *Giunti Psychometrics* (es. <a href="https://www.rivisteweb.it/doi/10.1449/113146" target="_blank">Frinco et al., 2024</a>; <a href="https://rivisteweb.it/doi/10.1421/116921" target="_blank">Zanon & Priftis, 2025</a>). In questa pagina non ci occuperemo del problema, se non facendo un rimando laddove strettamente necessario. 
 - Un limite rilevante di quasi tutti gli strumenti, inclusi quelli che riportano dati normativi in chiaro per la conversione grezzo-ponderato su manuale e/o piattaforma online, è che non riportano comunque statistiche descrittive dettagliate per i punteggi grezzi divisi per fasce di età (specialmente in caso di continuous norming, queste sarebbero necessarie per controllare la bontà delle norme). Essendo un limite di quasi tutti gli strumenti, non lo ripeteremo per ogni caso. 
 - L'elenco riporta solo i dettagli essenziali di ogni test, corredati da alcune riflessioni elaborate dalla propria esperienza accademica e dal confronto con esperte e esperti clinici; per ogni ulteriore informazione si può fare riferimento al link pubblico, riportato per ogni strumento. 
 - Si è scelto di non riportare un campo "validità psicometrica" per ciascun test (salvo alcuni specifici commento in certi casi), perché un'interpretazione reale e onesta non si può fermare alla considerazione degli indici elaborati dagli editori, ma richiederebbe un approfondito esame e riflessione sui dati, cosa non è ancora stata fatta per tutti i test - tanto più che i dati minimi spesso non sono neppure disponibili (vedi il caso *Giunti Psychometrics* di cui sopra).
@@ -415,7 +415,7 @@ Questa pagina tenta di offrire un elenco degli strumenti standarizzati per la va
 
 **Popolazione target**: 6-90 anni
 
-**Numerosità del campione**: Non dichiarato nel link pubblico - 1293 da manuale.
+**Numerosità del campione**: Non dichiarato nel link pubblico - 1293 partecipanti da manuale.
 
 **Continuous norming**: Sì
 
