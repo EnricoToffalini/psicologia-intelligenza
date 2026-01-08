@@ -11,7 +11,7 @@ format:
     page-layout: full
     include-in-header:
        text: |
-         <link rel="shortcut icon" href="figure/favicon2.png"/>
+         <link rel="shortcut icon" href="favicon.ico"/>
 
 book:
   title: "Psicologia dell'Intelligenza Umana"

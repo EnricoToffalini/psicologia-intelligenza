@@ -309,7 +309,7 @@ Questa pagina tenta di offrire un elenco degli strumenti standarizzati per la va
 **Multicomponenziale**: Sì - oltre al QI totale offre indici principali per *Comprensione verbale*, *Abilità visuospaziali*, *Ragionamento fluido*, *Memoria di lavoro* e *Velocità di elaborazione*. Sono inoltre disponibili indici secondari per *Acquisizione del vocabolario*, *Abilità non verbale*, *Abilità Generale* (IAG),*Competenza cognitiva* (ICC).
 
 
-**Commento generale**: Classico strumento multicomponenziale per la valutazione dell’intelligenza in età prescolare e nella prima età scolare. La batteria è articolata in due fasce d’età (2.6–3.11 e 4.0–7.7 anni), con differenze nei subtest somministrati e negli indici calcolabili. La struttura segue l’impostazione gerarchica tipica delle scale Wechsler e garantisce continuità concettuale con WISC e WAIS.
+**Commento generale**: Classico strumento multicomponenziale per la valutazione dell’intelligenza in età prescolare e nella prima età scolare. La batteria è articolata in due fasce d’età (2.6-3.11 e 4.0-7.7 anni), con differenze nei subtest somministrati e negli indici calcolabili. La struttura segue l’impostazione gerarchica tipica delle scale Wechsler e garantisce continuità concettuale con WISC e WAIS.
 
 **Punti di forza**: 
 
@@ -378,9 +378,9 @@ Questa pagina tenta di offrire un elenco degli strumenti standarizzati per la va
 
 **Popolazione target**: 16-69 anni e 70-90 anni
 
-**Numerosità del campione**: 1424 partecipanti (16–69 anni) + 750 partecipanti (70–90 anni)
+**Numerosità del campione**: 1424 partecipanti (16-69 anni) + 750 partecipanti (70-90 anni)
 
-**Continuous norming**: No (norme suddivise per classi d'età)
+**Continuous norming**: Parzialmente (no per la standardizzazione principale 16-69 anni; sì per l'ampliamento all'età anziana 70-90 anni)
 
 **Multicomponenziale**: Sì - oltre al QI totale offre indici principali per *Comprensione verbale* (ICV), *Ragionamento visuo-percettivo* (IRP), *Memoria di lavoro* (IML) e *Velocità di elaborazione* (IVE). Offre inoltre indici ausiliari per *Abilità Generale (IAG)*, *Competenza Cognitiva (ICC)*.
 
@@ -427,7 +427,7 @@ Questa pagina tenta di offrire un elenco degli strumenti standarizzati per la va
 
 - Ampia copertura dell’arco di vita. 
 - Utile anche in presenza di difficoltà linguistiche, disturbi del neurosviluppo o differenze culturali che potrebbero compromettere l’uso di batterie verbali, e modulabile su diversi livelli di abilità. 
-- Struttura unificata che semplifica la scelta dello strumento rispetto al "pacchetto" CPM–SPM–APM. 
+- Struttura unificata che semplifica la scelta dello strumento rispetto al "pacchetto" CPM-SPM-APM. 
 - Somministrazione relativamente rapida, con possibilità di uso individuale o collettivo e opzioni sia cartacee sia digitali. 
 
 **Punti di debolezza**: 
