@@ -44,9 +44,9 @@ L’Effetto Flynn è un manifesto ottimista: il funzionamento cognitivo non è f
 
 Come attestato dallo stesso Flynn nel brano tradotto sotto, l'evidenza dell'Effetto Flynn ha rovesciato la visione elitaria secondo cui solo una minoranza sarebbe "nata" per svolgere compiti che richiedono pensiero complesso [@flynnSecularChangesIntelligence2020]. Ha dimostrato che la mente umana è plastica come neanche gli intellettuali progressisti del Novecento avevano immaginato, e che la crescita collettiva non è solo economica, ma anche cognitiva e morale. Ma tutto questo richiede anche "sforzo", e a un certo punto non può più essere dato per scontato.
 
-### L'Effetto Flynn secondo lo stesso James Flynn
+### L'Effetto Flynn secondo le parole dello stesso Flynn
 
-Il seguente brano è tradotto dall'articolo di @flynnSecularChangesIntelligence2020 intitolato <a href="https://doi.org/10.1017/9781108770422.040" target="_blank">*"Secular changes in intelligence: The Flynn Effect"*</a>:
+Il seguente brano è tradotto dall'articolo di James @flynnSecularChangesIntelligence2020 intitolato <a href="https://doi.org/10.1017/9781108770422.040" target="_blank">*"Secular changes in intelligence: The Flynn Effect"*</a>:
 
 <div style="font-style: italic; color: #444;">
 <span style="font-size:50px">❝</span> Fino al 1984, la maggior parte delle persone credeva che il QI medio fosse relativamente stabile nel tempo, almeno nei paesi sviluppati. (...) Prima che gli enormi miglioramenti del QI venissero documentati, gli studiosi tendevano a valutare l'intelligenza (in seguito chiamata "g" o fattore di intelligenza generale) delle masse popolari in un dato momento e a trarre conclusioni pessimiste. Prima della Prima Guerra Mondiale pochi intellettuali (Bertrand Russell e i marxisti erano eccezioni) pensavano che le masse fossero collettivamente capaci di svolgere quei ruoli sociali cognitivamente complessi che erano prerogativa delle classi superiori.
