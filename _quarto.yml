@@ -1,6 +1,6 @@
 project:
   type: book
-  title: "Psicologia dell'Intelligenza Umana"
+  title: "Psicologia dell'Intelligenza"
   output-dir: website 
 
 format:
@@ -16,7 +16,7 @@ format:
                async src="//gc.zgo.at/count.js"></script>
 
 book:
-  title: "Psicologia dell'Intelligenza Umana"
+  title: "Psicologia dell'Intelligenza"
   author:
     - name: '<a href="https://enricotoffalini.github.io" target="_blank">Enrico Toffalini</a>'
       affiliation: "Dipartimento di Psicologia Generale, Università di Padova" 
