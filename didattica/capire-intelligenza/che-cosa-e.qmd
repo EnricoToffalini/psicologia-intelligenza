@@ -2,7 +2,21 @@
 title: "Che cosa chiamiamo intelligenza"
 description: "Dalle capacità mentali alle prestazioni osservate: che cosa indica il QI e come si mette alla prova una misura dell'intelligenza."
 suppress-bibliography: true
+execute:
+  echo: false
+  warning: false
+  message: false
 ---
+
+```{r}
+#| label: setup
+library(ggplot2)
+rosso = "#9A0000"
+virgola = function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",")
+source("../../assets/diagrammi.R")
+tema = theme_minimal(base_size = if (stampa) 10 else 13) +
+  theme(panel.grid.minor = element_blank())
+```
 
 Una persona capisce al volo un problema difficile e poi prende una decisione
 disastrosa. È intelligente o no? La domanda sembra imbarazzante solo perché
@@ -50,6 +64,20 @@ la pianificazione, il pensiero astratto, la comprensione di idee complesse e
 l'apprendimento rapido dall'esperienza. Il suo pregio è collegare attività
 diverse senza ridurre l'intelligenza alla cultura scolastica
 [@gottfredson1997mainstream, p. 13].
+
+```{r}
+#| label: fig-definizione
+#| fig-cap: "Una capacità mentale generale e alcune delle attività in cui interviene, secondo la definizione di lavoro adottata in questo libro. Elaborazione da Gottfredson (1997)."
+#| fig-alt: "Un ovale al centro con la scritta capacità mentale generale, da cui partono frecce verso otto attività: ragionare, pianificare, risolvere problemi, pensare in termini astratti, comprendere idee complesse, apprendere rapidamente, apprendere dall'esperienza e altro."
+#| fig-width: !expr 4.45 * scala
+#| fig-height: !expr 2.6 * scala
+tela(c(0, 12), c(0, 10))
+g = nodo(6, 5, "una capacità\nmentale generale", w = 3.9, h = 3, forma = "ovale", bg = "white", font = 4, cex = .8, lwd = 1.4)
+att = c("ragionare", "pianificare", "risolvere\nproblemi", "pensare in\ntermini astratti",
+        "comprendere\nidee complesse", "apprendere\nrapidamente", "apprendere\ndall'esperienza", "...")
+x = rep(c(1.45, 10.55), each = 4); y = rep(c(8.9, 6.3, 3.7, 1.1), 2)
+for (i in 1:8) collega(g, nodo(x[i], y[i], att[i], w = 2.8, h = 1.9, bg = "grey95", cex = .66), col = rosso, lwd = .9)
+```
 
 «Generale» indica l'ampiezza del campo di applicazione, non l'uniformità dei
 risultati. Una persona può usare la stessa capacità in compiti diversi e

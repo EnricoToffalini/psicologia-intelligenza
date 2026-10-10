@@ -14,6 +14,7 @@ library(ggplot2)
 rosso = "#9A0000"
 # Nel PDF (A5) le figure si disegnano alla larghezza reale della pagina.
 stampa = knitr::is_latex_output()
+source("../../assets/diagrammi.R")
 virgola = function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",")
 tema = theme_minimal(base_size = if (stampa) 10 else 13) +
   theme(panel.grid.minor = element_blank())
@@ -138,6 +139,27 @@ coordinare, e in modo più debole in quelli semplici e ripetitivi. Durante la
 formazione, invece, la sua capacità predittiva è elevata quasi per qualsiasi
 lavoro: imparare un compito nuovo richiede sempre capacità cognitive
 [@schmidt2004general].
+
+```{r}
+#| label: fig-complessita
+#| fig-cap: "Validità dell'abilità cognitiva generale per livello di complessità del lavoro, nella prestazione sul lavoro e nella formazione. Stime classiche corrette per attendibilità e restrizione del range, da considerare limiti superiori; per i lavori di complessità minima manca la stima sulla formazione. Elaborazione da Schmidt e Hunter (2004), tabella 2."
+#| fig-alt: "Grafico a punti con cinque livelli di complessità del lavoro, dal più alto al più basso. La validità per la prestazione sul lavoro scende da 0,58 a 0,23; quella per la formazione resta fra 0,54 e 0,65 nei quattro livelli in cui è disponibile."
+#| fig-width: !expr if (stampa) 4.45 else 7
+#| fig-height: !expr if (stampa) 2.9 else 3.6
+d = data.frame(liv = rep(1:5, 2), crit = rep(c("Prestazione sul lavoro", "Formazione"), each = 5),
+               r = c(.58, .56, .51, .40, .23, .59, .65, .57, .54, NA))
+d$liv = factor(d$liv, labels = c("1. Alta (dirigenti,\nanalisi e decisioni)", "2. Medio-alta", "3. Media (gestione\ndi informazioni)", "4. Medio-bassa", "5. Bassa (compiti\nmanuali ripetitivi)"))
+d$crit = factor(d$crit, levels = c("Prestazione sul lavoro", "Formazione"))
+ggplot(subset(d, !is.na(r)), aes(r, liv, colour = crit, shape = crit)) +
+  geom_point(size = 3) +
+  geom_text(aes(label = virgola(r), vjust = ifelse(crit == "Formazione", -.9, 1.9)), size = if (stampa) 2.8 else 3.4, show.legend = FALSE) +
+  scale_colour_manual(values = c(rosso, "grey45"), name = NULL) +
+  scale_shape_manual(values = c(16, 17), name = NULL) +
+  scale_y_discrete(limits = rev) +
+  scale_x_continuous(limits = c(.15, .72), breaks = seq(.2, .7, .1), labels = function(x) virgola(x, 1)) +
+  labs(x = "Validità (correlazione corretta)", y = NULL) +
+  tema + theme(legend.position = "top")
+```
 
 **Il criterio di prestazione.** La correlazione è più alta con il rendimento
 nella formazione e con misure oggettive della prestazione nei compiti centrali

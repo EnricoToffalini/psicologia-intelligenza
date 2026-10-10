@@ -2,7 +2,21 @@
 title: "Intelligenza, scuola e condizioni sociali"
 description: "Quanto il QI prevede il successo scolastico, perché i risultati scolastici non sono una misura di intelligenza, e come intelligenza, istruzione e status socioeconomico si influenzano a vicenda."
 suppress-bibliography: true
+execute:
+  echo: false
+  warning: false
+  message: false
 ---
+
+```{r}
+#| label: setup
+library(ggplot2)
+rosso = "#9A0000"
+virgola = function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",")
+source("../../assets/diagrammi.R")
+tema = theme_minimal(base_size = if (stampa) 10 else 13) +
+  theme(panel.grid.minor = element_blank())
+```
 
 I test di intelligenza sono nati per prevedere. Binet voleva sapere quali
 bambini avrebbero avuto difficoltà a trarre profitto dalla scuola. I test
@@ -100,6 +114,26 @@ relativamente universali, tenerne conto riduce le stime, ma non le stravolge.
 Le tre spiegazioni non si escludono. Le evidenze indicano che sono tutte e tre
 all'opera, e che si rinforzano a vicenda nel tempo.
 
+```{r}
+#| label: fig-matteo
+#| fig-cap: "Le tre spiegazioni della correlazione fra intelligenza e istruzione non si escludono: intelligenza e istruzione si rinforzano a vicenda nel tempo (effetto Matteo), e lo status socioeconomico della famiglia agisce su entrambe come causa comune. Schema originale."
+#| fig-alt: "Due ovali, intelligenza a sinistra e istruzione a destra, collegati da una freccia in ciascun senso: l'intelligenza favorisce l'istruzione, l'istruzione aumenta l'intelligenza. Sopra, un riquadro status socioeconomico familiare con frecce tratteggiate verso entrambi."
+#| fig-width: !expr 4.45 * scala
+#| fig-height: !expr 2.3 * scala
+tela(c(0, 12), c(0, 10))
+qi = nodo(2.2, 3.2, "Intelligenza", w = 3.6, h = 2.4, forma = "ovale", bg = "grey93", font = 2, cex = .72)
+is = nodo(9.8, 3.2, "Istruzione", w = 3.6, h = 2.4, forma = "ovale", bg = "grey93", font = 2, cex = .72)
+ses = nodo(6, 8.6, "status socioeconomico familiare", w = 6, h = 1.4, bg = "white", font = 3, cex = .64)
+xspline(c(4.1, 6, 7.9), c(4.1, 5.3, 4.1), shape = c(0, 1, 0), border = rosso, lwd = 1.6 * scala)
+freccia(7.75, 4.25, 7.95, 4.05, col = rosso, lwd = 1.6)
+xspline(c(7.9, 6, 4.1), c(2.3, 1.1, 2.3), shape = c(0, 1, 0), border = rosso, lwd = 1.6 * scala)
+freccia(4.25, 2.15, 4.05, 2.35, col = rosso, lwd = 1.6)
+text(6, 5.75, "favorisce", cex = .6, col = rosso, font = 3)
+text(6, .45, "aumenta", cex = .6, col = rosso, font = 3)
+text(6, 3.2, "effetto\nMatteo", cex = .66, font = 2, col = rosso)
+collega(ses, qi, col = "grey40", lty = 2); collega(ses, is, col = "grey40", lty = 2)
+```
+
 ## Dall'istruzione allo status sociale
 
 Se il QI prevede l'istruzione, prevede anche lo status lavorativo e il reddito?
@@ -117,6 +151,26 @@ rendimento scolastico, livello di istruzione, posizione lavorativa, reddito.
 L'intelligenza ha anche un effetto diretto, a parità di istruzione, ma più
 piccolo. Il suo ruolo principale è creare le condizioni perché gli altri
 passaggi avvengano.
+
+```{r}
+#| label: fig-percorso
+#| fig-cap: "Dall'intelligenza al reddito. Il percorso principale passa per rendimento scolastico, livello di istruzione e posizione lavorativa; l'effetto diretto dell'intelligenza, a parità di istruzione, è più piccolo (frecce sottili). Le correlazioni longitudinali con istruzione, prestigio professionale e reddito sono circa 0,56, 0,43 e 0,20 (Strenze, 2007). Schema originale."
+#| fig-alt: "Una catena di ovali da sinistra a destra: g, successo scolastico, livello di istruzione, status lavorativo, reddito, collegati da frecce spesse. Frecce sottili grigie vanno direttamente da g a status lavorativo e a reddito. Sotto ciascun esito è indicata la correlazione con l'intelligenza: 0,56 per l'istruzione, 0,43 per lo status lavorativo, 0,20 per il reddito."
+#| fig-width: !expr 4.45 * scala
+#| fig-height: !expr 1.75 * scala
+tela(c(0, 12), c(.8, 9.6))
+x = c(.8, 3.3, 5.8, 8.3, 10.8); y = 6.2
+nomi = c("g", "successo\nscolastico", "livello di\nistruzione", "status\nlavorativo", "reddito")
+n = lapply(1:5, function(i) nodo(x[i], y, nomi[i], w = if (i == 1) 1.4 else 2.2, h = 2.4, forma = "ovale",
+                                 bg = if (i == 3) "#F2DEDE" else if (i == 1) "white" else "grey93", font = if (i == 1) 4 else 1, cex = if (i == 1) .9 else .6))
+for (i in 1:4) collega(n[[i]], n[[i + 1]], col = "grey20", lwd = 1.8)
+for (k in 4:5) {
+  xspline(c(1, (1 + x[k]) / 2, x[k]), c(4.95, if (k == 4) 2.9 else 1.2, 4.95), shape = c(0, 1, 0), border = "grey60", lwd = scala)
+  freccia(x[k] - .02, 4.85, x[k], 5.0, col = "grey60")
+}
+text(x[3:5], 8.9, paste("r =", c("0,56", "0,43", "0,20")), cex = .6, col = rosso, font = 2)
+text(4.6, 1.75, "effetto diretto, più piccolo", cex = .56, font = 3, col = "grey40")
+```
 
 La forza di questi legami non è fissa. Nelle coorti britanniche più recenti la
 correlazione fra QI nell'infanzia e durata degli studi si è ridotta: con

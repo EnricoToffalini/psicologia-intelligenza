@@ -2,7 +2,21 @@
 title: "Perché studiare l'intelligenza"
 description: "Un costrutto maturo, usato ogni giorno e spesso frainteso: perché lo studio dell'intelligenza coincide in gran parte con lo studio delle differenze individuali."
 suppress-bibliography: true
+execute:
+  echo: false
+  warning: false
+  message: false
 ---
+
+```{r}
+#| label: setup
+library(ggplot2)
+rosso = "#9A0000"
+virgola = function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",")
+source("../../assets/diagrammi.R")
+tema = theme_minimal(base_size = if (stampa) 10 else 13) +
+  theme(panel.grid.minor = element_blank())
+```
 
 L'intelligenza è uno dei primi temi affrontati dalla psicologia scientifica e,
 oggi, uno dei più maturi. Ha prodotto metodi che usa l'intera disciplina, ha una
@@ -138,6 +152,44 @@ mostrano basi genetiche distribuite su moltissime varianti; hanno correlati
 neurobiologici; cambiano lungo lo sviluppo; interagiscono con l'esperienza.
 L'intelligenza è il punto in cui questi temi sono stati studiati più a lungo e
 con più dati. Per questo funziona bene come porta d'ingresso.
+
+```{r}
+#| label: fig-foresta
+#| fig-cap: "Le tre grandi aree delle differenze individuali hanno un'architettura simile: molti tratti specifici, raggruppati in dimensioni più ampie e correlate. Per le abilità cognitive al vertice c'è il fattore g; per la psicopatologia un fattore generale p è stato ipotizzato (bordo tratteggiato); per la personalità le dimensioni ampie sono i cinque grandi fattori. Schema originale."
+#| fig-alt: "Tre gerarchie affiancate: abilità cognitive, con g sopra abilità ampie come Gf, Gc e Gv; personalità, con i cinque grandi fattori; psicopatologia, con un fattore p ipotizzato sopra le dimensioni internalizzante ed esternalizzante. Sotto ogni gerarchia una fila di tratti specifici. Frecce doppie collegano le aree; una fascia comune in basso indica genetica, neurobiologia, sviluppo ed esperienza."
+#| fig-width: !expr 4.45 * scala
+#| fig-height: !expr 3.1 * scala
+tela(c(0, 12), c(0, 10))
+gerarchia = function(cx, titolo, alto, medi, tratteggio = FALSE) {
+  text(cx, 9.55, titolo, font = 2, cex = .72)
+  w = 3.4 / length(medi)
+  xm = cx + (seq_along(medi) - (length(medi) + 1) / 2) * w
+  xb = cx + seq(-1.6, 1.6, length.out = 6)
+  m = lapply(seq_along(medi), function(i) nodo(xm[i], 5.6, medi[i], w = w * .82, h = 1.1, forma = "ovale", bg = "grey93", cex = .62))
+  b = lapply(xb, function(x) nodo(x, 3, "", w = .42, h = .5, bg = "white"))
+  for (i in seq_along(m)) for (j in seq_along(b))
+    if (abs(xb[j] - xm[i]) < 1.05) collega(m[[i]], b[[j]], col = "grey55", lwd = .7, gap = .03)
+  if (!is.null(alto)) {
+    a = nodo(cx, 8.1, alto, w = 1.3, h = 1.2, forma = "ovale", bg = "white", font = 4, cex = .8, lwd = if (tratteggio) .8 else 1.2)
+    if (tratteggio) { t = seq(0, 2 * pi, length.out = 120); lines(cx + .65 * cos(t), 8.1 + .6 * sin(t), col = "white", lwd = 2 * scala); lines(cx + .65 * cos(t), 8.1 + .6 * sin(t), col = "grey20", lty = 2, lwd = scala) }
+    for (x in m) collega(a, x, col = rosso, lwd = 1, lty = if (tratteggio) 2 else 1)
+  }
+  text(cx, 2.25, "tratti specifici", cex = .58, col = "grey35")
+}
+gerarchia(2, "Abilità cognitive", "g", c("Gf", "Gc", "Gv", "..."))
+gerarchia(6, "Personalità", NULL, c("E", "C", "N", "A", "O"))
+gerarchia(10, "Psicopatologia", "p", c("Int.", "Est.", "..."), tratteggio = TRUE)
+freccia(3.75, 5.6, 4.25, 5.6, code = 3, col = "grey40")
+freccia(7.75, 5.6, 8.25, 5.6, code = 3, col = "grey40")
+rect(.2, .25, 11.8, 1.45, col = "grey88", border = NA)
+text(6, .85, "Basi comuni: genetica, neurobiologia, sviluppo, esperienza", cex = .62, font = 3)
+for (x in c(2, 6, 10)) freccia(x, 1.5, x, 2.0, col = "grey40")
+```
+
+Nella @fig-foresta Gf e Gc indicano l'intelligenza fluida e cristallizzata, Gv
+l'elaborazione visiva; le lettere della personalità indicano estroversione,
+coscienziosità, nevroticismo, amicalità e apertura mentale; Int. ed Est. le
+dimensioni internalizzante ed esternalizzante.
 
 ## Perché sembra più difficile di quanto sia
 

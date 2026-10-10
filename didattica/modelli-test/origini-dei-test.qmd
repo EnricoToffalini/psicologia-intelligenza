@@ -2,7 +2,21 @@
 title: "Dai primi test al testing di massa"
 description: "Galton, Binet, l'età mentale, il quoziente di Stern e i test dell'esercito statunitense: innovazioni, fallimenti e abusi delle prime misure dell'intelligenza."
 suppress-bibliography: true
+execute:
+  echo: false
+  warning: false
+  message: false
 ---
+
+```{r}
+#| label: setup
+library(ggplot2)
+rosso = "#9A0000"
+virgola = function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",")
+source("../../assets/diagrammi.R")
+tema = theme_minimal(base_size = if (stampa) 10 else 13) +
+  theme(panel.grid.minor = element_blank())
+```
 
 L'intelligenza è il primo costrutto psicologico per cui sono stati costruiti
 test, e la storia di quei test coincide in gran parte con la nascita della
@@ -15,6 +29,32 @@ tecnici, e sono stati corretti. Altri erano morali e politici, e hanno lasciato
 un'ombra che dura ancora. Questo capitolo segue le tappe principali fino alla
 Prima guerra mondiale e agli anni immediatamente successivi. Il prossimo
 riprende il filo dalle scale moderne.
+
+```{r}
+#| label: fig-cronologia
+#| fig-cap: "Le tappe principali della storia dei test di intelligenza. Le date in nero sono discusse in questo capitolo, quelle in grigio nel successivo. Schema originale."
+#| fig-alt: "Linea del tempo verticale dal 1880 al 1940. Anni Ottanta dell'Ottocento: laboratorio antropometrico di Galton. 1901: i test mentali non predicono i voti. 1905: scala Binet-Simon. 1908: età mentale. 1912: quoziente intellettivo di Stern. 1916: Stanford-Binet di Terman. 1917: Army Alpha e Army Beta. 1926: SAT. 1938: matrici di Raven. 1939: Wechsler-Bellevue e QI di deviazione."
+#| fig-width: !expr 4.45 * scala
+#| fig-height: !expr 3.4 * scala
+ev = data.frame(
+  anno = c(1884, 1901, 1905, 1908, 1912, 1916, 1917, 1926, 1938, 1939),
+  testo = c("Galton: laboratorio antropometrico", "Wissler: i test mentali non predicono i voti",
+            "Binet e Simon: la prima scala", "Binet: l'età mentale", "Stern: il quoziente intellettivo",
+            "Terman: la Stanford-Binet", "Army Alpha e Army Beta: il testing di massa",
+            "Nasce il SAT", "Raven: le matrici progressive", "Wechsler: la Wechsler-Bellevue e il QI di deviazione"),
+  dopo = c(rep(FALSE, 8), TRUE, TRUE))
+ev$y = seq(9.5, .5, length.out = nrow(ev))
+tela(c(0, 12), c(0, 10))
+segments(2.2, 10, 2.2, 0, col = "grey60", lwd = 1.5 * scala)
+passo = ev$y[1] - ev$y[2]
+fasi = data.frame(da = c(1, 3, 7, 9), a = c(2, 6, 8, 10), col = c("grey90", "#F2DEDE", "grey90", "#F2DEDE"),
+                  nome = c("Misure\nsensoriali", "Scale per\nla scuola", "Test di\nmassa", "Batterie\nmoderne"))
+fasi$y0 = ev$y[fasi$da] + passo * .45; fasi$y1 = ev$y[fasi$a] - passo * .45
+for (i in 1:4) { rect(0, fasi$y1[i], 1.7, fasi$y0[i], col = fasi$col[i], border = NA); text(.85, (fasi$y0[i] + fasi$y1[i]) / 2, fasi$nome[i], cex = .56, font = 3) }
+points(rep(2.2, nrow(ev)), ev$y, pch = 21, bg = ifelse(ev$dopo, "grey70", rosso), col = "white", cex = 1.3)
+text(2.55, ev$y, ifelse(ev$anno == 1884, "anni '80", ev$anno), adj = 0, cex = .64, font = 2, col = ifelse(ev$dopo, "grey45", "black"))
+text(4.05, ev$y, ev$testo, adj = 0, cex = .64, col = ifelse(ev$dopo, "grey45", "black"))
+```
 
 ## Galton: un fallimento istruttivo
 

@@ -14,6 +14,7 @@ library(ggplot2)
 rosso = "#9A0000"
 # Nel PDF (A5) le figure si disegnano alla larghezza reale della pagina.
 stampa = knitr::is_latex_output()
+source("../../assets/diagrammi.R")
 virgola = function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",")
 tema = theme_minimal(base_size = if (stampa) 10 else 13) +
   theme(panel.grid.minor = element_blank(), plot.title = element_text(size = 12))
@@ -251,12 +252,32 @@ momento non dimostra il processo nel tempo [@maxwell2007bias].
 Si parla di **moderazione** quando la relazione fra A e B cambia in funzione di
 una terza variabile W [@baron1986moderator]. La presenza di un pubblico tende a
 migliorare la prestazione in compiti già automatizzati e a peggiorarla in compiti
-nuovi [@zajonc1965social]: il tipo di compito modera l'effetto del pubblico. Nel
+nuovi [@zajonc1965social]: il tipo di compito modera l'effetto del pubblico
+(@fig-moderazione). Nel
 campo dell'intelligenza un esempio discusso riguarda lo status socioeconomico,
 che in alcuni studi statunitensi sembra modificare quanto le differenze genetiche
 si traducono in differenze di punteggio [@turkheimer2003socioeconomic]. Ne
 riparleremo nel capitolo sull'ereditabilità, insieme ai limiti di questo
 risultato.
+
+```{r}
+#| label: fig-moderazione
+#| fig-cap: "Un esempio di moderazione. Al crescere del numero di osservatori la prestazione migliora in un compito già automatizzato e peggiora in un compito nuovo: la relazione fra pubblico e prestazione dipende dal tipo di compito. Valori illustrativi."
+#| fig-alt: "Due rette in un grafico con il numero di osservatori sull'asse orizzontale e la prestazione su quello verticale. La retta del compito automatizzato sale da 72 a 80; quella del compito nuovo scende da 58 a 46."
+#| fig-width: !expr if (stampa) 4.45 else 7
+#| fig-height: !expr if (stampa) 2.7 else 3.4
+d = data.frame(oss = rep(seq(0, 8, 2), 2), prest = c(72, 74, 76, 78, 80, 58, 55, 52, 49, 46),
+               compito = rep(c("Compito automatizzato", "Compito nuovo"), each = 5))
+ggplot(d, aes(oss, prest, colour = compito)) +
+  geom_line(linewidth = 1.1) + geom_point(size = 2.2) +
+  annotate("text", x = 8.2, y = c(80, 46), label = c("automatizzato", "nuovo"), hjust = 0,
+           colour = c("grey25", rosso), size = if (stampa) 3 else 3.6) +
+  scale_colour_manual(values = c("grey25", rosso), guide = "none") +
+  scale_x_continuous(breaks = seq(0, 8, 2), expand = expansion(add = c(.3, 2.4))) +
+  scale_y_continuous(limits = c(40, 85), breaks = seq(40, 80, 10)) +
+  labs(x = "Numero di osservatori", y = "Prestazione") +
+  tema
+```
 
 ## Quattro controlli prima di fidarsi
 

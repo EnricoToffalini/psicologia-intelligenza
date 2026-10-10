@@ -2,7 +2,21 @@
 title: "Altre intelligenze o vecchi costrutti con un nome nuovo?"
 description: "L'intelligenza emotiva alla prova della misura: sovrapposizione con abilità cognitive e personalità, validità incrementale, e il problema delle etichette che si moltiplicano."
 suppress-bibliography: true
+execute:
+  echo: false
+  warning: false
+  message: false
 ---
+
+```{r}
+#| label: setup
+library(ggplot2)
+rosso = "#9A0000"
+virgola = function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",")
+source("../../assets/diagrammi.R")
+tema = theme_minimal(base_size = if (stampa) 10 else 13) +
+  theme(panel.grid.minor = element_blank())
+```
 
 La visione dominante dell'intelligenza è potente. Un singolo fattore generale
 riassume gran parte della varianza interpretabile nei test cognitivi, si misura

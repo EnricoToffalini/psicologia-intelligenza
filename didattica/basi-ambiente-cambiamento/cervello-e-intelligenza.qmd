@@ -14,6 +14,7 @@ library(ggplot2)
 rosso = "#9A0000"
 # Nel PDF (A5) le figure si disegnano alla larghezza reale della pagina.
 stampa = knitr::is_latex_output()
+source("../../assets/diagrammi.R")
 virgola = function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",")
 tema = theme_minimal(base_size = if (stampa) 10 else 13) +
   theme(panel.grid.minor = element_blank())

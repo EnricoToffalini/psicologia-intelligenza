@@ -14,6 +14,7 @@ library(ggplot2)
 rosso = "#9A0000"
 # Nel PDF (A5) le figure si disegnano alla larghezza reale della pagina.
 stampa = knitr::is_latex_output()
+source("../../assets/diagrammi.R")
 virgola = function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",")
 tema = theme_minimal(base_size = if (stampa) 10 else 13) +
   theme(panel.grid.minor = element_blank())
@@ -140,6 +141,24 @@ Nell'età adulta le stime arrivano spesso a 0,7–0,8, mentre l'effetto
 dell'ambiente condiviso si riduce fin quasi a scomparire
 [@plomin2015genetics].
 
+```{r}
+#| label: fig-eta
+#| fig-cap: "Ereditabilità del QI a età diverse. Valori da Haworth et al. (2010) per infanzia e adolescenza; per l'età adulta l'intervallo indica le stime tipiche riportate da Plomin e Deary (2015)."
+#| fig-alt: "Grafico a punti dell'ereditabilità per fase della vita: 0,41 nell'infanzia, 0,55 nella prima adolescenza, 0,66 nella tarda adolescenza e un intervallo da 0,70 a 0,80 nell'età adulta."
+#| fig-width: !expr if (stampa) 4.45 else 7
+#| fig-height: !expr if (stampa) 2.6 else 3.4
+d = data.frame(fase = factor(1:4, labels = c("Infanzia\n(circa 9 anni)", "Prima\nadolescenza\n(circa 12)", "Tarda\nadolescenza\n(circa 17)", "Età adulta")),
+               h2 = c(.41, .55, .66, .75), lo = c(NA, NA, NA, .70), hi = c(NA, NA, NA, .80))
+ggplot(d, aes(fase, h2)) +
+  geom_line(aes(group = 1), colour = "grey60", linetype = 2) +
+  geom_errorbar(aes(ymin = lo, ymax = hi), width = .15, colour = rosso, linewidth = 1) +
+  geom_point(data = subset(d, is.na(lo)), size = 3, colour = rosso) +
+  geom_text(aes(y = ifelse(is.na(hi), h2, hi), label = ifelse(is.na(lo), virgola(h2), "0,70-0,80")), vjust = -1, size = if (stampa) 3 else 3.6) +
+  scale_y_continuous(limits = c(0, 1), breaks = seq(0, 1, .2), labels = function(x) virgola(x, 1)) +
+  labs(x = NULL, y = "Ereditabilità") +
+  tema
+```
+
 Ci si aspetterebbe il contrario: con gli anni si accumulano esperienze, e
 l'ambiente dovrebbe pesare di più. Perché accade? Sono state proposte diverse
 spiegazioni.
@@ -165,6 +184,27 @@ adulto sceglie un'università selettiva e un lavoro intellettualmente
 stimolante. Il primo fa scelte tipiche e arriva dove era partito. Il secondo,
 partito un po' sopra la media, arriva molto sopra. L'effetto genetico iniziale
 è stato amplificato dall'ambiente, e l'analisi lo attribuirà ai geni.
+La @fig-amplificazione rappresenta l'esempio.
+
+```{r}
+#| label: fig-amplificazione
+#| fig-cap: "Un esempio di correlazione gene-ambiente. Una piccola differenza iniziale orienta scelte e ambienti che a loro volta la amplificano: alla fine la differenza è grande, e l'analisi la attribuisce in buona parte ai geni. Andamento puramente illustrativo. Schema originale."
+#| fig-alt: "Due traiettorie dall'infanzia all'età adulta. La persona A parte nella media e resta nella media. La persona B parte poco sopra la media e sale progressivamente: attività più impegnative nell'infanzia, una scuola più esigente e amici con interessi simili nell'adolescenza, università selettiva e lavoro stimolante da adulta."
+#| fig-width: !expr if (stampa) 4.45 else 7
+#| fig-height: !expr if (stampa) 3 else 3.8
+d = data.frame(fase = rep(1:4, 2), liv = c(0, 0, 0, 0, .25, .55, 1, 1.5), chi = rep(c("Persona A", "Persona B"), each = 4))
+note = data.frame(fase = 2:4, liv = c(.55, 1, 1.5),
+                  testo = c("attività un po'\npiù impegnative", "scuola più esigente,\namici con interessi\nsimili", "università selettiva,\nlavoro stimolante"))
+ggplot(d, aes(fase, liv, colour = chi)) +
+  geom_hline(yintercept = 0, colour = "grey70") +
+  geom_line(linewidth = 1.1) + geom_point(size = 2.5) +
+  geom_text(data = note, aes(x = fase - .07, label = testo), colour = "grey25", hjust = 1, vjust = -.15, lineheight = .9, size = if (stampa) 2.6 else 3.3) +
+  scale_colour_manual(values = c("grey40", rosso), name = NULL) +
+  scale_x_continuous(breaks = 1:4, labels = c("Infanzia", "Adolescenza", "Giovinezza", "Età adulta"), expand = expansion(add = c(.3, .45))) +
+  scale_y_continuous(limits = c(-.2, 2.15)) +
+  labs(x = NULL, y = "Livello rispetto alla media") +
+  tema + theme(axis.text.y = element_blank(), panel.grid.major.y = element_blank(), legend.position = "top")
+```
 
 ## Che cosa l'ereditabilità non dice
 

@@ -96,6 +96,11 @@ punti aperti in `progetto/stato-lavori.md`.
   Didascalie e testi alternativi devono valere per entrambe le disposizioni
   («primo pannello», non «a sinistra»). Dopo ogni modifica controllare le figure
   anche nel PDF: niente testo sovrapposto, tagliato o troppo piccolo.
+- I diagrammi (scatole, ovali, frecce) si disegnano in base R con le funzioni di
+  `assets/diagrammi.R` (`tela()`, `nodo()`, `collega()`, `freccia()`), caricate nel
+  chunk `setup` con `source("../../assets/diagrammi.R")`. Hanno le stesse
+  proporzioni nel sito e nel PDF: le misure si scrivono come
+  `#| fig-width: !expr 4.45 * scala`, dove `scala` vale 1 nel PDF e 1,5 nel sito.
 - Valori in didascalia e testo alternativo devono corrispondere a ciò che il
   codice produce: dopo ogni modifica, rigenerare e controllare le immagini.
 - Ogni figura va registrata in `progetto/registro-figure.csv`.

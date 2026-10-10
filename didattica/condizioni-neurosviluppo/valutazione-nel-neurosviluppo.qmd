@@ -14,6 +14,7 @@ library(ggplot2)
 rosso = "#9A0000"
 # Nel PDF (A5) le figure si disegnano alla larghezza reale della pagina.
 stampa = knitr::is_latex_output()
+source("../../assets/diagrammi.R")
 virgola = function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",")
 tema = theme_minimal(base_size = if (stampa) 10 else 13) +
   theme(panel.grid.minor = element_blank())
@@ -129,6 +130,33 @@ compito; nel mezzo quelle di livello intermedio, come autismo e ADHD, che colpis
 diversi domini; alla base quelle che riguardano processi molto specifici, come
 lettura, scrittura e calcolo [@cornoldi2003visuospatial].
 
+```{r}
+#| label: fig-cono
+#| fig-cap: "Il modello a cono delle difficoltà cognitive. In verticale il livello di controllo richiesto dal compito, in orizzontale il tipo di compito: una compromissione di alto livello, come nella disabilità intellettiva, si estende a tutto il cono; le compromissioni di livello intermedio colpiscono diversi domini; quelle di base riguardano processi molto specifici. Elaborazione da Cornoldi e Vecchi (2003)."
+#| fig-alt: "Un cono con la punta in alto. Vicino alla punta è indicata la disabilità intellettiva, a metà altezza autismo e ADHD, alla base, in punti diversi della circonferenza, dislessia, disortografia e discalculia. Accanto, tre riquadri descrivono le compromissioni di alto livello, intermedie e specifiche."
+#| fig-width: !expr 4.45 * scala
+#| fig-height: !expr 3.2 * scala
+tela(c(0, 12), c(-.9, 10))
+t = seq(0, 2 * pi, length.out = 200)
+cx = 3; base = 1.6; rx = 2.6; ry = .7; apice = 9.4
+polygon(c(cx - rx, cx, cx + rx, cx + rx * cos(seq(0, -pi, length.out = 100))), c(base, apice, base, base + ry * sin(seq(0, -pi, length.out = 100))), col = "grey94", border = NA)
+segments(c(cx - rx, cx + rx), base, cx, apice, col = "grey30", lwd = scala)
+lines(cx + rx * cos(t), base + ry * sin(t), col = "grey30", lwd = scala)
+for (h in c(.33, .66)) lines(cx + rx * (1 - h) * cos(t), base + h * (apice - base) + ry * (1 - h) * sin(t), col = "grey60", lty = 2, lwd = scala)
+punti = data.frame(x = c(cx, cx - .9, cx + .9, cx - 1.7, cx + .3, cx + 1.9), y = c(8.1, 5.1, 5.1, 1.2, .95, 1.3),
+                   lab = c("disabilità\nintellettiva", "autismo", "ADHD", "dislessia", "disortografia", "discalculia"),
+                   pos = c(4, 2, 4, 1, 1, 1))
+points(punti$x, punti$y, pch = 4, col = rosso, cex = 1.3, lwd = 2 * scala)
+adj = list(c(0, .5), c(1, .5), c(0, .5), c(.5, 1), c(.5, 1), c(.5, 1))
+for (i in 1:6) text(punti$x[i] + c(.6, -.25, .25, 0, 0, 0)[i], punti$y[i] + c(0, 0, 0, -.3, -.3, -.3)[i], punti$lab[i], adj = adj[[i]], cex = .6, col = rosso)
+text(.35, 5.5, "livello di controllo", srt = 90, cex = .56, font = 3, col = "grey35")
+text(cx, -.7, "tipo di compito", cex = .56, font = 3, col = "grey35")
+desc = c("Alto livello (fattore g): effetto a cascata su qualsiasi compito",
+         "Livello intermedio: compromissione in diversi domini, con altri risparmiati",
+         "Processi molto specifici (lettura, calcolo, ortografia): effetto circoscritto ma forte impatto quotidiano")
+for (i in 1:3) nodo(9.15, c(8.1, 5.1, 1.9)[i], paste(strwrap(desc[i], 30), collapse = "\n"), w = 5.6, h = 2.7, bg = "white", border = if (i == 3) rosso else "grey50", cex = .62)
+```
+
 La specificità, però, è imposta per definizione. La disabilità intellettiva è un
 criterio di esclusione esplicito; il funzionamento intellettivo limite, con QI
 fra 70 e 85, è un elemento di attenzione, e spesso si richiede che almeno alcune
@@ -192,6 +220,38 @@ questione dell'**invarianza di misura**, che si articola in livelli successivi
 | Stretta | L'errore di misura è lo stesso? | Spesso violata, ma con conseguenze minori |
 
 : Livelli di invarianza di misura. {#tbl-invarianza}
+
+```{r}
+#| label: fig-invarianza
+#| fig-cap: "Dove si collocano i parametri che l'invarianza di misura confronta fra gruppi, in un modello gerarchico di una batteria con quattro indici. Pesi (frecce): invarianza metrica. Intercette, cioè il punteggio atteso in un subtest quando l'abilità è nella media (triangoli): invarianza scalare. Varianze residue, cioè la parte non spiegata dai fattori (cerchi): invarianza stretta. Schema originale."
+#| fig-alt: "Un ovale g in alto collegato da frecce rosse a quattro ovali di indice: comprensione verbale, ragionamento percettivo, memoria di lavoro, velocità di elaborazione. Ogni indice ha frecce verso due o tre subtest rappresentati da rettangoli. Sotto ogni subtest un triangolo indica l'intercetta e un piccolo cerchio la varianza residua. Una legenda associa frecce, triangoli e cerchi ai livelli metrico, scalare e stretto."
+#| fig-width: !expr 4.45 * scala
+#| fig-height: !expr 3.2 * scala
+tela(c(0, 12), c(-1.3, 10))
+g = nodo(6, 9.1, "g", w = 1.4, h = 1.2, forma = "ovale", bg = "white", font = 4, cex = .85, lwd = 1.3)
+ind = c("Compr.\nverbale", "Ragion.\npercett.", "Memoria\ndi lavoro", "Velocità\nelabor.")
+xi = c(1.5, 4.5, 7.5, 10.5); nsub = c(3, 3, 2, 2)
+for (k in 1:4) {
+  i = nodo(xi[k], 6.3, ind[k], w = 2.2, h = 1.6, forma = "ovale", bg = "grey93", cex = .56)
+  collega(g, i, col = rosso, lwd = 1.4)
+  xs = xi[k] + (seq_len(nsub[k]) - (nsub[k] + 1) / 2) * .95
+  for (x in xs) {
+    sb = nodo(x, 3.3, "", w = .75, h = .8, bg = "white")
+    collega(i, sb, col = rosso, lwd = .9)
+    polygon(x - .4 + c(0, .18, .36), c(1.3, 1.9, 1.3), col = "grey80", border = "grey30", lwd = scala)
+    freccia(x - .22, 1.95, x - .2, 2.88, col = "grey30", lwd = .8)
+    symbols(x + .22, 1.6, circles = .17, inches = FALSE, add = TRUE, bg = "white", fg = "grey30", lwd = scala)
+    freccia(x + .22, 1.9, x + .2, 2.88, col = "grey30", lwd = .8)
+  }
+}
+legenda_y = -.5
+segments(.4, legenda_y, 1.1, legenda_y, col = rosso, lwd = 1.4 * scala)
+text(1.3, legenda_y, "pesi: metrica", adj = 0, cex = .56)
+polygon(4.4 + c(0, .25, .5), legenda_y + c(-.3, .3, -.3), col = "grey80", border = "grey30", lwd = scala)
+text(5.1, legenda_y, "intercette: scalare", adj = 0, cex = .56)
+symbols(8.65, legenda_y, circles = .17, inches = FALSE, add = TRUE, bg = "white", fg = "grey30", lwd = scala)
+text(9.05, legenda_y, "residui: stretta", adj = 0, cex = .56)
+```
 
 L'invarianza scalare è la più importante per l'interpretazione. Se un gruppo
 ottiene punteggi più bassi in alcuni subtest a parità di abilità generale, il QI

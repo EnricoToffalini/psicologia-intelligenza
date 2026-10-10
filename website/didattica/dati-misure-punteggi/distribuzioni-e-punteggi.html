@@ -442,7 +442,21 @@ window.Quarto = {
 <section id="da-dove-nasce-la-campana" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="da-dove-nasce-la-campana"><span class="header-section-number">4.2</span> Da dove nasce la campana</h2>
 <p>Perché tante grandezze diverse assumono la stessa forma? La risposta è un risultato della teoria della probabilità, il <strong>teorema del limite centrale</strong>: la somma di molti fattori indipendenti, ciascuno con un piccolo effetto, tende a distribuirsi in modo gaussiano, quasi indipendentemente da come sono distribuiti i singoli fattori.</p>
-<p>Un’immagine utile è la passeggiata di una persona ubriaca che cerca di seguire una linea retta. A ogni passo barcolla un po’ a destra o un po’ a sinistra, a caso. Dopo mille passi dove si troverà? Probabilmente non lontano dalla linea, perché molte deviazioni si compensano. Talvolta, per una serie di sbandate nella stessa direzione, sarà parecchio distante. Se ripetessimo l’esperimento con migliaia di passeggiate, le posizioni finali formerebbero una campana. Lo stesso principio è reso visibile dalla tavola di Galton, in cui palline che rimbalzano a caso su file di chiodi si accumulano in una distribuzione a campana.</p>
+<p>Un’immagine utile è la passeggiata di una persona ubriaca che cerca di seguire una linea retta. A ogni passo barcolla un po’ a destra o un po’ a sinistra, a caso. Dopo mille passi dove si troverà? Probabilmente non lontano dalla linea, perché molte deviazioni si compensano. Talvolta, per una serie di sbandate nella stessa direzione, sarà parecchio distante. Se ripetessimo l’esperimento con migliaia di passeggiate, le posizioni finali formerebbero una campana. Lo stesso principio è reso visibile dalla tavola di Galton, in cui palline che rimbalzano a caso su file di chiodi si accumulano in una distribuzione a campana. La <a href="#fig-somma" class="quarto-xref">Figura&nbsp;<span>4.1</span></a> mostra il fenomeno con una simulazione.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-somma" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Tre istogrammi. Con un fattore solo due barre, a 0 e a 1. Con 5 fattori una distribuzione asimmetrica concentrata sui valori bassi. Con 100 fattori un istogramma a campana sovrapposto a una curva gaussiana rossa.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-somma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="distribuzioni-e-punteggi_files/figure-html/fig-somma-1.png" class="img-fluid figure-img" alt="Tre istogrammi. Con un fattore solo due barre, a 0 e a 1. Con 5 fattori una distribuzione asimmetrica concentrata sui valori bassi. Con 100 fattori un istogramma a campana sovrapposto a una curva gaussiana rossa." width="864">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-somma-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;4.1: Il teorema del limite centrale in una simulazione. Ogni persona riceve un certo numero di fattori indipendenti, ciascuno di effetto asimmetrico (vale 1 con probabilità 0,2, altrimenti 0). Un fattore solo produce una distribuzione per nulla gaussiana; la somma di molti fattori si avvicina alla campana (curva rossa). Dati simulati su 10.000 persone.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <p>Per l’intelligenza l’ipotesi additiva non è solo un’analogia. Le differenze genetiche associate alle abilità cognitive dipendono da migliaia di varianti, ciascuna con un effetto minuscolo <span class="citation" data-cites="davies2018study savage2018genome">(Davies et al., 2018; Savage et al., 2018)</span>. A queste si aggiungono innumerevoli influenze ambientali, educative, motivazionali e situazionali, compresa un po’ di casualità nelle risposte a un test. Le abilità cognitive sono quindi <strong>poligeniche</strong>, perché molti geni influiscono sullo stesso tratto, e i loro effetti sono in larga parte condivisi tra abilità diverse <span class="citation" data-cites="kovas2006generalist">(Kovas &amp; Plomin, 2006)</span>. Un risultato di tanti piccoli contributi sommati è esattamente il tipo di processo che genera una gaussiana.</p>
 <p>Vale la pena notare l’ordine storico. La scelta di modellare le abilità come gaussiane è nata molto prima che se ne conoscessero le basi genetiche. Sembrava naturale. Le evidenze successive l’hanno resa più plausibile, ma resta in parte una scelta teorica, come vedremo.</p>
 </section>
@@ -454,7 +468,7 @@ window.Quarto = {
 z = \frac{x - \mu}{\sigma}
 \]</span></p>
 <p>Un punto <em>z</em> di +1 indica un punteggio una deviazione standard sopra la media; −2 due deviazioni standard sotto. Lo zero è la media. La metrica non dice più «quanto» in senso assoluto, ma «quanto distante dagli altri».</p>
-<p>Quasi tutti i punteggi usati nei test psicologici sono punti <em>z</em> riscalati, cioè moltiplicati per una costante e spostati per evitare decimali e numeri negativi (<a href="#fig-scale" class="quarto-xref">Figura&nbsp;<span>4.1</span></a>):</p>
+<p>Quasi tutti i punteggi usati nei test psicologici sono punti <em>z</em> riscalati, cioè moltiplicati per una costante e spostati per evitare decimali e numeri negativi (<a href="#fig-scale" class="quarto-xref">Figura&nbsp;<span>4.2</span></a>):</p>
 <ul>
 <li><strong>QI e indici compositi</strong> delle batterie di intelligenza: media 100, deviazione standard 15. Un QI di 115 corrisponde a <em>z</em> = +1.</li>
 <li><strong>Punteggi ponderati</strong> dei singoli subtest: media 10, deviazione standard 3.</li>
@@ -469,7 +483,7 @@ z = \frac{x - \mu}{\sigma}
 <img src="distribuzioni-e-punteggi_files/figure-html/fig-scale-1.png" class="img-fluid figure-img" alt="Curva a campana con linee verticali a meno 3, meno 2, meno 1, 0, più 1, più 2 e più 3 deviazioni standard. Sotto, cinque righe di corrispondenze: punti z, QI da 55 a 145, punteggi ponderati da 1 a 19, punti T da 20 a 80, percentili da 0,1 a 99,9." width="768">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scale-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;4.1: La curva gaussiana e le principali scale di punteggio. Ogni riga riporta lo stesso punto della distribuzione espresso in una metrica diversa.
+Figura&nbsp;4.2: La curva gaussiana e le principali scale di punteggio. Ogni riga riporta lo stesso punto della distribuzione espresso in una metrica diversa.
 </figcaption>
 </figure>
 </div>
@@ -517,13 +531,13 @@ d = \frac{M_1 - M_2}{DS}
 <img src="distribuzioni-e-punteggi_files/figure-html/fig-normalizzazione-1.png" class="img-fluid figure-img" alt="Tre istogrammi. Il primo mostra punteggi grezzi addensati verso il massimo di 30. Il secondo, in punti z, ha la stessa forma asimmetrica. Il terzo, dopo la normalizzazione, ha forma a campana." width="864">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normalizzazione-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;4.2: Punteggi grezzi simulati di una prova con effetto tetto (primo pannello) e due modi di trasformarli. La trasformazione lineare in punti z conserva l’asimmetria; la normalizzazione rimappa i punteggi sulla gaussiana attraverso i percentili. Per semplicità, i punteggi a pari merito sono qui distribuiti fra percentili adiacenti.
+Figura&nbsp;4.3: Punteggi grezzi simulati di una prova con effetto tetto (primo pannello) e due modi di trasformarli. La trasformazione lineare in punti z conserva l’asimmetria; la normalizzazione rimappa i punteggi sulla gaussiana attraverso i percentili. Per semplicità, i punteggi a pari merito sono qui distribuiti fra percentili adiacenti.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Le procedure sono due (<a href="#fig-normalizzazione" class="quarto-xref">Figura&nbsp;<span>4.2</span></a>). La <strong>trasformazione lineare</strong> in punti <em>z</em> sottrae la media e divide per la deviazione standard. È semplice e molto usata, ma conserva la forma originale: se i punteggi grezzi sono asimmetrici, lo sono anche i punti <em>z</em>, e le corrispondenze fra <em>z</em> e percentili non valgono più. La <strong>normalizzazione</strong> assegna invece a ogni punteggio grezzo il punto <em>z</em> corrispondente al suo percentile nella gaussiana. Il risultato è una distribuzione a campana per costruzione.</p>
+<p>Le procedure sono due (<a href="#fig-normalizzazione" class="quarto-xref">Figura&nbsp;<span>4.3</span></a>). La <strong>trasformazione lineare</strong> in punti <em>z</em> sottrae la media e divide per la deviazione standard. È semplice e molto usata, ma conserva la forma originale: se i punteggi grezzi sono asimmetrici, lo sono anche i punti <em>z</em>, e le corrispondenze fra <em>z</em> e percentili non valgono più. La <strong>normalizzazione</strong> assegna invece a ogni punteggio grezzo il punto <em>z</em> corrispondente al suo percentile nella gaussiana. Il risultato è una distribuzione a campana per costruzione.</p>
 <p>La normalizzazione è la procedura tipica delle tabelle normative dei test di intelligenza. Ogni tabella di conversione da punteggio grezzo a ponderato è, in sostanza, una normalizzazione calcolata separatamente per ogni fascia d’età: un certo numero di risposte corrette viene tradotto nel ponderato corrispondente alla stessa posizione nella distribuzione dei coetanei. In fondo a una tabella del genere c’è un’ipotesi esplicita: l’abilità latente è distribuita in modo gaussiano, mentre la forma irregolare dei punteggi grezzi riflette le caratteristiche dello strumento.</p>
 </section>
 <section id="che-tipo-di-scala" class="level2" data-number="4.6">

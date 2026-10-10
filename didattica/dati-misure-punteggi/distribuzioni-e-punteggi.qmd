@@ -14,6 +14,7 @@ library(ggplot2)
 rosso = "#9A0000"
 # Nel PDF (A5) le figure si disegnano alla larghezza reale della pagina.
 stampa = knitr::is_latex_output()
+source("../../assets/diagrammi.R")
 virgola = function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",")
 tema = theme_minimal(base_size = if (stampa) 10 else 13) +
   theme(panel.grid.minor = element_blank(), plot.title = element_text(size = 12))
@@ -72,6 +73,27 @@ con migliaia di passeggiate, le posizioni finali formerebbero una campana. Lo
 stesso principio è reso visibile dalla tavola di Galton, in cui palline che
 rimbalzano a caso su file di chiodi si accumulano in una distribuzione a
 campana.
+La @fig-somma mostra il fenomeno con una simulazione.
+
+```{r}
+#| label: fig-somma
+#| fig-cap: "Il teorema del limite centrale in una simulazione. Ogni persona riceve un certo numero di fattori indipendenti, ciascuno di effetto asimmetrico (vale 1 con probabilità 0,2, altrimenti 0). Un fattore solo produce una distribuzione per nulla gaussiana; la somma di molti fattori si avvicina alla campana (curva rossa). Dati simulati su 10.000 persone."
+#| fig-alt: "Tre istogrammi. Con un fattore solo due barre, a 0 e a 1. Con 5 fattori una distribuzione asimmetrica concentrata sui valori bassi. Con 100 fattori un istogramma a campana sovrapposto a una curva gaussiana rossa."
+#| fig-width: !expr if (stampa) 4.45 else 9
+#| fig-height: !expr if (stampa) 2.2 else 2.8
+set.seed(1889)
+k = c(1, 5, 100)
+d = do.call(rbind, lapply(k, function(n) data.frame(v = rbinom(1e4, n, .2), n = n)))
+d$n = factor(d$n, levels = k, labels = paste(k, c("fattore", "fattori", "fattori")))
+curva = do.call(rbind, lapply(k[3], function(n) { x = seq(5, 35, .1); data.frame(x, y = 1e4 * dnorm(x, n * .2, sqrt(n * .2 * .8)), n = factor(paste(n, "fattori"), levels = levels(d$n))) }))
+ggplot(d, aes(v)) +
+  geom_bar(fill = "grey60", width = .8) +
+  geom_line(data = curva, aes(x, y), colour = rosso, linewidth = .8) +
+  facet_wrap(~n, scales = "free") +
+  scale_x_continuous(breaks = function(l) { b = pretty(l); b[b == round(b)] }) +
+  labs(x = "Somma dei fattori", y = "Persone") +
+  tema + theme(axis.text.y = element_blank(), panel.grid.major.x = element_blank())
+```
 
 Per l'intelligenza l'ipotesi additiva non è solo un'analogia. Le differenze
 genetiche associate alle abilità cognitive dipendono da migliaia di varianti,
