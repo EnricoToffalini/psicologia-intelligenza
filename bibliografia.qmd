@@ -1,0 +1,13 @@
+---
+nocite: "@*"
+execute:
+  freeze: false
+---
+
+<!-- Questa pagina stampa l'elenco completo dei riferimenti e non va modificata.
+     Le fonti si aggiungono o correggono in references.bib. -->
+
+# Riferimenti bibliografici {.unnumbered}
+
+::: {#refs}
+:::

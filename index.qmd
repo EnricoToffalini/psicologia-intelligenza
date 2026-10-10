@@ -3,7 +3,6 @@ unnumbered: true
 format:
   html:
     number-sections: false
-bibliography: references.bib
 ---
 
 # Introduzione {.unnumbered}

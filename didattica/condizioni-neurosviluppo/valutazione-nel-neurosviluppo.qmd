@@ -1,9 +1,6 @@
 ---
 title: "Valutare l'intelligenza nel neurosviluppo"
 description: "Disabilità intellettiva e comportamento adattivo, profili medi in autismo, ADHD e disturbi dell'apprendimento, e il problema dell'invarianza di misura nei gruppi clinici."
-lang: it
-bibliography: ../../references.bib
-csl: ../../apa.csl
 suppress-bibliography: true
 execute:
   echo: false
@@ -78,7 +75,8 @@ nuove di grande effetto, simili per meccanismo alle forme sindromiche
 [@satterstrom2020large]. Il resto rifletterebbe la coda di un tratto poligenico
 diffuso, in parte associato a varianti favorevoli alle abilità cognitive.
 
-Un'altra ipotesi parla di **intelligenza sbilanciata**: uno sviluppo disarmonico,
+Un'altra ipotesi parla di **intelligenza sbilanciata** [@crespi2016autism]:
+uno sviluppo disarmonico,
 con alcune abilità forti, talvolta eccezionali, e un funzionamento quotidiano
 deludente, soprattutto rispetto alle richieste sociali. Le abilità visuospaziali,
 il ragionamento fluido e alcune funzioni sensoriali risultano spesso buone; le
@@ -104,11 +102,12 @@ semplice.
 Per l'ADHD la situazione genetica è opposta a quella dell'autismo: la
 correlazione genetica con l'intelligenza è moderatamente **negativa**
 [@demontis2023genome]. A livello dei punteggi, però, la differenza è meno
-marcata. La comorbilità con la disabilità intellettiva è contenuta, e il QI medio
-dei gruppi con ADHD è qualche punto sotto la norma: i vecchi studi riportavano
-valori attorno a 90, quelli recenti valori più vicini alla media, soprattutto
-escludendo i casi con disabilità intellettiva e tenendo conto delle cadute
-specifiche nelle abilità attentive.
+marcata. La comorbilità con la disabilità intellettiva è contenuta. Una
+meta-analisi ha stimato per i gruppi con ADHD un QI totale medio inferiore di
+circa 0,6 deviazioni standard, quasi dieci punti [@frazier2004meta]. Una parte
+della differenza dipende però dalle prove che chiedono proprio attenzione
+sostenuta e memoria di lavoro, cioè dalle stesse difficoltà che definiscono il
+disturbo.
 
 Il profilo tipico alle scale Wechsler mostra una compromissione marcata della
 memoria di lavoro, di circa una deviazione standard, e una compromissione parziale
@@ -225,6 +224,14 @@ capitolo precedente: un QI totale di 84 e un indice di abilità generale di 100
 descrivono la stessa bambina in modo molto diverso, e il secondo è più vicino
 alle sue capacità di ragionamento.
 
+Lo stesso meccanismo può nascondere un'abilità molto alta. Un bambino con un
+ragionamento eccellente e un disturbo dell'apprendimento può ottenere un QI
+totale soltanto nella media, perché le cadute in memoria di lavoro e velocità
+abbassano il totale; e un rendimento scolastico accettabile, perché il
+ragionamento compensa in parte la difficoltà specifica. Le due rarità si
+mascherano a vicenda. Leggere gli indici, in questi casi, non è un vezzo da
+profilo: è l'unico modo di vedere entrambe.
+
 ## Valutare bene
 
 La valutazione dell'intelligenza nel neurosviluppo richiede più attenzione che
@@ -253,4 +260,4 @@ numero riportare è già un atto interpretativo, e va motivato.
   singolo caso.
 :::
 
-[Riferimenti bibliografici](../../references.qmd)
+[Riferimenti bibliografici](../../bibliografia.qmd)

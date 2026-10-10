@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Validità, attendibilità, sensibilità e robustezza: come si giudica un test di intelligenza e perché un profilo di indici è meno affidabile del QI totale.">
+
+<title>5&nbsp; Quando una misura è buona – Psicologia dell'Intelligenza</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../didattica/modelli-test/fattore-g.html" rel="next">
+<link href="../../didattica/dati-misure-punteggi/distribuzioni-e-punteggi.html" rel="prev">
+<link href="../../assets/favicon.ico" rel="icon">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-ffd282cb318059e0bcb130885a47f5dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nessun risultato",
+    "search-matching-documents-text": "documenti trovati",
+    "search-copy-link-title": "Copiare il link nella ricerca",
+    "search-hide-matches-text": "Nascondere i risultati aggiuntivi",
+    "search-more-match-text": "ci sono altri risultati in questo documento",
+    "search-more-matches-text": "ulteriori risultati in questo documento",
+    "search-clear-button-title": "Pulire",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancellare",
+    "search-submit-button-title": "Inviare",
+    "search-label": "Ricerca"
+  }
+}</script>
+<script data-goatcounter="https://intelligenza.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../assets/custom.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../didattica/dati-misure-punteggi/correlazione.html">Dati, misure e punteggi</a></li><li class="breadcrumb-item"><a href="../../didattica/dati-misure-punteggi/qualita-della-misura.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Quando una misura è buona</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Ricerca" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Psicologia dell’Intelligenza</a> 
+        <div class="sidebar-tools-main">
+    <a href="../../Psicologia-dell-Intelligenza.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Ricerca"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduzione</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Capire l’intelligenza</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../didattica/capire-intelligenza/perche-studiarla.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Perché studiare l’intelligenza</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../didattica/capire-intelligenza/che-cosa-e.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Che cosa chiamiamo intelligenza</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Dati, misure e punteggi</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../didattica/dati-misure-punteggi/correlazione.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Correlazione e differenze individuali</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../didattica/dati-misure-punteggi/distribuzioni-e-punteggi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Distribuzioni, punti z e punteggi standardizzati</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../didattica/dati-misure-punteggi/qualita-della-misura.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Quando una misura è buona</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Modelli e test dell’intelligenza</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../didattica/modelli-test/fattore-g.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Il fattore generale e la positive manifold</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../didattica/modelli-test/modelli-gerarchici.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Abilità multiple e modelli gerarchici</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../didattica/modelli-test/origini-dei-test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Dai primi test al testing di massa</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../didattica/modelli-test/batterie-moderne.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Le batterie moderne di intelligenza</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Basi biologiche, ambiente e cambiamento</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../didattica/basi-ambiente-cambiamento/geni-ambiente-ereditabilita.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Geni, ambiente ed ereditabilità</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../didattica/basi-ambiente-cambiamento/genetica-molecolare.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Che cosa aggiunge la genetica molecolare</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../didattica/basi-ambiente-cambiamento/cervello-e-intelligenza.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Cervello e intelligenza</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../didattica/basi-ambiente-cambiamento/effetto-flynn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">L’effetto Flynn e i cambiamenti storici</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../didattica/basi-ambiente-cambiamento/potenziamento-cognitivo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Si può potenziare l’intelligenza?</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Scuola, salute e lavoro</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../didattica/scuola-salute-lavoro/scuola-e-condizioni-sociali.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Intelligenza, scuola e condizioni sociali</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../didattica/scuola-salute-lavoro/salute-e-longevita.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Salute e longevità</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../didattica/scuola-salute-lavoro/intelligenza-e-lavoro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Intelligenza e lavoro</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Intelligenza e condizioni del neurosviluppo</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../didattica/condizioni-neurosviluppo/neurosviluppo-dimensionale.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Dalle categorie alle dimensioni</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../didattica/condizioni-neurosviluppo/valutazione-nel-neurosviluppo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Valutare l’intelligenza nel neurosviluppo</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Approfondimenti: oltre g</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../didattica/approfondimenti/intelligenza-emotiva-e-costrutti.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Altre intelligenze o vecchi costrutti con un nome nuovo?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../didattica/approfondimenti/alternative-a-g.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Si può spiegare la positive manifold senza un fattore generale?</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text"><b>Professione</b></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../professione-pagine/elenco-test-italia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Elenco dei Test in Italia</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text"><b>Divulgazione</b></span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../divulgazione-pagine/domande-risposte.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Domande &amp; Risposte</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../divulgazione-pagine/flynn-effetto-flynn.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">L’Effetto Flynn</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../bibliografia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Riferimenti bibliografici</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content column-page-right" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../didattica/dati-misure-punteggi/correlazione.html">Dati, misure e punteggi</a></li><li class="breadcrumb-item"><a href="../../didattica/dati-misure-punteggi/qualita-della-misura.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Quando una misura è buona</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Quando una misura è buona</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-right">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Una bilancia da cucina che sbaglia di quindici grammi è inutile per dosare il lievito. Una bilancia pesapersone che sbaglia di tre chili è inutile per seguire una dieta. Entrambe misurano il peso, e nessuno lo mette in dubbio. Eppure nessuno le userebbe per quegli scopi. Misurare la cosa giusta non basta: serve misurarla abbastanza bene per l’uso che se ne fa. In psicologia lo stesso ragionamento vale per ogni test, con una complicazione: ciò che vogliamo misurare non si vede.</p>
+<p>Le abilità cognitive sono variabili latenti. Le stimiamo a partire da risposte a compiti, e il punteggio che ne ricaviamo è il risultato di una catena di inferenze. Come facciamo a sapere che quel numero va bene? La psicometria ha sviluppato una serie di criteri. Questo capitolo li presenta e li applica ai test di intelligenza, che nel panorama della misura psicologica hanno indici di qualità fra i più alti. Proprio per questo è utile vedere dove anche loro incontrano dei limiti.</p>
+<section id="quattro-domande-su-un-test" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="quattro-domande-su-un-test"><span class="header-section-number">5.1</span> Quattro domande su un test</h2>
+<p>I criteri principali possono essere riassunti in quattro domande.</p>
+<ul>
+<li><strong>Validità.</strong> Il test misura davvero ciò che dovrebbe misurare, e permette le interpretazioni e le previsioni per cui viene usato?</li>
+<li><strong>Attendibilità</strong>, o affidabilità. Il punteggio è preciso e stabile? Se ripetessi la misura, otterrei un risultato simile?</li>
+<li><strong>Sensibilità.</strong> Lo strumento distingue bene i diversi livelli di abilità? Se è usato a scopo diagnostico, separa bene chi ha una condizione da chi non ce l’ha?</li>
+<li><strong>Robustezza.</strong> Il test resta valido e attendibile anche in condizioni non ideali: una popolazione diversa da quella di riferimento, una condizione del neurosviluppo, una somministrazione non standard, una ripetizione ravvicinata?</li>
+</ul>
+<p>Le batterie di intelligenza ben costruite superano bene le prime tre prove. La quarta dipende dalla situazione: nessun test è robusto in ogni circostanza, ma esistono contromisure note. Vediamole una per una.</p>
+</section>
+<section id="validità-che-cosa-misura-il-test" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="validità-che-cosa-misura-il-test"><span class="header-section-number">5.2</span> Validità: che cosa misura il test?</h2>
+<p>Nella formulazione moderna la validità non è una proprietà del test, ma del sostegno che evidenze e teoria offrono a una specifica interpretazione dei punteggi per un certo uso <span class="citation" data-cites="aera2014standards">(American Educational Research Association et al., 2014)</span>. Si accumula attraverso diversi tipi di evidenza.</p>
+<p>La <strong>validità di contenuto</strong> chiede se le prove coprono in modo appropriato il dominio da misurare. Per l’intelligenza la questione ha una storia curiosa. Spearman osservò che quasi qualunque compito cognitivo, purché impegnativo, fornisce informazioni sul fattore generale. Chiamò questo fenomeno <strong>indifferenza dell’indicatore</strong> <span class="citation" data-cites="spearman1927abilities">(Spearman, 1927)</span>. Costruire un test che misuri il fattore generale è quindi, in un certo senso, facile: basta combinare prove abbastanza diverse e bilanciarle in modo sensato <span class="citation" data-cites="warne2020know">(Warne, 2020)</span>. Le batterie moderne preferiscono comunque una base teorica esplicita, di solito il modello gerarchico che vedremo nel capitolo sui modelli dell’intelligenza.</p>
+<p>La <strong>validità strutturale</strong> chiede se le correlazioni fra item, subtest e indici seguono un modello teorico plausibile. Si verifica con l’analisi fattoriale confermativa, valutando quanto il modello si adatta ai dati.</p>
+<p>La <strong>validità convergente</strong> chiede se il test correla con altri test dello stesso costrutto. Per l’intelligenza è eccellente: i QI ottenuti con strumenti diversi correlano in genere almeno 0,70, spesso molto di più.</p>
+<p>La <strong>validità predittiva</strong> chiede se il punteggio prevede esiti che, in base alla teoria, dovrebbe prevedere: rendimento scolastico, formazione e prestazione lavorativa, salute. È il punto di forza dei test di intelligenza, e vi dedicheremo un’intera parte del libro.</p>
+<p>La <strong>validità discriminante</strong> chiede se il test non misuri anche cose che non dovrebbe misurare. Per l’intelligenza è un criterio delicato: un’abilità generale ha molte ragioni teoriche per correlare con molte altre variabili, e una correlazione con lo status socioeconomico, per esempio, non è di per sé un segno di contaminazione.</p>
+<p>Infine l’<strong>invarianza di misura</strong> chiede se il punteggio si interpreta allo stesso modo in gruppi diversi. Possiamo leggere il QI totale di un bambino con ADHD o con autismo come quello di un bambino a sviluppo tipico? E quello di un bambino cresciuto in un’altra lingua? Non è una proprietà fissa del test, ma della combinazione fra test, gruppo e interpretazione. Torneremo su questo punto nel capitolo sulla valutazione nel neurosviluppo.</p>
+</section>
+<section id="attendibilità-come-stabilità" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="attendibilità-come-stabilità"><span class="header-section-number">5.3</span> Attendibilità come stabilità</h2>
+<p>Un modo diretto di valutare la precisione è somministrare lo stesso test due volte e correlare i punteggi. È l’<strong>attendibilità test-retest</strong>. Le differenze fra le due misure possono avere due origini: un errore casuale, legato a oscillazioni dell’attenzione, all’ora del giorno o alla stanchezza; oppure un cambiamento reale del funzionamento. Per il QI i cambiamenti reali a breve termine sono modesti. Esiste anche un effetto pratica, perché la seconda volta le prove sono meno nuove, ma è abbastanza prevedibile da poter essere considerato. In genere una stabilità sotto 0,70 si considera problematica, se si possono escludere cambiamenti reali.</p>
+<p>Nei manuali tecnici delle batterie per adulti il QI totale, risomministrato dopo poche settimane, ha correlazioni test-retest attorno a 0,95. Sembra quasi perfetto. Ma che cosa significa per un singolo caso? La <a href="#fig-retest" class="quarto-xref">Figura&nbsp;<span>5.1</span></a> lo mostra con una simulazione. Anche con una stabilità di 0,96 la differenza tipica fra due somministrazioni è di circa quattro punti, e in un caso su venti supera gli otto. Con una stabilità di 0,70 la differenza tipica sale a circa dodici punti e in un caso su venti supera i venti.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-retest" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Due diagrammi di dispersione. Con stabilità 0,96 i punti sono molto vicini alla diagonale; con stabilità 0,70 sono molto dispersi e molti cadono fuori dalla fascia di dieci punti.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-retest-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="qualita-della-misura_files/figure-html/fig-retest-1.png" class="img-fluid figure-img" alt="Due diagrammi di dispersione. Con stabilità 0,96 i punti sono molto vicini alla diagonale; con stabilità 0,70 sono molto dispersi e molti cadono fuori dalla fascia di dieci punti." width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-retest-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.1: Punteggi di QI simulati in due somministrazioni dello stesso test, con stabilità test-retest di 0,96 e di 0,70. La linea diagonale indica punteggi identici; la fascia grigia comprende le differenze entro ±10 punti.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>In età evolutiva e su intervalli lunghi la stabilità è inferiore. In uno studio su 344 studenti valutati due volte con la WISC-IV a quasi tre anni di distanza, la stabilità del QI totale era 0,82, quella degli indici fra 0,65 e 0,76. Un quarto degli studenti aveva QI totali che differivano di dieci punti o più <span class="citation" data-cites="watkins2013long">(Watkins &amp; Smith, 2013)</span>. Una parte della variazione è certamente reale: i bambini cambiano, e una valutazione può dover essere aggiornata. Ma la conclusione pratica non cambia: un singolo punteggio, soprattutto di un indice, non è una fotografia definitiva.</p>
+<p>Nel lungo periodo, però, la stabilità dell’ordinamento fra le persone è notevole. Nella coorte scozzese testata a 11 anni nel 1932 e ritestata quasi settant’anni dopo, la correlazione fra i punteggi alle due età era dell’ordine di 0,6–0,7 <span class="citation" data-cites="deary2000stability deary2004impact">(Deary et al., 2000, 2004)</span>. Poche caratteristiche psicologiche mostrano una continuità simile lungo l’intera vita adulta.</p>
+</section>
+<section id="attendibilità-come-consistenza-interna" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="attendibilità-come-consistenza-interna"><span class="header-section-number">5.4</span> Attendibilità come consistenza interna</h2>
+<p>Il secondo modo di stimare l’attendibilità non richiede due somministrazioni. Guarda alla coerenza fra le parti di un test: quanto gli item, o i subtest, misurano la stessa cosa.</p>
+<p>Il ragionamento parte dalla <strong>teoria classica dei test</strong>. Il punteggio osservato <em>X</em> è la somma di un punteggio vero <em>T</em>, che rappresenta il costrutto latente, e di un errore <em>E</em>:</p>
+<p><span class="math display">\[
+X = T + E
+\]</span></p>
+<p>L’attendibilità è la quota della varianza di <em>X</em> dovuta a <em>T</em>. Come si stima, se <em>T</em> non si vede? Sotto certe assunzioni, la si ricava dalla forza delle correlazioni fra gli elementi e dal loro numero. Correlazioni medie più alte indicano che ogni elemento contiene meno errore; più elementi permettono agli errori casuali di compensarsi. Un punteggio molto attendibile si ottiene quindi con elementi fortemente correlati, oppure con molti elementi.</p>
+<p>L’indice più noto è l’<strong>alfa di Cronbach</strong> (α). Assume che tutti gli elementi rappresentino il costrutto nella stessa misura, un’ipotesi spesso irrealistica. Oggi si preferiscono indici basati su un modello fattoriale, come l’<strong>omega di McDonald</strong> (ω) <span class="citation" data-cites="mcneish2018thanks">(McNeish, 2018)</span>. Anche qui si cita spesso una soglia minima di 0,70.</p>
+<p>Che cosa significa un’attendibilità di 0,70? Che il punteggio osservato condivide il 70% della varianza con il punteggio vero. La correlazione fra i due è quindi la radice quadrata: circa 0,84. Le batterie di intelligenza raggiungono per il QI totale valori superiori a 0,95. Per gli indici di dominio si scende di solito fra 0,80 e 0,90, per i singoli subtest a volte sotto.</p>
+<p>Dall’attendibilità si ricava l’<strong>errore standard di misura</strong>, cioè la deviazione standard degli errori attorno al punteggio vero. Sulla scala del QI vale 15 × √(1 − attendibilità). Con un’attendibilità di 0,97 è di circa 2,6 punti; con 0,85 sale a quasi 6. Per questo un referto serio riporta il punteggio con un intervallo di confidenza, non come un numero esatto.</p>
+</section>
+<section id="il-problema-degli-indici" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="il-problema-degli-indici"><span class="header-section-number">5.5</span> Il problema degli indici</h2>
+<p>Fin qui il quadro è rassicurante. Il problema nasce quando dal QI totale si passa agli indici: comprensione verbale, ragionamento visuo-percettivo, memoria di lavoro, velocità di elaborazione e così via. Nella pratica clinica si interpretano spesso profili e discrepanze fra indici. Sono abbastanza attendibili per farlo?</p>
+<p>L’attendibilità di un indice, calcolata come se fosse una scala a sé, è buona. Ma un indice di memoria di lavoro riflette in buona parte il fattore generale, perché tutte le abilità cognitive sono correlate. La domanda giusta è un’altra: quanta parte del punteggio di un indice è specifica di quel dominio, al netto del fattore generale? E questa parte è attendibile?</p>
+<p>Per rispondere si usano modelli gerarchici o <strong>bifattoriali</strong>, che separano la varianza comune a tutte le prove da quella propria di ciascun dominio. Da essi si ricava l’<strong>omega gerarchico</strong> (ω<sub>h</sub>), che stima quanta varianza del punteggio è dovuta a un solo fattore <span class="citation" data-cites="rodriguez2016evaluating">(Rodriguez et al., 2016)</span>. I risultati sui campioni normativi delle principali batterie sono convergenti. Il fattore generale ha un omega gerarchico elevato, attorno a 0,75–0,80. I domini specifici, al netto di <em>g</em>, scendono spesso sotto 0,30 e talvolta vicino a zero <span class="citation" data-cites="watkins2006orthogonal gignac2017evaluating">(Gignac &amp; Kretzschmar, 2017; Watkins, 2006)</span>. Le rianalisi delle edizioni più recenti, come la WISC-V, mostrano lo stesso schema <span class="citation" data-cites="canivez2017structural">(Canivez et al., 2017)</span>, e così i dati normativi italiani. Nel campione di taratura italiano della WISC-IV i fattori di dominio contribuiscono in misura trascurabile, al netto del fattore generale <span class="citation" data-cites="kush2019construct">(Kush &amp; Canivez, 2019)</span>; lo stesso modello è stato applicato anche al confronto con ampi campioni di bambini con disturbi dell’apprendimento <span class="citation" data-cites="giofre2019lumpers">(Giofrè et al., 2019)</span>. Nel campione di taratura italiano dell’IDS-2, su 1.281 bambini e ragazzi, il fattore generale ha un omega gerarchico di 0,77, mentre quello dei fattori specifici varia fra 0,08 e 0,51 <span class="citation" data-cites="toffalini2026ids2">(Toffalini &amp; Cornoldi, 2026)</span>. In tutti questi casi il fattore generale risulta attendibile e interpretabile, i fattori di dominio quasi mai abbastanza da essere letti da soli.</p>
+<p>Le conclusioni tratte da questi dati sono di due tipi. Alcuni ricercatori sostengono che sia semplicemente inappropriato interpretare gli indici di dominio e che ci si debba limitare al QI totale <span class="citation" data-cites="watkins2006orthogonal gignac2017evaluating">(Gignac &amp; Kretzschmar, 2017; Watkins, 2006)</span>. Una posizione più equilibrata ammette l’interpretazione degli indici, ma solo se motivata dal caso specifico e sostenuta da evidenze convergenti: per esempio quando si valuta una condizione per cui un certo profilo è atteso sulla base della letteratura <span class="citation" data-cites="giofre2017intelligence toffalini2017strengths">(Giofrè et al., 2017; Toffalini et al., 2017)</span>. In entrambi i casi la lettura disinvolta di ogni discrepanza fra indici, senza tener conto dell’errore di misura, non regge.</p>
+</section>
+<section id="sensibilità-e-robustezza" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="sensibilità-e-robustezza"><span class="header-section-number">5.6</span> Sensibilità e robustezza</h2>
+<p>Un test sensibile distingue bene i livelli di abilità in tutto l’intervallo che interessa. Le batterie di intelligenza coprono per progetto un ampio intervallo, di solito da QI attorno a 40 fino a 160. Gli effetti tetto, in cui molte persone raggiungono il punteggio massimo, sono rari e gestiti con versioni diverse dello stesso strumento: forme per bambini, forme avanzate per adulti con abilità elevate, prove non verbali per chi ha difficoltà linguistiche marcate.</p>
+<p>La robustezza è più difficile da garantire. Una persona con una disabilità motoria non può essere valutata con prove a tempo che richiedono manipolazione; una persona con ADHD può essere penalizzata in modo sproporzionato dalle prove di memoria di lavoro e velocità; una persona che non padroneggia la lingua italiana sarà svantaggiata nelle prove verbali. Per questi casi esistono contromisure: indici che escludono le componenti più problematiche, come l’indice di abilità generale al posto del QI totale; batterie non verbali; sostituzioni di subtest e procedure di stima parziale previste dai manuali. Le contromisure funzionano se si sa quando servono. Usarle richiede di conoscere la persona, non solo lo strumento.</p>
+</section>
+<section id="una-misura-buona-non-infallibile" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="una-misura-buona-non-infallibile"><span class="header-section-number">5.7</span> Una misura buona, non infallibile</h2>
+<p>I test di intelligenza ben costruiti sono fra gli strumenti più validi e attendibili della psicologia. Questo giustifica la fiducia nel QI totale come stima del funzionamento cognitivo generale. Non giustifica la fiducia indiscriminata in ogni numero che compare in un referto. Il QI ha un margine di errore che va dichiarato. Gli indici di dominio portano un’informazione specifica modesta e vanno interpretati con argomenti. La robustezza dipende da chi è la persona valutata.</p>
+<div class="callout callout-style-default callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+In breve
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>La qualità di un test si giudica per validità, attendibilità, sensibilità e robustezza; la validità riguarda un’interpretazione per un uso, non il test in sé.</li>
+<li>Le batterie di intelligenza hanno validità convergente e predittiva elevate e una stabilità notevole anche su decenni.</li>
+<li>Anche un’attendibilità di 0,95 lascia differenze di alcuni punti fra due somministrazioni; i punteggi vanno riportati con un intervallo di confidenza.</li>
+<li>Gli indici di dominio, al netto del fattore generale, sono poco attendibili: la loro interpretazione va motivata e corroborata.</li>
+</ul>
+</div>
+</div>
+<p><a href="../../bibliografia.html">Riferimenti bibliografici</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiato!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiato!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation column-page-right">
+  <div class="nav-page nav-page-previous">
+      <a href="../../didattica/dati-misure-punteggi/distribuzioni-e-punteggi.html" class="pagination-link" aria-label="Distribuzioni, punti z e punteggi standardizzati">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Distribuzioni, punti z e punteggi standardizzati</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../didattica/modelli-test/fattore-g.html" class="pagination-link" aria-label="Il fattore generale e la positive manifold">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Il fattore generale e la positive manifold</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

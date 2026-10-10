@@ -8,7 +8,39 @@ l'ossatura principale del libro e deriva dal corso universitario documentato nei
 materiali in `slide/`.
 
 Prima di lavorare sulla parte didattica, leggere integralmente
-`PIANO-DIDATTICA.md`.
+`progetto/PIANO-DIDATTICA.md`.
+
+## Mappa della repository e render
+
+Ogni file modificabile esiste in una sola copia; tutto il resto è generato.
+
+| Dove | Che cosa | Si modifica? |
+|---|---|---|
+| `_quarto.yml` | indice del libro (parti e capitoli) e impostazioni comuni: bibliografia, CSL, lingua, formati | sì |
+| `index.qmd` | introduzione | sì |
+| `bibliografia.qmd` | pagina che stampa l'elenco dei riferimenti | no: non contiene fonti |
+| `didattica/<parte>/<slug>.qmd` | capitoli didattici, figure incluse (generate da R nel file) | sì |
+| `divulgazione-pagine/`, `professione-pagine/` | sezioni non didattiche | solo su richiesta esplicita |
+| `references.bib` | **unico archivio delle fonti**: qui si aggiungono e correggono i riferimenti | sì |
+| `assets/` | CSS, stile citazioni, favicon, filtro e intestazione LaTeX del PDF | sì, con cautela |
+| `progetto/` | piano del libro, stato dei lavori e punti aperti, registro delle figure: non entrano nel libro | sì |
+| `render.bat`, `render.sh` | unico comando di render | raramente |
+| `website/` | **unico output**: sito HTML e `Psicologia-dell-Intelligenza.pdf` | **mai a mano** |
+| `slide/` | fonti private, escluse da git | mai |
+
+- Il render si fa **solo** con `render.bat` (Windows) o `sh render.sh`. Esegue
+  `quarto render` (HTML e PDF in `website/`) e cancella i residui intermedi
+  (`*.tex`, `*_files/` accanto ai sorgenti, `site_libs/` in radice), che sono
+  esclusi da git e non vanno mai modificati.
+- Non usare cartelle di output alternative (`--output-dir`): devono esistere una
+  sola versione HTML e una sola PDF. Il render in `website/` è innocuo finché non
+  si fa push: la pubblicazione avviene solo con il push di `website/` su `main`
+  (workflow `.github/workflows/static.yml`, che non esegue il render).
+- Per controllare una sola pagina durante il lavoro si può usare
+  `quarto preview <file>.qmd`, che non scrive copie permanenti; prima di
+  consegnare, eseguire comunque `render.bat`.
+- L'hook `.githooks/pre-commit` (attivato da `render.bat`) blocca i commit che
+  modificano sorgenti senza modificare `website/`: non aggirarlo.
 
 ## Confini non negoziabili
 
@@ -17,7 +49,8 @@ Prima di lavorare sulla parte didattica, leggere integralmente
   dell'utente che nomini quelle directory.
 - Non modificare PDF, DOCX o altri materiali in `slide/`: sono fonti di lavoro,
   non output del libro.
-- Non modificare `website/` a mano: è output generato da Quarto.
+- Non modificare `website/` a mano: è output generato da Quarto e viene
+  cancellato e riscritto a ogni render.
 - Conservare le modifiche preesistenti dell'utente e ignorare i cambiamenti non
   pertinenti al task assegnato.
 - Non ampliare autonomamente il perimetro dalla didattica alle sezioni
@@ -26,20 +59,22 @@ Prima di lavorare sulla parte didattica, leggere integralmente
 ## Stato attuale
 
 L'utente ha autorizzato la stesura completa della sezione didattica secondo la
-struttura di `PIANO-DIDATTICA.md` («facciamo tutto e poi aggiustiamo»). È
+struttura di `progetto/PIANO-DIDATTICA.md` («facciamo tutto e poi aggiustiamo»). È
 presente una **prima stesura di tutti i 21 capitoli** (19 del nucleo più i due
 approfondimenti), integrata in `_quarto.yml` e `references.bib`. La fase
 attuale è la **revisione**: correzioni di contenuto, voce, lunghezza e figure
 vanno fatte sui capitoli esistenti, senza riscriverli da zero e senza cambiare
 slug o struttura delle parti salvo richiesta dell'utente. Stato dettagliato e
-punti aperti in `progettazione-didattica/indice.md`.
+punti aperti in `progetto/stato-lavori.md`.
 
 ## Convenzioni tecniche dei capitoli
 
-- File in `didattica/<parte>/<slug>.qmd`, intestazione YAML uguale a quella dei
-  capitoli esistenti (`lang: it`, bibliografia e CSL relative, 
-  `suppress-bibliography: true`); in fondo un callout «In breve» e il link
-  `[Riferimenti bibliografici](../../references.qmd)`. La bibliografia è unica.
+- File in `didattica/<parte>/<slug>.qmd`, aggiunto anche all'elenco dei capitoli
+  in `_quarto.yml`. Intestazione YAML minima: `title`, `description`,
+  `suppress-bibliography: true` (ed eventuale `execute`). Lingua, bibliografia e
+  CSL sono impostate una sola volta in `_quarto.yml`: non ripeterle. In fondo un
+  callout «In breve» e il link `[Riferimenti bibliografici](../../bibliografia.qmd)`.
+  La bibliografia è unica.
 - Le figure sono generate da chunk R nel `.qmd` (`echo: false`), con seme
   fissato, `#| label: fig-…`, `fig-cap` e `fig-alt`. Ogni capitolo con figure ha
   un chunk `setup` con `rosso = "#9A0000"`, la funzione `virgola()` per i
@@ -47,13 +82,12 @@ punti aperti in `progettazione-didattica/indice.md`.
   vanno sempre indicati i `breaks`, altrimenti i valori vengono arrotondati male.
 - Valori in didascalia e testo alternativo devono corrispondere a ciò che il
   codice produce: dopo ogni modifica, rigenerare e controllare le immagini.
-- Ogni figura va registrata in `didattica/figure/registro-fonti.csv`.
+- Ogni figura va registrata in `progetto/registro-figure.csv`.
 - Nuovi riferimenti: ricavare i metadati dal DOI (Crossref) e non inventare
   dati mancanti; libri senza DOI inseriti a mano con editore e anno verificabili.
-- Il render di controllo si fa in una cartella isolata, per esempio
-  `quarto render --to html --output-dir .quarto/anteprima-didattica`.
-  `website/` è l'output pubblicato tramite GitHub Pages: rigenerarlo solo quando
-  l'utente decide di pubblicare.
+- Il render si fa con `render.bat` (vedi «Mappa della repository e render»).
+  Commit e push, che pubblicano il sito, spettano all'utente o vanno fatti solo
+  su sua richiesta.
 
 ## Principi editoriali
 
@@ -207,9 +241,9 @@ Regole di default:
   figure; evitare HTML ad hoc se non indispensabile.
 - I callout devono essere pochi e semanticamente stabili: “In breve”, “Esempio”,
   “Punto metodologico”, “Controversia”, “Attenzione clinica”, “Per approfondire”.
-- A fine task eseguire almeno il render della pagina o della sezione toccata; il
-  task di integrazione esegue il render completo e controlla link, citazioni,
-  sommario e leggibilità su schermo.
+- A fine task eseguire `render.bat` e controllare che non ci siano avvisi su
+  citazioni o riferimenti incrociati; il task di integrazione controlla anche
+  link, sommario, PDF e leggibilità su schermo.
 
 ## Criteri di completamento di un capitolo
 

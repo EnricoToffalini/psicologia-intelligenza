@@ -1,9 +1,6 @@
 ---
 title: "Salute e longevità"
 description: "Perché i bambini con QI più alto vivono in media più a lungo, quali percorsi spiegano l'associazione e che cosa non se ne può concludere."
-lang: it
-bibliography: ../../references.bib
-csl: ../../apa.csl
 suppress-bibliography: true
 execute:
   echo: false
@@ -173,13 +170,13 @@ informazioni e delle procedure sanitarie è un fattore di disuguaglianza.
 Istruzioni più semplici, percorsi di cura meno faticosi, sistemi che non
 richiedono di districarsi da soli fra burocrazie e prescrizioni possono ridurre
 lo svantaggio di chi ha più difficoltà a risolvere problemi, qualunque ne sia la
-causa. E ricorda che, come per la scuola, una differenza individuale si traduce
-in un esito attraverso istituzioni che possono amplificarla o attenuarla.
+causa. Come per la scuola, il percorso dal punteggio all'esito passa per
+istituzioni costruite dagli esseri umani, e quindi modificabili.
 
 Resta infine una distinzione da tenere sempre presente. Queste associazioni
-descrivono differenze fra individui all'interno di una popolazione. Non dicono
-nulla sulle differenze medie fra gruppi o fra paesi, nelle quali la salute
-dipende da molte altre condizioni.
+descrivono differenze fra individui all'interno di una popolazione. Non si
+possono trasferire, senza altre evidenze, alle differenze medie fra gruppi o fra
+paesi, nelle quali la salute dipende da molte altre condizioni.
 
 ::: {.callout-note icon=false}
 ## In breve
@@ -196,4 +193,4 @@ dipende da molte altre condizioni.
   disuguaglianza.
 :::
 
-[Riferimenti bibliografici](../../references.qmd)
+[Riferimenti bibliografici](../../bibliografia.qmd)

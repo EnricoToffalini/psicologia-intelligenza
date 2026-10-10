@@ -1,9 +1,6 @@
 ---
 title: "Dalle categorie alle dimensioni"
 description: "Perché le condizioni del neurosviluppo non hanno confini netti né deficit centrali, e che cosa hanno in comune con la struttura dell'intelligenza."
-lang: it
-bibliography: ../../references.bib
-csl: ../../apa.csl
 suppress-bibliography: true
 execute:
   echo: false
@@ -19,11 +16,12 @@ tema = theme_minimal(base_size = 13) +
   theme(panel.grid.minor = element_blank())
 ```
 
-Siamo tutti diversi, e la diversità è un valore. A volte, però, essere molto
-diversi in qualche aspetto del funzionamento cognitivo, emotivo, comportamentale
-o sociale crea difficoltà di adattamento al contesto in cui si vive. E questa
-diversità sfugge spesso agli inquadramenti netti che la medicina usa per le
-malattie.
+Una diagnosi sembra una risposta: c'è o non c'è. Nel neurosviluppo, però, la
+risposta è quasi sempre una questione di grado. Essere molto distanti dalla
+media in qualche aspetto del funzionamento cognitivo, emotivo, comportamentale
+o sociale può creare difficoltà di adattamento al contesto in cui si vive. Ma
+quella distanza raramente si lascia chiudere negli inquadramenti netti che la
+medicina usa per le malattie.
 
 Questo capitolo e il prossimo riguardano le **condizioni del neurosviluppo**:
 disabilità intellettiva, autismo, ADHD, disturbi specifici dell'apprendimento.
@@ -107,14 +105,19 @@ Per l'**autismo** si sono proposti un deficit nella capacità di rappresentarsi
 gli stati mentali altrui, la cosiddetta teoria della mente; un malfunzionamento
 del sistema dei neuroni specchio; una tendenza a elaborare i dettagli perdendo
 la visione d'insieme; un orientamento estremo verso la sistematizzazione a
-scapito dell'empatia. Le differenze medie osservate sono reali ma moderate e non
-generalizzabili. Le prime evidenze sui neuroni specchio non sono state
+scapito dell'empatia. Le differenze medie osservate sono reali, e nei compiti
+classici di teoria della mente possono essere ampie; ma variano molto da persona
+a persona e non bastano a definire la condizione. Le prime evidenze sui neuroni specchio non sono state
 confermate [@hamilton2013reflecting]. Una meta-analisi non ha trovato né una
 superiorità nell'elaborazione locale né un deficit in quella globale
-[@vanderhallen2015global]. E il presunto deficit sociale si è rivelato in parte
-reciproco: le persone autistiche comunicano bene fra loro, e le difficoltà
-emergono soprattutto nell'incontro fra modi diversi di comunicare. È il
-cosiddetto problema della **doppia empatia** [@milton2012ontological].
+[@vanderhallen2015global]. Anche l'idea di un deficit sociale tutto interno alla
+persona autistica è stata messa in discussione. Secondo l'ipotesi della
+**doppia empatia**, le difficoltà nascono soprattutto nell'incontro fra modi
+diversi di comunicare [@milton2012ontological]. Un esperimento ha trovato che
+catene di persone autistiche si trasmettevano un'informazione con la stessa
+efficacia di catene di persone non autistiche, mentre le catene miste
+funzionavano peggio [@crompton2020autistic]. È un risultato interessante, non
+ancora una teoria consolidata.
 
 Per l'**ADHD** si sono proposti deficit di inibizione, di funzioni esecutive,
 di tolleranza dell'attesa. Le differenze medie esistono, di solito attorno a
@@ -141,9 +144,9 @@ adeguata per nessuna delle condizioni del neurosviluppo [@astle2022transdiagnost
 C'è una ragione profonda per cui i deficit centrali non si trovano. È la stessa
 per cui le abilità cognitive hanno una distribuzione continua. Ogni
 comportamento umano è il risultato di moltissimi fattori genetici, neurobiologici,
-ambientali ed esperienziali che si sommano. La somma di molti fattori produce una
-distribuzione continua. E in una distribuzione continua non esiste una soglia
-naturale.
+ambientali ed esperienziali. Che si sommino o, in parte, si moltiplichino, il
+risultato di molti fattori è comunque una distribuzione continua. E in una
+distribuzione continua non esiste una soglia naturale.
 
 La lettura ne è l'esempio classico. Già all'inizio degli anni Novanta uno studio
 longitudinale mostrò che l'abilità di lettura nella popolazione si distribuisce
@@ -220,11 +223,12 @@ quale sia il suo profilo su più dimensioni.
 È stato proposto di includere le condizioni del neurosviluppo in questi modelli
 come un'ulteriore dimensione, in continuità con la psicopatologia adulta e in
 relazione con la struttura dell'intelligenza [@astle2022transdiagnostic]. I
-legami esistono. Fattore *p* e fattore *g* correlano in modo negativo e modesto, e
-la relazione sembra bidirezionale nel tempo: un livello cognitivo più alto
-protegge un poco, la psicopatologia danneggia un poco il funzionamento cognitivo.
-E nelle persone con funzionamento intellettivo limite i disturbi psichiatrici
-sono più frequenti.
+legami esistono. Nello studio che ha proposto il fattore *p*, punteggi più alti
+in *p* si associavano a un funzionamento cognitivo un po' più basso già
+nell'infanzia e a un declino maggiore in età adulta [@caspi2014pfactor]. La
+direzione causale resta da chiarire: un livello cognitivo più alto potrebbe
+proteggere, la psicopatologia potrebbe danneggiare, ed entrambe le cose possono
+essere vere.
 
 Il problema non riguarda solo la clinica. Anche la ricerca pensa ancora per
 categorie, e le categorie creano un dilemma: i campioni diagnostici «puri» non
@@ -264,4 +268,4 @@ parole non si escludono: descrivono livelli diversi dello stesso fenomeno.
   meglio delle categorie e collegano neurosviluppo, psicopatologia e intelligenza.
 :::
 
-[Riferimenti bibliografici](../../references.qmd)
+[Riferimenti bibliografici](../../bibliografia.qmd)

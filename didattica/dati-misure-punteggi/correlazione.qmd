@@ -1,9 +1,6 @@
 ---
 title: "Correlazione e differenze individuali"
 description: "Che cosa dice un coefficiente di correlazione, che cosa non dice e quali informazioni servono per passare dall'associazione alla spiegazione."
-lang: it
-bibliography: ../../references.bib
-csl: ../../apa.csl
 suppress-bibliography: true
 execute:
   echo: false
@@ -283,4 +280,4 @@ i titoli di giornale peggiori.
   influenze reciproche vanno valutate con disegni adeguati.
 :::
 
-[Riferimenti bibliografici](../../references.qmd)
+[Riferimenti bibliografici](../../bibliografia.qmd)

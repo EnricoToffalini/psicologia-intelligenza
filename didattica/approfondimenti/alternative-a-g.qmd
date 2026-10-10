@@ -1,9 +1,6 @@
 ---
 title: "Si può spiegare la positive manifold senza un fattore generale?"
 description: "Teoria della sovrapposizione dei processi e mutualismo: che cosa propongono, quali evidenze le sostengono e perché restano alternative vive ma minoritarie."
-lang: it
-bibliography: ../../references.bib
-csl: ../../apa.csl
 suppress-bibliography: true
 execute:
   echo: false
@@ -160,8 +157,8 @@ Il bilancio, oggi, è questo. Le alternative a *g* hanno il merito di ricordare 
 un fattore statistico non è una spiegazione causale e che la positive manifold
 potrebbe avere origini diverse da una singola causa comune. Ma nessuna ha ancora
 prodotto previsioni precise che il modello gerarchico non riesca a spiegare
-altrettanto bene. Sono alternative vive, da seguire. Non sono ancora alternative
-consolidate.
+altrettanto bene. Finché non lo faranno, restano ipotesi da seguire con
+interesse, non sostituti del fattore generale.
 
 ::: {.callout-note icon=false}
 ## In breve
@@ -178,4 +175,4 @@ consolidate.
   compatibilista sopravvive come cornice per lo sviluppo.
 :::
 
-[Riferimenti bibliografici](../../references.qmd)
+[Riferimenti bibliografici](../../bibliografia.qmd)

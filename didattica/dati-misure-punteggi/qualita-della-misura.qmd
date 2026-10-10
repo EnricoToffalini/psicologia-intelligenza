@@ -1,9 +1,6 @@
 ---
 title: "Quando una misura è buona"
 description: "Validità, attendibilità, sensibilità e robustezza: come si giudica un test di intelligenza e perché un profilo di indici è meno affidabile del QI totale."
-lang: it
-bibliography: ../../references.bib
-csl: ../../apa.csl
 suppress-bibliography: true
 execute:
   echo: false
@@ -22,9 +19,11 @@ tema = theme_minimal(base_size = 13) +
 
 Una bilancia da cucina che sbaglia di quindici grammi è inutile per dosare il
 lievito. Una bilancia pesapersone che sbaglia di tre chili è inutile per seguire
-una dieta. Entrambe misurano il peso, quindi sono strumenti validi. Ma nessuno le
-userebbe. In psicologia lo stesso ragionamento vale per ogni test, con una
-complicazione: ciò che vogliamo misurare non si vede.
+una dieta. Entrambe misurano il peso, e nessuno lo mette in dubbio. Eppure
+nessuno le userebbe per quegli scopi. Misurare la cosa giusta non basta: serve
+misurarla abbastanza bene per l'uso che se ne fa. In psicologia lo stesso
+ragionamento vale per ogni test, con una complicazione: ciò che vogliamo
+misurare non si vede.
 
 Le abilità cognitive sono variabili latenti. Le stimiamo a partire da risposte a
 compiti, e il punteggio che ne ricaviamo è il risultato di una catena di
@@ -211,9 +210,17 @@ punteggio è dovuta a un solo fattore [@rodriguez2016evaluating]. I risultati su
 campioni normativi delle principali batterie sono convergenti. Il fattore
 generale ha un omega gerarchico elevato, attorno a 0,75–0,80. I domini
 specifici, al netto di *g*, scendono spesso sotto 0,30 e talvolta vicino a zero
-[@watkins2006orthogonal; @gignac2017evaluating]. Analisi sui dati normativi
-italiani della WISC-IV e della IDS-2 mostrano lo stesso schema: il fattore
-generale risulta attendibile e interpretabile, i fattori di dominio quasi mai
+[@watkins2006orthogonal; @gignac2017evaluating]. Le rianalisi delle edizioni
+più recenti, come la WISC-V, mostrano lo stesso schema [@canivez2017structural],
+e così i dati normativi italiani. Nel campione di taratura italiano della
+WISC-IV i fattori di dominio contribuiscono in misura trascurabile, al netto del
+fattore generale [@kush2019construct]; lo stesso modello è stato applicato anche
+al confronto con ampi campioni di bambini con disturbi dell'apprendimento
+[@giofre2019lumpers]. Nel campione di taratura italiano dell'IDS-2, su 1.281
+bambini e ragazzi, il fattore generale ha un omega gerarchico di 0,77, mentre
+quello dei fattori specifici varia fra 0,08 e 0,51 [@toffalini2026ids2]. In
+tutti questi casi il fattore generale risulta attendibile e interpretabile, i
+fattori di dominio quasi mai
 abbastanza da essere letti da soli.
 
 Le conclusioni tratte da questi dati sono di due tipi. Alcuni ricercatori
@@ -254,8 +261,7 @@ stima del funzionamento cognitivo generale. Non giustifica la fiducia
 indiscriminata in ogni numero che compare in un referto. Il QI ha un margine di
 errore che va dichiarato. Gli indici di dominio portano un'informazione
 specifica modesta e vanno interpretati con argomenti. La robustezza dipende da
-chi è la persona valutata. Una buona misura si usa sapendo dove finisce la sua
-precisione.
+chi è la persona valutata.
 
 ::: {.callout-note icon=false}
 ## In breve
@@ -271,4 +277,4 @@ precisione.
   la loro interpretazione va motivata e corroborata.
 :::
 
-[Riferimenti bibliografici](../../references.qmd)
+[Riferimenti bibliografici](../../bibliografia.qmd)

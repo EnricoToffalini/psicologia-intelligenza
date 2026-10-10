@@ -1,9 +1,6 @@
 ---
 title: "Cervello e intelligenza"
 description: "Che cosa distingue il cervello di persone con QI diverso: volume, sostanza bianca, efficienza, teoria P-FIT, e perché molti risultati spettacolari non hanno retto."
-lang: it
-bibliography: ../../references.bib
-csl: ../../apa.csl
 suppress-bibliography: true
 execute:
   echo: false
@@ -136,11 +133,19 @@ a 0,40; le meta-analisi recenti e i grandi campioni le collocano attorno a
 legata soprattutto alla superficie totale e allo spessore della corteccia, più
 che a singole aree particolari.
 
-È un effetto sicuro ma modesto. Il volume del cervello non permette di prevedere
-il QI di una persona. Lo dimostra anche un fatto noto: i cervelli maschili sono
-in media circa il 10% più grandi di quelli femminili [@ritchie2018sex], ma le
-differenze medie di QI fra i sessi sono trascurabili [@halpern2007science]. Un
-cervello più grande è un vantaggio statistico, non una garanzia.
+È un effetto sicuro ma modesto. Con una correlazione di 0,25 il volume del
+cervello non permette di prevedere il QI di una persona: individui con lo stesso
+volume si distribuiscono su quasi tutta la scala. Un cervello più grande è un
+vantaggio statistico, non una garanzia.
+
+C'è poi un'anomalia istruttiva. I cervelli maschili sono in media circa il 10%
+più grandi di quelli femminili, una differenza superiore a una deviazione
+standard [@ritchie2018sex]. Con la correlazione appena vista ci si aspetterebbe
+un vantaggio maschile di qualche punto di QI. Le differenze medie fra i sessi
+nell'abilità generale, invece, sono trascurabili [@halpern2007science]. Il dato
+non smentisce la correlazione fra volume e QI dentro ciascun sesso; suggerisce
+che, fra gruppi con cervelli organizzati in modo diverso, conti anche come il
+tessuto è distribuito e connesso, non solo quanto ce n'è.
 
 ### Il cablaggio: la sostanza bianca
 
@@ -176,8 +181,12 @@ mostravano un'attività corticale ridotta man mano che diventavano esperte
 più capace ottiene lo stesso risultato con meno dispendio
 [@neubauer2009intelligence].
 
-L'ipotesi nella forma originale non ha retto bene alle repliche. Ma è
-sopravvissuta in forme più specifiche. Le persone con QI più alto sembrano
+L'ipotesi nella forma originale ha dato risultati incoerenti: l'efficienza
+emerge soprattutto in compiti di difficoltà moderata e in alcune regioni, e non
+sempre nella stessa direzione [@neubauer2009intelligence]. Lo stesso Haier la
+considera ancora utile, a patto di definirla e misurarla meglio
+[@haier2017neuroscience]. È
+sopravvissuta, infatti, in forme più specifiche. Le persone con QI più alto sembrano
 disattivare di più la rete cerebrale attiva a riposo, mentre attivano di più le
 aree richieste dal compito [@basten2013intelligence]. E le loro reti di
 connettività funzionale cambiano meno quando passano dal riposo a compiti
@@ -232,4 +241,4 @@ cerebrali e le prestazioni nei test resta in gran parte da esplorare.
   individuale.
 :::
 
-[Riferimenti bibliografici](../../references.qmd)
+[Riferimenti bibliografici](../../bibliografia.qmd)

@@ -1,9 +1,6 @@
 ---
 title: "Abilità multiple e modelli gerarchici"
 description: "Thurstone, Sternberg, Gardner, intelligenza fluida e cristallizzata: come le alternative al fattore unico hanno portato al modello gerarchico CHC, e perché g continua a prevalere."
-lang: it
-bibliography: ../../references.bib
-csl: ../../apa.csl
 suppress-bibliography: true
 execute:
   echo: false
@@ -217,8 +214,9 @@ Prendiamo il punteggio di una persona in una prova di vocabolario. Riflette in
 parte il fattore generale; in parte l'abilità verbale, comune alle prove
 linguistiche; in parte la conoscenza specifica delle parole presenti nella
 prova. Il resto è errore: casualità, numero limitato di item, effetti
-transitori come una notte dormita male. Questa componente residua può pesare
-per il 30–40% della varianza dei singoli subtest. Lo stesso vale per una prova
+transitori come una notte dormita male. Componente specifica ed errore, insieme,
+possono pesare per il 30–40% della varianza dei singoli subtest; l'errore da
+solo, con attendibilità tipiche fra 0,80 e 0,90, ne rappresenta il 10–20%. Lo stesso vale per una prova
 di rotazione mentale, con il dominio visuospaziale al posto di quello verbale.
 
 ## La prevalenza di *g*
@@ -291,4 +289,4 @@ generale.
   e degli esiti reali, mentre i fattori di dominio al netto di *g* sono deboli.
 :::
 
-[Riferimenti bibliografici](../../references.qmd)
+[Riferimenti bibliografici](../../bibliografia.qmd)

@@ -1,9 +1,6 @@
 ---
 title: "Intelligenza e lavoro"
 description: "Quanto l'intelligenza prevede apprendimento e prestazione lavorativa, perché le stime classiche erano probabilmente gonfiate, e che cosa aggiungono abilità specifiche e personalità."
-lang: it
-bibliography: ../../references.bib
-csl: ../../apa.csl
 suppress-bibliography: true
 execute:
   echo: false
@@ -122,6 +119,13 @@ validità dei test cognitivi per prevedere la prestazione lavorativa scende
 attorno a 0,3 [@sackett2022revisiting]. Resta un predittore utile, ma non più
 nettamente superiore a tutti gli altri.
 
+La revisione non ha chiuso la questione. Altri specialisti della selezione
+sostengono che rinunciare alla correzione porti all'errore opposto, cioè a
+sottostimare sistematicamente la validità [@oh2023revisiting]. Il punto di consenso è più
+modesto, ma solido: l'abilità cognitiva prevede la prestazione lavorativa, con
+una validità almeno moderata, e lo 0,5 delle sintesi classiche va trattato come
+un limite superiore piuttosto che come un dato acquisito.
+
 ## Dipende dal compito, e dal criterio
 
 Le stime variano molto con il tipo di lavoro e con ciò che si vuole prevedere.
@@ -203,4 +207,4 @@ motivati.
   formazione; abilità specifiche e coscienziosità aggiungono informazione utile.
 :::
 
-[Riferimenti bibliografici](../../references.qmd)
+[Riferimenti bibliografici](../../bibliografia.qmd)

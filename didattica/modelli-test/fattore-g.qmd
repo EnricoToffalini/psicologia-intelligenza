@@ -1,9 +1,6 @@
 ---
 title: "Il fattore generale e la positive manifold"
 description: "Perché prestazioni cognitive diverse sono sempre correlate, come Spearman ne ricavò il fattore g e che cosa significa ragionare con una variabile latente."
-lang: it
-bibliography: ../../references.bib
-csl: ../../apa.csl
 suppress-bibliography: true
 execute:
   echo: false
@@ -40,9 +37,12 @@ sintesi gerarchica oggi prevalente.
 Il capitolo sulla correlazione ha elencato le spiegazioni possibili di
 un'associazione: A causa B, B causa A, le due si influenzano a vicenda, oppure
 una terza variabile influenza entrambe. Applichiamole a due prove cognitive.
-Che il vocabolario causi la capacità di ruotare mentalmente una figura è
-implausibile. Che accada il contrario, altrettanto. Resta l'ipotesi della causa
-comune.
+Che il vocabolario causi direttamente la capacità di ruotare mentalmente una
+figura è implausibile, almeno nel presente di un adulto. Che accada il
+contrario, altrettanto. Resta l'ipotesi più semplice: una causa comune.
+Un'influenza reciproca accumulata durante lo sviluppo non è esclusa, ed è la
+base delle alternative discusse negli approfondimenti finali; ma richiede una
+storia più lunga da raccontare.
 
 Nel 1904 Spearman pubblicò un'analisi delle correlazioni fra misure molto
 eterogenee, raccolte su bambini delle scuole: voti in varie materie,
@@ -232,4 +232,4 @@ capitolo le esamina e mostra come la ricerca sia arrivata a una sintesi.
   dalle prove scelte e trascura le abilità specifiche.
 :::
 
-[Riferimenti bibliografici](../../references.qmd)
+[Riferimenti bibliografici](../../bibliografia.qmd)

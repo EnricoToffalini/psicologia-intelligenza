@@ -1,9 +1,6 @@
 ---
 title: "Si può potenziare l'intelligenza?"
 description: "Scuola, adozione, interventi precoci, effetto Mozart, training cognitivi e farmaci: che cosa aumenta davvero le capacità cognitive e perché molte promesse sono crollate."
-lang: it
-bibliography: ../../references.bib
-csl: ../../apa.csl
 suppress-bibliography: true
 execute:
   echo: false
@@ -244,25 +241,37 @@ generale [@ilieva2015prescription]. Per chi ha un ADHD questi farmaci possono
 essere molto utili; come potenziatori dell'intelligenza nelle persone sane, no.
 Considerazioni simili valgono per le tecniche di stimolazione cerebrale non
 invasiva: alcune promesse, pochi effetti replicati su campioni ampi, di solito su
-funzioni specifiche e non sull'abilità generale. Non esiste una pillola
-dell'intelligenza.
+funzioni specifiche e non sull'abilità generale. Oggi non esiste una pillola
+dell'intelligenza. Che non possa esistere in futuro è un'altra affermazione, e
+nessuno è in grado di dimostrarla.
 
 ## Perché allenare una parte non migliora il tutto
 
-Il fallimento dei training cognitivi è una delusione, ma era prevedibile. Nel
-modello gerarchico è il fattore generale a sostenere la prestazione nelle
-abilità specifiche, non viceversa. Le frecce vanno dall'alto in basso.
-Allenare un compito specifico migliora quel compito, ma l'effetto non può
-risalire la gerarchia [@warne2020know]. Chi ha promesso il contrario ha confuso
-due cose: l'intelligenza fluida, che è un'abilità ampia fra le altre, e *g*,
-che ne è la causa comune; e la prestazione in un compito con la capacità che
-quel compito dovrebbe misurare.
+Il fallimento dei training cognitivi è una delusione, ma era prevedibile.
+Attenzione però a come lo si spiega. Si dice spesso che nel modello gerarchico le
+frecce vanno dal fattore generale alle abilità specifiche, e che quindi
+l'effetto di un allenamento non può risalire [@warne2020know]. L'argomento vale
+solo se si prende il modello alla lettera, come un meccanismo che opera dentro
+ogni persona. Ma *g*, come si è visto, è il riassunto statistico di molte cause
+comuni, non un organo con un'uscita e un'entrata.
+
+L'argomento più solido è un altro. Se le prove correlano perché dipendono dalle
+stesse cause comuni, migliorare una prova senza toccare quelle cause lascia
+intatto tutto il resto. Allenarsi al *dual n-back* rende più bravi nel *dual
+n-back*: cambia strategie e familiarità con un compito, non la biologia o
+l'esperienza accumulata che sostengono anche il vocabolario e le matrici. Ed è
+esattamente ciò che i dati mostrano. Chi ha promesso il contrario ha confuso la
+prestazione in un compito con la capacità che quel compito dovrebbe misurare.
+Gli interventi che spostano davvero i punteggi, come la scuola o l'uscita da
+una deprivazione grave, sono invece cambiamenti ampi, che agiscono su molte
+cause insieme; quanto del guadagno riguardi *g*, e quanto abilità specifiche,
+resta discusso.
 
 I risultati positivi, del resto, raccontano la stessa storia in forma opposta.
 Ciò che aumenta davvero le capacità cognitive sono cambiamenti ampi e duraturi
 dell'ambiente: anni di scuola, uscita da una deprivazione grave, una vita intera
-dedicata a un'attività complessa. Non esistono scorciatoie. Esistono ambienti
-migliori, che vanno costruiti e mantenuti.
+dedicata a un'attività complessa. Costano molto più di un'applicazione sul
+telefono, e funzionano.
 
 ::: {.callout-note icon=false}
 ## In breve
@@ -277,8 +286,8 @@ migliori, che vanno costruiti e mantenuti.
 - Effetto Mozart, training di memoria di lavoro e videogiochi non producono
   trasferimento lontano, una volta corretti controlli passivi e pubblicazione
   selettiva.
-- Allenare un'abilità specifica non può migliorare il fattore generale che la
-  sostiene.
+- Allenare un compito specifico non tocca le cause comuni che sostengono tutte
+  le prove: per questo migliora quel compito e poco altro.
 :::
 
-[Riferimenti bibliografici](../../references.qmd)
+[Riferimenti bibliografici](../../bibliografia.qmd)

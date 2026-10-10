@@ -1,0 +1,14 @@
+#!/bin/sh
+# Impedisce di committare sorgenti del libro senza il sito rigenerato.
+# Il sito pubblicato e' la cartella website/: se cambiano i sorgenti ma non
+# website/, online resterebbe la versione vecchia.
+staged=$(git diff --cached --name-only)
+src=$(printf '%s\n' "$staged" | grep -E '\.qmd$|^_quarto\.yml$|^references\.bib$|^assets/' || true)
+site=$(printf '%s\n' "$staged" | grep -E '^website/' || true)
+if [ -n "$src" ] && [ -z "$site" ]; then
+  echo "BLOCCATO: hai modificato i sorgenti del libro ma non il sito in website/."
+  echo "Esegui render.bat (o sh render.sh), poi: git add -A e di nuovo git commit."
+  echo "Per forzare comunque (sconsigliato): git commit --no-verify"
+  exit 1
+fi
+exit 0

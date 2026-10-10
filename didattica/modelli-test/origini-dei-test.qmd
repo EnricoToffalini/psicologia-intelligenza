@@ -1,9 +1,6 @@
 ---
 title: "Dai primi test al testing di massa"
 description: "Galton, Binet, l'età mentale, il quoziente di Stern e i test dell'esercito statunitense: innovazioni, fallimenti e abusi delle prime misure dell'intelligenza."
-lang: it
-bibliography: ../../references.bib
-csl: ../../apa.csl
 suppress-bibliography: true
 ---
 
@@ -225,7 +222,8 @@ Le sue caratteristiche, cioè scelta multipla, somministrazione collettiva,
 standardizzazione su campioni ampi, sono state ereditate dalle grandi indagini
 educative contemporanee, come PISA e INVALSI. Queste ultime non valutano
 singoli individui, ma sistemi scolastici, e sono più legate ai programmi; i loro
-risultati, tuttavia, correlano fortemente con le misure di abilità generale.
+punteggi, tuttavia, sono dominati da un fattore generale molto simile a quello
+dei test cognitivi [@pokropek2022general].
 
 ## Che cosa resta
 
@@ -255,4 +253,4 @@ comincia da qui.
   ma furono interpretati, con Terman e Brigham, in chiave eugenetica e razziale.
 :::
 
-[Riferimenti bibliografici](../../references.qmd)
+[Riferimenti bibliografici](../../bibliografia.qmd)

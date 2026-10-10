@@ -1,9 +1,6 @@
 ---
 title: "Distribuzioni, punti z e punteggi standardizzati"
 description: "Perché la curva gaussiana domina la misura psicologica, come funzionano punti z, QI, punteggi ponderati e percentili, e dove il modello smette di valere."
-lang: it
-bibliography: ../../references.bib
-csl: ../../apa.csl
 suppress-bibliography: true
 execute:
   echo: false
@@ -81,7 +78,7 @@ queste si aggiungono innumerevoli influenze ambientali, educative, motivazionali
 e situazionali, compresa un po' di casualità nelle risposte a un test. Le abilità
 cognitive sono quindi **poligeniche**, perché molti geni influiscono sullo
 stesso tratto, e i loro effetti sono in larga parte condivisi tra abilità
-diverse [@kovas2006generalist]. Un prodotto di tanti piccoli contributi sommati
+diverse [@kovas2006generalist]. Un risultato di tanti piccoli contributi sommati
 è esattamente il tipo di processo che genera una gaussiana.
 
 Vale la pena notare l'ordine storico. La scelta di modellare le abilità come
@@ -340,4 +337,4 @@ ma non un fatto di natura.
   senso.
 :::
 
-[Riferimenti bibliografici](../../references.qmd)
+[Riferimenti bibliografici](../../bibliografia.qmd)

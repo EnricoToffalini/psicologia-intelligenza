@@ -1,9 +1,6 @@
 ---
 title: "Perché studiare l'intelligenza"
 description: "Un costrutto maturo, usato ogni giorno e spesso frainteso: perché lo studio dell'intelligenza coincide in gran parte con lo studio delle differenze individuali."
-lang: it
-bibliography: ../../references.bib
-csl: ../../apa.csl
 suppress-bibliography: true
 ---
 
@@ -204,4 +201,4 @@ invece che con opinioni.
   misurare, ma pretendere misure valide e interpretazioni prudenti.
 :::
 
-[Riferimenti bibliografici](../../references.qmd)
+[Riferimenti bibliografici](../../bibliografia.qmd)

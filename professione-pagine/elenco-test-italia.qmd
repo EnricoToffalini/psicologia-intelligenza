@@ -5,7 +5,6 @@ format:
 bibliography: ../references.bib
 suppress-bibliography: true
 link-citations: true
-include-in-header: ../figure/header.html
 ---
 
 # Elenco dei Test in Italia {.unnumbered}

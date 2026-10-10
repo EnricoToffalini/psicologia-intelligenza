@@ -1,9 +1,6 @@
 ---
 title: "Altre intelligenze o vecchi costrutti con un nome nuovo?"
 description: "L'intelligenza emotiva alla prova della misura: sovrapposizione con abilità cognitive e personalità, validità incrementale, e il problema delle etichette che si moltiplicano."
-lang: it
-bibliography: ../../references.bib
-csl: ../../apa.csl
 suppress-bibliography: true
 ---
 
@@ -144,4 +141,4 @@ ora, molto meno.
   problemi diffusi; ogni nuovo costrutto deve dimostrare di essere distinto e utile.
 :::
 
-[Riferimenti bibliografici](../../references.qmd)
+[Riferimenti bibliografici](../../bibliografia.qmd)

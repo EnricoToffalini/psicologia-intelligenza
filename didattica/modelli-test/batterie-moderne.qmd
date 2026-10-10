@@ -1,9 +1,6 @@
 ---
 title: "Le batterie moderne di intelligenza"
 description: "Dalle scale Wechsler al QI di deviazione: come è fatta una batteria moderna, che cosa sono indici e subtest, e come leggere un profilo senza sovrainterpretarlo."
-lang: it
-bibliography: ../../references.bib
-csl: ../../apa.csl
 suppress-bibliography: true
 ---
 
@@ -72,9 +69,10 @@ parte verbale e di performance solo uno dei modi possibili di raggrupparli
 ## Dagli indici di Wechsler al CHC
 
 Le scale Wechsler si sono moltiplicate e sono state riviste più volte: la WAIS
-per adulti, la WISC per l'età scolare, la WPPSI per l'età prescolare. Oggi sono
-alla quinta edizione e restano le batterie più usate al mondo per la valutazione
-cognitiva globale.
+per adulti, la WISC per l'età scolare, la WPPSI per l'età prescolare. WISC e WAIS sono
+oggi alla quinta edizione, la WPPSI alla quarta; le edizioni disponibili in
+Italia possono essere precedenti. Restano le batterie più usate al mondo per la
+valutazione cognitiva globale.
 
 Nel tempo la struttura si è articolata. La distinzione fra QI verbale e QI di
 performance è stata sostituita, nelle edizioni degli anni Duemila, da quattro
@@ -162,6 +160,52 @@ la logica delle prove scolastiche contano. Il capitolo sull'effetto Flynn
 mostrerà che proprio le matrici sono fra le prove più sensibili ai cambiamenti
 storici. Meglio parlare di test **ridotti nella componente culturale**.
 
+## Test equi?
+
+L'accusa più antica ai test di intelligenza è che siano ingiusti verso alcuni
+gruppi. La storia raccontata nel capitolo precedente le dà più di una ragione.
+Ma la domanda va posta nei termini giusti. Nel linguaggio della psicometria un
+test è **distorto** (*biased*) quando lo stesso punteggio non ha lo stesso
+significato in gruppi diversi: perché a parità di abilità un gruppo ottiene
+punteggi più bassi in alcune prove, cioè manca l'invarianza di misura, oppure
+perché il punteggio prevede gli esiti in modo diverso nei due gruppi
+[@meredith1993measurement]. Una differenza fra le medie, da sola, non è prova di
+distorsione. Un termometro che segna temperature diverse a Palermo e a Bolzano
+non è per questo un termometro sbagliato.
+
+Per gruppi che condividono lingua e scolarizzazione, le batterie moderne
+superano in genere queste verifiche: la struttura dei punteggi è la stessa e la
+loro capacità predittiva è simile [@warne2020know]. I problemi seri nascono
+quando lingua, scolarità e familiarità con le prove differiscono, cioè proprio
+nelle condizioni in cui fallirono i test dell'esercito statunitense. Le
+differenze medie fra gruppi definiti per etnia o nazionalità sollevano, oltre a
+queste, domande sulle cause a cui l'ereditabilità stimata dentro ciascun gruppo
+non può rispondere da sola; il caso del divario Nord-Sud discusso nel capitolo
+sulla scuola mostra quanto fragili possano essere i dati su cui si costruiscono
+certe conclusioni.
+
+Il caso dei sessi è istruttivo. Nell'abilità generale le differenze medie fra
+maschi e femmine sono trascurabili; ne esistono alcune in abilità specifiche,
+come un vantaggio maschile nella rotazione mentale e uno femminile in alcune
+prove verbali e di velocità [@halpern2007science]. Va però ricordato che le
+batterie vengono costruite scartando gli item che funzionano in modo diverso nei
+due sessi, sicché l'uguaglianza dei totali è in parte una scelta di costruzione.
+Più solido è un altro risultato. Nell'intera coorte scozzese testata nel 1932,
+quasi tutti i bambini di undici anni, le medie erano praticamente uguali, ma la
+variabilità era maggiore fra i maschi, più numerosi in entrambe le code
+[@johnson2008sex].
+
+Una spiegazione molto popolare delle differenze fra gruppi è la **minaccia dello
+stereotipo**: chi appartiene a un gruppo descritto come meno capace renderebbe
+peggio quando lo stereotipo viene evocato, per ansia o distrazione. L'idea è
+plausibile e ha avuto un enorme successo. Le evidenze sono più deboli della
+reputazione. Per le ragazze in matematica, una meta-analisi ha trovato un effetto
+piccolo, con segni di pubblicazione selettiva [@flore2015stereotype]; e
+gli effetti si riducono ancora negli studi che riproducono le condizioni di una
+valutazione reale [@shewach2019stereotype]. È una traiettoria che il capitolo sul
+potenziamento cognitivo mostrerà più volte: un risultato elegante, studi
+piccoli, una letteratura che si ridimensiona quando arrivano i campioni grandi.
+
 ## Il panorama italiano e le tendenze recenti
 
 Oltre alle scale Wechsler, in Italia sono disponibili diversi strumenti.
@@ -195,8 +239,9 @@ permette di stimare sia il livello generale sia i domini. La standardizzazione
 su campioni ampi rende i confronti più equi. Restano però limiti che nessuna
 revisione elimina del tutto: l'errore di misura, la debolezza degli indici
 specifici, la dipendenza dalla lingua e dalla scolarità, la necessità di norme
-aggiornate e trasparenti. Una batteria ben usata fornisce una stima solida. Il
-lavoro di interpretazione resta a chi la usa.
+aggiornate e trasparenti. Una batteria ben usata fornisce una stima solida;
+che cosa quella stima significhi per la persona valutata non lo dice il
+manuale.
 
 ::: {.callout-note icon=false}
 ## In breve
@@ -207,8 +252,11 @@ lavoro di interpretazione resta a chi la usa.
   item; le edizioni recenti si richiamano esplicitamente al modello CHC.
 - Il QI totale è la stima più solida; le discrepanze fra indici vanno
   interpretate solo se ampie e coerenti con altre evidenze.
+- Un test è distorto quando lo stesso punteggio non ha lo stesso significato in
+  gruppi diversi, non quando le medie differiscono; la minaccia dello stereotipo
+  spiega poco delle differenze osservate.
 - Nessun test è libero dalla cultura; norme trasparenti e aggiornate sono una
   condizione per un uso professionale difendibile.
 :::
 
-[Riferimenti bibliografici](../../references.qmd)
+[Riferimenti bibliografici](../../bibliografia.qmd)

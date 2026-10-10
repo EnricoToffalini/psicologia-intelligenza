@@ -1,9 +1,6 @@
 ---
 title: "Che cosa aggiunge la genetica molecolare"
 description: "GWAS, punteggi poligenici, ereditabilità mancante, interazioni gene-ambiente e pleiotropia: che cosa abbiamo imparato leggendo direttamente il DNA."
-lang: it
-bibliography: ../../references.bib
-csl: ../../apa.csl
 suppress-bibliography: true
 ---
 
@@ -105,8 +102,11 @@ Le spiegazioni proposte sono diverse e non si escludono.
 - **Sovrastima negli studi sui gemelli.** Se i gemelli monozigoti condividono più
   ambiente dei dizigoti, una parte della loro somiglianza è stata attribuita ai
   geni per errore.
-- **Limiti di potenza.** Effetti piccolissimi si perdono nel rumore; campioni
-  più grandi tendono a produrre stime più alte.
+- **Limiti dei dati.** Gli SNP genotipizzati catturano solo in parte le varianti
+  causali, e la qualità imperfetta delle misure cognitive usate nei grandi
+  campioni abbassa le stime. La potenza conta soprattutto per i punteggi
+  poligenici: campioni più grandi stimano meglio i singoli effetti e producono
+  previsioni migliori.
 
 Un risultato recente complica ulteriormente il quadro. Confrontando fratelli
 all'interno della stessa famiglia, che hanno ereditato varianti diverse ma
@@ -219,4 +219,4 @@ catena: il cervello.
   fornisce una base genetica alla positive manifold.
 :::
 
-[Riferimenti bibliografici](../../references.qmd)
+[Riferimenti bibliografici](../../bibliografia.qmd)

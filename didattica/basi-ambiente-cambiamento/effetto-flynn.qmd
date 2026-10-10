@@ -1,9 +1,6 @@
 ---
 title: "L'effetto Flynn e i cambiamenti storici"
 description: "Perché i punteggi ai test di intelligenza sono cresciuti per gran parte del Novecento, che cosa è davvero aumentato, e perché in alcuni paesi oggi scendono."
-lang: it
-bibliography: ../../references.bib
-csl: ../../apa.csl
 suppress-bibliography: true
 execute:
   echo: false
@@ -223,10 +220,11 @@ ricordare, un'attenzione più frammentata. È possibile anche un problema di
 misura: alcuni test potrebbero essere invecchiati e non cogliere abilità oggi
 rilevanti.
 
-Un indizio a favore della spiegazione culturale è che non tutte le abilità
-scendono allo stesso modo: calano di più quelle simili agli apprendimenti
-scolastici, mentre altre restano stabili o crescono. Nello stesso periodo si
-osserva un calo nei punteggi delle indagini internazionali sulle competenze
+Un indizio a favore di una spiegazione ambientale e culturale è che non tutte
+le abilità scendono allo stesso modo: nei dati statunitensi citati, serie di
+lettere e numeri e matrici calano mentre la rotazione mentale cresce
+[@dworak2023looking]. Un declino biologico generale non produrrebbe andamenti
+così divergenti. Nello stesso periodo si osserva un calo nei punteggi delle indagini internazionali sulle competenze
 scolastiche e, in alcuni studi, nelle prove di ragionamento formale di tipo
 piagetiano proposte agli adolescenti [@shayer2009thirty].
 
@@ -261,4 +259,4 @@ quella popolazione chiede alle proprie menti.
 Per una presentazione divulgativa dello stesso tema si veda anche la pagina
 [L'effetto Flynn](../../divulgazione-pagine/flynn-effetto-flynn.qmd).
 
-[Riferimenti bibliografici](../../references.qmd)
+[Riferimenti bibliografici](../../bibliografia.qmd)

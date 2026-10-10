@@ -5,7 +5,6 @@ project:
 
 format:
   pdf:
-    lang: it
     documentclass: scrreprt
     pdf-engine: xelatex
     papersize: a4
@@ -26,15 +25,14 @@ format:
     linkcolor: black
     urlcolor: blue
     citecolor: black
-    keep-tex: true
     filters:
       - at: pre-ast
-        path: filters/pdf-layout.lua
-    include-in-header: styles/pdf-layout.tex
+        path: assets/pdf-layout.lua
+    include-in-header: assets/pdf-layout.tex
   html:
     number-sections: true
     toc: false
-    css: custom.css
+    css: assets/custom.css
     page-layout: full
     include-in-header:
        text: |
@@ -43,7 +41,8 @@ format:
 
 book:
   title: "Psicologia dell'Intelligenza"
-  favicon: favicon.ico
+  favicon: assets/favicon.ico
+  downloads: [pdf]
   author:
     - name: '[Enrico Toffalini](https://enricotoffalini.github.io)'
       affiliation: "Dipartimento di Psicologia Generale, Università di Padova" 
@@ -94,11 +93,12 @@ book:
         - divulgazione-pagine/domande-risposte.qmd
         - divulgazione-pagine/flynn-effetto-flynn.qmd
 
-    - file: references.qmd
+    - file: bibliografia.qmd
       text: "Riferimenti bibliografici"
 
 bibliography: references.bib
-csl: apa.csl
+csl: assets/apa.csl
+lang: it
 
 execute:
   freeze: false

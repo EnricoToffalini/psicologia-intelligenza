@@ -1,9 +1,6 @@
 ---
 title: "Geni, ambiente ed ereditabilità"
 description: "Che cosa misura l'ereditabilità, come la stimano gli studi sui gemelli, perché cresce con l'età e perché non significa destino."
-lang: it
-bibliography: ../../references.bib
-csl: ../../apa.csl
 suppress-bibliography: true
 execute:
   echo: false
@@ -247,10 +244,11 @@ coincidono con quelle dei gemelli.
   spiegano circa metà della varianza del QI considerando tutte le età.
 - L'ereditabilità cresce con l'età, fino a 0,7–0,8 negli adulti, probabilmente
   perché le differenze genetiche iniziali vengono amplificate dall'ambiente.
-- Un'ereditabilità alta non implica immutabilità né dice nulla sulle differenze
-  medie fra epoche o gruppi; dipende dalla distribuzione degli ambienti.
+- Un'ereditabilità alta non implica immutabilità e non permette, da sola, di
+  trarre conclusioni sulle differenze medie fra epoche o gruppi; dipende dalla
+  distribuzione degli ambienti.
 - La moderazione da parte dello status socioeconomico è stata osservata negli
   Stati Uniti ma non in Europa occidentale e Australia.
 :::
 
-[Riferimenti bibliografici](../../references.qmd)
+[Riferimenti bibliografici](../../bibliografia.qmd)

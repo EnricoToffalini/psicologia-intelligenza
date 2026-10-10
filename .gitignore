@@ -1,2 +1,12 @@
+# Cache e anteprime di Quarto
 /.quarto/
-slide/ 
+
+# Materiali di lavoro privati (fonti protette, non pubblicabili)
+slide/
+
+# Residui intermedi del render: si rigenerano a ogni render, non vanno modificati
+*_files/
+!/website/**/*_files/
+/*.tex
+/*.log
+/site_libs/

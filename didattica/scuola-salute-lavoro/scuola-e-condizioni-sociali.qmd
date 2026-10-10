@@ -1,9 +1,6 @@
 ---
 title: "Intelligenza, scuola e condizioni sociali"
 description: "Quanto il QI prevede il successo scolastico, perché i risultati scolastici non sono una misura di intelligenza, e come intelligenza, istruzione e status socioeconomico si influenzano a vicenda."
-lang: it
-bibliography: ../../references.bib
-csl: ../../apa.csl
 suppress-bibliography: true
 ---
 
@@ -15,9 +12,12 @@ verifica quanto quelle previsioni funzionino davvero, partendo dall'ambito per
 cui i test sono stati inventati: la scuola.
 
 Una premessa vale per i tre capitoli. Le correlazioni fra QI ed esiti rilevanti
-si avvicinano a 0,50 e talvolta lo superano. Per la psicologia sono valori molto
-alti. Ma anche una correlazione di 0,50 lascia la maggior parte della varianza
-non spiegata. Il QI pesa, a volte molto. Non è un destino.
+vanno da circa 0,20 a 0,50, e superano quella soglia solo nella scuola. Per la
+psicologia sono valori da medi a molto alti, e si indeboliscono man mano che
+l'esito si allontana dalle aule: forti con i voti, moderate con la prestazione
+lavorativa, modeste con il reddito. Ma anche una correlazione di 0,50 lascia la
+maggior parte della varianza non spiegata. Il QI pesa, a volte molto. Non è un
+destino.
 
 ## Una previsione robusta
 
@@ -45,8 +45,10 @@ Data una relazione così stretta, alcuni ricercatori usano direttamente voti,
 punteggi nelle indagini come PISA o anni di istruzione come indicatori
 dell'intelligenza. I punteggi PISA, in effetti, riflettono in larga parte un
 fattore generale [@pokropek2022general]. Ma la scorciatoia è pericolosa. Il QI,
-misurato bene, è una stima abbastanza pulita del potenziale cognitivo. Il
-rendimento scolastico no: dipende anche dalla qualità delle scuole, dalla
+misurato bene, è una stima del funzionamento cognitivo attuale, non di un
+potenziale innato: anch'esso risente della scolarizzazione, come mostra il
+capitolo sul potenziamento. Ma ne risente molto meno del rendimento scolastico,
+che dipende direttamente dalla qualità delle scuole, dai programmi, dalla
 motivazione, dalle condizioni familiari, dal modo in cui una prova viene
 presentata.
 
@@ -119,11 +121,45 @@ passaggi avvengano.
 La forza di questi legami non è fissa. Nelle coorti britanniche più recenti la
 correlazione fra QI nell'infanzia e durata degli studi si è ridotta: con
 l'espansione dell'istruzione, proseguire gli studi è diventato meno selettivo
-[@schoon2010childhood]. In paesi come l'Italia, inoltre, il vantaggio economico
-associato al titolo di studio è oggi più debole per i giovani di quanto fosse per
-le generazioni precedenti. Sono cambiamenti che sollevano domande scomode sulla
-capacità della scuola contemporanea di funzionare come strumento di selezione
-per merito e di promozione sociale.
+[@schoon2010childhood]. È un cambiamento che solleva domande scomode: quando un
+titolo di studio diventa la norma, smette di distinguere, e la selezione si
+sposta altrove, per esempio sul tipo di scuola o di università frequentata.
+
+## In cima alla distribuzione
+
+Finora si è parlato della media e della parte bassa della distribuzione. Ma la
+stessa correlazione vale anche in alto, e qui circola un mito tenace: oltre una
+certa soglia, diciamo un QI di 120, l'intelligenza non farebbe più differenza,
+e conterebbero solo impegno, creatività e carattere.
+
+I dati più convincenti sul punto vengono dallo *Study of Mathematically
+Precocious Youth*, che dagli anni Settanta segue negli Stati Uniti migliaia di
+ragazzi selezionati a 13 anni perché si trovavano nell'1% più alto in prove di
+ragionamento. Anche dentro quell'1%, chi stava nel quarto superiore aveva da
+adulto probabilità sensibilmente maggiori di ottenere un dottorato, pubblicare
+in ambito scientifico o registrare un brevetto rispetto a chi stava nel quarto
+inferiore [@lubinski2006study]. Fra i ragazzi identificati nell'uno su
+diecimila più alto, molti sono arrivati a posizioni di grande rilievo nelle
+università, nelle aziende e nelle professioni [@kell2013rises]. La soglia oltre
+la quale «non conta più» non si trova. Si trova, semmai, una differenza di
+probabilità che continua ad agire anche fra persone già eccezionali.
+
+Questo non trasforma la **plusdotazione** in una diagnosi. Non esiste un confine
+naturale fra alto potenziale e normalità, così come non esiste fra disabilità
+intellettiva e funzionamento limite; le soglie usate, spesso un QI di 130,
+sono convenzioni di rarità. E dire che «ogni bambino è dotato a modo suo», per
+quanto gentile, svuota la parola del suo significato: se tutti sono rari,
+nessuno lo è [@warne2020know].
+
+La domanda pratica è che cosa farne a scuola. Un secolo di ricerca indica che
+l'accelerazione, cioè anticipare l'ingresso a scuola o saltare un anno o una
+materia, e alcune forme di raggruppamento per livello hanno effetti positivi
+sul rendimento degli studenti più dotati [@steenbergenhu2016hundred]. Non sono
+privilegi. Sono il riconoscimento che un programma tarato sulla media è troppo
+lento per chi sta molto sopra, esattamente come è troppo veloce per chi sta
+molto sotto. Resta infine il caso dei bambini con un'abilità generale alta e un
+disturbo dell'apprendimento: due rarità che si mascherano a vicenda, e che il
+capitolo sulla valutazione nel neurosviluppo aiuta a riconoscere.
 
 ## Che cosa significa, e che cosa no
 
@@ -148,6 +184,9 @@ intelligenza dimentica proprio queste istituzioni.
   come lo status socioeconomico familiare.
 - L'intelligenza prevede status lavorativo e reddito soprattutto attraverso
   l'istruzione; il legame si indebolisce allontanandosi dalla scuola.
+- Anche ai livelli più alti l'abilità continua a fare differenza; per gli
+  studenti più dotati, accelerazione e raggruppamento per livello migliorano il
+  rendimento.
 :::
 
-[Riferimenti bibliografici](../../references.qmd)
+[Riferimenti bibliografici](../../bibliografia.qmd)
