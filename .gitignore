@@ -2,7 +2,8 @@
 /.quarto/
 
 # Materiali di lavoro privati (fonti protette, non pubblicabili)
-slide/
+slide/altri-libri-importanti-copyright-attenzione/
+slide/libro-mulino-materiali-copyright-attenzione/
 
 # Residui intermedi del render: si rigenerano a ogni render, non vanno modificati
 *_files/
