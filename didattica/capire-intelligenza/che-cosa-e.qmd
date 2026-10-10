@@ -1,0 +1,233 @@
+---
+title: "Che cosa chiamiamo intelligenza"
+description: "Dalle capacità mentali alle prestazioni osservate: che cosa indica il QI e come si mette alla prova una misura dell'intelligenza."
+lang: it
+bibliography: ../../references.bib
+csl: ../../apa.csl
+suppress-bibliography: true
+---
+
+Una persona capisce al volo un problema difficile e poi prende una decisione
+disastrosa. La contraddizione nasce soprattutto dalle aspettative: alla parola
+«intelligenza» chiediamo di spiegare la rapidità del ragionamento, la qualità
+delle scelte e talvolta persino il carattere. È un incarico troppo ampio.
+
+Per studiarla occorre delimitare il problema. Ci interessano le capacità con
+cui le persone apprendono, comprendono relazioni e affrontano situazioni che
+richiedono ragionamento. Il QI è un indicatore costruito per misurare differenze
+in queste capacità. Tra il concetto e il numero ci sono però diversi passaggi:
+scegliere che cosa osservare, raccogliere prestazioni confrontabili e stabilire
+quali conclusioni siano giustificate. Saltarli rende il numero più misterioso,
+non più preciso.
+
+## Una parola con troppi compiti
+
+Nel linguaggio comune definiamo intelligente chi comprende una spiegazione,
+trova una soluzione ingegnosa, sa molte cose o evita una scelta poco avveduta.
+Questi giudizi possono cogliere aspetti reali, ma non indicano necessariamente
+la stessa capacità. Avere una conoscenza, acquisirla rapidamente e decidere
+quando usarla sono operazioni diverse.
+
+Immaginiamo due persone che imparano a usare un archivio digitale. Una scopre
+presto la logica delle categorie e sa dove cercare anche un documento mai visto.
+L'altra ricorda bene i percorsi già utilizzati, ma incontra difficoltà quando
+la disposizione cambia. Possiamo descrivere questa differenza senza decidere
+chi sia, in assoluto, «la persona intelligente». La situazione ci offre indizi
+su apprendimento, memoria e capacità di ricavare una regola. Non una biografia
+completa delle due persone.
+
+Neppure una condotta lodevole è un criterio sufficiente. Comprendere le
+conseguenze di un'azione non impone di scegliere quelle migliori per tutti.
+Una persona può ragionare efficacemente al servizio di uno scopo discutibile.
+Il giudizio sulla capacità e quello sullo scopo restano distinti.
+
+Questo restringimento del significato è una scelta necessaria per la ricerca.
+Se includessimo nella definizione ogni qualità desiderabile, una buona decisione
+diventerebbe per definizione prova di intelligenza e una cattiva decisione prova
+del contrario. Avremmo un'etichetta con cui commentare i risultati, ma poche
+possibilità di spiegare come si producono.
+
+## Una definizione di lavoro
+
+Possiamo chiamare **intelligenza** un'abilità mentale generale coinvolta nel
+comprendere, ragionare, apprendere e risolvere problemi. Una formulazione molto
+citata, proposta da Gottfredson, include anche pianificazione, pensiero astratto
+e comprensione di idee complesse. La sua utilità sta nel collegare attività
+diverse, senza ridurre l'intelligenza alla sola conoscenza scolastica
+[@gottfredson1997mainstream, p. 13].
+
+«Generale» significa che il campo di applicazione attraversa compiti diversi.
+Non significa che una persona debba riuscire ugualmente bene in ciascuno di
+essi. La parola indica l'ampiezza della capacità che si cerca di studiare; non
+garantisce uniformità nelle sue manifestazioni.
+
+Apprendimento e adattamento sono due idee centrali. Apprendere vuol dire
+modificare ciò che sappiamo o sappiamo fare attraverso l'esperienza. Adattarsi
+richiede di rispondere alle richieste di una situazione, anche quando le
+abitudini disponibili non bastano. Nell'esempio dell'archivio, ricordare un
+percorso è utile; capire il criterio di organizzazione permette anche di
+costruirne uno nuovo. Il problema diventa particolarmente informativo quando
+la risposta non è già pronta.
+
+Un'altra idea è quella di **rappresentazione mentale**: una descrizione interna
+degli elementi del problema e delle loro relazioni. Per cercare un documento
+possiamo rappresentarci chi lo ha prodotto, quale argomento tratta e come
+l'archivio separa queste informazioni. Ragionare sulla rappresentazione consente
+di anticipare una scelta, confrontare possibilità e correggere un'ipotesi prima
+di agire. Non occorre che questa descrizione interna abbia la forma di
+un'immagine: può essere anche verbale o astratta.
+
+Questi concetti delimitano un oggetto di studio, ma non costituiscono una teoria
+completa del suo funzionamento. Già il rapporto dell'American Psychological
+Association coordinato da Neisser distingueva un insieme riconoscibile di
+fenomeni dalla presenza di una definizione universalmente condivisa
+[@neisser1996intelligence, p. 77]. Sapere quali differenze vogliamo spiegare è
+un inizio. Spiegare i processi che le producono è il lavoro successivo.
+
+## Dalla capacità alla prestazione
+
+Una capacità non si osserva separata da ciò che una persona fa. Vediamo una
+risposta corretta, un errore, un tempo impiegato, una strategia. Da queste
+prestazioni cerchiamo di inferire qualcosa che valga anche oltre il singolo
+episodio. È qui che comincia il problema della misura.
+
+Torniamo all'archivio. Una soluzione rapida potrebbe dipendere dalla comprensione
+della sua struttura, ma anche dalla familiarità con un sistema quasi identico.
+Un errore potrebbe rivelare una difficoltà di ragionamento oppure una consegna
+fraintesa. Per distinguere queste possibilità occorre raccogliere altre
+osservazioni. Una risposta isolata lascia aperte troppe spiegazioni.
+
+Le batterie di intelligenza combinano perciò prove di natura diversa. Alcune
+richiedono di ragionare su relazioni, altre coinvolgono conoscenze verbali,
+memoria o elaborazione di informazioni visive. Cambiare compito permette di
+non far coincidere l'intera valutazione con una sola richiesta. Le modalità
+precise di composizione dipendono dallo strumento.
+
+Raccogliere più prestazioni non elimina, da solo, i problemi. Se le istruzioni
+sono ambigue in tutte le prove, moltiplicarle non risolve l'ambiguità. Per questo
+la somministrazione richiede regole: che cosa viene chiesto, quali aiuti sono
+ammessi, quando si interrompe una prova, come si assegna il punteggio. La
+comparabilità va costruita, non presunta.
+
+Anche l'impegno merita attenzione, senza diventare una spiegazione buona per
+ogni risultato. In una serie di studi su volontari adulti sani, Bates e Gignac
+hanno rilevato benefici medi piccoli degli incentivi economici sulle prestazioni
+cognitive. Il risultato non autorizza a ignorare la partecipazione della singola
+persona, ma contrasta con l'idea che basti motivarsi di più per cancellare le
+differenze di punteggio. Il campione studiato, inoltre, non rappresenta ogni
+possibile contesto di valutazione [@bates2022effort].
+
+La distinzione da tenere ferma è dunque fra ciò che vogliamo stimare e ciò che
+abbiamo osservato. La prestazione è l'evidenza disponibile. L'abilità è ciò su
+cui stiamo facendo un'inferenza.
+
+## Che cosa indica il QI
+
+Il **quoziente di intelligenza**, o **QI**, è un punteggio. Nelle batterie
+moderne deriva dalla combinazione di più prove ed esprime una posizione rispetto
+a una popolazione di riferimento, normalmente tenendo conto dell'età.
+
+Il percorso comincia dalle risposte. Una prova può attribuire punti alle
+soluzioni corrette, applicare criteri graduati oppure considerare il tempo,
+secondo le proprie regole. Il risultato iniziale è un *punteggio grezzo*.
+Questo numero, da solo, dice poco: dodici punti possono essere molti in una
+prova difficile e pochi in una facile. E la stessa prestazione può avere un
+significato diverso a età diverse.
+
+Occorre quindi un confronto con i dati raccolti nel campione usato per costruire
+le **norme** del test. Qui «norma» significa riferimento statistico. Non indica
+come una persona dovrebbe essere. Gli Standards per i test richiedono che la
+popolazione rappresentata dalle norme sia descritta e pertinente al confronto
+che si intende fare [@aera2014standards, standard 5.8].
+
+Le prestazioni delle singole prove vengono convertite e aggregate secondo le
+procedure della batteria. Il risultato complessivo viene espresso sulla scala
+del QI, convenzionalmente centrata su 100 e spesso con deviazione standard 15
+[@neisser1996intelligence, p. 78]. Per ora basta capire che lo zero e le unità
+di questa scala non sono quantità naturali di intelligenza. Un QI di 120 non
+significa aver risolto il 120% dei problemi né possedere il 20% di capacità in
+più rispetto a un QI di 100.
+
+Nella letteratura si incontra anche il simbolo *g*, che indica un fattore
+generale ricavato dalle relazioni statistiche fra prestazioni cognitive diverse.
+Il QI è invece un punteggio composito ottenuto con uno strumento. I due termini
+sono collegati, ma non sono intercambiabili: il primo riguarda un modello delle
+relazioni tra misure, il secondo un risultato della valutazione
+[@neisser1996intelligence, p. 78].
+
+Infine, riassumere comporta perdere dettagli. Due persone con lo stesso totale
+possono avere combinazioni diverse di risultati nelle singole prove. Per
+giudicare il riassunto bisogna stabilire se conserva l'informazione necessaria
+alla domanda che ci interessa. Pretendere da un totale la descrizione completa
+di una persona significa chiedergli un lavoro per cui non è stato costruito.
+
+## Perché usare compiti così circoscritti?
+
+L'obiezione è ragionevole: nella vita reale affrontiamo problemi articolati,
+cerchiamo informazioni, chiediamo aiuto e disponiamo spesso di molto tempo.
+Perché stimare una capacità generale attraverso compiti brevi e delimitati?
+
+Un vantaggio è poter raccogliere molte osservazioni confrontabili. Nel problema
+dell'archivio, il successo può dipendere dalle conoscenze del settore, dalle
+abitudini organizzative e dall'aiuto di un collega, oltre che dal ragionamento.
+Una prova circoscritta permette di specificare meglio quali informazioni sono
+disponibili e che cosa conta come risposta corretta. Può così rendere più
+leggibile una parte della prestazione.
+
+Il prezzo è una distanza dall'attività quotidiana. Questo limite va riconosciuto,
+ma la somiglianza esteriore con la vita reale non risolve da sola il problema.
+Una simulazione molto realistica potrebbe dipendere soprattutto da esperienze
+pregresse specifiche. Una prova astratta potrebbe invece raccogliere
+informazioni utili per prevedere l'apprendimento in situazioni differenti.
+Entrambe le possibilità devono essere controllate.
+
+Non esiste dunque una scorciatoia basata sull'aspetto del compito. Né «sembra
+artificiale» né «sembra realistico» è una valutazione sufficiente della qualità
+di una misura. Servono dati su come le persone rispondono e sul significato
+dei punteggi ottenuti.
+
+## Una misura va messa alla prova
+
+Definire l'intelligenza attraverso le operazioni usate per misurarla rende la
+domanda concreta. Ma se un test fosse dichiarato buono soltanto perché chiamato
+«test di intelligenza», il ragionamento sarebbe circolare. Il nome sulla
+copertina non certifica ciò che lo strumento misura.
+
+La verifica deve poter smentire l'interpretazione proposta. Se una prova
+presentata come misura del ragionamento dipendesse soprattutto dalla conoscenza
+di poche parole rare, avremmo un problema da indagare. Potremmo modificare le
+consegne, confrontare forme diverse o studiare gli errori. Difendere comunque
+l'etichetta renderebbe la teoria immune ai dati, e quindi poco utile.
+
+Negli Standards, la **validità** riguarda il sostegno che evidenze e teoria
+forniscono a un'interpretazione dei punteggi per un determinato uso. Non è un
+lasciapassare per qualsiasi conclusione. Fra le evidenze pertinenti rientrano
+i contenuti delle prove, i processi di risposta, le relazioni fra le componenti
+del test e quelle con altre misure [@aera2014standards, pp. 11–17].
+
+Prevedere un esito esterno può quindi essere una verifica importante. Resta
+però da chiarire che cosa sia stato previsto, in quale popolazione e con quale
+precisione. E una previsione riuscita non dimostra, da sola, il meccanismo che
+collega le variabili. La qualità della misura e la spiegazione causale richiedono
+argomenti distinti.
+
+L'intelligenza può essere studiata anche senza una definizione capace di
+risolvere ogni controversia. Servono però concetti abbastanza precisi da
+orientare le osservazioni e misure abbastanza controllate da mettere in
+discussione quei concetti. Il QI acquista significato in questo rapporto fra
+teoria ed evidenza. Fuori da esso rimane soltanto un numero.
+
+::: {.callout-note icon=false}
+## In breve
+
+- L'intelligenza è una capacità generale che cerchiamo di comprendere attraverso
+  attività cognitive diverse; non coincide con ogni qualità desiderabile.
+- Le prestazioni sono osservazioni raccolte in determinate condizioni. Da esse
+  inferiamo capacità che vanno oltre il singolo episodio.
+- Il QI riassume risultati rispetto a una popolazione di riferimento. Non è una
+  percentuale di intelligenza e non è sinonimo del fattore *g*.
+- Un'interpretazione del punteggio deve essere sostenuta da evidenze pertinenti
+  all'uso proposto. Il nome del test non basta.
+:::
+
+[Riferimenti bibliografici](../../references.qmd)

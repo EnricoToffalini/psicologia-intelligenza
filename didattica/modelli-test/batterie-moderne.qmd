@@ -1,0 +1,214 @@
+---
+title: "Le batterie moderne di intelligenza"
+description: "Dalle scale Wechsler al QI di deviazione: come è fatta una batteria moderna, che cosa sono indici e subtest, e come leggere un profilo senza sovrainterpretarlo."
+lang: it
+bibliography: ../../references.bib
+csl: ../../apa.csl
+suppress-bibliography: true
+---
+
+Il QI che si legge oggi in un referto non ha quasi nulla in comune con il
+quoziente di Stern. Non è un rapporto fra età, non si basa su un'età mentale, e
+vale allo stesso modo a 8 e a 80 anni. È il risultato di una seconda
+rivoluzione nella storia dei test, iniziata alla fine degli anni Trenta in un
+ospedale psichiatrico di New York.
+
+Questo capitolo descrive come sono costruite le batterie moderne, che cosa
+significano i loro punteggi e quali sono gli strumenti più diffusi. Non
+riproduce item di test commerciali: quando servono esempi, sono costruiti ad
+hoc per illustrare il tipo di prova, non equivalenti a item reali.
+
+## Un piccolo glossario
+
+Il linguaggio dei test usa alcuni termini con un significato preciso.
+
+- **Batteria.** Strumento completo per valutare un'area del funzionamento, come
+  l'intelligenza, articolato in molte componenti. Per tradizione si parla spesso
+  di «scale».
+- **Item.** Il singolo problema all'interno di una prova. La risposta può
+  essere giusta o sbagliata, oppure valutata su pochi livelli di accuratezza.
+- **Subtest.** Una prova che misura una particolare abilità, di solito composta
+  da una sequenza di item di difficoltà crescente. Esempi tipici sono un
+  subtest di vocabolario o uno di costruzioni con cubi.
+- **Indice.** Un punteggio che stima un costrutto latente aggregando più
+  subtest, espresso su una metrica standardizzata. Il QI totale è un indice;
+  lo sono anche gli indici di dominio, come comprensione verbale o memoria di
+  lavoro.
+
+## Wechsler e il QI di deviazione
+
+David Wechsler aveva lavorato da giovane alla somministrazione dei test
+dell'esercito statunitense. Negli anni Trenta era psicologo clinico al Bellevue
+Hospital di New York, dove doveva valutare adulti molto diversi per età, storia
+e sintomi: per stabilirne l'autonomia, la capacità di lavorare o di testimoniare,
+il bisogno di tutela, le possibilità di recupero. La Stanford-Binet non era
+adatta. Nel 1939 Wechsler pubblicò la Wechsler-Bellevue, la prima vera batteria
+clinica per adulti [@wechsler1939measurement]. Il campione di standardizzazione,
+circa 1.700 persone, era poco rappresentativo: per lo più newyorkesi, bianchi e
+con istruzione superiore alla media. Ma l'impianto era nuovo.
+
+Le innovazioni erano due. La prima era l'equilibrio fra prove **verbali** e
+prove **di performance**, cioè non verbali, un'idea che riprendeva la
+distinzione fra Army Alpha e Army Beta. La batteria forniva un QI verbale, un QI
+di performance e un QI totale. Questa struttura è rimasta sostanzialmente
+invariata fino agli anni Novanta.
+
+La seconda, più importante, era il **QI di deviazione**. Invece di confrontare
+età mentale e cronologica, Wechsler confrontava la prestazione di una persona
+con quella dei coetanei del campione normativo, e la esprimeva come distanza
+dalla loro media su una scala con media 100 e deviazione standard 15. È
+esattamente la logica dei punti *z* vista nel capitolo sulle distribuzioni. Il
+QI di deviazione funziona a ogni età e ha lo stesso significato in qualunque
+punto della vita: 115 indica sempre una deviazione standard sopra la media dei
+coetanei. Questa metrica è diventata universale ed è usata ancora oggi per quasi
+tutti i test psicologici.
+
+Wechsler aveva un'ispirazione pragmatica e in fondo unitarista. Voleva
+anzitutto misurare bene il QI totale. Considerava i subtest misure diverse della
+stessa intelligenza, non misure di intelligenze diverse, e la divisione fra
+parte verbale e di performance solo uno dei modi possibili di raggrupparli
+[@wechsler1958measurement]. Gli bastava che la batteria funzionasse.
+
+## Dagli indici di Wechsler al CHC
+
+Le scale Wechsler si sono moltiplicate e sono state riviste più volte: la WAIS
+per adulti, la WISC per l'età scolare, la WPPSI per l'età prescolare. Oggi sono
+alla quinta edizione e restano le batterie più usate al mondo per la valutazione
+cognitiva globale.
+
+Nel tempo la struttura si è articolata. La distinzione fra QI verbale e QI di
+performance è stata sostituita, nelle edizioni degli anni Duemila, da quattro
+indici di ispirazione cognitiva e neuropsicologica: comprensione verbale,
+ragionamento percettivo, memoria di lavoro, velocità di elaborazione. Le quinte
+edizioni hanno separato il ragionamento percettivo in un indice visuospaziale e
+uno di ragionamento fluido, con un riferimento più esplicito al modello CHC.
+
+Le convenzioni metriche sono ormai universali: i subtest hanno punteggi
+ponderati con media 10 e deviazione standard 3; gli indici, compreso il QI
+totale, media 100 e deviazione standard 15.
+
+La struttura di una batteria come la WISC-V è dunque gerarchica: un QI totale,
+cinque indici primari, una decina di subtest principali e altri subtest
+supplementari. I principali tipi di prova sono questi.
+
+| Indice | Che cosa valuta | Tipo di prova |
+|---|---|---|
+| Comprensione verbale | Conoscenza delle parole, dei concetti e del mondo | Spiegare che cosa hanno in comune due concetti; definire parole |
+| Visuospaziale | Analisi di dettagli visivi e relazioni spaziali | Riprodurre un modello con cubi colorati; scegliere i pezzi che compongono una figura |
+| Ragionamento fluido | Ragionamento induttivo e deduttivo, astrazione di regole | Completare matrici di figure; trovare ciò che bilancia una serie di pesi |
+| Memoria di lavoro | Mantenere e manipolare informazioni verbali o visive | Ripetere sequenze di cifre in avanti, all'indietro o riordinate; riconoscere immagini viste |
+| Velocità di elaborazione | Rapidità ed efficienza in compiti semplici | Associare simboli a cifre; cercare simboli bersaglio |
+
+: Indici primari di una batteria di tipo Wechsler per l'età evolutiva e relativi tipi di prova. {#tbl-indici}
+
+Un esempio originale chiarisce il tipo di richiesta senza riprodurre item reali.
+In una prova di somiglianze si potrebbe chiedere in che cosa si assomigliano una
+bussola e un orologio: entrambi sono strumenti che servono a orientarsi, uno
+nello spazio e l'altro nel tempo. La risposta richiede di trovare la categoria
+astratta che li accomuna, non di descriverli.
+
+La struttura a cinque fattori delle scale Wechsler più recenti è stata
+contestata. Alcune rianalisi dei dati normativi trovano che quattro fattori di
+dominio, più un fattore generale molto forte, descrivano i dati altrettanto
+bene, e che la varianza specifica di molti indici sia modesta
+[@canivez2017structural]. È lo stesso problema discusso nel capitolo sulla
+qualità della misura: i domini esistono, ma al netto di *g* pesano poco.
+
+## Leggere un profilo
+
+Una batteria multicomponenziale restituisce molti numeri. La tentazione è
+leggerli tutti: un indice verbale di 112 e uno visuospaziale di 96 sembrano
+raccontare una storia. A volte la raccontano. Spesso, però, raccontano anche
+l'errore di misura.
+
+Il QI totale è la stima più attendibile e stabile. Gli indici di dominio seguono
+in gran parte il fattore generale e, considerati da soli, sono meno attendibili:
+se si ripetesse la valutazione, la differenza fra due indici potrebbe ridursi o
+addirittura invertirsi. I singoli subtest, ancora meno affidabili, non vanno
+interpretati isolatamente. Il capitolo sulla qualità della misura ha mostrato
+perché.
+
+Questo non significa che i profili siano inutili. Possono essere informativi
+quando la discrepanza è ampia, quando è coerente con altre informazioni sul caso
+e quando esiste un profilo atteso documentato per una certa condizione. In
+queste circostanze, per esempio, si può preferire un indice di abilità generale
+che escluda memoria di lavoro e velocità, se queste componenti sono compromesse
+per ragioni specifiche e rischiano di sottostimare il ragionamento. Ne
+riparleremo nel capitolo sulla valutazione nel neurosviluppo.
+
+## Le matrici di Raven e i test monocomponenziali
+
+Accanto alle grandi batterie esiste una tradizione diversa, di origine
+britannica. John Raven, allievo di Spearman, voleva un test di ragionamento
+complesso per la ricerca, che non dipendesse da competenze verbali. Nel 1938
+pubblicò le **Standard Progressive Matrices**: una serie di matrici di figure in
+cui manca un elemento, da scegliere fra diverse alternative in base a una regola
+da scoprire [@raven2000raven].
+
+Durante la Seconda guerra mondiale l'esercito britannico le usò per lo screening
+di massa, grazie alla facilità di somministrazione collettiva, con scopi simili a
+quelli dei test statunitensi della guerra precedente. Seguirono una versione a
+colori per bambini, anziani e persone con difficoltà cognitive, nel 1947, e una
+versione avanzata per livelli di abilità elevati, nel 1962. Le matrici sono oggi
+considerate una misura tipica di intelligenza fluida e uno dei migliori singoli
+indicatori di *g*.
+
+Test come le matrici di Raven o il Culture Fair Test di Cattell sono
+**monocomponenziali**: forniscono una sola stima del livello generale. Sono
+rapidi, spesso somministrabili in gruppo, e utili per la ricerca e lo screening.
+Furono presentati a lungo come «liberi dalla cultura». Nessun test lo è
+davvero: il formato a scelta multipla, la familiarità con figure astratte e con
+la logica delle prove scolastiche contano. Il capitolo sull'effetto Flynn
+mostrerà che proprio le matrici sono fra le prove più sensibili ai cambiamenti
+storici. Meglio parlare di test **ridotti nella componente culturale**.
+
+## Il panorama italiano e le tendenze recenti
+
+Oltre alle scale Wechsler, in Italia sono disponibili diversi strumenti.
+Alcune batterie multicomponenziali, come la IDS-2, sono costruite esplicitamente
+sul modello CHC e coprono anche aree diverse dall'intelligenza in senso stretto,
+come funzioni esecutive e competenze scolastiche. Esistono batterie brevi, con
+pochi subtest, che stimano in modo rapido e robusto il QI totale; strumenti
+interamente non verbali, anche nelle istruzioni, utili per chi ha difficoltà
+linguistiche o per alcune condizioni del neurosviluppo; test monocomponenziali di
+ragionamento fluido per l'età evolutiva o per la selezione del personale. Un
+elenco ragionato, con caratteristiche e limiti di ciascuno, è nella sezione del
+sito dedicata alla [professione](../../professione-pagine/elenco-test-italia.qmd).
+
+Due tendenze stanno cambiando il settore. La prima è la diffusione di modelli
+psicometrici più avanzati della teoria classica, come la **teoria della risposta
+all'item**, che stima l'abilità tenendo conto delle caratteristiche di ciascun
+item. Su questa base si costruiscono **test adattivi computerizzati**, che
+scelgono l'item successivo in funzione delle risposte già date e raggiungono una
+stima precisa con meno domande. La seconda è il passaggio allo scoring tramite
+piattaforme online. È comodo, ma crea un problema nuovo: quando le tabelle
+normative non sono pubblicate, il professionista non può verificare come il
+punteggio grezzo sia stato trasformato [@zanonPsychologistsMustBeAgainst2025;
+@frincoPsychometricPropertiesTest2024]. Un numero ottenuto da una procedura
+opaca è difficile da difendere, in clinica come in tribunale.
+
+## Uno strumento, non un oracolo
+
+Le batterie moderne sono il risultato di un secolo di correzioni. La metrica di
+deviazione ha eliminato i difetti del QI di rapporto. La struttura gerarchica
+permette di stimare sia il livello generale sia i domini. La standardizzazione
+su campioni ampi rende i confronti più equi. Restano però limiti che nessuna
+revisione elimina del tutto: l'errore di misura, la debolezza degli indici
+specifici, la dipendenza dalla lingua e dalla scolarità, la necessità di norme
+aggiornate e trasparenti. Una batteria ben usata fornisce una stima solida. Il
+lavoro di interpretazione resta a chi la usa.
+
+::: {.callout-note icon=false}
+## In breve
+
+- Wechsler introdusse il QI di deviazione, con media 100 e deviazione standard
+  15 rispetto ai coetanei: una metrica valida a ogni età e oggi universale.
+- Le batterie moderne sono gerarchiche: QI totale, indici di dominio, subtest e
+  item; le edizioni recenti si richiamano esplicitamente al modello CHC.
+- Il QI totale è la stima più solida; le discrepanze fra indici vanno
+  interpretate solo se ampie e coerenti con altre evidenze.
+- Nessun test è libero dalla cultura; norme trasparenti e aggiornate sono una
+  condizione per un uso professionale difendibile.
+:::
+
+[Riferimenti bibliografici](../../references.qmd)

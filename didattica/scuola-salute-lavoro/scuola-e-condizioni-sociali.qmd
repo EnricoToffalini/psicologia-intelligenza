@@ -1,0 +1,153 @@
+---
+title: "Intelligenza, scuola e condizioni sociali"
+description: "Quanto il QI prevede il successo scolastico, perché i risultati scolastici non sono una misura di intelligenza, e come intelligenza, istruzione e status socioeconomico si influenzano a vicenda."
+lang: it
+bibliography: ../../references.bib
+csl: ../../apa.csl
+suppress-bibliography: true
+---
+
+I test di intelligenza sono nati per prevedere. Binet voleva sapere quali
+bambini avrebbero avuto difficoltà a trarre profitto dalla scuola. I test
+dell'esercito dovevano indicare chi avrebbe sostenuto ruoli complessi. Wechsler
+cercava di stimare la capacità di vivere in autonomia. Questa parte del libro
+verifica quanto quelle previsioni funzionino davvero, partendo dall'ambito per
+cui i test sono stati inventati: la scuola.
+
+Una premessa vale per i tre capitoli. Le correlazioni fra QI ed esiti rilevanti
+si avvicinano a 0,50 e talvolta lo superano. Per la psicologia sono valori molto
+alti. Ma anche una correlazione di 0,50 lascia la maggior parte della varianza
+non spiegata. Il QI pesa, a volte molto. Non è un destino.
+
+## Una previsione robusta
+
+Il QI prevede il rendimento scolastico in qualsiasi materia. In uno studio su
+oltre 70.000 studenti inglesi, i punteggi a una batteria cognitiva somministrata
+a 11 anni sono stati confrontati con i risultati degli esami nazionali sostenuti
+a 16. Le correlazioni con le singole materie andavano da circa 0,4 nelle
+discipline artistiche a quasi 0,8 in matematica. Fra il fattore cognitivo
+generale e un fattore generale di rendimento negli esami la correlazione era
+circa 0,8 [@deary2007intelligence]. Una meta-analisi su studi di tutto il mondo
+colloca la correlazione fra intelligenza e voti scolastici attorno a 0,54
+[@roth2015intelligence].
+
+Perché una relazione così forte? Il QI riflette capacità che la scuola richiede
+continuamente: memorizzare, astrarre, cogliere regole implicite, adattarsi a
+situazioni poco chiare, generalizzare ciò che si è imparato. Il QI, inoltre,
+misura queste capacità in modo più preciso di quanto possano fare osservatori
+esperti. Il giudizio degli insegnanti sulle abilità cognitive degli studenti
+correla con i test in misura apprezzabile, ma lontana dalla perfezione
+[@machts2016accuracy].
+
+## Una correlazione non è un'identità
+
+Data una relazione così stretta, alcuni ricercatori usano direttamente voti,
+punteggi nelle indagini come PISA o anni di istruzione come indicatori
+dell'intelligenza. I punteggi PISA, in effetti, riflettono in larga parte un
+fattore generale [@pokropek2022general]. Ma la scorciatoia è pericolosa. Il QI,
+misurato bene, è una stima abbastanza pulita del potenziale cognitivo. Il
+rendimento scolastico no: dipende anche dalla qualità delle scuole, dalla
+motivazione, dalle condizioni familiari, dal modo in cui una prova viene
+presentata.
+
+Un caso italiano mostra il rischio. Lo psicologo Richard Lynn sostenne che gli
+italiani del Sud avessero un QI medio di circa dieci punti inferiore a quello
+degli italiani del Nord, e propose una spiegazione genetica. A sostegno citava
+correlazioni con reddito, mortalità infantile, statura e livelli di istruzione
+[@lynn2010italy]. Ma i suoi «QI regionali» non erano QI: erano punteggi PISA di
+quindicenni in lettura, matematica e scienze.
+
+Le repliche hanno messo in luce molti problemi [@cornoldi2010mean]. Il divario
+Nord-Sud nei risultati scolastici diventa evidente nella scuola secondaria, dove
+il sistema educativo del Sud è storicamente più debole; se riflettesse
+l'intelligenza, dovrebbe essere visibile già alla primaria. Gli studenti del Sud
+ottengono buoni risultati nelle prove somministrate individualmente e peggiori
+in quelle collettive, segno di un diverso coinvolgimento nel compito. Fra
+un'edizione e l'altra di PISA i punteggi del Sud cambiavano in modo troppo
+rapido per riflettere differenze stabili di capacità. E i dati non coincidevano
+con quelli delle prove nazionali INVALSI. La lezione è generale: si può inferire
+l'intelligenza dagli apprendimenti solo dove le condizioni di apprendimento sono
+uniformi. Fra regioni con sistemi scolastici e contesti diversi non lo sono.
+
+## Intelligenza e istruzione: chi causa chi?
+
+Il QI misurato nell'infanzia e il livello di istruzione raggiunto da adulti sono
+fortemente correlati, con valori oltre 0,50 [@strenze2007intelligence]. Le
+spiegazioni possibili sono le solite tre.
+
+**L'intelligenza favorisce l'istruzione.** Chi apprende più facilmente riceve
+più rinforzi positivi, sviluppa più fiducia nelle proprie capacità, sperimenta
+meno fallimenti, viene incoraggiato a proseguire. Nelle coorti britanniche nate
+nel Novecento, un QI di una deviazione standard più alto a 10–11 anni si
+associava a una probabilità circa tre volte maggiore di ottenere una laurea
+[@schoon2010childhood]. È un esempio di **effetto Matteo**, dal versetto
+evangelico secondo cui a chi ha sarà dato ancora: piccoli vantaggi iniziali si
+accumulano e si amplificano [@stanovich1986matthew].
+
+**L'istruzione aumenta l'intelligenza.** Come si è visto nel capitolo sul
+potenziamento, la scuola produce stimoli cognitivi, abitua all'astrazione,
+fornisce conoscenze e familiarità con le situazioni di valutazione. Le stime
+causali vanno da uno a cinque punti di QI per anno di istruzione
+[@ritchie2018education].
+
+**Cause comuni.** Lo status socioeconomico della famiglia influenza sia lo
+sviluppo cognitivo sia le opportunità di studio. È certamente un fattore
+confondente. Nei paesi occidentali con istruzione, sanità e opportunità
+relativamente universali, tenerne conto riduce le stime, ma non le stravolge.
+
+Le tre spiegazioni non si escludono. Le evidenze indicano che sono tutte e tre
+all'opera, e che si rinforzano a vicenda nel tempo.
+
+## Dall'istruzione allo status sociale
+
+Se il QI prevede l'istruzione, prevede anche lo status lavorativo e il reddito?
+Una meta-analisi di studi longitudinali, in cui l'intelligenza era misurata
+prima degli esiti, ha stimato correlazioni attorno a 0,56 con il livello di
+istruzione, 0,43 con il prestigio della professione e 0,20 con il reddito
+[@strenze2007intelligence]. L'intelligenza prevede quindi il successo
+socioeconomico, ma il legame si indebolisce man mano che ci si allontana dalla
+scuola.
+
+Il mediatore principale è l'istruzione. Nei paesi industrializzati ogni anno di
+istruzione in più si associa in media a un reddito più alto di circa il 10%
+[@psacharopoulos2018returns]. Il percorso tipico è quindi: intelligenza,
+rendimento scolastico, livello di istruzione, posizione lavorativa, reddito.
+L'intelligenza ha anche un effetto diretto, a parità di istruzione, ma più
+piccolo. Il suo ruolo principale è creare le condizioni perché gli altri
+passaggi avvengano.
+
+La forza di questi legami non è fissa. Nelle coorti britanniche più recenti la
+correlazione fra QI nell'infanzia e durata degli studi si è ridotta: con
+l'espansione dell'istruzione, proseguire gli studi è diventato meno selettivo
+[@schoon2010childhood]. In paesi come l'Italia, inoltre, il vantaggio economico
+associato al titolo di studio è oggi più debole per i giovani di quanto fosse per
+le generazioni precedenti. Sono cambiamenti che sollevano domande scomode sulla
+capacità della scuola contemporanea di funzionare come strumento di selezione
+per merito e di promozione sociale.
+
+## Che cosa significa, e che cosa no
+
+L'intelligenza è il miglior singolo predittore del rendimento scolastico che si
+conosca, e attraverso l'istruzione contribuisce alla posizione sociale. Questo
+non significa che la scuola sia una formalità o che i risultati siano già
+scritti. Significa, piuttosto, che le differenze cognitive si traducono in
+differenze sociali attraverso istituzioni concrete: classi, programmi,
+selezioni, titoli. Istituzioni diverse possono amplificare o attenuare quella
+traduzione. E chi usa i risultati scolastici come se fossero un test di
+intelligenza dimentica proprio queste istituzioni.
+
+::: {.callout-note icon=false}
+## In breve
+
+- Il QI prevede il rendimento scolastico in tutte le materie, con correlazioni
+  attorno a 0,5 e fino a 0,8 a livello di fattori latenti.
+- Rendimento scolastico e intelligenza non sono la stessa cosa: usare i
+  risultati scolastici come proxy del QI fra contesti diversi porta a
+  conclusioni sbagliate, come nel caso del divario Nord-Sud in Italia.
+- Intelligenza e istruzione si influenzano a vicenda e condividono cause comuni,
+  come lo status socioeconomico familiare.
+- L'intelligenza prevede status lavorativo e reddito soprattutto attraverso
+  l'istruzione; il legame si indebolisce allontanandosi dalla scuola.
+:::
+
+[Riferimenti bibliografici](../../references.qmd)

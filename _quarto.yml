@@ -4,6 +4,33 @@ project:
   output-dir: website 
 
 format:
+  pdf:
+    lang: it
+    documentclass: scrreprt
+    pdf-engine: xelatex
+    papersize: a4
+    fontsize: 11pt
+    geometry:
+      - top=22mm
+      - bottom=24mm
+      - left=24mm
+      - right=24mm
+    classoption:
+      - oneside
+      - open=any
+      - parskip=half
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    colorlinks: true
+    linkcolor: black
+    urlcolor: blue
+    citecolor: black
+    keep-tex: true
+    filters:
+      - at: pre-ast
+        path: filters/pdf-layout.lua
+    include-in-header: styles/pdf-layout.tex
   html:
     number-sections: true
     toc: false
@@ -11,20 +38,53 @@ format:
     page-layout: full
     include-in-header:
        text: |
-         <link rel="shortcut icon" href="favicon.ico"/>
          <script data-goatcounter="https://intelligenza.goatcounter.com/count"
                async src="//gc.zgo.at/count.js"></script>
 
 book:
   title: "Psicologia dell'Intelligenza"
+  favicon: favicon.ico
   author:
-    - name: '<a href="https://enricotoffalini.github.io" target="_blank">Enrico Toffalini</a>'
+    - name: '[Enrico Toffalini](https://enricotoffalini.github.io)'
       affiliation: "Dipartimento di Psicologia Generale, Università di Padova" 
   chapters:
     - file: index.qmd
       text: "Introduzione"
-    - file: references.qmd
-      text: "Riferimenti bibliografici"
+    - part: "Capire l'intelligenza"
+      chapters:
+        - didattica/capire-intelligenza/perche-studiarla.qmd
+        - didattica/capire-intelligenza/che-cosa-e.qmd
+    - part: "Dati, misure e punteggi"
+      chapters:
+        - didattica/dati-misure-punteggi/correlazione.qmd
+        - didattica/dati-misure-punteggi/distribuzioni-e-punteggi.qmd
+        - didattica/dati-misure-punteggi/qualita-della-misura.qmd
+    - part: "Modelli e test dell'intelligenza"
+      chapters:
+        - didattica/modelli-test/fattore-g.qmd
+        - didattica/modelli-test/modelli-gerarchici.qmd
+        - didattica/modelli-test/origini-dei-test.qmd
+        - didattica/modelli-test/batterie-moderne.qmd
+    - part: "Basi biologiche, ambiente e cambiamento"
+      chapters:
+        - didattica/basi-ambiente-cambiamento/geni-ambiente-ereditabilita.qmd
+        - didattica/basi-ambiente-cambiamento/genetica-molecolare.qmd
+        - didattica/basi-ambiente-cambiamento/cervello-e-intelligenza.qmd
+        - didattica/basi-ambiente-cambiamento/effetto-flynn.qmd
+        - didattica/basi-ambiente-cambiamento/potenziamento-cognitivo.qmd
+    - part: "Scuola, salute e lavoro"
+      chapters:
+        - didattica/scuola-salute-lavoro/scuola-e-condizioni-sociali.qmd
+        - didattica/scuola-salute-lavoro/salute-e-longevita.qmd
+        - didattica/scuola-salute-lavoro/intelligenza-e-lavoro.qmd
+    - part: "Intelligenza e condizioni del neurosviluppo"
+      chapters:
+        - didattica/condizioni-neurosviluppo/neurosviluppo-dimensionale.qmd
+        - didattica/condizioni-neurosviluppo/valutazione-nel-neurosviluppo.qmd
+    - part: "Approfondimenti: oltre g"
+      chapters:
+        - didattica/approfondimenti/intelligenza-emotiva-e-costrutti.qmd
+        - didattica/approfondimenti/alternative-a-g.qmd
 
     - part: "<b>Professione</b>"
       chapters:
@@ -33,6 +93,9 @@ book:
       chapters:
         - divulgazione-pagine/domande-risposte.qmd
         - divulgazione-pagine/flynn-effetto-flynn.qmd
+
+    - file: references.qmd
+      text: "Riferimenti bibliografici"
 
 bibliography: references.bib
 csl: apa.csl

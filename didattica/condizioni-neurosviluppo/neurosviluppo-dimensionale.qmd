@@ -1,0 +1,267 @@
+---
+title: "Dalle categorie alle dimensioni"
+description: "Perché le condizioni del neurosviluppo non hanno confini netti né deficit centrali, e che cosa hanno in comune con la struttura dell'intelligenza."
+lang: it
+bibliography: ../../references.bib
+csl: ../../apa.csl
+suppress-bibliography: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+library(ggplot2)
+rosso = "#9A0000"
+tema = theme_minimal(base_size = 13) +
+  theme(panel.grid.minor = element_blank())
+```
+
+Siamo tutti diversi, e la diversità è un valore. A volte, però, essere molto
+diversi in qualche aspetto del funzionamento cognitivo, emotivo, comportamentale
+o sociale crea difficoltà di adattamento al contesto in cui si vive. E questa
+diversità sfugge spesso agli inquadramenti netti che la medicina usa per le
+malattie.
+
+Questo capitolo e il prossimo riguardano le **condizioni del neurosviluppo**:
+disabilità intellettiva, autismo, ADHD, disturbi specifici dell'apprendimento.
+Il loro legame con l'intelligenza è stretto, per due ragioni. La prima è
+pratica: la valutazione dell'intelligenza fa parte di quasi ogni percorso
+diagnostico. La seconda è teorica, ed è il tema di questo capitolo: le
+condizioni del neurosviluppo hanno la stessa struttura delle abilità
+cognitive, fatta di dimensioni continue e correlate. Capirlo cambia il modo di
+pensare la diagnosi.
+
+Le definizioni diagnostiche riportate qui servono a orientarsi e vanno sempre
+verificate nelle versioni aggiornate dei manuali. Non sono una guida clinica.
+
+## Un caso illustrativo
+
+Una bambina di nove anni viene valutata per difficoltà scolastiche marcate. La
+lettura è lenta e poco accurata, l'ortografia fragile, la matematica fonte di
+ansia. Genitori e insegnanti riferiscono distrazione frequente. Per il resto
+ragiona, ricorda e si relaziona come i coetanei. Il caso è costruito a scopo
+illustrativo, ma è molto tipico.
+
+La valutazione cognitiva restituisce un QI totale di 84. Il dato, letto da solo,
+indicherebbe un funzionamento generale sotto la media. Ma gli indici raccontano
+altro: comprensione verbale e ragionamento sono nella media, memoria di lavoro e
+velocità di elaborazione molto sotto. L'indice di abilità generale, che esclude
+memoria di lavoro e velocità, è 100. Le prove di lettura e scrittura sono molto
+deboli, quelle di matematica deboli soprattutto nel calcolo scritto. Il
+questionario sull'ansia per la matematica dà valori elevati. I questionari
+sull'attenzione compilati da genitori e insegnanti indicano difficoltà rilevanti,
+non confermate in modo netto dalle prove attentive.
+
+La conclusione sarà probabilmente una diagnosi di disturbo misto delle abilità
+scolastiche, con una segnalazione di difficoltà attentive. Ma il caso solleva
+domande che nessuna etichetta risolve. Dislessia e discalculia sono davvero
+condizioni distinte, se si presentano quasi sempre insieme? Le difficoltà in
+matematica sono cognitive o emotive? L'ADHD c'è o non c'è, se i sintomi riferiti
+sono chiari e le prove meno? Il quadro è misto, spurio, ed è del tutto reale.
+
+## Le categorie dei manuali
+
+La pratica clinica inquadra queste difficoltà in categorie prefissate, quasi si
+trattasse di sindromi mediche. I manuali di riferimento, il DSM-5-TR e l'ICD-11,
+definiscono i disturbi del neurosviluppo come condizioni che esordiscono nel
+periodo dello sviluppo e comportano difficoltà significative nell'acquisizione o
+nell'esecuzione di funzioni intellettive, motorie, linguistiche o sociali
+[@apa2022dsm5tr; @who2019icd11]. La classificazione si basa sul quadro
+osservabile, non sulle cause.
+
+Le categorie principali sono queste:
+
+- **disabilità intellettiva**: limitazioni nel funzionamento intellettivo
+  generale e nel comportamento adattivo nella vita quotidiana;
+- **disturbo dello spettro dell'autismo**: difficoltà persistenti nella
+  comunicazione e interazione sociale, insieme a comportamenti, interessi e
+  attività ristretti e ripetitivi;
+- **ADHD**: disattenzione e/o iperattività-impulsività persistenti, presenti in
+  più contesti e tali da compromettere il funzionamento;
+- **disturbi specifici dell'apprendimento**: difficoltà persistenti in lettura,
+  scrittura o calcolo, non spiegate da disabilità intellettiva, deficit
+  sensoriali o scolarizzazione insufficiente. In Italia la legge 170 del 2010 li
+  riconosce come dislessia, disgrafia, disortografia e discalculia;
+- disturbi della comunicazione e del movimento.
+
+Nella disabilità intellettiva si distingue da sempre fra forme **sindromiche**,
+con cause genetiche identificate e segni fisici riconoscibili, come la sindrome
+di Down o dell'X fragile, e forme **non sindromiche**, senza una causa unica
+individuabile. Le seconde rappresentano in buona parte la coda inferiore della
+distribuzione normale delle abilità, prodotta dagli stessi innumerevoli fattori
+che generano le differenze nella popolazione generale. Questa distinzione è la
+chiave per capire tutte le altre condizioni.
+
+## L'illusione del deficit centrale
+
+Per decenni la ricerca ha cercato per ogni disturbo un **deficit centrale**: un
+modulo cognitivo difettoso in uno sviluppo altrimenti normale. Un disturbo,
+un deficit. L'intelligenza contava solo come inquadramento generale o come
+criterio di esclusione. Oggi questo approccio è sostanzialmente abbandonato
+[@astle2020core]. I candidati non sono mancati.
+
+Per l'**autismo** si sono proposti un deficit nella capacità di rappresentarsi
+gli stati mentali altrui, la cosiddetta teoria della mente; un malfunzionamento
+del sistema dei neuroni specchio; una tendenza a elaborare i dettagli perdendo
+la visione d'insieme; un orientamento estremo verso la sistematizzazione a
+scapito dell'empatia. Le differenze medie osservate sono reali ma moderate e non
+generalizzabili. Le prime evidenze sui neuroni specchio non sono state
+confermate [@hamilton2013reflecting]. Una meta-analisi non ha trovato né una
+superiorità nell'elaborazione locale né un deficit in quella globale
+[@vanderhallen2015global]. E il presunto deficit sociale si è rivelato in parte
+reciproco: le persone autistiche comunicano bene fra loro, e le difficoltà
+emergono soprattutto nell'incontro fra modi diversi di comunicare. È il
+cosiddetto problema della **doppia empatia** [@milton2012ontological].
+
+Per l'**ADHD** si sono proposti deficit di inibizione, di funzioni esecutive,
+di tolleranza dell'attesa. Le differenze medie esistono, di solito attorno a
+mezza deviazione standard, ma nessuna distingue in modo affidabile chi ha la
+diagnosi da chi non ce l'ha. E differenze di entità simile si trovano anche in
+compiti non specifici: memoria a breve termine, velocità, perfino ragionamento
+astratto [@sjowall2013multiple].
+
+Per la **dislessia** il candidato più forte è il deficit fonologico, insieme
+alla lentezza nella denominazione rapida. Qui le differenze medie sono grandi,
+oltre una deviazione standard. Ma molti casi di dislessia non presentano quei
+deficit, e nessun marcatore singolo è necessario o sufficiente
+[@pennington2006single]. Per la **discalculia** il presunto deficit del senso
+del numero mostra differenze medie modeste, mentre molti processi generali,
+come memoria di lavoro, velocità e ragionamento, risultano ugualmente o più
+compromessi.
+
+Il bilancio è netto. Nessun marcatore genetico, di neuroimmagine,
+neurofisiologico, cognitivo o neuropsicologico ha oggi una capacità diagnostica
+adeguata per nessuna delle condizioni del neurosviluppo [@astle2022transdiagnostic].
+
+## Soglie arbitrarie
+
+C'è una ragione profonda per cui i deficit centrali non si trovano. È la stessa
+per cui le abilità cognitive hanno una distribuzione continua. Ogni
+comportamento umano è il risultato di moltissimi fattori genetici, neurobiologici,
+ambientali ed esperienziali che si sommano. La somma di molti fattori produce una
+distribuzione continua. E in una distribuzione continua non esiste una soglia
+naturale.
+
+La lettura ne è l'esempio classico. Già all'inizio degli anni Novanta uno studio
+longitudinale mostrò che l'abilità di lettura nella popolazione si distribuisce
+lungo un unico continuo, senza un punto in cui finisca la distribuzione dei
+lettori tipici e cominci quella dei dislessici [@shaywitz1992evidence]. La
+dislessia, in questo senso, non è una categoria naturale: è il nome che diamo
+alla parte bassa della distribuzione di un'abilità che la scuola richiede.
+Anche per l'ADHD, uno studio su gemelli ha trovato che l'ereditabilità dei sintomi
+è la stessa lungo tutto il continuo, dai livelli più alti fino alla piena
+normalità: non esiste un nucleo genetico distinto del disturbo
+[@levy1997attention].
+
+Ne segue che la prevalenza di questi disturbi dipende dalla soglia scelta
+(@fig-soglie). Le soglie riflettono convenzioni di rarità, come il 5° percentile o
+due deviazioni standard sotto la media, e considerazioni pragmatiche sul bisogno
+di supporto. Sono decisioni ragionevoli, non scoperte.
+
+```{r}
+#| label: fig-soglie
+#| fig-cap: "Distribuzione continua di un'abilità e due possibili soglie diagnostiche. Una soglia a −1,5 deviazioni standard identifica circa il 7% della popolazione; una a −2 circa il 2%. La distribuzione non contiene alcun punto di discontinuità."
+#| fig-alt: "Curva a campana con due linee verticali tratteggiate a meno 2 e meno 1,5 deviazioni standard. Le aree a sinistra delle soglie sono colorate con intensità diversa."
+#| fig-width: 7
+#| fig-height: 3.4
+x = seq(-4, 4, .01)
+d = data.frame(x, y = dnorm(x))
+ggplot(d, aes(x, y)) +
+  geom_area(data = subset(d, x <= -1.5), fill = rosso, alpha = .35) +
+  geom_area(data = subset(d, x <= -2), fill = rosso, alpha = .6) +
+  geom_line(linewidth = .9) +
+  geom_vline(xintercept = c(-2, -1.5), linetype = 2) +
+  annotate("text", x = -2.05, y = .25, label = "soglia a -2 DS\n(circa 2%)", hjust = 1, size = 3.6) +
+  annotate("text", x = -1.45, y = .32, label = "soglia a -1,5 DS\n(circa 7%)", hjust = 0, size = 3.6) +
+  labs(x = "Abilità (punti z)", y = NULL) +
+  tema + theme(axis.text.y = element_blank(), panel.grid.major.y = element_blank())
+```
+
+Questo porta a un rovesciamento della causalità che conviene rendere esplicito.
+Non si legge con fatica a causa della dislessia: si riceve la diagnosi di
+dislessia perché si legge con fatica, per ragioni non altrimenti spiegate. Non si
+è iperattivi a causa dell'ADHD: si riceve l'etichetta di ADHD perché si è molto
+iperattivi. L'etichetta descrive un comportamento osservato, non ne individua la
+causa. E poiché il comportamento è a valle di innumerevoli concause, non si
+troveranno mai poche variabili fortemente associate, ma molte variabili associate
+debolmente.
+
+## Comorbilità ovunque
+
+Il secondo problema per l'approccio categoriale è la **comorbilità**. Le
+condizioni del neurosviluppo si presentano insieme molto più spesso di quanto ci
+si aspetterebbe se fossero indipendenti. Una parte consistente delle persone
+autistiche ha anche una disabilità intellettiva o un ADHD; la dislessia si
+associa spesso alla disortografia e a difficoltà in matematica; ADHD e disturbi
+dell'apprendimento co-occorrono con frequenza elevata. Nelle casistiche
+cliniche dei disturbi dell'apprendimento, i quadri misti sono la norma più che
+l'eccezione [@toffalini2017strengths].
+
+Sotto le etichette troviamo quindi tratti **continui**, con soglie arbitrarie, e
+**correlati**, con comorbilità estese. È esattamente la struttura delle
+abilità cognitive: distribuzioni gaussiane e positive manifold. E, come per le
+abilità, la spiegazione più semplice della correlazione è l'esistenza di cause
+comuni.
+
+## Verso modelli dimensionali
+
+Nella psicopatologia dell'adulto questa consapevolezza ha portato a proposte
+alternative ai manuali categoriali. La più sviluppata è la **tassonomia
+gerarchica della psicopatologia** (HiTOP), che organizza sintomi e tratti in
+dimensioni a diversi livelli di generalità, fino a un possibile fattore generale
+*p* [@kotov2017hitop; @caspi2014pfactor]. Un modello del genere accoglie come
+naturali la comorbilità, la variabilità all'interno di uno stesso disturbo e i
+casi sottosoglia. Invece di chiedersi quale disturbo abbia una persona, si chiede
+quale sia il suo profilo su più dimensioni.
+
+È stato proposto di includere le condizioni del neurosviluppo in questi modelli
+come un'ulteriore dimensione, in continuità con la psicopatologia adulta e in
+relazione con la struttura dell'intelligenza [@astle2022transdiagnostic]. I
+legami esistono. Fattore *p* e fattore *g* correlano in modo negativo e modesto, e
+la relazione sembra bidirezionale nel tempo: un livello cognitivo più alto
+protegge un poco, la psicopatologia danneggia un poco il funzionamento cognitivo.
+E nelle persone con funzionamento intellettivo limite i disturbi psichiatrici
+sono più frequenti.
+
+Il problema non riguarda solo la clinica. Anche la ricerca pensa ancora per
+categorie, e le categorie creano un dilemma: i campioni diagnostici «puri» non
+sono rappresentativi, e i campioni rappresentativi non sono puri. Profili
+cognitivi simili si trovano in condizioni diverse, e profili diversi nella stessa
+condizione. Studiare i profili e le dimensioni è più informativo che studiare le
+etichette.
+
+## Neurodivergenza e adattamento
+
+Resta una domanda. Se tratti come quelli autistici o legati all'ADHD sono così
+diffusi ed ereditabili, perché l'evoluzione non li ha eliminati? Una risposta
+possibile è che non siano solo disfunzionali. La selezione naturale non produce
+fenotipi perfetti, ma compromessi. Alta attività, ricerca di novità, decisioni
+rapide ed esplorazione sono poco adatte alle aule scolastiche moderne, ma
+potrebbero essere state vantaggiose in altri ambienti. Un'attenzione sistematica
+alle regolarità e ai dettagli può essere una risorsa in molti contesti. Sono
+ipotesi, non conclusioni; ma ricordano che la stessa caratteristica può essere un
+problema in un ambiente e una risorsa in un altro.
+
+Per questo il termine **neurodivergenza** si è diffuso per indicare una
+differenza rilevante rispetto al funzionamento tipico, senza presupporre che sia
+un deficit. Il termine **disturbo** resta appropriato quando la differenza si
+traduce in disagio o compromissione significativa del funzionamento. Le due
+parole non si escludono: descrivono livelli diversi dello stesso fenomeno.
+
+::: {.callout-note icon=false}
+## In breve
+
+- Le condizioni del neurosviluppo sono classificate dai manuali come categorie,
+  ma i loro confini con la normalità e fra di loro non sono netti.
+- La ricerca di un deficit cognitivo centrale per ciascun disturbo è fallita:
+  nessun marcatore ha una capacità diagnostica adeguata.
+- I tratti sottostanti sono continui, con soglie diagnostiche convenzionali, e
+  correlati, con comorbilità estese: la stessa struttura delle abilità cognitive.
+- I modelli dimensionali e gerarchici, come HiTOP, descrivono questa struttura
+  meglio delle categorie e collegano neurosviluppo, psicopatologia e intelligenza.
+:::
+
+[Riferimenti bibliografici](../../references.qmd)

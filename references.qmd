@@ -5,3 +5,6 @@ execute:
 ---
 
 # Riferimenti bibliografici {.unnumbered}
+
+::: {#refs}
+:::

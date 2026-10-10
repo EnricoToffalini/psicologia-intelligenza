@@ -1,0 +1,13 @@
+% Impaginazione comune al PDF. Nessun ridimensionamento globale delle tabelle.
+\usepackage{needspace}
+\usepackage{xurl}
+\raggedbottom
+\setlength{\emergencystretch}{2em}
+\widowpenalty=10000
+\clubpenalty=10000
+\displaywidowpenalty=10000
+\renewcommand{\arraystretch}{1.15}
+\setlength{\tabcolsep}{5pt}
+\RedeclareSectionCommand[beforeskip=0pt,afterskip=16pt]{chapter}
+% Le parti restano divisori editoriali intenzionali; niente pagine pari vuote.
+\KOMAoptions{open=any}

@@ -1,0 +1,181 @@
+---
+title: "Si può spiegare la positive manifold senza un fattore generale?"
+description: "Teoria della sovrapposizione dei processi e mutualismo: che cosa propongono, quali evidenze le sostengono e perché restano alternative vive ma minoritarie."
+lang: it
+bibliography: ../../references.bib
+csl: ../../apa.csl
+suppress-bibliography: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+library(ggplot2)
+rosso = "#9A0000"
+virgola = function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",")
+tema = theme_minimal(base_size = 13) +
+  theme(panel.grid.minor = element_blank())
+```
+
+La positive manifold è uno dei risultati più solidi della psicologia. Su questo
+non c'è disaccordo. Il disaccordo riguarda la spiegazione. Quella standard,
+presentata nei capitoli sui modelli dell'intelligenza, ipotizza un insieme di
+cause comuni riassunte dal fattore generale *g*. Ma quelle cause restano in buona
+parte misteriose, e a molti ricercatori l'idea di una variabile latente non
+osservata sembra un'ipotesi troppo comoda.
+
+Negli ultimi vent'anni sono emerse almeno due teorie che cercano di spiegare le
+correlazioni fra abilità senza un fattore generale. Sono alternative serie, che
+meritano di essere conosciute. Sono anche, a oggi, minoritarie. Questo
+approfondimento spiega perché.
+
+## Un vecchio precedente
+
+L'idea non è nuova. Già nel 1916 Godfrey Thomson mostrò che una positive
+manifold può emergere anche senza un fattore generale: basta che ogni prova
+attinga a un campione casuale di molti processi elementari, e che prove diverse
+condividano in parte gli stessi processi [@thomson1916hierarchy]. Più processi
+due prove hanno in comune, più correlano. La **teoria del campionamento** di
+Thomson è stata riproposta in forma moderna, ed è compatibile con molti dei dati
+che sostengono *g* [@bartholomew2009new]. Mostra un punto importante: il fatto che
+un modello a un fattore descriva bene i dati non dimostra, da solo, che esista
+una singola causa comune.
+
+## La teoria della sovrapposizione dei processi
+
+La **teoria della sovrapposizione dei processi** (POT) aggiorna l'idea di Thomson
+con il linguaggio della psicologia cognitiva [@kovacs2016process]. Ogni prova
+richiede sia processi specifici del dominio, sia processi esecutivi generali,
+come il controllo dell'attenzione e la memoria di lavoro. Questi ultimi sono
+coinvolti in molte prove e funzionano come un collo di bottiglia: limitano la
+prestazione ovunque. Le prove correlano perché condividono quei limiti.
+
+La teoria spiega alcuni fatti noti. Il primo è che le prove più complesse,
+come i problemi di ragionamento con molte regole da tenere a mente, sono le più
+legate al fattore generale: sono anche quelle che richiedono più controllo
+esecutivo.
+
+Il secondo fatto è noto da quasi un secolo come **legge dei rendimenti
+decrescenti** di Spearman: nei gruppi con abilità più alta le correlazioni fra
+prove diverse, e quindi il peso del fattore generale, tendono a essere più basse.
+Una meta-analisi ne ha confermato l'esistenza, con un effetto di entità modesta
+[@blum2017spearman]. La teoria della sovrapposizione dei processi lo spiega in
+modo naturale: se i processi esecutivi limitano la prestazione soprattutto
+quando sono deboli, le prove dipendono più spesso dagli stessi limiti nelle
+persone meno capaci. Anche un modello con un fattore generale può però
+accomodare il dato, ammettendo che il suo peso vari con il livello.
+
+Ma a uno sguardo attento non è una vera alternativa all'ipotesi delle cause
+comuni. Sostituisce un fattore generale con un insieme di processi generali, cioè
+con altre cause comuni, descritte con maggiore dettaglio cognitivo. Ed è rimasta
+minoritaria soprattutto perché quei processi esecutivi non sono stati isolati e
+misurati in modo abbastanza chiaro da metterla alla prova.
+
+## Il mutualismo
+
+Il **mutualismo** propone qualcosa di concettualmente più radicale
+[@vandermaas2006dynamical]. Immaginiamo che, all'inizio dello sviluppo, abilità
+diverse siano indipendenti. Durante la crescita, però, si sostengono a vicenda.
+Un vocabolario più ricco aiuta a capire concetti e spiegazioni, quindi a
+rappresentarsi meglio i problemi e a ragionare. Un ragionamento migliore aiuta a
+ricavare il significato di parole nuove dal contesto, quindi ad arricchire il
+vocabolario. Ripetuti per anni, questi scambi reciproci producono abilità
+correlate anche partendo da abilità indipendenti. La positive manifold sarebbe un
+fenomeno emergente, non il segno di una causa comune.
+
+È l'unica vera alternativa logica alle cause comuni: se due variabili correlano e
+nessuna terza variabile le influenza entrambe, devono influenzarsi fra loro. Il
+mutualismo appartiene alla famiglia dei modelli di rete, che hanno avuto una
+certa fortuna nella psicologia della personalità e sono molto vivi in quella
+clinica, dove i disturbi vengono descritti come reti di sintomi che si mantengono
+a vicenda [@robinaugh2020network].
+
+```{r}
+#| label: fig-mutualismo
+#| fig-cap: "Simulazione di un processo mutualistico. Due abilità partono indipendenti e crescono nel tempo verso un livello massimo diverso per ogni persona e per ogni abilità, scelto a caso; a ogni passo ciascuna riceve una piccola spinta proporzionale al livello dell'altra. La correlazione fra le due, inizialmente nulla, cresce durante lo sviluppo. Parametri scelti a scopo illustrativo."
+#| fig-alt: "Linea crescente che mostra la correlazione fra due abilità in funzione del tempo: parte da circa zero e sale progressivamente fino a circa 0,4."
+#| fig-width: 7
+#| fig-height: 3.4
+set.seed(2006)
+n = 2000; passi = 60; M = .2
+K1 = rnorm(n, 10, 2); K2 = rnorm(n, 10, 2)
+v1 = rnorm(n, .2, .03); v2 = rnorm(n, .2, .03)
+a = .5 + rnorm(n, 0, .05); b = .5 + rnorm(n, 0, .05)
+r = numeric(passi)
+for (t in 1:passi) {
+  a2 = a + v1 * a * (1 - a / K1) + v1 * M * a * b / K1
+  b2 = b + v2 * b * (1 - b / K2) + v2 * M * a * b / K2
+  a = a2; b = b2; r[t] = cor(a, b)
+}
+ggplot(data.frame(t = 1:passi, r = r), aes(t, r)) +
+  geom_line(colour = rosso, linewidth = 1.1) +
+  scale_y_continuous(limits = c(-.05, NA), breaks = seq(0, 1, .1), labels = function(x) virgola(x, 1)) +
+  labs(x = "Tempo di sviluppo (unità arbitrarie)", y = "Correlazione fra le abilità") +
+  tema
+```
+
+Alcuni studi longitudinali hanno trovato andamenti compatibili con il
+mutualismo. In adolescenti e giovani adulti, per esempio, un vocabolario migliore
+prevedeva una crescita successiva del ragionamento e viceversa, al netto dei
+livelli di partenza [@kievit2017mutualistic].
+
+## Le critiche
+
+Le critiche al mutualismo come teoria generale dell'intelligenza sono però
+numerose.
+
+- **La positive manifold c'è fin dall'inizio.** Emerge appena le abilità diventano
+  misurabili, nei primi anni di vita, e non sembra rafforzarsi in modo marcato con
+  l'età, come il mutualismo prevederebbe [@gignac2014dynamic].
+- **Il fattore generale resta più parsimonioso.** Una volta considerato *g*, le
+  relazioni residue fra abilità specifiche sono minime o nulle. Una rete
+  complessa di influenze reciproche non aggiunge capacità esplicativa
+  [@gignac2016residual]. Anche nei dati sui gemelli, i modelli fattoriali
+  descrivono le relazioni fra abilità almeno altrettanto bene dei modelli di rete
+  [@knyspel2024comparing].
+- **Le previsioni sono imprecise.** Quali abilità influenzano quali? In quale
+  periodo? Con quale intensità? Senza risposte precise, la teoria è difficile da
+  falsificare.
+- **Le evidenze longitudinali sono limitate.** Riguardano di solito due o tre
+  abilità alla volta e usano modelli, come quelli a ritardi incrociati, che non
+  distinguono bene fra influenze reciproche e differenze stabili fra persone
+  [@hamaker2015critique].
+
+## Che cosa sopravvive
+
+Il mutualismo sopravvive soprattutto in una versione compatibilista: un fattore
+generale e una rete di influenze reciproche possono coesistere
+[@savi2019wiring]. È plausibile che abilità diverse si rinforzino a vicenda in
+alcuni periodi critici dello sviluppo, in misura diversa da persona a persona,
+anche in presenza di cause comuni. Come cornice concettuale resta utile per
+pensare lo sviluppo in modo dinamico, e in particolare il neurosviluppo, dove
+difficoltà in un'area possono propagarsi ad altre. Il prezzo della versione
+compatibilista è che perde la sua radicalità: se servono anche variabili
+latenti, la rete non è più un'alternativa al fattore generale, ma un'aggiunta.
+
+Il bilancio, oggi, è questo. Le alternative a *g* hanno il merito di ricordare che
+un fattore statistico non è una spiegazione causale e che la positive manifold
+potrebbe avere origini diverse da una singola causa comune. Ma nessuna ha ancora
+prodotto previsioni precise che il modello gerarchico non riesca a spiegare
+altrettanto bene. Sono alternative vive, da seguire. Non sono ancora alternative
+consolidate.
+
+::: {.callout-note icon=false}
+## In breve
+
+- La teoria del campionamento di Thomson mostra che una positive manifold può
+  emergere anche senza un singolo fattore generale.
+- La teoria della sovrapposizione dei processi attribuisce le correlazioni a
+  processi esecutivi generali: aggiunge dettaglio cognitivo, ma resta una teoria di
+  cause comuni.
+- Il mutualismo spiega la positive manifold con influenze reciproche fra abilità
+  durante lo sviluppo: è l'unica vera alternativa logica alle cause comuni.
+- Le critiche riguardano la presenza precoce della positive manifold, la
+  maggiore parsimonia di *g* e l'imprecisione delle previsioni; la versione
+  compatibilista sopravvive come cornice per lo sviluppo.
+:::
+
+[Riferimenti bibliografici](../../references.qmd)

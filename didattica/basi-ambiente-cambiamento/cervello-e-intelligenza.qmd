@@ -1,0 +1,235 @@
+---
+title: "Cervello e intelligenza"
+description: "Che cosa distingue il cervello di persone con QI diverso: volume, sostanza bianca, efficienza, teoria P-FIT, e perché molti risultati spettacolari non hanno retto."
+lang: it
+bibliography: ../../references.bib
+csl: ../../apa.csl
+suppress-bibliography: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+library(ggplot2)
+rosso = "#9A0000"
+virgola = function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",")
+tema = theme_minimal(base_size = 13) +
+  theme(panel.grid.minor = element_blank())
+```
+
+Dove si trova l'intelligenza nel cervello? La domanda è naturale e quasi del
+tutto sbagliata. Quando una persona risolve un problema di ragionamento si
+attivano molte aree, comprese quelle visive che elaborano le figure. Ma questo
+dice come funziona il cervello in generale, non perché alcune persone risolvano
+il problema meglio di altre. Le aree visive, per esempio, si attivano in tutti,
+e non distinguono chi va bene da chi va male.
+
+La domanda che interessa lo studio delle differenze individuali è un'altra:
+quali caratteristiche del cervello, nella struttura, nelle connessioni, nel modo
+di attivarsi, distinguono persone con QI diverso? Le neuroscienze hanno
+accumulato evidenze che il fattore generale è legato all'anatomia e al
+funzionamento cerebrale. Ma questo campo è anche uno dei migliori esempi di come
+la ricerca possa illudersi, e poi correggersi. Per questo il capitolo parte
+dalle cautele.
+
+## Strumenti per guardare dentro la testa
+
+La maggior parte degli studi usa la risonanza magnetica, in tre forme
+principali.
+
+- La **risonanza strutturale** fornisce un'immagine tridimensionale statica del
+  cervello: volumi di sostanza grigia, bianca e liquido, spessore della corteccia
+  nelle diverse aree, superfici e circonvoluzioni.
+- La **risonanza funzionale** (fMRI) misura le variazioni del flusso di sangue
+  ossigenato nelle diverse regioni. Permette di stimare quanto un'area si attiva
+  durante un compito e quali aree si attivano insieme, a riposo o durante un
+  compito. Da questi pattern si ricavano le reti di **connettività funzionale**.
+- La **risonanza di diffusione** misura come si muovono le molecole d'acqua nei
+  tessuti. Nei fasci di fibre nervose l'acqua si muove soprattutto lungo la
+  direzione delle fibre. Un indice come l'**anisotropia frazionaria** misura
+  questa coerenza ed è usato come indicatore dell'integrità della sostanza
+  bianca. Modelli più recenti stimano anche la densità e l'orientamento delle
+  ramificazioni dei neuroni nella corteccia.
+
+## Perché tanti risultati non hanno retto
+
+I dati di neuroimmagine sono molto rumorosi. Per molto tempo sono stati raccolti
+su campioni piccoli. Fra gli studi di risonanza funzionale più citati fino al
+2012, la numerosità mediana era di circa dodici partecipanti; nel 2017–2018 era
+salita a poco più di venti [@szucs2020sample]. Già nel 2013 si stimava che la
+potenza statistica tipica degli studi di neuroscienze fosse fra l'8 e il 31%
+[@button2013power]. Con potenze così basse, gli effetti veri spesso non vengono
+rilevati, e quelli che risultano significativi sono sistematicamente
+sovrastimati. Aggiungendo la pubblicazione selettiva dei risultati positivi e
+la mancata correzione per i molti confronti, si ottiene una letteratura piena di
+scoperte che non si replicano.
+
+Un caso esemplare. Nel 2009 uno studio su 19 persone trovò che un indice
+globale di efficienza delle reti cerebrali a riposo correlava con il QI
+attorno a −0,5 [@vandenheuvel2009efficiency]. Sembrava rivoluzionario. Studi
+successivi su migliaia di partecipanti non hanno confermato un effetto di quella
+grandezza per gli indici globali di efficienza; quando emergono associazioni con
+la connettività, sono distribuite su molte reti e di entità modesta. Oggi
+sappiamo che associazioni affidabili fra misure cerebrali e caratteristiche
+psicologiche richiedono in genere migliaia di partecipanti, perché gli effetti
+reali sono piccoli [@marek2022reproducible].
+
+Il secondo problema è l'**overfitting**. I dati di neuroimmagine contengono
+moltissime informazioni per ogni persona: migliaia di regioni, milioni di
+voxel. Se si usano tutte per prevedere il QI di poche centinaia di persone,
+un algoritmo abbastanza flessibile trova sempre una combinazione che «indovina»
+il QI di ciascuna. Ma ha imparato le particolarità di quel campione, non una
+regola generale. La @fig-overfitting mostra il fenomeno con una simulazione.
+
+```{r}
+#| label: fig-overfitting
+#| fig-cap: "Simulazione dell'overfitting. Si prevede un punteggio da un numero crescente di misure cerebrali, ciascuna con un legame debolissimo con il punteggio, in un campione di 200 persone. La correlazione fra punteggi previsti e osservati cresce nel campione usato per stimare il modello, ma resta bassa e poi crolla in un campione indipendente."
+#| fig-alt: "Due linee in funzione del numero di misure usate come predittori, da 5 a 180. La linea del campione di stima sale fino a quasi 1. La linea del campione indipendente resta bassa, attorno a 0,1, e poi scende verso zero."
+#| fig-width: 7
+#| fig-height: 3.8
+set.seed(2019)
+genera = function(n, p) { X = matrix(rnorm(n * 180), n); y = X[, 1:20] %*% rep(.06, 20) + rnorm(n); list(X = X, y = as.numeric(y)) }
+tr = genera(200, 180); te = genera(2000, 180)
+ps = c(5, 10, 20, 40, 60, 80, 100, 120, 140, 160, 180)
+ris = do.call(rbind, lapply(ps, function(p) {
+  m = lm(tr$y ~ tr$X[, 1:p])
+  prev = cbind(1, te$X[, 1:p]) %*% coef(m)
+  data.frame(p = p, campione = c("Campione di stima", "Campione indipendente"),
+             r = c(cor(fitted(m), tr$y), cor(prev, te$y)))
+}))
+ggplot(ris, aes(p, r, colour = campione, linetype = campione)) +
+  geom_line(linewidth = 1.1) + geom_point(size = 2) +
+  scale_colour_manual(values = c("grey30", rosso), name = NULL) +
+  scale_linetype_manual(values = c(2, 1), name = NULL) +
+  scale_y_continuous(limits = c(-.05, 1), breaks = seq(0, 1, .2), labels = function(x) virgola(x, 1)) +
+  labs(x = "Numero di misure cerebrali usate come predittori", y = "Correlazione previsto-osservato") +
+  tema + theme(legend.position = "top")
+```
+
+La soluzione è verificare il modello su dati non usati per costruirlo, la
+**validazione incrociata**. Ma anche questa può ingannare, se i dati di stima e
+di verifica non sono davvero indipendenti: per esempio quando provengono dagli
+stessi centri o dalle stesse famiglie. Nel 2019 una competizione internazionale
+chiese a decine di gruppi di ricerca di prevedere l'intelligenza fluida di
+migliaia di ragazzi a partire dalla risonanza strutturale, escludendo il volume
+totale del cervello [@pohl2019adolescent]. Molti usarono reti neurali profonde
+alimentate con le immagini grezze. Sul campione di verifica tenuto nascosto,
+le previsioni furono quasi nulle per tutti i partecipanti alla gara. Studi
+precedenti più piccoli avevano dichiarato capacità predittive molto superiori.
+
+La lezione generale vale per tutto il capitolo: un singolo studio non è mai
+definitivo. Conviene fidarsi dei risultati replicati da gruppi indipendenti su
+campioni ampi. La buona notizia è che oggi questi campioni esistono, grazie a
+grandi consorzi internazionali.
+
+## Che cosa sappiamo davvero
+
+### Il volume cerebrale
+
+Il risultato più solido è anche il più semplice: le persone con un cervello più
+grande tendono ad avere un QI più alto. In passato si citavano correlazioni fino
+a 0,40; le meta-analisi recenti e i grandi campioni le collocano attorno a
+0,20–0,30 [@pietschnig2015meta; @cox2019structural]. L'associazione sembra
+legata soprattutto alla superficie totale e allo spessore della corteccia, più
+che a singole aree particolari.
+
+È un effetto sicuro ma modesto. Il volume del cervello non permette di prevedere
+il QI di una persona. Lo dimostra anche un fatto noto: i cervelli maschili sono
+in media circa il 10% più grandi di quelli femminili [@ritchie2018sex], ma le
+differenze medie di QI fra i sessi sono trascurabili [@halpern2007science]. Un
+cervello più grande è un vantaggio statistico, non una garanzia.
+
+### Il cablaggio: la sostanza bianca
+
+Non conta solo quanto tessuto c'è, ma come è connesso. La sostanza bianca è
+fatta dai fasci di assoni che collegano regioni distanti. La sua integrità,
+stimata con l'anisotropia frazionaria, correla con il fattore generale con
+valori attorno a 0,2 [@penke2012brain]. L'associazione è più marcata in alcuni
+fasci: quelli che collegano lobi frontali e parietali e il corpo calloso, che
+collega i due emisferi. Il deterioramento della sostanza bianca nell'invecchiamento
+si accompagna al declino cognitivo, in particolare della velocità di
+elaborazione.
+
+### Reti efficienti
+
+Uno studio su qualche centinaio di persone ha stimato la densità e
+l'organizzazione delle ramificazioni neuronali nella corteccia. Le persone con
+punteggi più alti avevano ramificazioni meno dense e più ordinate
+[@genc2018diffusion]. Un'interpretazione è che lo sviluppo produca prima molte
+connessioni e poi ne elimini una parte, attraverso il processo di potatura
+sinaptica; un buon funzionamento cognitivo sarebbe associato a reti meno
+ridondanti e più efficienti. È un'ipotesi suggestiva, che richiede ulteriori
+conferme.
+
+### Attivazione efficiente
+
+Alla fine degli anni Ottanta Richard Haier misurò il consumo di glucosio del
+cervello con la tomografia a emissione di positroni, mentre i partecipanti
+risolvevano le matrici di Raven. Chi otteneva punteggi più alti mostrava un
+metabolismo cerebrale **più basso**, non più alto [@haier1988cortical]. In un
+altro studio, persone che si allenavano per settimane a un videogioco
+mostravano un'attività corticale ridotta man mano che diventavano esperte
+[@haier1992regional]. Nacque l'ipotesi dell'**efficienza neurale**: un cervello
+più capace ottiene lo stesso risultato con meno dispendio
+[@neubauer2009intelligence].
+
+L'ipotesi nella forma originale non ha retto bene alle repliche. Ma è
+sopravvissuta in forme più specifiche. Le persone con QI più alto sembrano
+disattivare di più la rete cerebrale attiva a riposo, mentre attivano di più le
+aree richieste dal compito [@basten2013intelligence]. E le loro reti di
+connettività funzionale cambiano meno quando passano dal riposo a compiti
+diversi, come se fossero già predisposte al lavoro cognitivo; il risultato è
+stato replicato in campioni indipendenti [@thiele2022multitask].
+
+## Una teoria di sintesi: P-FIT
+
+Il quadro teorico più citato è la **teoria dell'integrazione parieto-frontale**
+(P-FIT), proposta da Jung e Haier sulla base di decine di studi di
+neuroimmagine [@jung2007parieto]. Secondo la teoria, le aree parietali
+integrano e astraggono informazioni sensoriali di diverso tipo, quelle frontali
+pianificano e decidono, e la qualità dell'intelligenza dipende soprattutto dalla
+comunicazione fra queste regioni, quindi dall'integrità dei fasci che le
+collegano.
+
+Una meta-analisi successiva ha confermato in larga parte il ruolo delle regioni
+fronto-parietali, aggiungendo altre aree [@basten2015smart]. La tendenza attuale
+è vedere l'intelligenza sempre meno legata a singole regioni e sempre più
+distribuita su molte reti [@deary2021genetic]. Il P-FIT funziona oggi più come
+un'impalcatura che come una teoria con previsioni precise. Va notato anche che
+riguarda soprattutto il fattore generale: mancano evidenze robuste e replicate
+sui correlati cerebrali delle abilità specifiche, al netto di *g*.
+
+## Che cosa resta
+
+Le caratteristiche del cervello associate in modo replicabile a un fattore
+generale più alto sono quindi globali: un volume maggiore, una sostanza bianca
+più integra, specialmente nelle connessioni fronto-parietali e fra emisferi,
+reti più efficienti, un'attivazione più mirata durante i compiti. Tutte hanno
+effetti modesti. Nessuna, da sola o in combinazione, permette oggi di prevedere
+in modo adeguato il QI di un individuo. E molte sono probabilmente correlate fra
+loro, sicché i loro contributi non si sommano semplicemente.
+
+Il bilancio è meno spettacolare di quanto molti titoli abbiano promesso. È però
+più solido. Il fattore generale ha correlati biologici reali, così come ha basi
+genetiche reali. Ma la distanza fra le varianti genetiche, le caratteristiche
+cerebrali e le prestazioni nei test resta in gran parte da esplorare.
+
+::: {.callout-note icon=false}
+## In breve
+
+- La domanda utile non è dove si attiva il cervello durante un test, ma quali
+  sue caratteristiche distinguono persone con QI diverso.
+- Molti risultati iniziali, ottenuti su campioni piccoli o con modelli
+  sovradattati, non sono stati replicati; servono campioni di migliaia di
+  persone.
+- Il volume cerebrale correla con il QI attorno a 0,2–0,3; integrità della
+  sostanza bianca ed efficienza delle reti mostrano associazioni simili o minori.
+- La teoria P-FIT sottolinea l'integrazione fra regioni parietali e frontali,
+  ma il quadro attuale è sempre più distribuito; nessun indicatore prevede il QI
+  individuale.
+:::
+
+[Riferimenti bibliografici](../../references.qmd)

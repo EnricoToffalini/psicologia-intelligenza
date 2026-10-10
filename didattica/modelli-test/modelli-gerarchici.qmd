@@ -1,0 +1,294 @@
+---
+title: "Abilità multiple e modelli gerarchici"
+description: "Thurstone, Sternberg, Gardner, intelligenza fluida e cristallizzata: come le alternative al fattore unico hanno portato al modello gerarchico CHC, e perché g continua a prevalere."
+lang: it
+bibliography: ../../references.bib
+csl: ../../apa.csl
+suppress-bibliography: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+library(ggplot2)
+rosso = "#9A0000"
+tema = theme_minimal(base_size = 13) +
+  theme(panel.grid.minor = element_blank())
+```
+
+Nessuno ha mai seriamente negato la positive manifold. Ciò che molti hanno
+negato è che la spiegazione migliore sia un fattore generale. Le prove
+correlano, sostengono, perché si sovrappongono: ruotare mentalmente una figura
+richiede anche memoria di lavoro, che a sua volta richiede velocità di
+elaborazione. Oppure perché l'intelligenza misurata dai test è solo una fra
+molte intelligenze. Oppure, in alcune teorie recenti, perché le abilità si
+sostengono a vicenda durante lo sviluppo.
+
+Questo capitolo segue la storia delle alternative al fattore unico. Non è un
+catalogo: ogni teoria va giudicata per ciò che ha spiegato e per l'evidenza che
+la sostiene. Alcune hanno fallito in modo utile, altre hanno avuto più fortuna
+nelle aule che nei dati. Il punto d'arrivo è il modello gerarchico, oggi la
+sintesi più accreditata. Una sintesi che però non ha chiuso del tutto il
+contrasto di fondo: conta di più l'abilità generale o le abilità specifiche?
+
+## Thurstone e le abilità mentali primarie
+
+Negli anni Trenta Louis Thurstone osservò che molti test dell'epoca erano
+impuri. Voti scolastici, problemi aritmetici, memoria di parole, completamento
+di sequenze numeriche: ciascuno mescolava diverse competenze mentali. Forse,
+pensò, *g* era un'illusione. I test sembravano diversi, ma chiamavano in causa
+sempre le stesse capacità di base, e per questo correlavano.
+
+Nel 1938 propose una teoria radicalmente multicomponenziale. Il comportamento
+intelligente dipenderebbe da un insieme di **abilità mentali primarie**,
+teoricamente indipendenti [@thurstone1938primary]. Fra queste c'erano la
+comprensione verbale, la fluenza verbale, il ragionamento induttivo, il calcolo
+numerico, la visualizzazione spaziale, la memoria e la velocità percettiva. Se si
+fossero costruiti test puri di ciascuna abilità, questi non sarebbero stati
+correlati.
+
+Thurstone costruì quei test e affinò le tecniche dell'analisi fattoriale per
+analizzarli. Il risultato fu un fallimento utile: le abilità primarie risultavano
+correlate fra loro. Thurstone stesso finì per ammettere un fattore generale di
+ordine superiore. La sua teoria non è più attuale, ma ha lasciato due eredità:
+test di abilità specifiche ancora usati nella ricerca e l'idea che fra il
+fattore generale e le singole prove esista un livello intermedio.
+
+## Sternberg e Gardner: allargare il concetto
+
+Una seconda famiglia di teorie non contesta tanto la struttura statistica quanto
+l'ampiezza del concetto. Robert Sternberg ha proposto una **teoria triarchica**
+con tre forme di pensiero intelligente [@sternberg1985beyond]. L'intelligenza
+analitica corrisponde grosso modo a ciò che misurano i test. L'intelligenza
+pratica è la capacità di adattarsi alle richieste quotidiane usando al momento
+giusto ciò che si è appreso. L'intelligenza creativa è la capacità di trovare
+soluzioni nuove.
+
+L'enfasi sul comportamento nei contesti reali è condivisibile. Il problema è la
+misura. L'intelligenza analitica si misura bene ed è un ottimo predittore degli
+apprendimenti e un buon predittore del successo lavorativo. Le misure di
+intelligenza pratica e creativa si sono rivelate più difficili da costruire e,
+quando funzionano, correlano con l'abilità generale più di quanto la teoria
+preveda.
+
+Howard Gardner ha proposto le **intelligenze multiple**: linguistica,
+logico-matematica, spaziale, musicale, corporeo-cinestesica, interpersonale,
+intrapersonale, a cui ne ha poi aggiunte altre [@gardner1983frames]. I criteri
+per riconoscere un'intelligenza erano ambiziosi: basi neurobiologiche
+localizzabili, operazioni cognitive dedicate, una storia evolutiva plausibile,
+uno sviluppo descrivibile, l'esistenza di talenti o deficit selettivi. Ogni
+persona avrebbe una combinazione unica di intelligenze.
+
+La teoria è molto popolare in ambito educativo. Il suo sostegno empirico è
+scarso. Gardner non ha sviluppato misure standardizzate delle sue
+intelligenze, e quando altri ricercatori le hanno costruite hanno trovato che le
+prove delle intelligenze più «cognitive» correlano fra loro e con *g*, mentre
+quelle musicale e corporea dipendono in parte da abilità non cognitive
+[@visser2006beyond; @waterhouse2006multiple]. Le intelligenze multiple, poi, non
+hanno tutte la stessa importanza. Una scarsa abilità musicale o
+corporeo-cinestesica pesa poco nella vita quotidiana; una scarsa abilità
+logico-matematica è spesso parte di una disabilità intellettiva. Chiamare tutto
+«intelligenza» rende l'etichetta più inclusiva e meno informativa.
+
+C'è poi un problema di numero. Joy Guilford arrivò a ipotizzare oltre cento
+abilità distinte, poi quasi duecento [@guilford1967nature]. Come ha osservato
+Alan Kaufman, se un'abilità sola era troppo poco, centoventi sono troppe
+[@kaufman2009iq].
+
+## Intelligenza fluida e cristallizzata
+
+Una distinzione proposta da Raymond Cattell ha avuto invece un successo
+duraturo, perché poggia su dati solidi [@cattell1963theory].
+
+L'**intelligenza fluida** (Gf) è la capacità di ragionare su problemi nuovi,
+indipendentemente dall'istruzione, ricavando regolarità da stimoli mai visti. Si
+misura preferibilmente con prove non verbali, come le matrici. L'**intelligenza
+cristallizzata** (Gc) è l'insieme delle conoscenze e delle strategie acquisite,
+insieme alla capacità di usarle quando servono. Dipende molto dall'istruzione e
+si misura soprattutto con prove verbali, come il vocabolario o le domande di
+cultura generale.
+
+Le due forme sono fortemente correlate. Si distinguono soprattutto per il modo
+in cui cambiano nel corso della vita (@fig-gf-gc). L'intelligenza fluida cresce
+rapidamente durante lo sviluppo, raggiunge il massimo nella giovane età adulta e
+poi declina insieme alle abilità neurocognitive generali. L'intelligenza
+cristallizzata continua a crescere a lungo e può aumentare anche in età
+avanzata, finché si accumulano esperienze [@mcardle2002comparative].
+
+```{r}
+#| label: fig-gf-gc
+#| fig-cap: "Andamento schematico dell'intelligenza fluida e cristallizzata nel corso della vita, costruito a scopo illustrativo sulla base delle tendenze descritte negli studi longitudinali; non rappresenta dati osservati."
+#| fig-alt: "Due curve in funzione dell'età. La curva dell'intelligenza fluida cresce rapidamente fino ai venti-trent'anni e poi scende. Quella dell'intelligenza cristallizzata cresce più a lungo e resta alta fino a età avanzata, con un leggero calo finale."
+#| fig-width: 7
+#| fig-height: 3.8
+eta = seq(5, 85, .5)
+gf = 100 * (1 - exp(-(eta - 3) / 7)) - .45 * pmax(eta - 25, 0) - .004 * pmax(eta - 25, 0)^2
+gc = 100 * (1 - exp(-(eta - 3) / 12)) + .15 * pmax(eta - 25, 0) - .006 * pmax(eta - 60, 0)^2
+d = rbind(data.frame(eta, v = gf, tipo = "Fluida (Gf)"), data.frame(eta, v = gc, tipo = "Cristallizzata (Gc)"))
+ggplot(d, aes(eta, v, linetype = tipo, colour = tipo)) +
+  geom_line(linewidth = 1.1) +
+  scale_colour_manual(values = c(rosso, "grey25"), name = NULL) +
+  scale_linetype_manual(values = c(1, 2), name = NULL) +
+  labs(x = "Età (anni)", y = "Livello (unità arbitrarie)") +
+  tema + theme(axis.text.y = element_blank(), legend.position = "top")
+```
+
+Le due forme interagiscono. Si consideri questo problema: *X* + *Y* = 200,
+*X* + *Z* = 240, *Z* + *Y* = 110. Chi non ha mai visto un sistema di equazioni
+può arrivare alla soluzione ragionando per tentativi, con un notevole impegno di
+intelligenza fluida. Chi conosce il metodo lo risolve in pochi passaggi. Le
+conoscenze cristallizzate rendono facili problemi che la sola intelligenza
+fluida affronterebbe con fatica. Secondo la **teoria dell'investimento** di
+Cattell, l'intelligenza fluida emerge per prima e fornisce la capacità con cui,
+nel tempo, si costruisce quella cristallizzata.
+
+Cattell non pensava davvero a due intelligenze separate: era sostanzialmente un
+unitarista, e considerava Gf e Gc due modi in cui la stessa capacità si
+esprime. La sua distinzione ha però aperto la strada al passaggio
+dall'unitarismo iniziale al modello gerarchico.
+
+## La sintesi gerarchica
+
+Il fallimento di Thurstone conteneva un'informazione preziosa. Prove del tutto
+diverse continuano a correlare, ma prove che coinvolgono materiale o processi
+simili correlano di più: verbale con verbale, spaziale con spaziale, memoria con
+memoria. Lo schema richiede almeno tre livelli: un fattore generale; fattori di
+dominio, che raggruppano prove simili; componenti specifiche di ogni prova.
+
+Riprendiamo l'esempio sportivo del capitolo precedente. Oltre all'atleticità
+generale esistono capacità intermedie comuni a gruppi di discipline: la velocità
+per nuoto e ciclismo, il gioco di squadra per basket e calcetto. E restano
+componenti proprie di ciascuna disciplina. Un modello a più livelli è un
+compromesso fra teorie unitarie e multiple: il fattore generale coesiste con
+fattori più specifici, e solo l'insieme descrive in modo completo le differenze
+individuali.
+
+Una delle prime formulazioni gerarchiche si deve a Philip Vernon, che sotto *g*
+collocava due grandi gruppi di abilità, verbali-educative e
+spaziali-pratiche-meccaniche [@vernon1950structure]. La formulazione oggi più
+citata è il modello **Cattell-Horn-Carroll** (CHC). La sua storia combina tre
+contributi. Cattell introdusse la distinzione fra fluida e cristallizzata. John
+Horn, rifiutando il fattore generale, mostrò che con l'analisi fattoriale si
+potevano distinguere diversi altri domini. John Carroll, dopo aver rianalizzato
+centinaia di insiemi di dati, propose una sintesi a tre strati
+[@carroll1993human]. In seguito i modelli di Cattell-Horn e di Carroll sono
+stati integrati e ampliati [@mcgrew2009chc].
+
+```{r}
+#| label: fig-chc
+#| fig-cap: "Struttura semplificata del modello CHC, con il fattore generale (strato III), alcune abilità ampie (strato II) ed esempi di abilità ristrette (strato I). Schema originale, non esaustivo."
+#| fig-alt: "Diagramma a tre livelli. In alto il fattore g. Al centro sei abilità ampie: intelligenza fluida, cristallizzata, memoria a breve termine, elaborazione visiva, velocità di elaborazione, recupero a lungo termine. In basso esempi di abilità ristrette collegate a ciascuna."
+#| fig-width: 9
+#| fig-height: 3.9
+ampie = c("Fluida\n(Gf)", "Cristallizzata\n(Gc)", "Memoria a breve\ntermine (Gwm)", "Elaborazione\nvisiva (Gv)", "Velocità di\nelaborazione (Gs)", "Recupero a lungo\ntermine (Glr)")
+ristr = c("Induzione\nRagionamento\nquantitativo", "Conoscenza\nlessicale\nCultura generale", "Span di cifre\nMemoria\ndi lavoro", "Rotazione\nmentale\nChiusura figure", "Rapidità\npercettiva\nCodifica", "Fluenza\nassociativa\nRievocazione")
+x = seq(1, 11, length.out = 6)
+par(mar = c(0, 0, 0, 0))
+plot(0, 0, type = "n", xlim = c(-1.2, 12), ylim = c(1.2, 10), axes = FALSE, xlab = "", ylab = "")
+segments(6, 8.6, x, 6.45, col = rosso, lwd = 1.6)
+segments(x, 4.9, x, 3.5, col = "grey50", lwd = 1.2)
+symbols(6, 9.2, circles = .6, inches = FALSE, add = TRUE, bg = "white", fg = "grey20", lwd = 2)
+text(6, 9.2, "g", font = 4, cex = 1.8)
+for (i in 1:6) {
+  symbols(x[i], 5.7, rectangles = matrix(c(1.85, 1.5), 1), inches = FALSE, add = TRUE, bg = "grey93", fg = "grey30")
+  text(x[i], 5.7, ampie[i], cex = .78, font = 2)
+  text(x[i], 2.3, ristr[i], cex = .72, col = "grey20")
+}
+text(-1.2, c(9.2, 5.7, 2.3), c("Strato III", "Strato II", "Strato I"), adj = 0, cex = .75, col = "grey40")
+```
+
+Oggi «intelligenza gerarchica» è quasi sinonimo di CHC, e le batterie moderne
+sono costruite o riviste per riflettere questo modello. Due precisazioni sono
+però doverose. Non tutti i fattori hanno la stessa importanza: intelligenza
+fluida e cristallizzata sono centrali, altri domini, come la conoscenza
+quantitativa o la lettura e scrittura, sono più periferici o dipendono molto dal
+contesto. E il CHC è più una tassonomia delle abilità distinguibili che una
+teoria di come funzionano.
+
+## Leggere una prestazione su più livelli
+
+Che cosa significa, concretamente, che l'intelligenza è gerarchica? Che la
+prestazione a una prova va letta su diversi livelli contemporaneamente.
+
+Prendiamo il punteggio di una persona in una prova di vocabolario. Riflette in
+parte il fattore generale; in parte l'abilità verbale, comune alle prove
+linguistiche; in parte la conoscenza specifica delle parole presenti nella
+prova. Il resto è errore: casualità, numero limitato di item, effetti
+transitori come una notte dormita male. Questa componente residua può pesare
+per il 30–40% della varianza dei singoli subtest. Lo stesso vale per una prova
+di rotazione mentale, con il dominio visuospaziale al posto di quello verbale.
+
+## La prevalenza di *g*
+
+In teoria c'è ampio accordo sul modello gerarchico. In pratica, la ricerca
+mostra che i diversi livelli non pesano allo stesso modo.
+
+Nelle batterie multicomponenziali il fattore generale spiega da solo la maggior
+parte della varianza comune ai subtest: nell'analisi della WISC-IV statunitense
+più di due terzi [@watkins2006orthogonal]. I fattori di dominio, al netto di
+*g*, ne spiegano poca e sono poco attendibili, come si è visto nel capitolo
+sulla qualità della misura [@gignac2017evaluating]. È inoltre il fattore generale
+a spiegare con regolarità gli esiti della vita reale: risultati scolastici,
+prestazione lavorativa, salute e longevità. Ed è la componente più chiaramente
+ereditabile.
+
+Questo vale per la popolazione nel suo insieme. Può non valere per individui
+con discrepanze molto ampie fra abilità, o in gruppi con condizioni del
+neurosviluppo, dove i profili di abilità sono informativi
+[@giofre2017intelligence]. Nella pratica clinica la gerarchia non è un dettaglio
+accademico: decide quanto peso dare al totale e quanto ai singoli indici.
+
+::: {.callout-tip icon=false}
+## Punto metodologico: dimenticare la causa comune
+
+Ignorare il fattore generale può produrre conclusioni sbagliate. Supponiamo di
+voler capire quali abilità prevedono il successo scolastico e di inserire in un
+modello vocabolario, memoria di lavoro e velocità come predittori separati.
+Ciascuna sembrerà legata al successo, e si sarà tentati di concludere che tutte
+contano. Ma se le tre abilità correlano col successo soprattutto perché
+condividono *g*, il modello attribuisce a ciascuna un effetto che appartiene al
+fattore comune. Un modello che include il fattore generale riduce, o elimina,
+molti di questi effetti specifici apparenti. Lo stesso errore compare spesso in
+psicologia della personalità e sociale, ogni volta che si trascura la
+possibilità di cause comuni a più misure.
+:::
+
+## Una sintesi ragionevole
+
+Si può quindi rispondere alla domanda iniziale con una sintesi.
+
+Che cos'è *g*? È l'insieme delle cause comuni, in buona parte ancora ignote, che
+fanno sì che una persona vada meglio o peggio in molte abilità cognitive
+diverse. Si riassume come abilità mentale generale. Moltissimi fattori genetici,
+ambientali e di esperienza producono un assetto neurobiologico più o meno
+favorevole alla prestazione cognitiva; statisticamente, il risultato si lascia
+riassumere da un singolo fattore. Ma *g* non è, ontologicamente, una cosa sola.
+
+Come si misura? Con il QI, che aggrega le prestazioni in molte prove di tipo
+diverso.
+
+Perché è importante? Perché si misura in modo affidabile, stabile e
+relativamente rapido, e prevede molti esiti rilevanti della vita reale, spesso
+rendendo superfluo l'approfondimento di questo o quel dominio specifico. Spesso,
+non sempre. Le abilità specifiche esistono, e in alcuni casi fanno la
+differenza. Ma chi vuole interpretarle deve prima fare i conti con il fattore
+generale.
+
+::: {.callout-note icon=false}
+## In breve
+
+- Le teorie multiple hanno cercato di spiegare la positive manifold senza un
+  fattore generale; Thurstone fallì in modo produttivo, mentre le intelligenze
+  multiple di Gardner hanno scarso sostegno empirico.
+- Intelligenza fluida e cristallizzata sono fortemente correlate, ma seguono
+  traiettorie diverse nel corso della vita.
+- Il modello gerarchico CHC combina un fattore generale, abilità ampie e abilità
+  ristrette: è oggi la tassonomia di riferimento.
+- Nei dati il fattore generale prevale: spiega gran parte della varianza comune
+  e degli esiti reali, mentre i fattori di dominio al netto di *g* sono deboli.
+:::
+
+[Riferimenti bibliografici](../../references.qmd)

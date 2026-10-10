@@ -1,0 +1,222 @@
+---
+title: "Che cosa aggiunge la genetica molecolare"
+description: "GWAS, punteggi poligenici, ereditabilità mancante, interazioni gene-ambiente e pleiotropia: che cosa abbiamo imparato leggendo direttamente il DNA."
+lang: it
+bibliography: ../../references.bib
+csl: ../../apa.csl
+suppress-bibliography: true
+---
+
+Per decenni il «gene dell'intelligenza» è stato cercato come si cerca una chiave
+smarrita: con la convinzione che da qualche parte ci fosse. Non c'è. Non esiste
+un gene dell'intelligenza, così come non esiste un gene della statura o della
+depressione. Esistono migliaia di varianti, ciascuna con un effetto
+minuscolo. Arrivare a questa conclusione è stato uno dei risultati più importanti
+della genetica degli ultimi vent'anni.
+
+Gli studi sui gemelli dicono quanta variabilità di un tratto è associata a
+variabilità genetica. Non dicono quali geni siano coinvolti né come agiscano.
+Con il sequenziamento del genoma umano è diventato possibile cercare
+direttamente nel DNA. Questo capitolo spiega che cosa si è trovato, e perché i
+risultati hanno sollevato problemi nuovi invece di chiudere quelli vecchi.
+
+## Dal DNA alle varianti
+
+Il DNA è una lunga sequenza di nucleotidi, che differiscono per una base
+azotata: adenina, timina, guanina o citosina. Un gene è un tratto di questa
+sequenza, lungo spesso migliaia di nucleotidi. Il genoma umano contiene circa
+ventimila geni che codificano proteine, e quasi tutti esistono nella popolazione
+in versioni leggermente diverse, chiamate **alleli**. Poiché ogni cromosoma è
+presente in due copie, una ereditata da ciascun genitore, ogni persona porta due
+alleli per ogni gene.
+
+La forma di variazione più semplice e più studiata è il **polimorfismo a
+singolo nucleotide** (SNP): in una certa posizione del genoma, alcune persone
+hanno una base e altre un'altra. Il genoma umano contiene milioni di SNP comuni.
+
+Gli **studi di associazione sull'intero genoma** (GWAS) si pongono una domanda
+semplice per ciascuno di questi SNP: chi porta una certa variante ha, in media,
+un QI più alto, più basso o uguale? Di solito si assume che gli effetti siano
+additivi: portare due copie della variante ha il doppio dell'effetto di
+portarne una.
+
+## Aghi in un pagliaio
+
+Il problema è statistico. Gli SNP sono milioni, e i tratti come l'intelligenza
+sono **estremamente poligenici**: migliaia, forse decine di migliaia di varianti
+contribuiscono, ciascuna con un effetto piccolissimo. Per un tratto
+comportamentale tipico è raro che una singola variante comune spieghi più di una
+frazione infinitesimale della varianza. È stata proposta come una vera e propria
+«quarta legge» della genetica del comportamento [@chabris2015fourth].
+
+Per distinguere effetti così piccoli dal rumore servono campioni giganteschi. Uno
+dei GWAS di riferimento sull'intelligenza ha analizzato i dati di quasi 270.000
+persone e ha identificato poco più di duecento regioni del genoma associate in
+modo statisticamente affidabile ai punteggi [@savage2018genome]. Un altro, su
+circa 300.000 persone, ha ottenuto risultati simili [@davies2018study]. Le
+regioni identificate sono molte meno delle varianti realmente coinvolte: molte
+non superano le soglie di significatività, che per tenere conto dei milioni di
+confronti sono molto severe. E una regione può contenere molti SNP correlati fra
+loro, che contano come un solo segnale.
+
+## Il punteggio poligenico
+
+Sommando gli effetti stimati in un GWAS sulle varianti presenti nel genoma di una
+persona si ottiene un **punteggio poligenico** (PGS): una stima della sua
+predisposizione genetica per un tratto. È un numero che si può calcolare alla
+nascita, o prima.
+
+Quanto prevede? Poco, per ora. Un punteggio poligenico dell'intelligenza spiega
+in campioni indipendenti alcuni punti percentuali della varianza dei test
+cognitivi. Un punteggio costruito sui GWAS degli anni di istruzione, che
+dispongono di campioni ancora più grandi, arriva attorno al 7–10%
+[@lee2018gene; @plomin2018new]. È un risultato scientificamente notevole: una
+misura biologica, presente dal concepimento, prevede una differenza
+psicologica. Ma è troppo poco per qualsiasi conclusione affidabile sul singolo
+individuo. Due persone con lo stesso punteggio poligenico possono avere QI molto
+diversi. Le aziende che offrono previsioni genetiche sull'intelligenza dei figli
+vendono una precisione che non esiste.
+
+## L'ereditabilità mancante
+
+Invece di cercare le varianti una per una, si può chiedere se la somiglianza
+genetica complessiva fra persone non imparentate, calcolata su tutti gli SNP
+comuni, si accompagni a una maggiore somiglianza nei punteggi. È l'idea della
+**analisi del tratto complesso sull'intero genoma** (GCTA). Fornisce
+un'ereditabilità stimata direttamente dal DNA, chiamata ereditabilità SNP
+[@davies2011genome].
+
+Qui nasce un problema. Per l'intelligenza l'ereditabilità SNP si colloca
+attorno al 20–30% [@plomin2018new]. Gli studi sui gemelli, negli adulti,
+indicano il 60–80%. Dov'è finito il resto? È il problema dell'**ereditabilità
+mancante**, che riguarda quasi tutti i tratti complessi [@manolio2009finding].
+
+Le spiegazioni proposte sono diverse e non si escludono.
+
+- **Varianti rare.** Gli studi molecolari analizzano soprattutto SNP comuni,
+  presenti in più dell'1% della popolazione. Le varianti rare sono moltissime e
+  potrebbero spiegare una parte importante della variabilità. È un'ipotesi
+  abbastanza accreditata.
+- **Effetti non additivi.** I GWAS stimano effetti additivi. Ma possono
+  esistere interazioni fra geni, effetti di dominanza, interazioni fra geni e
+  ambiente. Sono effetti genetici reali, che si manifestano nei gemelli
+  monozigoti, identici per l'intero genoma, ma non in due sconosciuti che
+  condividono un singolo allele.
+- **Sovrastima negli studi sui gemelli.** Se i gemelli monozigoti condividono più
+  ambiente dei dizigoti, una parte della loro somiglianza è stata attribuita ai
+  geni per errore.
+- **Limiti di potenza.** Effetti piccolissimi si perdono nel rumore; campioni
+  più grandi tendono a produrre stime più alte.
+
+Un risultato recente complica ulteriormente il quadro. Confrontando fratelli
+all'interno della stessa famiglia, che hanno ereditato varianti diverse ma
+condividono l'ambiente familiare, le associazioni genetiche con le abilità
+cognitive e con l'istruzione risultano sensibilmente più deboli che nel
+confronto fra famiglie diverse [@howe2022within]. Una parte di ciò che un GWAS
+attribuisce ai geni di una persona riflette quindi altro: l'ambiente creato dai
+genitori, che dipende in parte dai loro geni; la tendenza a scegliere partner
+simili; differenze di ascendenza correlate con condizioni sociali. È un
+richiamo alla cautela, non una smentita del ruolo dei geni.
+
+## Geni e ambiente insieme
+
+Noi semplifichiamo: geni più ambiente uguale tratto. La realtà è più intricata.
+Due esempi estremi, fuori dall'intelligenza in senso stretto, aiutano a capire.
+
+La **fenilchetonuria** è una condizione genetica recessiva. Chi eredita due copie
+alterate del gene che codifica un enzima non riesce a metabolizzare la
+fenilalanina, un aminoacido presente in molti alimenti. La sostanza si accumula
+e danneggia il cervello, causando una disabilità intellettiva grave. Ma la causa
+diretta è l'accumulo dovuto alla dieta. Se la condizione viene individuata alla
+nascita, come accade con lo screening neonatale, e si segue una dieta povera di
+fenilalanina, la disabilità non si sviluppa [@blau2010phenylketonuria]. Una
+condizione interamente genetica nella causa ha una soluzione interamente
+ambientale nel trattamento.
+
+Un esempio più sfumato riguarda alcune varianti del gene FTO, fra le più
+associate al peso corporeo. Il loro effetto si riduce sensibilmente nelle
+persone fisicamente attive [@kilpelainen2011physical]. La variante aumenta il
+rischio, ma il rischio si esprime in misura diversa a seconda dello stile di
+vita.
+
+Per l'intelligenza, l'interazione con lo status socioeconomico vista nel
+capitolo precedente è un caso dello stesso tipo. Fra geni e punteggi ci sono lo
+sviluppo prenatale, la salute, il reddito familiare, lo stile educativo, i
+coetanei, la scuola, l'organizzazione progressiva del sistema nervoso.
+Ciascun passaggio può modulare gli effetti degli altri.
+
+## Pleiotropia: gli stessi geni, molti tratti
+
+Le varianti associate all'intelligenza non sono solo numerosissime: tendono a
+ricorrere in tratti diversi. È la **pleiotropia**, cioè la capacità dello stesso
+gene di influenzare più caratteristiche.
+
+Questo spiega in parte la positive manifold. Le basi genetiche di abilità
+cognitive diverse si sovrappongono in larga misura: le stesse varianti
+contribuiscono alla memoria, al linguaggio, al ragionamento. Si parla per questo
+di **geni generalisti** [@kovas2006generalist]. Gli stessi geni influenzano lo
+sviluppo di molte aree cerebrali, e ogni area partecipa a molti processi
+cognitivi. Le cause comuni ipotizzate da Spearman hanno, almeno in parte, una
+base genetica.
+
+La sovrapposizione si estende oltre la cognizione. Le varianti associate
+all'intelligenza sono fortemente associate anche agli anni di istruzione e, in
+misura minore, a molte condizioni psichiatriche e neurologiche. Con alcune la
+correlazione genetica è negativa, come per ADHD e malattia di Alzheimer; con
+altre, come l'autismo, è debolmente positiva [@savage2018genome]. Una
+correlazione genetica indica che gli stessi fattori genetici contribuiscono alle
+differenze in entrambi i tratti. Non indica che un tratto causi l'altro.
+
+::: {.callout-tip icon=false}
+## Per approfondire: la correlazione genetica nei gemelli
+
+Anche gli studi sui gemelli permettono di stimare quanto due tratti abbiano basi
+genetiche comuni. Si usano le **correlazioni incrociate**: il punteggio di un
+gemello in lettura con il punteggio dell'altro gemello in matematica. Se questa
+correlazione è più alta nei monozigoti che nei dizigoti, una parte di ciò che
+lega lettura e matematica è genetica. La correlazione genetica *r*~G~ si ottiene
+rapportando la covarianza genetica fra i due tratti, stimata come
+2 × (*r*~MZ,incrociata~ − *r*~DZ,incrociata~), alla radice del prodotto delle due
+ereditabilità.
+:::
+
+## Le leggi della genetica del comportamento
+
+Nel 2000 Eric Turkheimer riassunse in tre «leggi» ciò che gli studi su
+gemelli e famiglie avevano stabilito [@turkheimer2000three]:
+
+1. ogni tratto comportamentale umano è in parte ereditabile;
+2. l'effetto dell'ambiente condiviso in famiglia è di solito minore di quello dei
+   geni;
+3. una parte cospicua della variabilità resta attribuibile all'ambiente non
+   condiviso, a eventi casuali e all'errore di misura.
+
+La terza legge implica che non sarà mai possibile prevedere completamente il
+comportamento a partire da geni e ambiente familiare. La genetica molecolare ha
+poi aggiunto la quarta: ogni tratto dipende da moltissime varianti di effetto
+minuscolo [@chabris2015fourth].
+
+Queste leggi chiudono una vecchia polemica e ne aprono di nuove. Che i geni
+contino non è più in discussione. In discussione sono i meccanismi: come migliaia
+di varianti producano differenze nel cervello, come queste si traducano in
+differenze nelle prestazioni, e come l'ambiente amplifichi, attenui o
+indirizzi il processo. Le risposte richiedono di unire genetica, neuroscienze e
+psicologia dello sviluppo. Il prossimo capitolo affronta il secondo anello della
+catena: il cervello.
+
+::: {.callout-note icon=false}
+## In breve
+
+- Non esiste un gene dell'intelligenza: migliaia di varianti contribuiscono,
+  ciascuna con un effetto minuscolo.
+- I GWAS su centinaia di migliaia di persone hanno identificato circa duecento
+  regioni del genoma associate all'intelligenza.
+- I punteggi poligenici prevedono oggi una quota modesta della varianza, utile
+  per la ricerca ma non per previsioni individuali.
+- L'ereditabilità stimata dal DNA è molto inferiore a quella dei gemelli; varianti
+  rare, effetti non additivi e limiti dei disegni sono le spiegazioni discusse.
+- Le stesse varianti influenzano molte abilità e molti tratti: la pleiotropia
+  fornisce una base genetica alla positive manifold.
+:::
+
+[Riferimenti bibliografici](../../references.qmd)

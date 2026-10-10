@@ -1,0 +1,235 @@
+---
+title: "Il fattore generale e la positive manifold"
+description: "Perché prestazioni cognitive diverse sono sempre correlate, come Spearman ne ricavò il fattore g e che cosa significa ragionare con una variabile latente."
+lang: it
+bibliography: ../../references.bib
+csl: ../../apa.csl
+suppress-bibliography: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+library(ggplot2)
+rosso = "#9A0000"
+virgola = function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",")
+```
+
+Chi va bene in un test cognitivo tende ad andare bene anche negli altri. Non in
+tutti allo stesso modo, non sempre, ma con una regolarità che più di un secolo
+di ricerca non è riuscito a smentire. Vocabolario e rotazione mentale,
+memoria di cifre e ragionamento con le matrici, aritmetica e velocità nel
+confrontare simboli: compiti che non si assomigliano in nulla producono punteggi
+correlati positivamente. Questo fatto ha un nome, **positive manifold**, ed è il
+punto di partenza obbligato di ogni teoria dell'intelligenza.
+
+La domanda è se l'intelligenza sia una cosa sola o molte. Assomiglia alla
+personalità, che si descrive con diverse dimensioni distinte? Oppure tutto tende
+a convergere su un'unica dimensione? E il QI riflette qualcosa di reale, con
+basi biologiche, o è solo la somma di abilità diverse a cui si è dato un nome
+solo? Lo studio dell'intelligenza ha oscillato a lungo fra un approccio
+**unitario** e uno **multiplo**. Questo capitolo presenta il primo, nella forma
+che gli diede Charles Spearman. Il prossimo presenta le alternative e la
+sintesi gerarchica oggi prevalente.
+
+## Perché le prestazioni correlano?
+
+Il capitolo sulla correlazione ha elencato le spiegazioni possibili di
+un'associazione: A causa B, B causa A, le due si influenzano a vicenda, oppure
+una terza variabile influenza entrambe. Applichiamole a due prove cognitive.
+Che il vocabolario causi la capacità di ruotare mentalmente una figura è
+implausibile. Che accada il contrario, altrettanto. Resta l'ipotesi della causa
+comune.
+
+Nel 1904 Spearman pubblicò un'analisi delle correlazioni fra misure molto
+eterogenee, raccolte su bambini delle scuole: voti in varie materie,
+discriminazioni sensoriali, giudizi degli insegnanti. Notò che tutte le
+correlazioni erano positive e che il loro schema poteva essere spiegato da un
+unico fattore sottostante, comune a tutte le misure, più una componente
+specifica di ciascuna [@spearman1904general]. Chiamò il primo **fattore
+generale**, o *g*; le seconde fattori specifici, o *s*.
+
+Gli indicatori usati da Spearman erano rudimentali. Pochi anni dopo Binet e
+Simon avrebbero costruito le prime batterie di prove cognitive simili a quelle
+moderne. Ma l'idea era già completa: le prestazioni osservate sono indizi di una
+capacità comune che non si osserva direttamente.
+
+## Un fattore latente, spiegato con lo sport
+
+L'idea di fattore latente è più intuitiva di quanto sembri. Prendiamo un esempio
+che con l'intelligenza non ha nulla a che fare. Misuriamo in un ampio gruppo di
+persone il tempo per nuotare una vasca, il tempo per percorrere dieci
+chilometri in bicicletta, la lunghezza di un salto, la precisione nei tiri liberi
+a basket. Nella popolazione generale queste prestazioni saranno correlate. Chi
+nuota velocemente tende anche a pedalare velocemente e a saltare lontano.
+
+Perché? Non perché il nuoto migliori il salto. Esistono caratteristiche comuni
+che favoriscono tutte queste attività: forza muscolare, coordinazione,
+composizione corporea, flessibilità, età. Possiamo chiamarle insieme
+«atleticità». Ogni prova dipende inoltre da componenti specifiche, come
+l'allenamento in quella disciplina o la statura per il basket. Un modello con un
+fattore generale e tanti fattori specifici spiega le correlazioni in modo
+parsimonioso. Fra atleti olimpici, molto selezionati e specializzati, le
+correlazioni potrebbero quasi sparire; nella popolazione generale sono forti.
+
+Lo stesso schema vale per la personalità. Le risposte ad affermazioni come «mi
+piace conoscere persone nuove», «mi riesce facile iniziare una conversazione con
+uno sconosciuto», «mi piace essere al centro dell'attenzione» sono correlate.
+Il fattore comune si chiama estroversione. Nessuno lo osserva direttamente; lo si
+inferisce dalle correlazioni e lo si usa perché spiega e prevede.
+
+```{r}
+#| label: fig-manifold
+#| fig-cap: "Un modello a un fattore. A sinistra, il fattore g e i pesi fattoriali di sei prove ipotetiche, indicati accanto a ciascuna prova. A destra, le correlazioni fra le prove implicate dal modello, pari al prodotto dei rispettivi pesi: tutte positive, più alte fra le prove più legate a g. I valori sono illustrativi."
+#| fig-alt: "A sinistra un cerchio con la lettera g collegato da frecce a sei rettangoli che rappresentano prove cognitive, con pesi da 0,50 a 0,80. A destra una matrice di correlazioni con tutte le celle positive, comprese fra 0,25 e 0,64."
+#| fig-width: 9
+#| fig-height: 4.2
+prove = c("Vocabolario", "Analogie", "Matrici", "Rotazione", "Memoria cifre", "Simboli")
+lam = c(.75, .80, .80, .65, .60, .50)
+R = lam %o% lam; diag(R) = 1
+par(mfrow = c(1, 2), mar = c(1, 1, 1, 1))
+plot(0, 0, type = "n", xlim = c(0, 10), ylim = c(0, 10), axes = FALSE, xlab = "", ylab = "")
+y = seq(9, 1, length.out = 6)
+for (i in 1:6) {
+  arrows(2.2, 5, 5.6, y[i], length = .08, lwd = 1.5 + 3 * (lam[i] - .5), col = rosso)
+  rect(5.7, y[i] - .55, 9.9, y[i] + .55, col = "grey95", border = "grey40")
+  text(5.95, y[i], prove[i], cex = .9, adj = 0)
+  text(9.7, y[i], virgola(lam[i]), cex = .85, adj = 1, col = rosso, font = 2)
+}
+symbols(1.2, 5, circles = 1, inches = FALSE, add = TRUE, bg = "white", fg = "grey20", lwd = 2)
+text(1.2, 5, "g", font = 4, cex = 2)
+d = expand.grid(a = factor(prove, levels = prove), b = factor(prove, levels = rev(prove)))
+d$r = R[cbind(as.integer(d$a), 7 - as.integer(d$b))]
+d$lab = ifelse(d$r == 1, "", virgola(d$r))
+d$r[d$r == 1] = NA
+vp = grid::viewport(x = .75, y = .5, width = .5, height = 1)
+print(ggplot(d, aes(a, b, fill = r)) +
+  geom_tile(colour = "white") +
+  geom_text(aes(label = lab), size = 3) +
+  scale_fill_gradient(low = "white", high = rosso, limits = c(0, 1), na.value = "grey90", guide = "none") +
+  labs(x = NULL, y = NULL) +
+  theme_minimal(base_size = 10) +
+  theme(axis.text.x = element_text(angle = 40, hjust = 1), panel.grid = element_blank()), vp = vp)
+```
+
+## Che cos'è, e che cosa non è, *g*
+
+La teoria di Spearman è il primo caso storico di definizione di un fattore
+latente in psicologia. Oggi i fattori latenti si usano ovunque, dalla
+psicometria all'economia alla biostatistica. Conviene quindi chiarire bene che
+cosa si intende.
+
+*g* si chiama **latente** perché non si osserva direttamente. Nessuno dei
+punteggi ottenuti nei test è la cosa che interessa; tutti servono solo da
+misure indirette. Nell'esempio sportivo si potrebbe in teoria misurare la forza o
+la coordinazione. Nel caso dell'intelligenza, in pratica, no.
+
+*g* non è necessariamente una cosa sola. Anzi, si ipotizza che sia l'aggregato
+di moltissimi fattori: varianti genetiche, caratteristiche del cervello,
+esperienze, condizioni di sviluppo. Lo si tratta come unitario perché questi
+fattori, nei dati comportamentali, non si lasciano separare: agiscono tutti
+nella stessa direzione su tutte le prove. Il «fattore» è un riassunto statistico
+di cause comuni, non un organo o una sostanza.
+
+Infine, *g* è utile perché è una spiegazione parsimoniosa e perché prevede
+cose rilevanti. Vale finché ha questa validità predittiva. Se domani un modello
+con più dimensioni spiegasse meglio le correlazioni fra prove e gli esiti nella
+vita reale, *g* andrebbe rivisto.
+
+## «Se non vedo, non credo»
+
+A molti l'idea di lavorare con qualcosa che non si vede sembra sospetta. È una
+diffidenza rispettabile, condivisa da tradizioni importanti: il comportamentismo
+radicale, l'operazionalismo, alcune teorie moderne che spiegano le correlazioni
+fra abilità senza ricorrere a un fattore comune, di cui si parla negli
+approfondimenti finali.
+
+Concentrarsi su ciò che si osserva è giusto. Ma spesso la spiegazione dei
+fenomeni impone di postulare qualcosa che non si osserva. Il comportamentismo
+radicale entrò in crisi proprio di fronte a fenomeni come l'apprendimento
+latente e l'acquisizione del linguaggio, che richiedevano di ipotizzare
+rappresentazioni interne; da quella crisi nacquero le scienze cognitive. Fuori
+dalla psicologia, la cosmologia attribuisce gran parte della massa
+dell'universo a una «materia oscura» mai osservata direttamente, ma necessaria
+per spiegare la dinamica delle galassie. Il paragone con *g* è naturale:
+qualcosa che deve esserci per dare conto dei dati, anche se non si riesce
+ancora a osservarlo direttamente.
+
+L'analogia ha un limite a favore di *g*. Per l'intelligenza si conoscono già
+alcune componenti: varianti genetiche comuni e caratteristiche del cervello
+associate al fattore generale. Spiegano però una quota ancora piccola delle
+differenze. Ne parleremo nei capitoli sulla genetica e sul cervello.
+
+## Quanto è solido il fattore generale
+
+Che il fattore generale sia un risultato robusto lo mostrano due tipi di
+evidenza. Il primo è la sua ubiquità. Nella più ampia rianalisi mai condotta
+delle correlazioni fra test cognitivi, Carroll esaminò oltre quattrocento
+insiemi di dati raccolti in decenni di ricerca: la positive manifold e un
+fattore generale emergevano in modo sistematico [@carroll1993human].
+
+Il secondo è la sua indipendenza dalle prove usate per stimarlo. Se *g* fosse
+solo il fattore comune di una batteria particolare, batterie diverse dovrebbero
+produrre *g* diversi. In uno studio su adulti che avevano svolto tre batterie
+complete e diverse fra loro, i fattori generali stimati separatamente
+correlavano fra loro quasi perfettamente [@johnson2004just]. È la versione
+moderna dell'«indifferenza dell'indicatore» di Spearman: purché le prove siano
+abbastanza numerose e varie, il fattore generale che se ne ricava è
+sostanzialmente lo stesso.
+
+Per questo *g*, pur con una parte di nebulosità teorica, resta una nozione
+centrale e largamente accettata nella ricerca sull'intelligenza
+[@gottfredson1997mainstream; @deary2012intelligence]. Oggi viene inserito in un
+quadro gerarchico, meno rigido dell'unitarismo originario, ma non è stato
+abbandonato.
+
+## I limiti della teoria unitaria
+
+La teoria unitaria classica ha però tre limiti seri, che le teorie successive
+hanno cercato di superare.
+
+Il primo è l'assenza di una teoria psicologica. Il fattore generale descrive
+che le prestazioni covariano, ma non dice quale processo mentale le accomuni.
+Velocità di elaborazione? Memoria di lavoro? Controllo dell'attenzione?
+Efficienza delle connessioni cerebrali? In senso minimo *g* indica solo «cause
+comuni». Per questo è stato sospettato di essere un epifenomeno statistico
+reificato, cioè un'astrazione trattata come se fosse una cosa. Il sospetto non
+tocca l'utilità pratica del QI, che nessuno contesta seriamente, ma il suo
+statuto teorico.
+
+Il secondo è la dipendenza dalla scelta delle prove. Il fattore comune di una
+batteria è il fattore comune delle prove che contiene. Le prime scale storiche
+erano piene di prove verbali, e il loro fattore generale era sbilanciato di
+conseguenza. Il risultato sull'equivalenza dei *g* stimati da batterie diverse
+attenua il problema, ma solo per batterie ampie e ben bilanciate.
+
+Il terzo è la sottovalutazione dei fattori specifici. Se tutto ciò che conta è
+*g*, le differenze fra le abilità di una persona diventano rumore. Ma un punto
+di forza nelle abilità visuospaziali o una debolezza selettiva nel linguaggio
+possono essere rilevanti per capire un caso clinico o una scelta di studi.
+L'esistenza di un fattore generale non implica che non esista nient'altro.
+
+Questi limiti non sono stati ignorati. Hanno alimentato un secolo di teorie
+alternative, con fortune molto diverse. Alcune hanno lasciato contributi
+duraturi; altre hanno avuto più successo nelle scuole che nei dati. Il prossimo
+capitolo le esamina e mostra come la ricerca sia arrivata a una sintesi.
+
+::: {.callout-note icon=false}
+## In breve
+
+- Prestazioni cognitive molto diverse sono sempre correlate positivamente: è la
+  positive manifold.
+- Spearman la spiegò con un fattore generale comune, *g*, più fattori specifici
+  di ciascuna prova: il primo modello a variabile latente della psicologia.
+- *g* non è un oggetto unico nel cervello, ma il riassunto di molte cause comuni
+  che agiscono nella stessa direzione su tutte le prove.
+- Il fattore generale è robusto: emerge in centinaia di insiemi di dati ed è
+  quasi identico se stimato da batterie diverse.
+- La teoria unitaria classica manca però di una spiegazione psicologica, dipende
+  dalle prove scelte e trascura le abilità specifiche.
+:::
+
+[Riferimenti bibliografici](../../references.qmd)

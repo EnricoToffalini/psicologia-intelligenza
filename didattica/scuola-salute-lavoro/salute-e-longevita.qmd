@@ -1,0 +1,199 @@
+---
+title: "Salute e longevità"
+description: "Perché i bambini con QI più alto vivono in media più a lungo, quali percorsi spiegano l'associazione e che cosa non se ne può concludere."
+lang: it
+bibliography: ../../references.bib
+csl: ../../apa.csl
+suppress-bibliography: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+library(ggplot2)
+rosso = "#9A0000"
+virgola = function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",")
+tema = theme_minimal(base_size = 13) +
+  theme(panel.grid.minor = element_blank())
+```
+
+Un test somministrato a 11 anni prevede la probabilità di essere vivi a 76.
+Detta così, sembra una provocazione. È invece uno dei risultati più solidi della
+ricerca sull'intelligenza, e ha dato origine a un campo di studi con un nome
+proprio: l'**epidemiologia cognitiva**, che studia le associazioni prospettiche
+fra abilità cognitive ed esiti di salute [@deary2021intelligence].
+
+Prospettiche significa che l'intelligenza viene misurata prima, spesso
+nell'infanzia, e gli esiti di salute molti anni dopo. Questo esclude una
+spiegazione ovvia: che siano le malattie dell'età adulta ad abbassare il QI. Non
+esclude però molte altre spiegazioni, ed è proprio sulla loro natura che conviene
+ragionare.
+
+## La sorpresa scozzese
+
+Nel 1932 il Consiglio scozzese per la ricerca educativa somministrò un test di
+intelligenza a quasi tutti i bambini delle scuole scozzesi nati nel 1921. Più
+di sessant'anni dopo, un gruppo di ricercatori cercò di rintracciare i 2.792
+bambini dell'area di Aberdeen per sapere se fossero ancora vivi. Chi era morto
+prima del 1997 aveva ottenuto a 11 anni un punteggio medio di circa quattro punti
+inferiore a quello di chi era ancora in vita [@whalley2001longitudinal]. Fra le
+donne, circa il 70% del quarto con i punteggi più alti era vivo a 76 anni, contro
+circa il 45% del quarto con i punteggi più bassi. Fra gli uomini la differenza
+era simile, con un andamento complicato dalle morti nella Seconda guerra
+mondiale, che avevano colpito di più chi aveva punteggi alti.
+
+Lo stesso schema si è ripetuto in molte coorti: coscritti in Svezia, Danimarca,
+Norvegia e Israele, campioni statunitensi e britannici. Una meta-analisi di 16
+studi, con oltre un milione di partecipanti seguiti per periodi fra 17 e 69
+anni, ha stimato che un punteggio cognitivo più alto di una deviazione standard
+si associa a un rischio di morte inferiore del 24% [@calvin2011intelligence].
+L'associazione era simile per uomini e donne e non mostrava segni evidenti di
+pubblicazione selettiva.
+
+## Di che cosa si muore meno
+
+Il secondo grande studio scozzese, del 1947, ha permesso di guardare alle cause.
+Più di 65.000 persone testate a 11 anni sono state seguite per 68 anni. Un QI
+infantile più alto di una deviazione standard si associava a un rischio minore
+di morte per quasi tutte le cause principali (@fig-cause): malattie
+respiratorie, malattie coronariche, ictus, tumori legati al fumo, malattie
+dell'apparato digerente, demenza, incidenti [@calvin2017childhood]. Il legame
+era quasi lineare lungo tutta la distribuzione: non riguardava solo chi aveva
+punteggi molto bassi.
+
+```{r}
+#| label: fig-cause
+#| fig-cap: "Rapporti di rischio di morte associati a un QI a 11 anni più alto di una deviazione standard, per causa, nella coorte scozzese del 1936 seguita fino a 79 anni. Valori inferiori a 1 indicano un rischio minore; le barre orizzontali sono intervalli di confidenza al 95%. Elaborazione da Calvin et al. (2017)."
+#| fig-alt: "Grafico a punti con nove cause di morte. Tutti i rapporti di rischio sono inferiori a 1. I più bassi, attorno a 0,72-0,76, riguardano malattie respiratorie, coronariche e ictus; i più vicini a 1 riguardano i tumori non legati al fumo e il suicidio."
+#| fig-width: 7.5
+#| fig-height: 4
+d = data.frame(
+  causa = c("Malattie respiratorie", "Malattie coronariche", "Ictus", "Incidenti e cause esterne",
+            "Tumori legati al fumo", "Malattie digestive", "Demenza", "Suicidio", "Tumori non legati al fumo"),
+  hr = c(.72, .75, .76, .81, .82, .82, .84, .87, .96),
+  lo = c(.70, .73, .73, .75, .80, .79, .78, .74, .93),
+  hi = c(.74, .77, .79, .86, .84, .86, .90, 1.02, 1.00)
+)
+d$causa = factor(d$causa, levels = rev(d$causa))
+ggplot(d, aes(hr, causa)) +
+  geom_vline(xintercept = 1, linetype = 2, colour = "grey50") +
+  geom_errorbar(aes(xmin = lo, xmax = hi), width = .25, orientation = "y", colour = "grey40") +
+  geom_point(size = 3, colour = rosso) +
+  scale_x_continuous(labels = function(x) virgola(x, 1)) +
+  labs(x = "Rapporto di rischio per +1 DS di QI a 11 anni", y = NULL) +
+  tema
+```
+
+Un rapporto di rischio di 0,75 significa che, a ogni momento del periodo
+osservato, chi aveva un QI infantile più alto di quindici punti aveva un rischio
+di morire per quella causa pari a circa tre quarti di quello di chi stava nella
+media. Non è una piccola differenza. È però una differenza di probabilità fra
+gruppi, non una previsione sul singolo: moltissime persone con QI alto muoiono
+giovani, moltissime con QI basso vivono a lungo.
+
+## Perché? Quattro percorsi
+
+L'associazione fra intelligenza e longevità è complessa, piena di mediatori e in
+parte dovuta a cause comuni. Sono stati proposti quattro percorsi principali, non
+alternativi fra loro.
+
+**Il percorso socioeconomico.** Un QI più alto favorisce più istruzione, che
+porta a lavori più sicuri, meno logoranti e meglio pagati, che a loro volta danno
+accesso ad abitazioni più salubri, quartieri meno inquinati e cure migliori.
+I dati sono istruttivi. Nella meta-analisi citata, tenere conto dello status
+socioeconomico della famiglia d'origine non modificava quasi l'associazione: le
+condizioni dell'infanzia non sembrano la causa comune di QI e longevità. Tenere
+conto della posizione sociale da adulti e del livello di istruzione la riduceva
+invece di circa un terzo e di circa la metà [@calvin2011intelligence]. È
+compatibile con l'idea che istruzione e lavoro siano in parte la strada
+attraverso cui l'intelligenza si traduce in salute. Ma una riduzione statistica
+non distingue un mediatore da un fattore confondente, e il resto
+dell'associazione chiede comunque altre spiegazioni.
+
+**Il percorso dei comportamenti.** Mantenersi in salute è anche un compito
+cognitivo. Richiede di capire informazioni mediche, seguire istruzioni sui
+farmaci, valutare rischi, pianificare, rinunciare a gratificazioni immediate. Le
+persone con punteggi più alti tendono a fumare meno, a bere meno, a fare più
+attività fisica, ad avere una dieta migliore. Linda Gottfredson ha proposto che
+l'intelligenza sia una delle cause fondamentali delle disuguaglianze di salute,
+proprio perché la gestione della propria salute è, di fatto, una lunga serie di
+problemi da risolvere [@gottfredson2004intelligence].
+
+**Il percorso dell'integrità del sistema.** Un'ipotesi diversa è che punteggi
+cognitivi alti e buona salute siano entrambi segni di un organismo ben costruito
+e ben funzionante. Un sistema nervoso efficiente sarebbe un indicatore di un
+organismo resistente in generale [@deary2012looking]. In questo caso
+l'intelligenza non causerebbe la salute: entrambe rifletterebbero la stessa
+qualità di base.
+
+**Il percorso genetico.** Una parte di quella qualità di base potrebbe avere
+origine genetica. Analisi su gemelli e su dati genetici molecolari suggeriscono
+che l'associazione fra intelligenza e durata della vita sia in buona parte
+dovuta a fattori genetici comuni [@arden2016association]. È un esempio della
+pleiotropia vista nel capitolo sulla genetica molecolare.
+
+Un elemento in più complica il quadro: la salute fisica nell'infanzia influenza
+lo sviluppo cognitivo, e si collega a sua volta alla salute adulta. Alcune
+condizioni dei primi anni potrebbero quindi abbassare sia il QI misurato a 11
+anni sia l'aspettativa di vita, senza che l'uno causi l'altra.
+
+## Invecchiamento e demenza
+
+Un capitolo a parte riguarda l'invecchiamento cognitivo. Il QI infantile prevede
+anche il rischio di morte per demenza, come si è visto nella coorte scozzese.
+Una parte di questa associazione è probabilmente legata al concetto di
+**riserva**. A parità di alterazioni cerebrali dovute all'età o alla malattia,
+alcune persone mantengono un funzionamento migliore di altre. Si distingue fra
+una riserva cerebrale, legata a caratteristiche strutturali come il volume del
+cervello, e una riserva cognitiva, legata al modo in cui i compiti vengono
+svolti e alle strategie disponibili. Studi epidemiologici indicano che istruzione,
+complessità del lavoro e attività intellettuali nel tempo libero si associano a
+un rischio di demenza più basso [@stern2012cognitive].
+
+Il quadro ha una conseguenza pratica per la valutazione. Una persona con un
+livello cognitivo di partenza elevato può mostrare punteggi ancora nella media
+quando il declino è già in corso; una con un livello di partenza basso può
+sembrare compromessa senza esserlo. Interpretare un punteggio nell'età anziana
+richiede quindi di stimare, quando possibile, il livello precedente, per esempio
+attraverso istruzione, professione o prove di conoscenze cristallizzate, che
+risentono meno dell'invecchiamento.
+
+## Che cosa se ne può concludere
+
+L'associazione fra intelligenza e salute è robusta, replicata e di dimensioni
+non trascurabili. Le sue implicazioni pratiche sono però diverse da quelle che
+si potrebbero immaginare.
+
+Non suggerisce di usare il QI per fare previsioni sanitarie individuali: la
+previsione sarebbe troppo imprecisa. Suggerisce invece che la complessità delle
+informazioni e delle procedure sanitarie è un fattore di disuguaglianza.
+Istruzioni più semplici, percorsi di cura meno faticosi, sistemi che non
+richiedono di districarsi da soli fra burocrazie e prescrizioni possono ridurre
+lo svantaggio di chi ha più difficoltà a risolvere problemi, qualunque ne sia la
+causa. E ricorda che, come per la scuola, una differenza individuale si traduce
+in un esito attraverso istituzioni che possono amplificarla o attenuarla.
+
+Resta infine una distinzione da tenere sempre presente. Queste associazioni
+descrivono differenze fra individui all'interno di una popolazione. Non dicono
+nulla sulle differenze medie fra gruppi o fra paesi, nelle quali la salute
+dipende da molte altre condizioni.
+
+::: {.callout-note icon=false}
+## In breve
+
+- Il QI misurato nell'infanzia prevede la longevità: in diverse coorti, una
+  deviazione standard in più si associa a circa un quarto di rischio di morte in
+  meno.
+- L'associazione riguarda quasi tutte le principali cause di morte ed è
+  approssimativamente lineare.
+- I percorsi ipotizzati sono socioeconomici, comportamentali, di integrità del
+  sistema e genetici, e probabilmente agiscono insieme.
+- Si tratta di differenze di probabilità fra gruppi, non di previsioni
+  individuali; la complessità delle cure è essa stessa una fonte di
+  disuguaglianza.
+:::
+
+[Riferimenti bibliografici](../../references.qmd)

@@ -1,0 +1,147 @@
+---
+title: "Altre intelligenze o vecchi costrutti con un nome nuovo?"
+description: "L'intelligenza emotiva alla prova della misura: sovrapposizione con abilità cognitive e personalità, validità incrementale, e il problema delle etichette che si moltiplicano."
+lang: it
+bibliography: ../../references.bib
+csl: ../../apa.csl
+suppress-bibliography: true
+---
+
+La visione dominante dell'intelligenza è potente. Un singolo fattore generale
+riassume gran parte della varianza interpretabile nei test cognitivi, si misura
+in modo rapido e affidabile, prevede esiti importanti. Proprio questa potenza
+alimenta due domande. Il fattore generale è davvero tutto? Esistono altre
+intelligenze che i test non colgono? Questo approfondimento affronta la seconda
+domanda attraverso il caso più noto, l'intelligenza emotiva. Il prossimo affronta
+una domanda ancora più radicale: se *g* esista davvero.
+
+## Una buona idea
+
+Le emozioni esistono e contano. Regolare le proprie emozioni aiuta a funzionare
+meglio. Capire quelle degli altri e comportarsi di conseguenza è altrettanto
+importante. Nessuno lo contesta. L'idea di **intelligenza emotiva** nasce qui:
+esisterebbe una capacità di percepire, comprendere, usare e regolare le emozioni,
+diversa dall'intelligenza cognitiva e altrettanto importante
+[@salovey1990emotional]. Negli anni Novanta un libro di grande successo la
+presentò al pubblico come fattore decisivo del successo nella vita, persino più
+del QI [@goleman1995emotional].
+
+Le domande da porre sono quelle che si pongono per qualsiasi costrutto. Esiste
+davvero una capacità mentale identificabile dietro questa etichetta? È
+misurabile in modo abbastanza attendibile per la ricerca e la clinica? Aggiunge
+qualcosa a ciò che sappiamo già misurare? E, se sì, è necessario chiamarla
+«intelligenza»?
+
+## Due modi di misurarla
+
+L'intelligenza emotiva si misura in due modi molto diversi, che corrispondono
+in pratica a due costrutti diversi.
+
+Il primo la tratta come un'**abilità**. Si presentano scenari e si chiede di
+riconoscere l'emozione più probabile di un personaggio, o di valutare quanto una
+certa azione aiuterebbe qualcuno a mantenere il buon umore. Le risposte vengono
+confrontate con un criterio. Qui sorge il primo problema: qual è la risposta
+corretta? Spesso quella scelta dalla maggioranza, o da un gruppo di esperti. È un
+criterio molto diverso dalla soluzione di una matrice.
+
+Il secondo la tratta come un **tratto** e la misura con questionari
+autodescrittivi. Le affermazioni riguardano l'autostima, la soddisfazione per la
+propria vita, la facilità a calmarsi, il controllo degli impulsi, la capacità di
+esprimere affetto, l'assertività [@petrides2001trait]. Chi conosce i questionari
+di personalità vi riconoscerà molti contenuti familiari.
+
+## Che cosa misurano davvero
+
+Gli stessi proponenti della versione come abilità hanno ridimensionato gli
+entusiasmi giornalistici [@mayer2008human]. I punteggi correlano attorno a
+0,2–0,3 con il rendimento scolastico e la prestazione lavorativa: valori
+apprezzabili, ma lontani dalle promesse. Le prove di abilità emotiva correlano in
+misura moderata con l'intelligenza verbale, e le loro diverse componenti
+correlano fra loro in modo molto variabile, da deboli a moderate.
+
+Per la versione come tratto il problema è la sovrapposizione con la personalità.
+I punteggi correlano fortemente, in senso negativo, con il nevroticismo e,
+positivamente, con estroversione e coscienziosità. Una meta-analisi ha trovato
+che l'intelligenza emotiva di tratto coincide quasi completamente con un fattore
+generale della personalità, che riassume i poli socialmente desiderabili dei
+cinque grandi tratti [@vanderlinden2017overlap].
+
+La domanda decisiva è quindi quella della **validità incrementale**: tolti il
+fattore cognitivo generale e i tratti di personalità già noti, resta qualcosa
+che prevede gli esiti? Le analisi più accurate rispondono che resta poco. Nel
+lavoro, l'intelligenza emotiva aggiunge una piccola quota di previsione rispetto
+ad abilità cognitive e personalità, più per i questionari che per le prove di
+abilità, e in parte proprio perché i questionari includono contenuti di
+autovalutazione e motivazione che altri strumenti non misurano
+[@joseph2010emotional].
+
+C'è poi un problema pratico, rilevante soprattutto nella selezione del
+personale, dove questi strumenti sono molto usati. Un questionario
+autodescrittivo si può falsare: chi vuole fare buona impressione sa quali
+risposte sono desiderabili. In un esperimento, i partecipanti a cui era stato
+chiesto di presentarsi nel modo migliore possibile hanno alzato in modo
+sensibile i propri punteggi in un questionario di intelligenza emotiva, mentre
+non sono riusciti a farlo in una prova di abilità emotiva [@day2008faking]. È
+lo stesso motivo per cui nessuno misurerebbe l'intelligenza cognitiva chiedendo
+alle persone quanto si ritengono brillanti. Una misura di prestazione ha i suoi
+problemi di criterio; una misura autodescrittiva ha quelli di sincerità e di
+conoscenza di sé.
+
+## Una lista di qualità desiderabili
+
+Il problema di fondo è concettuale. Nelle versioni più diffuse, l'intelligenza
+emotiva è un insieme troppo ampio e malleabile per essere un costrutto unitario:
+empatia, autoregolazione, ottimismo, leadership, abilità sociali, motivazione,
+resilienza. Assomiglia più a un elenco di caratteristiche desiderabili che a una
+capacità mentale con una struttura propria.
+
+E perché chiamarla «intelligenza»? Già per il fattore cognitivo generale la
+parola è un'etichetta che accettiamo per la sua utilità pratica, consapevoli del
+rischio di reificazione. Estenderla a costrutti psicometricamente più deboli non
+aggiunge chiarezza. Aggiunge prestigio.
+
+Questo non significa che competenze emotive e sociali non esistano o non contino.
+Significa che, per studiarle bene, conviene descriverle con costrutti precisi e
+misure valide, e verificare ogni volta che non siano vecchie conoscenze
+travestite.
+
+## Jingle, jangle e la proliferazione delle etichette
+
+L'intelligenza emotiva non è un caso isolato. Autoefficacia, grinta, resilienza,
+mentalizzazione, soft skills, flessibilità, competenza emotiva, agency:
+la psicologia della personalità, della motivazione, del benessere e del lavoro
+produce di continuo nuove etichette. Due errori classici aiutano a orientarsi.
+
+- La **fallacia jingle** consiste nel dare lo stesso nome a costrutti diversi:
+  due questionari di «resilienza» possono misurare cose differenti.
+- La **fallacia jangle** consiste nel dare nomi diversi allo stesso costrutto:
+  una nuova scala con un nome nuovo può misurare, nella sostanza, un tratto di
+  personalità noto da decenni [@lawson2021sibling].
+
+La seconda è particolarmente frequente in psicologia, dove ogni gruppo di ricerca
+tende a costruirsi i propri strumenti. Un'analisi di migliaia di questionari ha
+mostrato che la maggior parte delle misure psicologiche viene usata pochissime
+volte, spesso solo dagli autori che le hanno create [@elson2023psychological].
+Il risultato è una letteratura frammentata, difficile da cumulare, in cui la
+novità del nome sostituisce la novità della scoperta.
+
+Il rimedio non è vietare i nuovi costrutti, ma chiedere loro tre cose: una
+definizione che li distingua da quelli esistenti; una misura che non correli
+così tanto con costrutti noti da esserne un duplicato; e la prova che prevedano
+qualcosa di rilevante al di là di ciò che quei costrutti già prevedono. Il fattore
+generale dell'intelligenza ha superato queste prove. Le altre «intelligenze», per
+ora, molto meno.
+
+::: {.callout-note icon=false}
+## In breve
+
+- L'intelligenza emotiva come abilità si sovrappone in parte all'intelligenza
+  cognitiva; come tratto autodescritto, quasi completamente alla personalità.
+- La sua validità incrementale rispetto a intelligenza e personalità è piccola.
+- Il costrutto è spesso un insieme eterogeneo di qualità desiderabili; chiamarlo
+  «intelligenza» aggiunge prestigio più che chiarezza.
+- Le fallacie jingle e jangle e la proliferazione di strumenti poco usati sono
+  problemi diffusi; ogni nuovo costrutto deve dimostrare di essere distinto e utile.
+:::
+
+[Riferimenti bibliografici](../../references.qmd)
