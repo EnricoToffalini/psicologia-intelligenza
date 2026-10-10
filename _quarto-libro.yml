@@ -1,0 +1,87 @@
+# Profilo "libro": versione PDF stampabile, solo parte didattica.
+# Le impostazioni comuni sono in _quarto.yml. I capitoli didattici vanno
+# elencati sia qui sia in _quarto-sito.yml.
+# Il PDF viene scritto in _libro/ e spostato in website/ da render.bat/.sh,
+# perché un render di Quarto cancella l'output dell'altro formato.
+project:
+  output-dir: _libro
+
+format:
+  pdf:
+    documentclass: scrbook
+    pdf-engine: xelatex
+    fontsize: 10pt
+    # Formato A5 (148 x 210 mm). Il margine interno è più ampio per la rilegatura.
+    geometry:
+      - paperwidth=148mm
+      - paperheight=210mm
+      - inner=19mm
+      - outer=15mm
+      - top=17mm
+      - bottom=20mm
+      - headsep=5mm
+      - footskip=9mm
+      - includehead
+    classoption:
+      - twoside
+      - open=any
+      - parskip=half-
+      - headings=small
+    toc: true
+    toc-depth: 1
+    number-sections: true
+    colorlinks: true
+    linkcolor: black
+    urlcolor: blue
+    citecolor: black
+    fig-width: 4.4
+    fig-height: 3
+    fig-pos: "htbp"
+    filters:
+      - at: pre-ast
+        path: assets/pdf-layout.lua
+    include-in-header: assets/pdf-layout.tex
+
+book:
+  title: "Psicologia dell'Intelligenza Umana"
+  chapters:
+    - file: index.qmd
+      text: "Introduzione"
+    - part: "Capire l'intelligenza"
+      chapters:
+        - didattica/capire-intelligenza/perche-studiarla.qmd
+        - didattica/capire-intelligenza/che-cosa-e.qmd
+    - part: "Dati, misure e punteggi"
+      chapters:
+        - didattica/dati-misure-punteggi/correlazione.qmd
+        - didattica/dati-misure-punteggi/distribuzioni-e-punteggi.qmd
+        - didattica/dati-misure-punteggi/qualita-della-misura.qmd
+    - part: "Modelli e test dell'intelligenza"
+      chapters:
+        - didattica/modelli-test/fattore-g.qmd
+        - didattica/modelli-test/modelli-gerarchici.qmd
+        - didattica/modelli-test/origini-dei-test.qmd
+        - didattica/modelli-test/batterie-moderne.qmd
+    - part: "Basi biologiche, ambiente e cambiamento"
+      chapters:
+        - didattica/basi-ambiente-cambiamento/geni-ambiente-ereditabilita.qmd
+        - didattica/basi-ambiente-cambiamento/genetica-molecolare.qmd
+        - didattica/basi-ambiente-cambiamento/cervello-e-intelligenza.qmd
+        - didattica/basi-ambiente-cambiamento/effetto-flynn.qmd
+        - didattica/basi-ambiente-cambiamento/potenziamento-cognitivo.qmd
+    - part: "Scuola, salute e lavoro"
+      chapters:
+        - didattica/scuola-salute-lavoro/scuola-e-condizioni-sociali.qmd
+        - didattica/scuola-salute-lavoro/salute-e-longevita.qmd
+        - didattica/scuola-salute-lavoro/intelligenza-e-lavoro.qmd
+    - part: "Intelligenza e condizioni del neurosviluppo"
+      chapters:
+        - didattica/condizioni-neurosviluppo/neurosviluppo-dimensionale.qmd
+        - didattica/condizioni-neurosviluppo/valutazione-nel-neurosviluppo.qmd
+    - part: "Approfondimenti: oltre g"
+      chapters:
+        - didattica/approfondimenti/intelligenza-emotiva-e-costrutti.qmd
+        - didattica/approfondimenti/alternative-a-g.qmd
+
+    - file: bibliografia.qmd
+      text: "Riferimenti bibliografici"

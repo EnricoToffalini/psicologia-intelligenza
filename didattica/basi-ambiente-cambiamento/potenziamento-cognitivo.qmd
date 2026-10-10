@@ -12,8 +12,10 @@ execute:
 #| label: setup
 library(ggplot2)
 rosso = "#9A0000"
+# Nel PDF (A5) le figure si disegnano alla larghezza reale della pagina.
+stampa = knitr::is_latex_output()
 virgola = function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",")
-tema = theme_minimal(base_size = 13) +
+tema = theme_minimal(base_size = if (stampa) 10 else 13) +
   theme(panel.grid.minor = element_blank())
 ```
 
@@ -199,8 +201,8 @@ infinitamente preciso.
 #| label: fig-funnel
 #| fig-cap: "Simulazione di pubblicazione selettiva. 1.500 studi di numerosità diversa stimano un effetto vero pari a zero; quelli con un risultato positivo significativo vengono sempre pubblicati, gli altri solo nel 6% dei casi. La media degli effetti pubblicati è circa 0,2; gli studi piccoli riportano gli effetti più grandi. La retta che lega effetto ed errore standard incontra l'asse degli effetti, dove l'errore è nullo, vicino a zero."
 #| fig-alt: "Diagramma con l'effetto stimato sull'asse orizzontale e l'errore standard sull'asse verticale, invertito. I punti formano un triangolo asimmetrico spostato verso effetti positivi negli studi meno precisi. Una retta inclinata incontra l'asse degli effetti vicino a zero."
-#| fig-width: 7
-#| fig-height: 4.4
+#| fig-width: !expr if (stampa) 4.45 else 7
+#| fig-height: !expr if (stampa) 3.6 else 4.4
 set.seed(1)
 k = 1500
 n = round(exp(runif(k, log(10), log(300))))

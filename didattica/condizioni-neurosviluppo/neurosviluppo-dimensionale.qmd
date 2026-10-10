@@ -12,7 +12,9 @@ execute:
 #| label: setup
 library(ggplot2)
 rosso = "#9A0000"
-tema = theme_minimal(base_size = 13) +
+# Nel PDF (A5) le figure si disegnano alla larghezza reale della pagina.
+stampa = knitr::is_latex_output()
+tema = theme_minimal(base_size = if (stampa) 10 else 13) +
   theme(panel.grid.minor = element_blank())
 ```
 
@@ -168,8 +170,8 @@ di supporto. Sono decisioni ragionevoli, non scoperte.
 #| label: fig-soglie
 #| fig-cap: "Distribuzione continua di un'abilità e due possibili soglie diagnostiche. Una soglia a −1,5 deviazioni standard identifica circa il 7% della popolazione; una a −2 circa il 2%. La distribuzione non contiene alcun punto di discontinuità."
 #| fig-alt: "Curva a campana con due linee verticali tratteggiate a meno 2 e meno 1,5 deviazioni standard. Le aree a sinistra delle soglie sono colorate con intensità diversa."
-#| fig-width: 7
-#| fig-height: 3.4
+#| fig-width: !expr if (stampa) 4.45 else 7
+#| fig-height: !expr if (stampa) 2.6 else 3.4
 x = seq(-4, 4, .01)
 d = data.frame(x, y = dnorm(x))
 ggplot(d, aes(x, y)) +
@@ -177,8 +179,10 @@ ggplot(d, aes(x, y)) +
   geom_area(data = subset(d, x <= -2), fill = rosso, alpha = .6) +
   geom_line(linewidth = .9) +
   geom_vline(xintercept = c(-2, -1.5), linetype = 2) +
-  annotate("text", x = -2.05, y = .25, label = "soglia a -2 DS\n(circa 2%)", hjust = 1, size = 3.6) +
-  annotate("text", x = -1.45, y = .32, label = "soglia a -1,5 DS\n(circa 7%)", hjust = 0, size = 3.6) +
+  annotate("text", x = -2.05, y = .25, label = "soglia a -2 DS\n(circa 2%)", hjust = 1, size = if (stampa) 3 else 3.6) +
+  # Nel PDF l'etichetta della seconda soglia sta sopra la curva, per non sovrapporsi.
+  annotate("text", x = -1.45, y = if (stampa) .45 else .32, hjust = 0, size = if (stampa) 3 else 3.6,
+           label = if (stampa) "soglia a -1,5 DS (circa 7%)" else "soglia a -1,5 DS\n(circa 7%)") +
   labs(x = "Abilità (punti z)", y = NULL) +
   tema + theme(axis.text.y = element_blank(), panel.grid.major.y = element_blank())
 ```

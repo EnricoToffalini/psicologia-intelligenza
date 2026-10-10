@@ -3,7 +3,7 @@
 # Il sito pubblicato e' la cartella website/: se cambiano i sorgenti ma non
 # website/, online resterebbe la versione vecchia.
 staged=$(git diff --cached --name-only)
-src=$(printf '%s\n' "$staged" | grep -E '\.qmd$|^_quarto\.yml$|^references\.bib$|^assets/' || true)
+src=$(printf '%s\n' "$staged" | grep -E '\.qmd$|^_quarto(-[a-z]+)?\.yml$|^references\.bib$|^assets/' || true)
 site=$(printf '%s\n' "$staged" | grep -E '^website/' || true)
 if [ -n "$src" ] && [ -z "$site" ]; then
   echo "BLOCCATO: hai modificato i sorgenti del libro ma non il sito in website/."

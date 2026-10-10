@@ -1,0 +1,65 @@
+# Profilo "sito" (predefinito): versione HTML con tutte le sezioni.
+# Le impostazioni comuni sono in _quarto.yml.
+format:
+  html:
+    number-sections: true
+    toc: false
+    css: assets/custom.css
+    page-layout: full
+    include-in-header:
+       text: |
+         <script data-goatcounter="https://intelligenza.goatcounter.com/count"
+               async src="//gc.zgo.at/count.js"></script>
+
+book:
+  title: "Psicologia dell'Intelligenza"
+  downloads: [pdf]
+  chapters:
+    - file: index.qmd
+      text: "Introduzione"
+    - part: "Capire l'intelligenza"
+      chapters:
+        - didattica/capire-intelligenza/perche-studiarla.qmd
+        - didattica/capire-intelligenza/che-cosa-e.qmd
+    - part: "Dati, misure e punteggi"
+      chapters:
+        - didattica/dati-misure-punteggi/correlazione.qmd
+        - didattica/dati-misure-punteggi/distribuzioni-e-punteggi.qmd
+        - didattica/dati-misure-punteggi/qualita-della-misura.qmd
+    - part: "Modelli e test dell'intelligenza"
+      chapters:
+        - didattica/modelli-test/fattore-g.qmd
+        - didattica/modelli-test/modelli-gerarchici.qmd
+        - didattica/modelli-test/origini-dei-test.qmd
+        - didattica/modelli-test/batterie-moderne.qmd
+    - part: "Basi biologiche, ambiente e cambiamento"
+      chapters:
+        - didattica/basi-ambiente-cambiamento/geni-ambiente-ereditabilita.qmd
+        - didattica/basi-ambiente-cambiamento/genetica-molecolare.qmd
+        - didattica/basi-ambiente-cambiamento/cervello-e-intelligenza.qmd
+        - didattica/basi-ambiente-cambiamento/effetto-flynn.qmd
+        - didattica/basi-ambiente-cambiamento/potenziamento-cognitivo.qmd
+    - part: "Scuola, salute e lavoro"
+      chapters:
+        - didattica/scuola-salute-lavoro/scuola-e-condizioni-sociali.qmd
+        - didattica/scuola-salute-lavoro/salute-e-longevita.qmd
+        - didattica/scuola-salute-lavoro/intelligenza-e-lavoro.qmd
+    - part: "Intelligenza e condizioni del neurosviluppo"
+      chapters:
+        - didattica/condizioni-neurosviluppo/neurosviluppo-dimensionale.qmd
+        - didattica/condizioni-neurosviluppo/valutazione-nel-neurosviluppo.qmd
+    - part: "Approfondimenti: oltre g"
+      chapters:
+        - didattica/approfondimenti/intelligenza-emotiva-e-costrutti.qmd
+        - didattica/approfondimenti/alternative-a-g.qmd
+
+    - part: "<b>Professione</b>"
+      chapters:
+        - professione-pagine/elenco-test-italia.qmd    
+    - part: "<b>Divulgazione</b>"
+      chapters:
+        - divulgazione-pagine/domande-risposte.qmd
+        - divulgazione-pagine/flynn-effetto-flynn.qmd
+
+    - file: bibliografia.qmd
+      text: "Riferimenti bibliografici"

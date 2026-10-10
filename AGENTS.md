@@ -16,7 +16,9 @@ Ogni file modificabile esiste in una sola copia; tutto il resto è generato.
 
 | Dove | Che cosa | Si modifica? |
 |---|---|---|
-| `_quarto.yml` | indice del libro (parti e capitoli) e impostazioni comuni: bibliografia, CSL, lingua, formati | sì |
+| `_quarto.yml` | impostazioni comuni a sito e PDF: autore, bibliografia, CSL, lingua, nome del PDF | sì |
+| `_quarto-sito.yml` | profilo «sito» (predefinito): formato HTML e indice completo (didattica, professione, divulgazione) | sì |
+| `_quarto-libro.yml` | profilo «libro»: PDF A5 intitolato «Psicologia dell'Intelligenza Umana», con **solo la parte didattica** | sì |
 | `index.qmd` | introduzione | sì |
 | `bibliografia.qmd` | pagina che stampa l'elenco dei riferimenti | no: non contiene fonti |
 | `didattica/<parte>/<slug>.qmd` | capitoli didattici, figure incluse (generate da R nel file) | sì |
@@ -29,9 +31,12 @@ Ogni file modificabile esiste in una sola copia; tutto il resto è generato.
 | `slide/` | fonti private, escluse da git | mai |
 
 - Il render si fa **solo** con `render.bat` (Windows) o `sh render.sh`. Esegue
-  `quarto render` (HTML e PDF in `website/`) e cancella i residui intermedi
-  (`*.tex`, `*_files/` accanto ai sorgenti, `site_libs/` in radice), che sono
-  esclusi da git e non vanno mai modificati.
+  `quarto render --profile sito` (HTML in `website/`), poi
+  `quarto render --profile libro` (PDF nella cartella temporanea `_libro/`, da cui
+  il PDF viene spostato in `website/` e la cartella cancellata: ogni render di
+  Quarto svuota la propria cartella di output). Infine cancella i residui
+  intermedi (`*.tex`, `*_files/` accanto ai sorgenti, `site_libs/` in radice),
+  che sono esclusi da git e non vanno mai modificati.
 - Non usare cartelle di output alternative (`--output-dir`): devono esistere una
   sola versione HTML e una sola PDF. Il render in `website/` è innocuo finché non
   si fa push: la pubblicazione avviene solo con il push di `website/` su `main`
@@ -69,8 +74,9 @@ punti aperti in `progetto/stato-lavori.md`.
 
 ## Convenzioni tecniche dei capitoli
 
-- File in `didattica/<parte>/<slug>.qmd`, aggiunto anche all'elenco dei capitoli
-  in `_quarto.yml`. Intestazione YAML minima: `title`, `description`,
+- File in `didattica/<parte>/<slug>.qmd`, aggiunto all'elenco dei capitoli sia in
+  `_quarto-sito.yml` sia in `_quarto-libro.yml` (le pagine non didattiche solo nel
+  primo). Intestazione YAML minima: `title`, `description`,
   `suppress-bibliography: true` (ed eventuale `execute`). Lingua, bibliografia e
   CSL sono impostate una sola volta in `_quarto.yml`: non ripeterle. In fondo un
   callout «In breve» e il link `[Riferimenti bibliografici](../../bibliografia.qmd)`.
@@ -80,6 +86,16 @@ punti aperti in `progetto/stato-lavori.md`.
   un chunk `setup` con `rosso = "#9A0000"`, la funzione `virgola()` per i
   decimali italiani e un tema `ggplot2` minimale. Con `virgola()` sugli assi
   vanno sempre indicati i `breaks`, altrimenti i valori vengono arrotondati male.
+- Nel PDF (A5) le figure si disegnano alla larghezza reale del testo, così i
+  caratteri restano leggibili. Il chunk `setup` definisce
+  `stampa = knitr::is_latex_output()` e il tema usa `base_size = if (stampa) 10 else 13`.
+  Ogni figura indica le misure per entrambi i formati, per esempio
+  `#| fig-width: !expr if (stampa) 4.45 else 7` e
+  `#| fig-height: !expr if (stampa) 3 else 4`; dove serve, `if (stampa)` cambia
+  anche la disposizione (pannelli in colonna, legenda in basso, testo più piccolo).
+  Didascalie e testi alternativi devono valere per entrambe le disposizioni
+  («primo pannello», non «a sinistra»). Dopo ogni modifica controllare le figure
+  anche nel PDF: niente testo sovrapposto, tagliato o troppo piccolo.
 - Valori in didascalia e testo alternativo devono corrispondere a ciò che il
   codice produce: dopo ogni modifica, rigenerare e controllare le immagini.
 - Ogni figura va registrata in `progetto/registro-figure.csv`.

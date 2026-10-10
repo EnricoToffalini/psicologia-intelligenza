@@ -11,6 +11,15 @@ local function clean_str(el)
   return el
 end
 
+-- Il link di fine capitolo alla pagina della bibliografia diventa, nel PDF,
+-- un rimando interno all'elenco dei riferimenti.
+local function printed_link(link)
+  if link.target:match("bibliografia%.qmd$") then
+    link.target = "#refs"
+    return link
+  end
+end
+
 local function printed_inlines(inlines)
   local result, pending, target = pandoc.Inlines({}), nil, nil
   for _, el in ipairs(inlines) do
@@ -96,5 +105,5 @@ local function readable_table(tbl)
   return tbl
 end
 
-return {{Str = clean_str, Inlines = printed_inlines, Div = open_callout,
+return {{Link = printed_link}, {Str = clean_str, Inlines = printed_inlines, Div = open_callout,
          Blocks = printed_blocks, Table = readable_table}}

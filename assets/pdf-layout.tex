@@ -11,3 +11,23 @@
 \RedeclareSectionCommand[beforeskip=0pt,afterskip=16pt]{chapter}
 % Le parti restano divisori editoriali intenzionali; niente pagine pari vuote.
 \KOMAoptions{open=any}
+% Didascalie compatte e senza rientro sospeso; numeri senza punto finale.
+\KOMAoptions{numbers=noendperiod}
+\setcapindent{0pt}
+\addtokomafont{caption}{\small}
+\addtokomafont{captionlabel}{\bfseries}
+% Figure e testo sulla stessa pagina quando possibile; pagine di sole figure
+% allineate in alto.
+\renewcommand{\topfraction}{.85}
+\renewcommand{\bottomfraction}{.7}
+\renewcommand{\textfraction}{.12}
+\renewcommand{\floatpagefraction}{.75}
+\makeatletter
+\setlength{\@fptop}{0pt}
+\makeatother
+% Indice: spazio per numeri a due cifre e romani; i titoli lunghi vanno a capo
+% prima del numero di pagina (con XeLaTeX un link non si spezza, quindi nell'indice
+% è cliccabile solo il numero di pagina; il riquadro del numero accoglie tre cifre).
+\PassOptionsToPackage{linktoc=page}{hyperref}
+\DeclareTOCStyleEntry[numwidth=2.4em,pagenumberwidth=2.2em,rightindent=3.2em]{tocline}{chapter}
+\RedeclareSectionCommand[tocnumwidth=2.6em]{part}

@@ -12,8 +12,10 @@ execute:
 #| label: setup
 library(ggplot2)
 rosso = "#9A0000"
+# Nel PDF (A5) le figure si disegnano alla larghezza reale della pagina.
+stampa = knitr::is_latex_output()
 virgola = function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",")
-tema = theme_minimal(base_size = 13) +
+tema = theme_minimal(base_size = if (stampa) 10 else 13) +
   theme(panel.grid.minor = element_blank())
 ```
 
@@ -90,8 +92,8 @@ un gruppo omogeneo la correlazione si riduce, come mostra la @fig-range.
 #| label: fig-range
 #| fig-cap: "Restrizione del range in dati simulati. Nella popolazione completa la correlazione fra abilità e prestazione è circa 0,6; fra le sole persone selezionate, il 30% con l'abilità più alta, scende a circa 0,4."
 #| fig-alt: "Diagramma di dispersione con una nuvola di punti grigi crescente. I punti a destra di una soglia verticale sono evidenziati in rosso e, presi da soli, mostrano una tendenza molto più debole."
-#| fig-width: 7
-#| fig-height: 4.2
+#| fig-width: !expr if (stampa) 4.45 else 7
+#| fig-height: !expr if (stampa) 3.4 else 4.2
 set.seed(1998)
 m = MASS::mvrnorm(1500, c(0, 0), matrix(c(1, .6, .6, 1), 2))
 d = data.frame(abil = m[, 1], prest = m[, 2])
@@ -104,8 +106,8 @@ ggplot(d, aes(abil, prest)) +
   geom_smooth(method = "lm", se = FALSE, colour = "grey30", linewidth = .8) +
   geom_smooth(data = subset(d, sel), method = "lm", se = FALSE, colour = rosso, linewidth = 1) +
   scale_colour_manual(values = c("grey65", rosso), guide = "none") +
-  annotate("text", x = -2.6, y = 3, hjust = 0, label = paste0("Tutti: r = ", virgola(r_tot))) +
-  annotate("text", x = soglia + .1, y = -3, hjust = 0, colour = rosso, label = paste0("Selezionati: r = ", virgola(r_sel))) +
+  annotate("text", x = -2.6, y = 3, hjust = 0, size = if (stampa) 3.2 else 3.88, label = paste0("Tutti: r = ", virgola(r_tot))) +
+  annotate("text", x = soglia + .1, y = -3, hjust = 0, size = if (stampa) 3.2 else 3.88, colour = rosso, label = paste0("Selezionati: r = ", virgola(r_sel))) +
   labs(x = "Abilità cognitiva (punti z)", y = "Prestazione lavorativa (punti z)") +
   tema
 ```
