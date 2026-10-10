@@ -2,7 +2,21 @@
 title: "Le batterie moderne di intelligenza"
 description: "Dalle scale Wechsler al QI di deviazione: come è fatta una batteria moderna, che cosa sono indici e subtest, e come leggere un profilo senza sovrainterpretarlo."
 suppress-bibliography: true
+execute:
+  echo: false
+  warning: false
+  message: false
 ---
+
+```{r}
+#| label: setup
+library(ggplot2)
+rosso = "#9A0000"
+virgola = function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",")
+source("../../assets/diagrammi.R")
+tema = theme_minimal(base_size = if (stampa) 10 else 13) +
+  theme(panel.grid.minor = element_blank())
+```
 
 Il QI che si legge oggi in un referto non ha quasi nulla in comune con il
 quoziente di Stern. Non è un rapporto fra età, non si basa su un'età mentale, e
@@ -31,6 +45,26 @@ Il linguaggio dei test usa alcuni termini con un significato preciso.
   subtest, espresso su una metrica standardizzata. Il QI totale è un indice;
   lo sono anche gli indici di dominio, come comprensione verbale o memoria di
   lavoro.
+
+```{r}
+#| label: fig-livelli
+#| fig-cap: "I livelli di una batteria di intelligenza. Il QI totale aggrega gli indici, ogni indice aggrega alcuni subtest, ogni subtest è una sequenza di item di difficoltà crescente. Per leggibilità sono sviluppati per esteso solo un indice e un subtest. Schema originale."
+#| fig-alt: "Diagramma ad albero dentro una cornice che rappresenta la batteria. In alto il QI totale; sotto, cinque indici; dal primo indice partono tre subtest; dal primo subtest partono cinque item numerati da 1 a 5. A sinistra le etichette dei livelli: indice globale, indici, subtest, item."
+#| fig-width: !expr 4.45 * scala
+#| fig-height: !expr 2.9 * scala
+tela(c(0, 12), c(0, 10))
+rect(.05, .05, 11.95, 9.95, border = "grey60", lty = 2, lwd = scala)
+text(11.8, 9.5, "batteria", adj = 1, cex = .62, font = 3, col = "grey40")
+text(.3, c(8.6, 6.1, 3.6, 1.1), c("indice globale", "indici", "subtest", "item"), adj = 0, cex = .62, font = 2, col = "grey35")
+qit = nodo(7, 8.6, "QI totale", w = 2.6, h = 1.1, bg = "grey85", font = 2, cex = .7)
+ind = lapply(1:5, function(i) nodo(c(3.2, 5.1, 7, 8.9, 10.8)[i], 6.1, c("I1", "I2", "I3", "I4", "I5")[i], w = 1.5, h = 1, bg = "grey93", cex = .66))
+for (i in ind) collega(qit, i)
+sub = lapply(1:3, function(i) nodo(c(4, 5.9, 7.8)[i], 3.6, c("S1", "S2", "S3")[i], w = 1.5, h = 1, bg = "white", cex = .66))
+for (x in sub) collega(ind[[1]], x)
+for (i in 1:5) collega(sub[[1]], nodo(c(1.6, 2.8, 4, 5.2, 6.4)[i], 1.1, i, w = .9, h = .9, bg = "white", cex = .6), col = "grey45")
+text(7.3, 1.1, "difficoltà crescente", adj = 0, cex = .58, font = 3, col = "grey40")
+freccia(7.3, .5, 9.9, .5, col = "grey50")
+```
 
 ## Wechsler e il QI di deviazione
 
@@ -80,6 +114,29 @@ indici di ispirazione cognitiva e neuropsicologica: comprensione verbale,
 ragionamento percettivo, memoria di lavoro, velocità di elaborazione. Le quinte
 edizioni hanno separato il ragionamento percettivo in un indice visuospaziale e
 uno di ragionamento fluido, con un riferimento più esplicito al modello CHC.
+La @fig-edizioni riassume il passaggio.
+
+```{r}
+#| label: fig-edizioni
+#| fig-cap: "Come è cambiata la struttura delle scale Wechsler: dal QI verbale e di performance delle prime tre edizioni ai quattro indici della quarta, ai cinque indici primari della quinta, più vicini al modello CHC. Schema originale."
+#| fig-alt: "Tre alberi uno sotto l'altro. Prime tre edizioni, dagli anni Trenta agli anni Novanta: QI totale diviso in QI verbale e QI di performance. Quarta edizione, anni Duemila: QI totale con quattro indici, comprensione verbale, ragionamento percettivo, memoria di lavoro, velocità di elaborazione. Quinta edizione, dagli anni Dieci: cinque indici, con il ragionamento percettivo diviso in visuospaziale e ragionamento fluido."
+#| fig-width: !expr 4.45 * scala
+#| fig-height: !expr 3.9 * scala
+tela(c(0, 12), c(1, 15))
+albero = function(y, titolo, sotto, foglie) {
+  text(0, y - .2, titolo, adj = c(0, 0), cex = .68, font = 2)
+  text(0, y - .4, sotto, adj = c(0, 1), cex = .58, col = "grey40")
+  r = nodo(7.3, y, "QI totale", w = 2.3, h = .9, bg = "grey85", font = 2, cex = .64)
+  xs = if (length(foglie) == 2) c(5, 9.6) else seq(3.3, 10.95, length.out = length(foglie))
+  w = min(2.2, 9.6 / length(foglie))
+  for (i in seq_along(foglie)) collega(r, nodo(xs[i], y - 2.5, foglie[i], w = w * .86, h = 1.5, bg = "grey95", cex = .56))
+}
+albero(14.3, "1ª-3ª edizione", "anni '30-'90", c("QI verbale", "QI di\nperformance"))
+segments(0, 10.3, 12, 10.3, col = "grey80", lwd = scala)
+albero(9.4, "4ª edizione", "anni 2000", c("Comprensione\nverbale", "Ragionamento\npercettivo", "Memoria\ndi lavoro", "Velocità di\nelaborazione"))
+segments(0, 5.3, 12, 5.3, col = "grey80", lwd = scala)
+albero(4.4, "5ª edizione", "dagli anni 2010", c("Compren-\nsione\nverbale", "Visuo-\nspaziale", "Ragiona-\nmento\nfluido", "Memoria\ndi lavoro", "Velocità\ndi elabo-\nrazione"))
+```
 
 Le convenzioni metriche sono ormai universali: i subtest hanno punteggi
 ponderati con media 10 e deviazione standard 3; gli indici, compreso il QI

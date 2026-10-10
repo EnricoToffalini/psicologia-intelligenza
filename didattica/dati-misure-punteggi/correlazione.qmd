@@ -12,8 +12,11 @@ execute:
 #| label: setup
 library(ggplot2)
 rosso = "#9A0000"
+# Nel PDF (A5) le figure si disegnano alla larghezza reale della pagina.
+stampa = knitr::is_latex_output()
+source("../../assets/diagrammi.R")
 virgola = function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",")
-tema = theme_minimal(base_size = 13) +
+tema = theme_minimal(base_size = if (stampa) 10 else 13) +
   theme(panel.grid.minor = element_blank(), plot.title = element_text(size = 12))
 ```
 
@@ -58,8 +61,8 @@ due distribuzioni.
 #| label: fig-nuvole
 #| fig-cap: "Quattro associazioni fra due misure. I primi tre pannelli mostrano dati simulati a scopo illustrativo; il quarto una relazione a U costruita. Il valore di *r* è calcolato sui punti disegnati."
 #| fig-alt: "Quattro diagrammi di dispersione: andamento crescente, decrescente, senza tendenza e a U. Il coefficiente di Pearson è vicino a zero sia nel terzo sia nel quarto pannello, anche se nel quarto i punti seguono chiaramente una curva."
-#| fig-width: 8
-#| fig-height: 7
+#| fig-width: !expr if (stampa) 4.45 else 8
+#| fig-height: !expr if (stampa) 4.4 else 7
 set.seed(2026)
 n = 150
 sim = function(rho) MASS::mvrnorm(n, c(0, 0), matrix(c(1, rho, rho, 1), 2))
@@ -161,8 +164,8 @@ cambierebbe dipende soprattutto dalla numerosità.
 #| label: fig-campioni
 #| fig-cap: "Distribuzione delle correlazioni ottenute in 5.000 campioni simulati estratti da una popolazione in cui la correlazione vera è 0,20 (linea verticale). Con 30 persone le stime spaziano da valori negativi a valori molto alti; con 200 si concentrano attorno al valore vero."
 #| fig-alt: "Due istogrammi. Con campioni di 30 persone le correlazioni stimate vanno circa da meno 0,2 a più 0,6; con campioni di 200 persone vanno circa da 0,05 a 0,35."
-#| fig-width: 8
-#| fig-height: 3.6
+#| fig-width: !expr if (stampa) 4.45 else 8
+#| fig-height: !expr if (stampa) 2.7 else 3.6
 set.seed(1904)
 stima = function(n) replicate(5000, cor(MASS::mvrnorm(n, c(0, 0), matrix(c(1, .2, .2, 1), 2)))[1, 2])
 dc = rbind(data.frame(r = stima(30), N = "N = 30"), data.frame(r = stima(200), N = "N = 200"))
@@ -171,7 +174,7 @@ ggplot(dc, aes(r)) +
   geom_histogram(binwidth = .025, fill = "grey60", colour = "white") +
   geom_vline(xintercept = .2, colour = rosso, linewidth = .9) +
   facet_wrap(~N) +
-  scale_x_continuous(breaks = seq(-.4, .8, .2), labels = function(x) virgola(x, 1)) +
+  scale_x_continuous(breaks = seq(-.4, .8, if (stampa) .4 else .2), labels = function(x) virgola(x, 1)) +
   labs(x = "Correlazione stimata nel campione", y = "Numero di campioni") +
   tema
 ```
@@ -223,10 +226,11 @@ preceduto entrambe.
 #| label: fig-schemi
 #| fig-cap: "Tre schemi causali ipotetici. Le frecce rappresentano ipotesi, non conclusioni ricavabili dalle sole correlazioni."
 #| fig-alt: "Nel primo schema una variabile C influenza sia A sia B. Nel secondo il percorso da A a B passa attraverso M. Nel terzo una variabile W modifica la freccia che va da A a B."
-#| fig-width: 9
-#| fig-height: 2.6
+#| fig-width: !expr if (stampa) 4.45 else 9
+#| fig-height: !expr if (stampa) 1.9 else 2.6
 par(mfrow = c(1, 3), mar = c(1, 1, 2.5, 1))
-nodo = function(x, y, t) { symbols(x, y, circles = .13, inches = FALSE, add = TRUE, bg = "white", fg = "grey30"); text(x, y, t, font = 2, cex = 1.4) }
+if (stampa) par(cex = .6, mar = c(.5, .5, 2, .5))
+nodo = function(x, y, t) { symbols(x, y, circles = .13, inches = FALSE, add = TRUE, bg = "white", fg = "grey30"); text(x, y, t, font = 2, cex = if (stampa) 1.1 else 1.4) }
 freccia = function(x0, y0, x1, y1) arrows(x0, y0, x1, y1, length = .1, lwd = 2, col = rosso)
 vuoto = function(titolo) { plot(0, 0, type = "n", xlim = c(0, 2), ylim = c(-.2, 1.1), axes = FALSE, xlab = "", ylab = ""); title(titolo, cex.main = 1.4, font.main = 1) }
 vuoto("Causa comune"); freccia(.88, .85, .28, .17); freccia(1.12, .85, 1.72, .17)
@@ -248,12 +252,32 @@ momento non dimostra il processo nel tempo [@maxwell2007bias].
 Si parla di **moderazione** quando la relazione fra A e B cambia in funzione di
 una terza variabile W [@baron1986moderator]. La presenza di un pubblico tende a
 migliorare la prestazione in compiti già automatizzati e a peggiorarla in compiti
-nuovi [@zajonc1965social]: il tipo di compito modera l'effetto del pubblico. Nel
+nuovi [@zajonc1965social]: il tipo di compito modera l'effetto del pubblico
+(@fig-moderazione). Nel
 campo dell'intelligenza un esempio discusso riguarda lo status socioeconomico,
 che in alcuni studi statunitensi sembra modificare quanto le differenze genetiche
 si traducono in differenze di punteggio [@turkheimer2003socioeconomic]. Ne
 riparleremo nel capitolo sull'ereditabilità, insieme ai limiti di questo
 risultato.
+
+```{r}
+#| label: fig-moderazione
+#| fig-cap: "Un esempio di moderazione. Al crescere del numero di osservatori la prestazione migliora in un compito già automatizzato e peggiora in un compito nuovo: la relazione fra pubblico e prestazione dipende dal tipo di compito. Valori illustrativi."
+#| fig-alt: "Due rette in un grafico con il numero di osservatori sull'asse orizzontale e la prestazione su quello verticale. La retta del compito automatizzato sale da 72 a 80; quella del compito nuovo scende da 58 a 46."
+#| fig-width: !expr if (stampa) 4.45 else 7
+#| fig-height: !expr if (stampa) 2.7 else 3.4
+d = data.frame(oss = rep(seq(0, 8, 2), 2), prest = c(72, 74, 76, 78, 80, 58, 55, 52, 49, 46),
+               compito = rep(c("Compito automatizzato", "Compito nuovo"), each = 5))
+ggplot(d, aes(oss, prest, colour = compito)) +
+  geom_line(linewidth = 1.1) + geom_point(size = 2.2) +
+  annotate("text", x = 8.2, y = c(80, 46), label = c("automatizzato", "nuovo"), hjust = 0,
+           colour = c("grey25", rosso), size = if (stampa) 3 else 3.6) +
+  scale_colour_manual(values = c("grey25", rosso), guide = "none") +
+  scale_x_continuous(breaks = seq(0, 8, 2), expand = expansion(add = c(.3, 2.4))) +
+  scale_y_continuous(limits = c(40, 85), breaks = seq(40, 80, 10)) +
+  labs(x = "Numero di osservatori", y = "Prestazione") +
+  tema
+```
 
 ## Quattro controlli prima di fidarsi
 

@@ -12,7 +12,10 @@ execute:
 #| label: setup
 library(ggplot2)
 rosso = "#9A0000"
-tema = theme_minimal(base_size = 13) +
+# Nel PDF (A5) le figure si disegnano alla larghezza reale della pagina.
+stampa = knitr::is_latex_output()
+source("../../assets/diagrammi.R")
+tema = theme_minimal(base_size = if (stampa) 10 else 13) +
   theme(panel.grid.minor = element_blank())
 ```
 
@@ -52,6 +55,29 @@ deboli, quelle di matematica deboli soprattutto nel calcolo scritto. Il
 questionario sull'ansia per la matematica dà valori elevati. I questionari
 sull'attenzione compilati da genitori e insegnanti indicano difficoltà rilevanti,
 non confermate in modo netto dalle prove attentive.
+
+```{r}
+#| label: fig-caso
+#| fig-cap: "Il profilo del caso illustrativo. Il QI totale (84) risente delle cadute in memoria di lavoro e velocità di elaborazione; l'indice di abilità generale (100), che le esclude, è nella media come comprensione verbale e ragionamento percettivo. La fascia grigia indica l'intervallo fra 85 e 115. Dati costruiti a scopo illustrativo."
+#| fig-alt: "Grafico a punti di sei punteggi su scala QI. Comprensione verbale 96 e ragionamento percettivo 104, nella media; memoria di lavoro 64 e velocità di elaborazione 79, sotto la media; QI totale 84 e indice di abilità generale 100."
+#| fig-width: !expr if (stampa) 4.45 else 7
+#| fig-height: !expr if (stampa) 2.6 else 3.4
+d = data.frame(ind = c("Compren-\nsione\nverbale", "Ragiona-\nmento\npercettivo", "Memoria\ndi lavoro", "Velocità\ndi elabo-\nrazione", "QI\ntotale", "Abilità\ngenerale"),
+               v = c(96, 104, 64, 79, 84, 100), tipo = rep(c("Indici", "Punteggi globali"), c(4, 2)))
+d$ind = factor(d$ind, levels = d$ind)
+ggplot(d, aes(ind, v)) +
+  geom_blank() +
+  annotate("rect", xmin = -Inf, xmax = Inf, ymin = 85, ymax = 115, fill = "grey92") +
+  geom_hline(yintercept = 100, colour = "grey60", linetype = 2) +
+  geom_vline(xintercept = 4.5, colour = "grey70") +
+  geom_line(data = subset(d, tipo == "Indici"), aes(group = 1), colour = "grey40") +
+  geom_point(aes(colour = tipo), size = 3) +
+  geom_text(aes(label = v), vjust = -1, size = if (stampa) 3 else 3.6) +
+  scale_colour_manual(values = c("grey20", rosso), guide = "none") +
+  scale_y_continuous(limits = c(55, 125), breaks = seq(55, 115, 15)) +
+  labs(x = NULL, y = "Punteggio (scala QI)") +
+  tema + theme(panel.grid.major.x = element_blank(), axis.text.x = element_text(size = if (stampa) 7 else 10))
+```
 
 La conclusione sarà probabilmente una diagnosi di disturbo misto delle abilità
 scolastiche, con una segnalazione di difficoltà attentive. Ma il caso solleva
@@ -168,8 +194,8 @@ di supporto. Sono decisioni ragionevoli, non scoperte.
 #| label: fig-soglie
 #| fig-cap: "Distribuzione continua di un'abilità e due possibili soglie diagnostiche. Una soglia a −1,5 deviazioni standard identifica circa il 7% della popolazione; una a −2 circa il 2%. La distribuzione non contiene alcun punto di discontinuità."
 #| fig-alt: "Curva a campana con due linee verticali tratteggiate a meno 2 e meno 1,5 deviazioni standard. Le aree a sinistra delle soglie sono colorate con intensità diversa."
-#| fig-width: 7
-#| fig-height: 3.4
+#| fig-width: !expr if (stampa) 4.45 else 7
+#| fig-height: !expr if (stampa) 2.6 else 3.4
 x = seq(-4, 4, .01)
 d = data.frame(x, y = dnorm(x))
 ggplot(d, aes(x, y)) +
@@ -177,8 +203,10 @@ ggplot(d, aes(x, y)) +
   geom_area(data = subset(d, x <= -2), fill = rosso, alpha = .6) +
   geom_line(linewidth = .9) +
   geom_vline(xintercept = c(-2, -1.5), linetype = 2) +
-  annotate("text", x = -2.05, y = .25, label = "soglia a -2 DS\n(circa 2%)", hjust = 1, size = 3.6) +
-  annotate("text", x = -1.45, y = .32, label = "soglia a -1,5 DS\n(circa 7%)", hjust = 0, size = 3.6) +
+  annotate("text", x = -2.05, y = .25, label = "soglia a -2 DS\n(circa 2%)", hjust = 1, size = if (stampa) 3 else 3.6) +
+  # Nel PDF l'etichetta della seconda soglia sta sopra la curva, per non sovrapporsi.
+  annotate("text", x = -1.45, y = if (stampa) .45 else .32, hjust = 0, size = if (stampa) 3 else 3.6,
+           label = if (stampa) "soglia a -1,5 DS (circa 7%)" else "soglia a -1,5 DS\n(circa 7%)") +
   labs(x = "Abilità (punti z)", y = NULL) +
   tema + theme(axis.text.y = element_blank(), panel.grid.major.y = element_blank())
 ```
@@ -202,6 +230,25 @@ associa spesso alla disortografia e a difficoltà in matematica; ADHD e disturbi
 dell'apprendimento co-occorrono con frequenza elevata. Nelle casistiche
 cliniche dei disturbi dell'apprendimento, i quadri misti sono la norma più che
 l'eccezione [@toffalini2017strengths].
+
+```{r}
+#| label: fig-comorbilita
+#| fig-cap: "Le principali sovrapposizioni fra condizioni del neurosviluppo. Ogni linea indica una co-occorrenza molto più frequente di quanto ci si aspetterebbe se le condizioni fossero indipendenti; le linee più spesse indicano le sovrapposizioni più ampie. Schema originale e semplificato."
+#| fig-alt: "Rete di sette condizioni: disabilità intellettiva, disturbo dello spettro autistico, ADHD, dislessia, disortografia, discalculia, disturbo del linguaggio. Linee collegano quasi tutte le coppie; le più spesse uniscono autismo e disabilità intellettiva, autismo e ADHD, dislessia e disortografia, dislessia e discalculia."
+#| fig-width: !expr 4.45 * scala
+#| fig-height: !expr 2.9 * scala
+tela(c(0, 12), c(0, 10))
+pos = list(DI = c(6, 9), ASD = c(1.7, 6.4), ADHD = c(10.3, 6.4), Dis = c(8.3, 2.6), Disc = c(3.7, 2.6), Dort = c(10.6, .7), Ling = c(1.3, .7))
+nomi = c(DI = "Disabilità\nintellettiva", ASD = "Spettro\nautistico", ADHD = "ADHD", Dis = "Dislessia", Disc = "Discalculia", Dort = "Disortografia", Ling = "Disturbo del\nlinguaggio")
+archi = data.frame(a = c("ASD", "ASD", "DI", "ADHD", "ADHD", "Dis", "Dis", "Ling", "DI", "ADHD"),
+                   b = c("DI", "ADHD", "ADHD", "Dis", "Disc", "Dort", "Disc", "Dis", "Ling", "Dort"),
+                   forte = c(TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE))
+for (i in seq_len(nrow(archi))) {
+  p = pos[[archi$a[i]]]; q = pos[[archi$b[i]]]
+  segments(p[1], p[2], q[1], q[2], col = if (archi$forte[i]) rosso else "grey55", lwd = (if (archi$forte[i]) 3 else 1.3) * scala)
+}
+for (k in names(pos)) nodo(pos[[k]][1], pos[[k]][2], nomi[[k]], w = 2.5, h = 1.4, forma = "ovale", bg = "grey95", cex = .6, font = 2)
+```
 
 Sotto le etichette troviamo quindi tratti **continui**, con soglie arbitrarie, e
 **correlati**, con comorbilità estese. È esattamente la struttura delle

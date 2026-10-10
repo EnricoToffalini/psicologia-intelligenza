@@ -12,8 +12,11 @@ execute:
 #| label: setup
 library(ggplot2)
 rosso = "#9A0000"
+# Nel PDF (A5) le figure si disegnano alla larghezza reale della pagina.
+stampa = knitr::is_latex_output()
+source("../../assets/diagrammi.R")
 virgola = function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",")
-tema = theme_minimal(base_size = 13) +
+tema = theme_minimal(base_size = if (stampa) 10 else 13) +
   theme(panel.grid.minor = element_blank(), plot.title = element_text(size = 12))
 ```
 
@@ -119,8 +122,8 @@ in un caso su venti supera i venti.
 #| label: fig-retest
 #| fig-cap: "Punteggi di QI simulati in due somministrazioni dello stesso test, con stabilità test-retest di 0,96 e di 0,70. La linea diagonale indica punteggi identici; la fascia grigia comprende le differenze entro ±10 punti."
 #| fig-alt: "Due diagrammi di dispersione. Con stabilità 0,96 i punti sono molto vicini alla diagonale; con stabilità 0,70 sono molto dispersi e molti cadono fuori dalla fascia di dieci punti."
-#| fig-width: 8
-#| fig-height: 4
+#| fig-width: !expr if (stampa) 4.45 else 8
+#| fig-height: !expr if (stampa) 2.7 else 4
 set.seed(1932)
 rt = function(r) { m = MASS::mvrnorm(400, c(0, 0), matrix(c(1, r, r, 1), 2)); data.frame(t1 = 100 + 15 * m[, 1], t2 = 100 + 15 * m[, 2]) }
 d = rbind(cbind(rt(.96), stab = "Stabilità 0,96"), cbind(rt(.70), stab = "Stabilità 0,70"))
@@ -206,7 +209,8 @@ del fattore generale? E questa parte è attendibile?
 Per rispondere si usano modelli gerarchici o **bifattoriali**, che separano la
 varianza comune a tutte le prove da quella propria di ciascun dominio. Da essi
 si ricava l'**omega gerarchico** (ω~h~), che stima quanta varianza del
-punteggio è dovuta a un solo fattore [@rodriguez2016evaluating]. I risultati sui
+punteggio è dovuta a un solo fattore [@rodriguez2016evaluating]
+(@fig-bifattoriale). I risultati sui
 campioni normativi delle principali batterie sono convergenti. Il fattore
 generale ha un omega gerarchico elevato, attorno a 0,75–0,80. I domini
 specifici, al netto di *g*, scendono spesso sotto 0,30 e talvolta vicino a zero
@@ -222,6 +226,27 @@ quello dei fattori specifici varia fra 0,08 e 0,51 [@toffalini2026ids2]. In
 tutti questi casi il fattore generale risulta attendibile e interpretabile, i
 fattori di dominio quasi mai
 abbastanza da essere letti da soli.
+
+```{r}
+#| label: fig-bifattoriale
+#| fig-cap: "Un modello bifattoriale per una batteria con quattro domini. Ogni subtest dipende dal fattore generale g (frecce rosse) e da un fattore di dominio (frecce grigie); i fattori di dominio catturano solo ciò che resta al netto di g. Con i dati delle batterie reali l'omega gerarchico di g è alto, quello dei domini di solito basso. Schema originale."
+#| fig-alt: "Un ovale g in alto con frecce rosse verso otto subtest disposti in una fila: somiglianze, vocabolario, disegno con cubi, matrici, memoria di cifre, lettere e numeri, cifrario, ricerca di simboli. Sotto la fila, quattro ovali di dominio, verbale, percettivo, memoria di lavoro e velocità, ciascuno con frecce grigie verso i due subtest corrispondenti."
+#| fig-width: !expr 4.45 * scala
+#| fig-height: !expr 2.8 * scala
+tela(c(0, 12), c(-.6, 10))
+g = nodo(6, 8.9, "g", w = 1.5, h = 1.4, forma = "ovale", bg = "white", font = 4, cex = .9, lwd = 1.4)
+text(7, 9.5, "omega gerarchico alto", adj = 0, cex = .58, font = 3, col = rosso)
+sub = c("Somi-\nglianze", "Vocabo-\nlario", "Cubi", "Matrici", "Memoria\ncifre", "Lettere e\nnumeri", "Cifrario", "Ricerca\nsimboli")
+xs = seq(.75, 11.25, length.out = 8)
+sb = lapply(1:8, function(i) nodo(xs[i], 5, sub[i], w = 1.3, h = 1.4, bg = "grey95", cex = .56))
+for (b in sb) collega(g, b, col = rosso, lwd = 1.3)
+dom = c("Verbale", "Percettivo", "Memoria\ndi lavoro", "Velocità")
+for (k in 1:4) {
+  d = nodo(mean(xs[2 * k - 1:0]), 1.4, dom[k], w = 2.3, h = 1.5, forma = "ovale", bg = "grey90", cex = .58)
+  for (b in sb[2 * k - 1:0]) collega(d, b, col = "grey45", lwd = .9)
+}
+text(6, -.1, "fattori di dominio: omega gerarchico di solito basso", cex = .58, font = 3, col = "grey35")
+```
 
 Le conclusioni tratte da questi dati sono di due tipi. Alcuni ricercatori
 sostengono che sia semplicemente inappropriato interpretare gli indici di

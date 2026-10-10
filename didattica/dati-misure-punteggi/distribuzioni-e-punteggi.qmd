@@ -12,8 +12,11 @@ execute:
 #| label: setup
 library(ggplot2)
 rosso = "#9A0000"
+# Nel PDF (A5) le figure si disegnano alla larghezza reale della pagina.
+stampa = knitr::is_latex_output()
+source("../../assets/diagrammi.R")
 virgola = function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",")
-tema = theme_minimal(base_size = 13) +
+tema = theme_minimal(base_size = if (stampa) 10 else 13) +
   theme(panel.grid.minor = element_blank(), plot.title = element_text(size = 12))
 ```
 
@@ -70,6 +73,27 @@ con migliaia di passeggiate, le posizioni finali formerebbero una campana. Lo
 stesso principio è reso visibile dalla tavola di Galton, in cui palline che
 rimbalzano a caso su file di chiodi si accumulano in una distribuzione a
 campana.
+La @fig-somma mostra il fenomeno con una simulazione.
+
+```{r}
+#| label: fig-somma
+#| fig-cap: "Il teorema del limite centrale in una simulazione. Ogni persona riceve un certo numero di fattori indipendenti, ciascuno di effetto asimmetrico (vale 1 con probabilità 0,2, altrimenti 0). Un fattore solo produce una distribuzione per nulla gaussiana; la somma di molti fattori si avvicina alla campana (curva rossa). Dati simulati su 10.000 persone."
+#| fig-alt: "Tre istogrammi. Con un fattore solo due barre, a 0 e a 1. Con 5 fattori una distribuzione asimmetrica concentrata sui valori bassi. Con 100 fattori un istogramma a campana sovrapposto a una curva gaussiana rossa."
+#| fig-width: !expr if (stampa) 4.45 else 9
+#| fig-height: !expr if (stampa) 2.2 else 2.8
+set.seed(1889)
+k = c(1, 5, 100)
+d = do.call(rbind, lapply(k, function(n) data.frame(v = rbinom(1e4, n, .2), n = n)))
+d$n = factor(d$n, levels = k, labels = paste(k, c("fattore", "fattori", "fattori")))
+curva = do.call(rbind, lapply(k[3], function(n) { x = seq(5, 35, .1); data.frame(x, y = 1e4 * dnorm(x, n * .2, sqrt(n * .2 * .8)), n = factor(paste(n, "fattori"), levels = levels(d$n))) }))
+ggplot(d, aes(v)) +
+  geom_bar(fill = "grey60", width = .8) +
+  geom_line(data = curva, aes(x, y), colour = rosso, linewidth = .8) +
+  facet_wrap(~n, scales = "free") +
+  scale_x_continuous(breaks = function(l) { b = pretty(l); b[b == round(b)] }) +
+  labs(x = "Somma dei fattori", y = "Persone") +
+  tema + theme(axis.text.y = element_blank(), panel.grid.major.x = element_blank())
+```
 
 Per l'intelligenza l'ipotesi additiva non è solo un'analogia. Le differenze
 genetiche associate alle abilità cognitive dipendono da migliaia di varianti,
@@ -121,8 +145,8 @@ negativi (@fig-scale):
 #| label: fig-scale
 #| fig-cap: "La curva gaussiana e le principali scale di punteggio. Ogni riga riporta lo stesso punto della distribuzione espresso in una metrica diversa."
 #| fig-alt: "Curva a campana con linee verticali a meno 3, meno 2, meno 1, 0, più 1, più 2 e più 3 deviazioni standard. Sotto, cinque righe di corrispondenze: punti z, QI da 55 a 145, punteggi ponderati da 1 a 19, punti T da 20 a 80, percentili da 0,1 a 99,9."
-#| fig-width: 8
-#| fig-height: 5.2
+#| fig-width: !expr if (stampa) 4.45 else 8
+#| fig-height: !expr if (stampa) 3.5 else 5.2
 z = -3:3
 curva = data.frame(x = seq(-3.6, 3.6, .01))
 curva$y = dnorm(curva$x)
@@ -134,14 +158,15 @@ righe = data.frame(
 )
 righe$testo[righe$testo == "+0"] = "0"
 righe$y = -0.07 * match(righe$scala, unique(righe$scala))
+ts = if (stampa) .75 else 1  # testo più piccolo nella pagina A5
 ggplot() +
   geom_area(data = curva, aes(x, y), fill = "grey88") +
   geom_line(data = curva, aes(x, y), linewidth = .8) +
   geom_segment(data = data.frame(x = z), aes(x = x, xend = x, y = 0, yend = dnorm(x)), colour = rosso, linetype = 2) +
-  geom_text(data = righe, aes(x, y, label = testo), size = 3.8) +
-  annotate("text", x = -3.6, y = unique(righe$y), label = unique(righe$scala), hjust = 1, size = 3.8, fontface = "bold") +
-  annotate("text", x = c(-.5, .5), y = .2, label = "34%", size = 3.6) +
-  annotate("text", x = c(-1.5, 1.5), y = .06, label = "13,6%", size = 3.4) +
+  geom_text(data = righe, aes(x, y, label = testo), size = 3.8 * ts) +
+  annotate("text", x = -3.6, y = unique(righe$y), label = unique(righe$scala), hjust = 1, size = 3.8 * ts, fontface = "bold") +
+  annotate("text", x = c(-.5, .5), y = .2, label = "34%", size = 3.6 * ts) +
+  annotate("text", x = c(-1.5, 1.5), y = .06, label = "13,6%", size = 3.4 * ts) +
   coord_cartesian(xlim = c(-4.9, 3.6), clip = "off") +
   theme_void(base_size = 13)
 ```
@@ -230,10 +255,10 @@ intervenire direttamente sulla scala dei punteggi.
 
 ```{r}
 #| label: fig-normalizzazione
-#| fig-cap: "Punteggi grezzi simulati di una prova con effetto tetto (a sinistra) e due modi di trasformarli. La trasformazione lineare in punti z conserva l'asimmetria; la normalizzazione rimappa i punteggi sulla gaussiana attraverso i percentili. Per semplicità, i punteggi a pari merito sono qui distribuiti fra percentili adiacenti."
+#| fig-cap: "Punteggi grezzi simulati di una prova con effetto tetto (primo pannello) e due modi di trasformarli. La trasformazione lineare in punti z conserva l'asimmetria; la normalizzazione rimappa i punteggi sulla gaussiana attraverso i percentili. Per semplicità, i punteggi a pari merito sono qui distribuiti fra percentili adiacenti."
 #| fig-alt: "Tre istogrammi. Il primo mostra punteggi grezzi addensati verso il massimo di 30. Il secondo, in punti z, ha la stessa forma asimmetrica. Il terzo, dopo la normalizzazione, ha forma a campana."
-#| fig-width: 9
-#| fig-height: 3.4
+#| fig-width: !expr if (stampa) 4.45 else 9
+#| fig-height: !expr if (stampa) 4.6 else 3.4
 set.seed(310)
 abil = rnorm(3000)
 grezzo = rbinom(3000, 30, plogis(1.6 + 1.1 * abil))
@@ -247,7 +272,7 @@ dn = rbind(
 dn$tipo = factor(dn$tipo, levels = unique(dn$tipo))
 ggplot(dn, aes(v)) +
   geom_histogram(bins = 26, fill = "grey60", colour = "white") +
-  facet_wrap(~tipo, scales = "free_x") +
+  facet_wrap(~tipo, scales = "free_x", ncol = if (stampa) 1 else 3) +
   labs(x = NULL, y = "Frequenza") +
   tema
 ```

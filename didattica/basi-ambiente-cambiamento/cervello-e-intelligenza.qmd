@@ -12,8 +12,11 @@ execute:
 #| label: setup
 library(ggplot2)
 rosso = "#9A0000"
+# Nel PDF (A5) le figure si disegnano alla larghezza reale della pagina.
+stampa = knitr::is_latex_output()
+source("../../assets/diagrammi.R")
 virgola = function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",")
-tema = theme_minimal(base_size = 13) +
+tema = theme_minimal(base_size = if (stampa) 10 else 13) +
   theme(panel.grid.minor = element_blank())
 ```
 
@@ -85,8 +88,8 @@ regola generale. La @fig-overfitting mostra il fenomeno con una simulazione.
 #| label: fig-overfitting
 #| fig-cap: "Simulazione dell'overfitting. Si prevede un punteggio da un numero crescente di misure cerebrali, ciascuna con un legame debolissimo con il punteggio, in un campione di 200 persone. La correlazione fra punteggi previsti e osservati cresce nel campione usato per stimare il modello, ma resta bassa e poi crolla in un campione indipendente."
 #| fig-alt: "Due linee in funzione del numero di misure usate come predittori, da 5 a 180. La linea del campione di stima sale fino a quasi 1. La linea del campione indipendente resta bassa, attorno a 0,1, e poi scende verso zero."
-#| fig-width: 7
-#| fig-height: 3.8
+#| fig-width: !expr if (stampa) 4.45 else 7
+#| fig-height: !expr if (stampa) 3.3 else 3.8
 set.seed(2019)
 genera = function(n, p) { X = matrix(rnorm(n * 180), n); y = X[, 1:20] %*% rep(.06, 20) + rnorm(n); list(X = X, y = as.numeric(y)) }
 tr = genera(200, 180); te = genera(2000, 180)

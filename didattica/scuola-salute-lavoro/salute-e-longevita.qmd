@@ -12,8 +12,11 @@ execute:
 #| label: setup
 library(ggplot2)
 rosso = "#9A0000"
+# Nel PDF (A5) le figure si disegnano alla larghezza reale della pagina.
+stampa = knitr::is_latex_output()
+source("../../assets/diagrammi.R")
 virgola = function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",")
-tema = theme_minimal(base_size = 13) +
+tema = theme_minimal(base_size = if (stampa) 10 else 13) +
   theme(panel.grid.minor = element_blank())
 ```
 
@@ -65,8 +68,8 @@ punteggi molto bassi.
 #| label: fig-cause
 #| fig-cap: "Rapporti di rischio di morte associati a un QI a 11 anni più alto di una deviazione standard, per causa, nella coorte scozzese del 1936 seguita fino a 79 anni. Valori inferiori a 1 indicano un rischio minore; le barre orizzontali sono intervalli di confidenza al 95%. Elaborazione da Calvin et al. (2017)."
 #| fig-alt: "Grafico a punti con nove cause di morte. Tutti i rapporti di rischio sono inferiori a 1. I più bassi, attorno a 0,72-0,76, riguardano malattie respiratorie, coronariche e ictus; i più vicini a 1 riguardano i tumori non legati al fumo e il suicidio."
-#| fig-width: 7.5
-#| fig-height: 4
+#| fig-width: !expr if (stampa) 4.45 else 7.5
+#| fig-height: !expr if (stampa) 3.3 else 4
 d = data.frame(
   causa = c("Malattie respiratorie", "Malattie coronariche", "Ictus", "Incidenti e cause esterne",
             "Tumori legati al fumo", "Malattie digestive", "Demenza", "Suicidio", "Tumori non legati al fumo"),
@@ -136,6 +139,35 @@ Un elemento in più complica il quadro: la salute fisica nell'infanzia influenza
 lo sviluppo cognitivo, e si collega a sua volta alla salute adulta. Alcune
 condizioni dei primi anni potrebbero quindi abbassare sia il QI misurato a 11
 anni sia l'aspettativa di vita, senza che l'uno causi l'altra.
+
+```{r}
+#| label: fig-percorsi
+#| fig-cap: "Quattro percorsi, non alternativi, che possono legare intelligenza e longevità. Nei primi due l'intelligenza contribuisce causalmente alla salute; negli altri due intelligenza e longevità hanno cause comuni. Schema originale."
+#| fig-alt: "Quattro righe. Socioeconomico: più QI, più scolarità, lavori più sicuri e meglio retribuiti, ambienti e cure migliori, longevità. Comportamenti: più QI, maggiore capacità di capire e seguire indicazioni di salute, stili di vita più sani, longevità. Integrità del sistema: un organismo ben costruito produce sia più QI sia più longevità. Genetico: varianti genetiche comuni influenzano sia il QI sia la longevità."
+#| fig-width: !expr 4.45 * scala
+#| fig-height: !expr 3.5 * scala
+tela(c(0, 12), c(.6, 15.7))
+riga = function(y, titolo, nodi, comune = FALSE) {
+  text(0, y + 1.25, titolo, adj = 0, cex = .66, font = 2, col = rosso)
+  if (!comune) {
+    xs = seq(1.05, 10.9, length.out = length(nodi))
+    n = lapply(seq_along(nodi), function(i) nodo(xs[i], y, nodi[i], w = min(2.1, 11.4 / length(nodi) * .8), h = 1.5,
+                                                 bg = if (i %in% c(1, length(nodi))) "grey85" else "grey96", cex = .54, font = if (i %in% c(1, length(nodi))) 2 else 1))
+    for (i in seq_len(length(nodi) - 1)) collega(n[[i]], n[[i + 1]], gap = .04)
+  } else {
+    cc = nodo(2.2, y, nodi[1], w = 4.2, h = 1.5, bg = "white", cex = .54, font = 3)
+    collega(cc, nodo(8, y + .55, "più QI", w = 2.4, h = .95, bg = "grey85", cex = .54, font = 2))
+    collega(cc, nodo(8, y - .65, "longevità", w = 2.4, h = .95, bg = "grey85", cex = .54, font = 2))
+  }
+}
+riga(14, "Socioeconomico", c("più QI", "più\nscolarità", "lavori più\nsicuri e\nretribuiti", "ambienti e\ncure migliori", "longevità"))
+riga(10, "Comportamenti", c("più QI", "capire e seguire\nindicazioni\nmediche", "stili di vita\npiù sani", "longevità"))
+riga(6, "Integrità del sistema", c("organismo ben costruito,\nsistema nervoso efficiente"), comune = TRUE)
+riga(2, "Genetico", c("varianti genetiche\ncomuni (pleiotropia)"), comune = TRUE)
+segments(0, 8, 12, 8, col = "grey75", lty = 3, lwd = scala)
+text(11.9, 8.35, "contributo causale dell'intelligenza", adj = c(1, 0), cex = .52, font = 3, col = "grey40")
+text(11.9, 7.65, "cause comuni", adj = c(1, 1), cex = .52, font = 3, col = "grey40")
+```
 
 ## Invecchiamento e demenza
 

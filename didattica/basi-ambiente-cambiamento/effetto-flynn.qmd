@@ -12,7 +12,10 @@ execute:
 #| label: setup
 library(ggplot2)
 rosso = "#9A0000"
-tema = theme_minimal(base_size = 13) +
+# Nel PDF (A5) le figure si disegnano alla larghezza reale della pagina.
+stampa = knitr::is_latex_output()
+source("../../assets/diagrammi.R")
+tema = theme_minimal(base_size = if (stampa) 10 else 13) +
   theme(panel.grid.minor = element_blank())
 ```
 
@@ -49,8 +52,8 @@ intellettiva.
 #| label: fig-flynn
 #| fig-cap: "Illustrazione della grandezza dell'effetto Flynn. Le due curve rappresentano la distribuzione dei punteggi di una popolazione di inizio Novecento e di una di fine Novecento, entrambe espresse con le norme della prima. Il valore di 30 punti è un ordine di grandezza, non una stima per un paese specifico."
 #| fig-alt: "Due curve a campana della stessa forma. La prima è centrata su 100, la seconda su 130. La seconda curva supera quasi interamente la media della prima."
-#| fig-width: 7.5
-#| fig-height: 3.6
+#| fig-width: !expr if (stampa) 4.45 else 7.5
+#| fig-height: !expr if (stampa) 2.8 else 3.6
 x = seq(40, 190, .5)
 d = rbind(data.frame(x, y = dnorm(x, 100, 15), p = "Inizio Novecento"),
           data.frame(x, y = dnorm(x, 130, 15), p = "Fine Novecento"))
@@ -165,6 +168,31 @@ differenze fra individui della stessa generazione [@wicherts2004flynn]. Una
 lettura rigorosamente psicometrica suggerisce quindi che siano aumentate
 soprattutto abilità specifiche, più che *g* [@tenijenhuis2013flynn].
 
+```{r}
+#| label: fig-flynn-g-s
+#| fig-cap: "Due letture dell'effetto Flynn. Nel primo pannello l'ambiente agisce sul fattore generale, e i guadagni si trasmettono a tutte le prove in proporzione al loro legame con g. Nel secondo l'ambiente agisce sulle componenti specifiche s, con intensità diversa da prova a prova (frecce di spessore diverso). Schema originale."
+#| fig-alt: "Due modelli affiancati con g in alto, quattro prove in basso (matrici, vocabolario, ragionamento aritmetico, cifrario) e un piccolo cerchio s sotto ciascuna prova. Nel primo una freccia rossa, effetto Flynn, punta su g. Nel secondo frecce rosse di spessore diverso puntano sulle singole componenti s."
+#| fig-width: !expr 4.45 * scala
+#| fig-height: !expr 2.8 * scala
+tela(c(0, 12), c(-1, 10))
+modello = function(x0, sui_s) {
+  xs = x0 + c(.9, 2.25, 3.6, 4.95)
+  g = nodo(x0 + 2.9, 8.2, "g", w = 1.4, h = 1.3, forma = "ovale", bg = "white", font = 4, cex = .85, lwd = 1.3)
+  prove = c("Matrici", "Vocab.", "Rag.\naritm.", "Cifrario")
+  for (i in 1:4) {
+    p = nodo(xs[i], 4.4, prove[i], w = 1.25, h = 1.3, bg = "grey95", cex = .56)
+    sn = nodo(xs[i], 1.6, "s", w = .7, h = .8, forma = "ovale", bg = "grey88", font = 3, cex = .58)
+    collega(g, p, col = "grey25"); collega(sn, p, col = "grey40")
+    if (sui_s) freccia(xs[i] - .65, .25, xs[i] - .33, 1.2, col = rosso, lwd = c(2.6, .8, .5, 2)[i])
+  }
+  if (!sui_s) freccia(x0 + .9, 9.3, x0 + 2.2, 8.5, col = rosso, lwd = 2.2)
+  text(x0 + if (sui_s) 2.9 else .1, if (sui_s) -.65 else 9.7, "effetto Flynn", adj = if (sui_s) c(.5, .5) else c(0, .5), cex = .6, col = rosso, font = 2)
+}
+modello(0, FALSE)
+segments(6.05, -.8, 6.05, 9.8, col = "grey40", lwd = 1.5 * scala)
+modello(6.2, TRUE)
+```
+
 Flynn arrivò a una posizione più sfumata. Se tutti i punteggi crescono, almeno
 un po', qualcosa dell'intelligenza deve essere cresciuto davvero. Non siamo
 diventati tutti geni, ma in molte abilità importanti la persona media raggiunge
@@ -176,6 +204,26 @@ dell'ambiente materiale abbiano prodotto un aumento reale della capacità
 generale, soprattutto fino alla metà del secolo; che quelli dell'ambiente
 culturale abbiano prodotto un misto di capacità generale e abilità specifiche;
 e che i bias di misura abbiano aumentato solo i punteggi.
+
+```{r}
+#| label: fig-flynn-cause
+#| fig-cap: "Le tre famiglie di cause dell'effetto Flynn e ciò che, secondo una sintesi ragionevole, ciascuna ha prodotto. Schema originale."
+#| fig-alt: "Tre righe. Ambiente materiale, cioè alimentazione e salute, produce un vero aumento di g, rilevante soprattutto fino agli anni Cinquanta. Ambiente sociale e culturale, cioè scuola, lavoro e abitudini mentali, produce un esito incerto, in parte g e in parte abilità specifiche. Bias di misura, cioè familiarità e pratica con i test, produce un aumento dei soli punteggi."
+#| fig-width: !expr 4.45 * scala
+#| fig-height: !expr 2.3 * scala
+tela(c(0, 12), c(0, 10))
+cause = c("Ambiente materiale", "Ambiente sociale\ne culturale", "Bias di misura")
+es = c("alimentazione, salute,\nmeno piombo", "scuola, lavoro,\nabitudini mentali", "familiarità e\npratica con i test")
+eff = c("vero aumento di g\n(soprattutto fino agli anni '50)", "incerto: in parte g,\nin parte abilità specifiche", "aumentano solo\ni punteggi")
+col = c(rosso, "grey30", "grey55")
+y = c(8.3, 5, 1.7)
+for (i in 1:3) {
+  a = nodo(2.3, y[i], "", w = 4.5, h = 2.8, bg = "grey95")
+  text(2.3, y[i] + .55, cause[i], cex = .66, font = 2)
+  text(2.3, y[i] - .65, es[i], cex = .56, font = 3, col = "grey30")
+  collega(a, nodo(8.8, y[i], eff[i], w = 6.2, h = 2.4, bg = "white", border = col[i], col = col[i], cex = .62, font = 2, lwd = 1.4), col = col[i], lwd = 1.5)
+}
+```
 
 ## La fine, e l'inversione
 
