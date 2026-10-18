@@ -44,21 +44,23 @@ In Quarto ogni capitolo sarà normalmente una pagina web interamente
 consultabile. I capitoli saranno raccolti in **parti**, usate come sezioni della
 navigazione e non come pagine-contenitore.
 
-Parametri iniziali, da verificare su due capitoli pilota:
+Indicazioni di forma (nessun vincolo di lunghezza: decisione dell'autore,
+ottobre 2026):
 
-- 1.400–2.200 parole per pagina, con un massimo ordinario di circa 2.500;
-- 8–12 minuti di lettura;
-- 4–7 sezioni di secondo livello;
 - 0–3 figure realmente informative;
 - una breve apertura orientativa e una chiusura “In breve” di 3–5 punti;
 - approfondimenti tecnici o storici in callout, note o appendici, senza spezzare
   il filo principale.
 
-Questi valori servono a mantenere pagine non troppo dissimili. Non sono quote da
-riempire: se una pagina resta sotto circa 1.100 parole va valutato
-l'accorpamento; se supera 2.500 va valutata la divisione.
-
 ## 3. Architettura proposta
+
+> **Revisione di ottobre 2026.** L'ordine delle parti è cambiato: i capitoli
+> tecnici della Parte II non aprono più il libro, ma stanno al centro in due
+> parti «Strumenti» (distribuzioni dopo i test; correlazione e qualità della
+> misura prima di scuola, salute e lavoro) e, nella Parte IV, l'effetto Flynn
+> precede il cervello, come nel corso. L'ordine vigente è in `AGENTS.md`
+> («Architettura»); le tabelle qui sotto restano valide per contenuti e confini,
+> mentre la colonna delle parole non è più un vincolo.
 
 ### Parte I — Capire l'intelligenza
 

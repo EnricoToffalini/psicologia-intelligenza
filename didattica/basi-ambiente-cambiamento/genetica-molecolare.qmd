@@ -336,8 +336,10 @@ contino non è più in discussione. In discussione sono i meccanismi: come migli
 di varianti producano differenze nel cervello, come queste si traducano in
 differenze nelle prestazioni, e come l'ambiente amplifichi, attenui o
 indirizzi il processo. Le risposte richiedono di unire genetica, neuroscienze e
-psicologia dello sviluppo. Il prossimo capitolo affronta il secondo anello della
-catena: il cervello.
+psicologia dello sviluppo. Prima di arrivare al cervello, però, conviene
+fermarsi su un fatto che sembra contraddire tutto questo: in poche generazioni i
+punteggi di intere popolazioni sono saliti di decine di punti. È il tema del
+prossimo capitolo.
 
 ::: {.callout-note icon=false}
 ## In breve

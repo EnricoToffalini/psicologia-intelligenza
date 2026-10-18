@@ -17,6 +17,9 @@ stato attuale e i punti aperti; la storia dettagliata è nella cronologia di git
   nella voce del libro.
 - Repository riorganizzata a ottobre 2026: un solo render (`render.bat`) verso
   `website/`, sito e PDF insieme.
+- Ordine del libro rivisto a ottobre 2026 (vedi «Architettura» in `AGENTS.md`):
+  capitoli concettuali prima, capitoli tecnici al centro in due parti verdi
+  «Strumenti», leggibili da sole o saltabili; nessun vincolo di lunghezza.
 
 ## Decisioni valide
 
@@ -36,8 +39,8 @@ stato attuale e i punti aperti; la storia dettagliata è nella cronologia di git
    dalle slide, da confrontare con le fonti.
 3. Project 100,000, nel capitolo sul lavoro: dati riportati in forma qualitativa
    con rinvio a Warne (2020) e Gregory (2015).
-4. `intelligenza-emotiva-e-costrutti` resta sotto le 1.200 parole: decidere se
-   ampliarlo o lasciarlo breve.
+4. `intelligenza-emotiva-e-costrutti` è breve: si può ampliare (non ci sono
+   vincoli di lunghezza).
 5. Controllo della voce rispetto ai materiali Il Mulino non ripetuto dopo la
    stesura completa.
 6. Frazier et al. (2004) e Oh et al. (2023): metadati verificati, valori citati
@@ -72,8 +75,7 @@ Tutte le figure sono state riallineate alla logica delle slide (vedi
    inferiore a 92 e in parte fino a circa 70») contro la slide (categoria IV,
    QI circa 80–92); valori di `tbl-oltre-g` e `tbl-criteri` verificati solo per
    Sackett et al. (2024); la slide di p. 34 cita Sackett et al. (2023, IOP),
-   nel testo c'è `sackett2022revisiting`. Capitoli su lavoro e scuola forse sopra
-   le 2.500 parole.
+   nel testo c'è `sackett2022revisiting`.
 5. `neurosviluppo-dimensionale`: percentuali di `fig-comorbilita` verificate
    solo in parte; Turk (2009) non identificato (43% di ADHD nella sindrome di
    Down senza fonte); «Lee et al. (2016)» della slide sostituito da Quintin et

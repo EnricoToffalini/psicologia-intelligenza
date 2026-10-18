@@ -27,5 +27,24 @@ Cos'è l'intelligenza? Come si misura? È innata o appresa? Cosa significa il QI
 Questo libro online raccoglie materiali didattici e divulgativi dedicati alla psicologia dell’intelligenza umana, offrendo uno spazio di riferimento aggiornato, accessibile e scientificamente fondato, pensato per studentesse e studenti universitari, ma anche per chiunque desideri comprendere meglio cosa significhi “essere intelligenti”.
 :::
 
+## Come leggere questo libro {.unnumbered}
+
+Il libro segue il filo di un corso universitario e parte dalle idee: che cosa
+chiamiamo intelligenza, se è una o molte, come sono nati i test, da dove vengono
+le differenze fra le persone, che cosa prevedono nella vita reale. Questi
+capitoli si leggono senza preparazione statistica: quando serve un concetto
+tecnico, lo spiegano in modo intuitivo.
+
+Le basi tecniche, che pure sono la parte più utile a chi i test li usa davvero,
+sono raccolte in due parti a sé, segnalate in verde e chiamate **Strumenti**: la
+prima su distribuzioni e punteggi, la seconda su correlazione e qualità della
+misura. Stanno al centro del libro, nel punto in cui diventano necessarie, ma
+non sono un passaggio obbligato. Si possono studiare da sole, anche prima del
+resto, oppure saltare, se si conoscono già o se interessano solo le parti
+concettuali. Dai capitoli concettuali, brevi rimandi in verde indicano dove
+approfondire.
+
+## Che cosa tratta {.unnumbered}
+
 I capitoli esplorano le teorie classiche e contemporanee sull’intelligenza, la sua storia e le sue basi biologiche, la misurazione psicometrica, la genetica delle differenze individuali, i fenomeni sociali e culturali che la influenzano e i test più utilizzati in ambito clinico, scolastico e di ricerca. Un’attenzione particolare è dedicata all’interpretazione dei punteggi, alla comprensione critica dei limiti dei test e ai temi più attuali, come la neurodiversità, la plusdotazione, il funzionamento intellettivo limite e la disabilità. L’obiettivo è promuovere una riflessione informata e critica sul modo in cui la psicologia studia, misura e comunica l'intelligenza.
 

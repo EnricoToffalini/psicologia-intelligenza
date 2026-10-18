@@ -22,6 +22,9 @@
   --libro-carta: #faf8f5;
   --libro-tinta: #f4f0eb;
   --libro-rosa: #f8eded;
+  --libro-verde: #2f6b3b;
+  --libro-verde-scuro: #234f2c;
+  --libro-verde-chiaro: #eaf2eb;
   --libro-raggio: 10px;
   --libro-sans: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
   --libro-serif: "Noto Serif", Georgia, serif;
@@ -202,6 +205,63 @@ main.content table > :not(caption) > * > * { padding: .6rem .65rem; }
 /* Classi già presenti nei contenuti. */
 .abstract { color: var(--libro-secondario); font-style: italic; margin: 1.3rem 1.5rem; }
 .comment { color: var(--libro-rosso); font-style: italic; }
+
+/* Parti «Strumenti»: capitoli tecnici, segnalati in verde. Si leggono da soli o
+   si saltano; i capitoli concettuali vi rimandano con riquadri verdi. */
+#quarto-sidebar .parte-strumenti { color: var(--libro-verde); }
+#quarto-sidebar .parte-strumenti::before {
+  content: "";
+  display: inline-block;
+  width: .55rem;
+  height: .55rem;
+  margin-right: .4rem;
+  border-radius: 2px;
+  background: var(--libro-verde);
+  vertical-align: .05rem;
+}
+#quarto-sidebar .sidebar-link[href*="dati-misure-punteggi"] { box-shadow: inset 2px 0 var(--libro-verde); border-radius: 0 8px 8px 0; }
+#quarto-sidebar .sidebar-link[href*="dati-misure-punteggi"]:hover { color: var(--libro-verde); background: var(--libro-verde-chiaro); }
+#quarto-sidebar .sidebar-link.active[href*="dati-misure-punteggi"] { background: var(--libro-verde-chiaro); color: var(--libro-verde); }
+#quarto-sidebar .sidebar-link.active[href*="dati-misure-punteggi"] .chapter-number { color: var(--libro-verde); }
+.capitolo-strumenti main.content { border-left: 4px solid var(--libro-verde); padding-left: 1.6rem; }
+.capitolo-strumenti #title-block-header::before { background: var(--libro-verde); }
+.capitolo-strumenti #title-block-header .title::before {
+  content: "Strumenti";
+  display: block;
+  margin-bottom: .5rem;
+  font-family: var(--libro-sans);
+  font-size: .72rem;
+  font-weight: 650;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--libro-verde);
+}
+.capitolo-strumenti main.content .header-section-number { color: var(--libro-verde); }
+.capitolo-strumenti main.content a { color: var(--libro-verde); }
+.capitolo-strumenti main.content a:hover { color: var(--libro-verde-scuro); }
+.capitolo-strumenti div.callout { box-shadow: inset 3px 0 var(--libro-verde); background: var(--libro-verde-chiaro); }
+.capitolo-strumenti div.callout.callout-style-default > .callout-header { color: var(--libro-verde); }
+.inserto-strumenti {
+  background: var(--libro-verde-chiaro);
+  border-radius: var(--libro-raggio);
+  box-shadow: inset 3px 0 var(--libro-verde);
+  padding: 1rem 1.3rem;
+  margin: 0 0 2.2rem;
+  font-size: .95rem;
+}
+.inserto-strumenti > :last-child { margin-bottom: 0; }
+.inserto-strumenti strong:first-child { color: var(--libro-verde); }
+.rimando-strumenti {
+  border-left: 2px solid var(--libro-verde);
+  padding: .3rem 0 .3rem 1rem;
+  margin: 1.4rem 0;
+  font-size: .92rem;
+  font-style: italic;
+  color: #3d4a40;
+}
+.rimando-strumenti > :last-child { margin-bottom: 0; }
+.rimando-strumenti strong:first-child { color: var(--libro-verde); font-style: normal; letter-spacing: .04em; }
+.rimando-strumenti a { color: var(--libro-verde); }
 
 @media (max-width: 991.98px) {
   main.content { padding-top: 1.5rem; }

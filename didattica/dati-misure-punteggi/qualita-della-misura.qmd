@@ -2,6 +2,9 @@
 title: "Quando una misura è buona"
 description: "Validità, attendibilità, sensibilità e robustezza: come si giudica un test di intelligenza e perché un profilo di indici è meno affidabile del QI totale."
 suppress-bibliography: true
+format:
+  html:
+    body-classes: capitolo-strumenti
 execute:
   echo: false
   warning: false
@@ -28,6 +31,20 @@ wisc_base = function(ylim = c(0, 10)) {
   for (i in 1:10) nodo(xw[i], 1.1, sub10[i], w = 1.08, h = 1.3, bg = "grey95", cex = .56)
 }
 ```
+
+::: {.inserto-strumenti}
+**Strumenti.** Le due parti «Strumenti» raccolgono le basi tecniche del libro. I loro capitoli
+si possono leggere da soli, in qualsiasi momento, oppure saltare: i capitoli
+concettuali restano comprensibili e vi rimandano, con brevi note in verde,
+quando un passaggio richiede uno strumento in più.
+
+Questo capitolo tratta i criteri con cui si giudica un test: validità,
+attendibilità come stabilità e come consistenza interna, errore di misura,
+invarianza. Presuppone la [correlazione](correlazione.qmd) e il modello a un
+fattore del capitolo sul [fattore *g*](../modelli-test/fattore-g.qmd). Serve per
+interpretare un singolo punteggio, per i correttivi statistici del capitolo sul
+lavoro e per la valutazione nel neurosviluppo.
+:::
 
 Una bilancia da cucina che sbaglia di quindici grammi è inutile per dosare il
 lievito. Una bilancia pesapersone che sbaglia di tre chili è inutile per seguire
@@ -79,7 +96,8 @@ fornisce informazioni sul fattore generale. Chiamò questo fenomeno
 misuri il fattore generale è quindi, in un certo senso, facile: basta combinare
 prove abbastanza diverse e bilanciarle in modo sensato [@warne2020know]. Le
 batterie moderne preferiscono comunque una base teorica esplicita, di solito il
-modello gerarchico che vedremo nel capitolo sui modelli dell'intelligenza.
+modello gerarchico descritto nel capitolo sui
+[modelli gerarchici](../modelli-test/modelli-gerarchici.qmd).
 
 La **validità strutturale** chiede se le correlazioni fra item, subtest e indici
 seguono un modello teorico plausibile. Si verifica con l'analisi fattoriale

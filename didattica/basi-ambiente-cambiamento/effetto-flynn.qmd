@@ -191,6 +191,11 @@ differenze fra individui della stessa generazione [@wicherts2004flynn]. Una
 lettura rigorosamente psicometrica suggerisce quindi che siano aumentate
 soprattutto abilità specifiche, più che *g* [@tenijenhuis2013flynn].
 
+::: {.rimando-strumenti}
+**Strumenti →** Che cos'è l'invarianza di misura e perché decide se due gruppi si
+possono confrontare con lo stesso test: [Quando una misura è buona](../dati-misure-punteggi/qualita-della-misura.qmd).
+:::
+
 ```{r}
 #| label: fig-flynn-g-s
 #| fig-cap: "Che cosa è davvero aumentato: l'abilità mentale generale o solo abilità specifiche? Nel primo pannello l'effetto Flynn agisce su g, e i guadagni si trasmettono a tutte le prove in proporzione al loro legame con g. Nel secondo agisce sulle componenti specifiche s, con intensità diversa da prova a prova (frecce di spessore diverso). Una lettura rigidamente psicometrica fa propendere per il secondo scenario. Adattamento da una slide dell'autore."

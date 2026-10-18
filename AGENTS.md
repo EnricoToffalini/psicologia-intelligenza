@@ -67,10 +67,44 @@ L'utente ha autorizzato la stesura completa della sezione didattica secondo la
 struttura di `progetto/PIANO-DIDATTICA.md` («facciamo tutto e poi aggiustiamo»). È
 presente una **prima stesura di tutti i 21 capitoli** (19 del nucleo più i due
 approfondimenti), integrata in `_quarto.yml` e `references.bib`. La fase
-attuale è la **revisione**: correzioni di contenuto, voce, lunghezza e figure
+attuale è la **revisione**: correzioni di contenuto, voce e figure
 vanno fatte sui capitoli esistenti, senza riscriverli da zero e senza cambiare
 slug o struttura delle parti salvo richiesta dell'utente. Stato dettagliato e
 punti aperti in `progetto/stato-lavori.md`.
+
+## Architettura: capitoli concettuali e parti «Strumenti»
+
+Ordine deciso dall'autore (ottobre 2026), vicino alla sequenza del corso
+(cartella Drive delle slide, mazzi 0-13): si parte dai capitoli concettuali, e i
+capitoli tecnici stanno al centro, in due parti verdi chiamate «Strumenti», nel
+punto in cui il corso li introduce.
+
+1. Capire l'intelligenza: `perche-studiarla`, `che-cosa-e`
+2. Modelli e test: `fattore-g`, `modelli-gerarchici`, `origini-dei-test`,
+   `batterie-moderne`
+3. **Strumenti I** · Punteggi e distribuzioni: `distribuzioni-e-punteggi`
+4. Basi biologiche, ambiente e cambiamento: `geni-ambiente-ereditabilita`,
+   `genetica-molecolare`, `effetto-flynn`, `cervello-e-intelligenza`,
+   `potenziamento-cognitivo`
+5. **Strumenti II** · Correlazione e qualità della misura: `correlazione`,
+   `qualita-della-misura`
+6. Scuola, salute e lavoro; 7. Neurosviluppo; 8. Approfondimenti: oltre *g*
+
+Regole:
+
+- I capitoli «Strumenti» (cartella `didattica/dati-misure-punteggi/`) si
+  leggono da soli o si saltano. Hanno `body-classes: capitolo-strumenti` nel
+  front matter (verde nel sito) e un riquadro iniziale `::: {.inserto-strumenti}`
+  che dice che cosa trattano, che cosa presuppongono e dove servono. Nel PDF le
+  loro parti hanno titoli, testatine e un'unghiatura verdi: il filtro
+  `assets/pdf-layout.lua` riconosce le parti il cui nome comincia con
+  «Strumenti»; non cambiare quel prefisso.
+- I capitoli concettuali non devono dipendere dai tecnici: spiegano in modo
+  intuitivo ciò che serve e rimandano con un riquadro
+  `::: {.rimando-strumenti}` che comincia con «**Strumenti →**», pochi e solo
+  dove un lettore vorrebbe davvero approfondire.
+- Nei rimandi testuali fra capitoli rispettare l'ordine: «si vedrà» per i
+  capitoli successivi, «visto» per i precedenti.
 
 ## Revisione in corso: allineamento alle slide
 
@@ -239,9 +273,9 @@ ha rovinato tutte le figure del libro e del sito. Regole:
 - Ogni pagina deve avere una domanda o tesi riconoscibile, un percorso logico e
   una breve chiusura. Evitare sia pagine enciclopediche sia frammenti troppo
   brevi.
-- Obiettivo ordinario: 1.400–2.200 parole per pagina, escluse bibliografia,
-  didascalie e materiali opzionali. Superare 2.500 parole solo con una ragione
-  editoriale esplicita; sotto 1.100 parole valutare l'accorpamento.
+- Nessun vincolo di lunghezza (decisione dell'autore, ottobre 2026): è un libro,
+  e un capitolo è lungo quanto serve al suo contenuto. Si taglia ciò che è
+  ripetitivo o inventato, non ciò che è lungo.
 - Usare le parti di Quarto per raggruppare pagine affini. Nel sito, una pagina
   Quarto corrisponde normalmente a un capitolo leggibile per intero.
 - Distinguere sempre descrizione dell'evidenza, interpretazione e limiti. Non
@@ -380,7 +414,7 @@ Un capitolo è pronto per l'integrazione quando:
 
 - rispetta obiettivo e confini descritti nel piano;
 - non duplica in modo sostanziale altri capitoli;
-- ha lunghezza motivata e leggibile;
+- ha la lunghezza che il contenuto richiede, senza ripetizioni;
 - ogni affermazione quantitativa o controversa ha una fonte adeguata;
 - ogni figura ha didascalia, testo alternativo, provenienza e decisione di
   copyright documentata;

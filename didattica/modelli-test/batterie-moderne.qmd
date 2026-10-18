@@ -104,11 +104,16 @@ La seconda, più importante, era il **QI di deviazione**. Invece di confrontare
 età mentale e cronologica, Wechsler confrontava la prestazione di una persona
 con quella dei coetanei del campione normativo, e la esprimeva come distanza
 dalla loro media su una scala con media 100 e deviazione standard 15. È
-esattamente la logica dei punti *z* vista nel capitolo sulle distribuzioni. Il
+esattamente la logica dei punti *z*. Il
 QI di deviazione funziona a ogni età e ha lo stesso significato in qualunque
 punto della vita: 115 indica sempre una deviazione standard sopra la media dei
 coetanei. Questa metrica è diventata universale ed è usata ancora oggi per quasi
 tutti i test psicologici.
+
+::: {.rimando-strumenti}
+**Strumenti →** Punti *z*, QI di deviazione, punteggi ponderati e percentili, con
+le loro trappole: [Distribuzioni, punti z e punteggi standardizzati](../dati-misure-punteggi/distribuzioni-e-punteggi.qmd), subito dopo questa parte.
+:::
 
 Wechsler aveva un'ispirazione pragmatica e in fondo unitarista. Voleva
 anzitutto misurare bene il QI totale. Considerava i subtest misure diverse della

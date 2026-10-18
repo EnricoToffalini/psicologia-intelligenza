@@ -129,6 +129,11 @@ Conoscendo o ipotizzando l'attendibilità della misura, si può prendere la
 correlazione osservata e «disattenuarla», risalendo a quella sottostante. Lo
 stesso vale per l'errore di misura nella valutazione della prestazione.
 
+::: {.rimando-strumenti}
+**Strumenti →** Attendibilità ed errore di misura sono trattati in [Quando una misura è buona](../dati-misure-punteggi/qualita-della-misura.qmd); la
+variabilità campionaria delle correlazioni in [Correlazione e differenze individuali](../dati-misure-punteggi/correlazione.qmd).
+:::
+
 ```{r}
 #| label: fig-attendibilita
 #| fig-cap: "Attendibilità e disattenuazione, in un esempio. Un test rapido di QI è fatto per metà di g e per metà di errore casuale. Se g correla 0,60 con la produttività lavorativa e l'errore non correla, la correlazione osservata del test è circa 0,42 (0,60 × √0,5). Conoscendo l'attendibilità, si può risalire dallo 0,42 osservato allo 0,60 sottostante. Adattamento da una slide dell'autore."

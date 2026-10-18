@@ -2,6 +2,9 @@
 title: "Correlazione e differenze individuali"
 description: "Che cosa dice un coefficiente di correlazione, che cosa non dice e quali informazioni servono per passare dall'associazione alla spiegazione."
 suppress-bibliography: true
+format:
+  html:
+    body-classes: capitolo-strumenti
 execute:
   echo: false
   warning: false
@@ -20,6 +23,21 @@ tema = theme_minimal(base_size = if (stampa) 10 else 13) +
   theme(panel.grid.minor = element_blank(), plot.title = element_text(size = 12))
 cx = if (stampa) 2.7 else 3.5  # dimensione del testo nelle annotazioni ggplot
 ```
+
+::: {.inserto-strumenti}
+**Strumenti.** Le due parti «Strumenti» raccolgono le basi tecniche del libro. I loro capitoli
+si possono leggere da soli, in qualsiasi momento, oppure saltare: i capitoli
+concettuali restano comprensibili e vi rimandano, con brevi note in verde,
+quando un passaggio richiede uno strumento in più.
+
+Questo capitolo tratta che cosa misura una correlazione, come se ne giudica la
+grandezza, quando è attendibile, perché non basta a stabilire una causa e che
+cosa sono mediazione e moderazione. Presuppone soltanto i punti *z* del capitolo
+sulle [distribuzioni](distribuzioni-e-punteggi.qmd). Le correlazioni sono già
+comparse a ogni passo, dalla positive manifold all'ereditabilità; qui se ne
+danno le regole di lettura, che serviranno subito per la scuola, la salute e il
+lavoro.
+:::
 
 Chi ha un QI più alto tende a ottenere voti scolastici migliori. Eppure tutti
 conoscono qualcuno brillante con una pagella mediocre e qualcuno con risultati
@@ -100,8 +118,19 @@ standard. Se una persona è una deviazione standard sopra la media nel QI, cioè
 115, ci si aspetta che sia in media mezza deviazione standard sopra la media nei
 risultati scolastici (@fig-mezza-ds). La correlazione dice di quanto, in media,
 la posizione in una variabile si trasferisce all'altra. Vale per il coefficiente
-classico di Pearson, e il capitolo sulle distribuzioni darà a questa idea la
-forma precisa dei punti *z*.
+classico di Pearson, e con i punti *z* del capitolo sulle
+[distribuzioni](distribuzioni-e-punteggi.qmd) prende una forma precisa. Se la
+relazione fra due misure è lineare, il valore atteso di una persona nella
+seconda misura, espresso in punti *z*, è *r* volte il suo punto *z* nella prima:
+
+$$
+\widehat{z_Y} = r \, z_X
+$$
+
+Con *r* = 0,5, chi si trova a *z* = +1 nel QI ha come previsione *z* = +0,5 nei
+risultati scolastici. La previsione si avvicina alla media: è il fenomeno della
+**regressione verso la media**, che si presenta ogni volta che due misure non
+sono perfettamente correlate.
 
 ```{r}
 #| label: fig-mezza-ds
@@ -418,9 +447,9 @@ peggiorarla in compiti nuovi [@zajonc1965social]: il tipo di compito modera
 l'effetto del pubblico. Nel campo dell'intelligenza un esempio discusso riguarda
 lo status socioeconomico, che in alcuni studi statunitensi sembra modificare
 quanto le differenze genetiche si traducono in differenze di punteggio
-[@turkheimer2003socioeconomic]. Entrambi i casi sono nella @fig-moderazione. Ne
-riparleremo nel capitolo sull'ereditabilità, insieme ai limiti di questo
-risultato.
+[@turkheimer2003socioeconomic]. Entrambi i casi sono nella @fig-moderazione. Il
+capitolo sull'[ereditabilità](../basi-ambiente-cambiamento/geni-ambiente-ereditabilita.qmd)
+discute anche i limiti di questo risultato.
 
 ```{r}
 #| label: fig-moderazione

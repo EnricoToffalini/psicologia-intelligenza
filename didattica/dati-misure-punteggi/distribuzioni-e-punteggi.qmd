@@ -2,6 +2,9 @@
 title: "Distribuzioni, punti z e punteggi standardizzati"
 description: "Perché la curva gaussiana domina la misura psicologica, come funzionano punti z, QI, punteggi ponderati e percentili, e dove il modello smette di valere."
 suppress-bibliography: true
+format:
+  html:
+    body-classes: capitolo-strumenti
 execute:
   echo: false
   warning: false
@@ -20,6 +23,19 @@ tema = theme_minimal(base_size = if (stampa) 10 else 13) +
   theme(panel.grid.minor = element_blank(), plot.title = element_text(size = 12))
 cx = if (stampa) 2.7 else 3.5  # dimensione del testo nelle annotazioni ggplot
 ```
+
+::: {.inserto-strumenti}
+**Strumenti.** Le due parti «Strumenti» raccolgono le basi tecniche del libro. I loro capitoli
+si possono leggere da soli, in qualsiasi momento, oppure saltare: i capitoli
+concettuali restano comprensibili e vi rimandano, con brevi note in verde,
+quando un passaggio richiede uno strumento in più.
+
+Questo capitolo tratta la curva gaussiana, i punti *z* e le scale dei punteggi
+(QI, ponderati, punti T, percentili), la grandezza di un effetto e i casi in cui
+la normalità è una scelta teorica più che un dato. Non presuppone nulla. Serve
+soprattutto per leggere un profilo di punteggi, per capire la grandezza
+dell'effetto Flynn e per le soglie diagnostiche del neurosviluppo.
+:::
 
 Un QI di 130 non indica una quantità di intelligenza. Indica una posizione: due
 deviazioni standard sopra la media della popolazione di riferimento, un livello
@@ -168,19 +184,9 @@ pochi. Passare dal 50° all'84° percentile richiede una deviazione standard;
 passare dall'84° al 98° ne richiede un'altra. Per questo non ha senso fare la
 media dei percentili, e nella ricerca si preferiscono i punti *z*.
 
-Questa metrica permette anche di rendere preciso un concetto del capitolo
-precedente. Se la relazione fra due misure è lineare, il valore atteso di una
-persona nella seconda misura, espresso in punti *z*, è *r* volte il suo punto
-*z* nella prima:
-
-$$
-\widehat{z_Y} = r \, z_X
-$$
-
-Con *r* = 0,5, chi si trova a *z* = +1 nel QI ha come previsione *z* = +0,5 nei
-risultati scolastici. La previsione si avvicina alla media: è il fenomeno della
-**regressione verso la media**, che si presenta ogni volta che due misure non
-sono perfettamente correlate.
+La stessa metrica servirà a leggere le correlazioni: nel capitolo sulla
+[correlazione](correlazione.qmd) la previsione da una misura all'altra si scrive
+proprio in punti *z*.
 
 ## Essere rari
 
@@ -224,7 +230,7 @@ metrica arbitraria, e la variabilità fra persone diventa l'unità di misura. Un
 migliori. Le revisioni degli effetti replicati in psicologia, dove i fenomeni
 sono molto rumorosi, suggeriscono che le soglie andrebbero abbassate: un
 effetto tipico da meta-analisi è attorno a 0,30–0,35 [@funder2019evaluating].
-Come per la correlazione, la grandezza va giudicata nel contesto.
+Come per ogni misura della grandezza di un effetto, il giudizio dipende dal contesto.
 :::
 
 ```{r}

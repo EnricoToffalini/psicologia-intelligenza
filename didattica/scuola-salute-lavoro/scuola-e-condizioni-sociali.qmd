@@ -91,6 +91,11 @@ Il QI misurato nell'infanzia e il livello di istruzione raggiunto da adulti sono
 fortemente correlati, con valori oltre 0,50 [@strenze2007intelligence]. Le
 spiegazioni possibili sono le solite tre.
 
+::: {.rimando-strumenti}
+**Strumenti →** Le spiegazioni alternative di una correlazione, con questo stesso
+esempio: [Correlazione e differenze individuali](../dati-misure-punteggi/correlazione.qmd).
+:::
+
 **L'intelligenza favorisce l'istruzione.** Chi apprende più facilmente riceve
 più rinforzi positivi, sviluppa più fiducia nelle proprie capacità, sperimenta
 meno fallimenti, viene incoraggiato a proseguire. Nelle coorti britanniche nate

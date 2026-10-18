@@ -199,6 +199,11 @@ circa il 2%. Sono decisioni ragionevoli, non scoperte. E quando le difficoltà
 sono molte, ciascuna appena sotto soglia, nessuna convenzione aiuta: la
 decisione resta difficile.
 
+::: {.rimando-strumenti}
+**Strumenti →** Percentili, deviazioni standard e rarità statistica, e perché un
+punteggio vicino al tetto o al pavimento di un test è poco informativo: [Distribuzioni, punti z e punteggi standardizzati](../dati-misure-punteggi/distribuzioni-e-punteggi.qmd).
+:::
+
 ```{r}
 #| label: fig-soglie
 #| fig-cap: "Non esiste una soglia naturale. L'abilità o il tratto, misurati con strumenti standardizzati, hanno una distribuzione continua: verso sinistra il livello diventa via via più problematico (sfumatura), senza alcun punto di discontinuità. Le linee tratteggiate indicano due soglie convenzionali di rarità: −2 deviazioni standard (circa il 2% della popolazione) e il 5° percentile (z ≈ −1,64)."

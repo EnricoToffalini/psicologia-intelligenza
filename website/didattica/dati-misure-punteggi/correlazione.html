@@ -8,7 +8,7 @@
 
 <meta name="description" content="Che cosa dice un coefficiente di correlazione, che cosa non dice e quali informazioni servono per passare dall’associazione alla spiegazione.">
 
-<title>3&nbsp; Correlazione e differenze individuali – Psicologia dell'Intelligenza</title>
+<title>13&nbsp; Correlazione e differenze individuali – Psicologia dell'Intelligenza</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,8 +31,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../didattica/dati-misure-punteggi/distribuzioni-e-punteggi.html" rel="next">
-<link href="../../didattica/capire-intelligenza/che-cosa-e.html" rel="prev">
+<link href="../../didattica/dati-misure-punteggi/qualita-della-misura.html" rel="next">
+<link href="../../didattica/basi-ambiente-cambiamento/potenziamento-cognitivo.html" rel="prev">
 <link href="../../assets/favicon.ico" rel="icon">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -73,11 +73,40 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script data-goatcounter="https://intelligenza.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../assets/custom.css">
 </head>
 
-<body class="nav-sidebar floating fullcontent quarto-light">
+<body class="nav-sidebar floating capitolo-strumenti fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -86,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../didattica/dati-misure-punteggi/correlazione.html">Dati, misure e punteggi</a></li><li class="breadcrumb-item"><a href="../../didattica/dati-misure-punteggi/correlazione.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Correlazione e differenze individuali</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../didattica/dati-misure-punteggi/correlazione.html"><span class="parte-strumenti">Strumenti II · Correlazione e qualità della misura</span></a></li><li class="breadcrumb-item"><a href="../../didattica/dati-misure-punteggi/correlazione.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Correlazione e differenze individuali</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Ricerca" onclick="window.quartoOpenSearch();">
@@ -146,7 +175,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Dati, misure e punteggi</span></a>
+ <span class="menu-text">Modelli e test dell’intelligenza</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -154,20 +183,26 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../didattica/dati-misure-punteggi/correlazione.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Correlazione e differenze individuali</span></span></a>
+  <a href="../../didattica/modelli-test/fattore-g.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Il fattore generale e la positive manifold</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../didattica/dati-misure-punteggi/distribuzioni-e-punteggi.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Distribuzioni, punti z e punteggi standardizzati</span></span></a>
+  <a href="../../didattica/modelli-test/modelli-gerarchici.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Abilità multiple e modelli gerarchici</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../didattica/dati-misure-punteggi/qualita-della-misura.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Quando una misura è buona</span></span></a>
+  <a href="../../didattica/modelli-test/origini-dei-test.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Dai primi test al testing di massa</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../didattica/modelli-test/batterie-moderne.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Le batterie moderne di intelligenza</span></span></a>
   </div>
 </li>
       </ul>
@@ -175,7 +210,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">Modelli e test dell’intelligenza</span></a>
+ <span class="menu-text"><span class="parte-strumenti">Strumenti I · Punteggi e distribuzioni</span></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -183,26 +218,8 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../didattica/modelli-test/fattore-g.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Il fattore generale e la positive manifold</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../didattica/modelli-test/modelli-gerarchici.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Abilità multiple e modelli gerarchici</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../didattica/modelli-test/origini-dei-test.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Dai primi test al testing di massa</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../didattica/modelli-test/batterie-moderne.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Le batterie moderne di intelligenza</span></span></a>
+  <a href="../../didattica/dati-misure-punteggi/distribuzioni-e-punteggi.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Distribuzioni, punti z e punteggi standardizzati</span></span></a>
   </div>
 </li>
       </ul>
@@ -219,31 +236,31 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../didattica/basi-ambiente-cambiamento/geni-ambiente-ereditabilita.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Geni, ambiente ed ereditabilità</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Geni, ambiente ed ereditabilità</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../didattica/basi-ambiente-cambiamento/genetica-molecolare.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Che cosa aggiunge la genetica molecolare</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../didattica/basi-ambiente-cambiamento/cervello-e-intelligenza.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Cervello e intelligenza</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Che cosa aggiunge la genetica molecolare</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../didattica/basi-ambiente-cambiamento/effetto-flynn.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">L’effetto Flynn e i cambiamenti storici</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">L’effetto Flynn e i cambiamenti storici</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../didattica/basi-ambiente-cambiamento/cervello-e-intelligenza.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Cervello e intelligenza</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../didattica/basi-ambiente-cambiamento/potenziamento-cognitivo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Si può potenziare l’intelligenza?</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Si può potenziare l’intelligenza?</span></span></a>
   </div>
 </li>
       </ul>
@@ -251,12 +268,35 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Scuola, salute e lavoro</span></a>
+ <span class="menu-text"><span class="parte-strumenti">Strumenti II · Correlazione e qualità della misura</span></span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../didattica/dati-misure-punteggi/correlazione.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Correlazione e differenze individuali</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../didattica/dati-misure-punteggi/qualita-della-misura.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Quando una misura è buona</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Scuola, salute e lavoro</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../didattica/scuola-salute-lavoro/scuola-e-condizioni-sociali.html" class="sidebar-item-text sidebar-link">
@@ -279,13 +319,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
  <span class="menu-text">Intelligenza e condizioni del neurosviluppo</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../didattica/condizioni-neurosviluppo/neurosviluppo-dimensionale.html" class="sidebar-item-text sidebar-link">
@@ -302,13 +342,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
  <span class="menu-text">Approfondimenti: oltre g</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../didattica/approfondimenti/intelligenza-emotiva-e-costrutti.html" class="sidebar-item-text sidebar-link">
@@ -325,13 +365,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
  <span class="menu-text"><b>Professione</b></span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../professione-pagine/elenco-test-italia.html" class="sidebar-item-text sidebar-link">
@@ -342,13 +382,13 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
  <span class="menu-text"><b>Divulgazione</b></span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../divulgazione-pagine/domande-risposte.html" class="sidebar-item-text sidebar-link">
@@ -378,9 +418,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../didattica/dati-misure-punteggi/correlazione.html">Dati, misure e punteggi</a></li><li class="breadcrumb-item"><a href="../../didattica/dati-misure-punteggi/correlazione.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Correlazione e differenze individuali</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../didattica/dati-misure-punteggi/correlazione.html"><span class="parte-strumenti">Strumenti II · Correlazione e qualità della misura</span></a></li><li class="breadcrumb-item"><a href="../../didattica/dati-misure-punteggi/correlazione.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Correlazione e differenze individuali</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Correlazione e differenze individuali</span></h1>
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Correlazione e differenze individuali</span></h1>
 </div>
 
 
@@ -397,18 +437,22 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="inserto-strumenti">
+<p><strong>Strumenti.</strong> Le due parti «Strumenti» raccolgono le basi tecniche del libro. I loro capitoli si possono leggere da soli, in qualsiasi momento, oppure saltare: i capitoli concettuali restano comprensibili e vi rimandano, con brevi note in verde, quando un passaggio richiede uno strumento in più.</p>
+<p>Questo capitolo tratta che cosa misura una correlazione, come se ne giudica la grandezza, quando è attendibile, perché non basta a stabilire una causa e che cosa sono mediazione e moderazione. Presuppone soltanto i punti <em>z</em> del capitolo sulle <a href="../../didattica/dati-misure-punteggi/distribuzioni-e-punteggi.html">distribuzioni</a>. Le correlazioni sono già comparse a ogni passo, dalla positive manifold all’ereditabilità; qui se ne danno le regole di lettura, che serviranno subito per la scuola, la salute e il lavoro.</p>
+</div>
 <p>Chi ha un QI più alto tende a ottenere voti scolastici migliori. Eppure tutti conoscono qualcuno brillante con una pagella mediocre e qualcuno con risultati eccellenti senza particolari doti di ragionamento. Le due osservazioni non si contraddicono. Una tendenza può essere solida e ammettere moltissime eccezioni. La correlazione è lo strumento che permette di dire quanto.</p>
 <p>Quasi tutto ciò che sappiamo sulle differenze individuali si esprime con correlazioni: fra prove cognitive, fra fratelli, fra un punteggio e un esito scolastico o lavorativo. Conviene quindi capire bene che cosa riassume questo numero e, soprattutto, che cosa lascia fuori.</p>
-<section id="che-cosè-una-correlazione" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="che-cosè-una-correlazione"><span class="header-section-number">3.1</span> Che cos’è una correlazione</h2>
+<section id="che-cosè-una-correlazione" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="che-cosè-una-correlazione"><span class="header-section-number">13.1</span> Che cos’è una correlazione</h2>
 <p>La correlazione è una misura statistica della <strong>direzione</strong> e dell’<strong>intensità</strong> della relazione fra due variabili quantitative. L’idea intuitiva è semplice: se una persona sta sopra la media in una variabile, tende a stare sopra la media anche nell’altra, sotto, oppure è del tutto indifferente?</p>
 <p>Le domande quotidiane hanno la stessa forma. Se una persona studia più della media, tende a prendere un voto più alto? Se oggi fa più caldo del solito, si vendono più gelati? Se un genitore ha un QI sopra la media, i figli tendono ad averlo sopra la media? E se oggi si vendono più gelati del solito, ci saranno più omicidi in città? L’ultima domanda sembra assurda, e ci torneremo.</p>
 <p>Il <strong>coefficiente di correlazione di Pearson</strong>, indicato con <em>r</em>, riassume la risposta in un numero compreso fra −1 e +1; lo zero indica l’assenza di relazione lineare. Davanti a una correlazione conviene porsi sempre tre domande. È plausibile che le due variabili siano associate davvero, cioè che la correlazione sia diversa da zero? Se una variabile è sopra la media, l’altra tende a stare sopra o sotto? È la <strong>direzione</strong>, data dal segno. Quanto sono rare le eccezioni alla regola? È l’<strong>intensità</strong>, data dal valore assoluto: quanto i punti si dispongono vicino a una retta.</p>
 <p>Il coefficiente non dipende dall’unità di misura. Esprimere i voti in decimi o in trentesimi, o il ragionamento in punti grezzi o in punti QI, non cambia <em>r</em>. Conta solo quanto stretta è la relazione fra le posizioni delle persone nelle due distribuzioni.</p>
 </section>
-<section id="un-esempio-qi-e-voti-scolastici" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="un-esempio-qi-e-voti-scolastici"><span class="header-section-number">3.2</span> Un esempio: QI e voti scolastici</h2>
-<p>Nelle sintesi della letteratura la correlazione fra QI e risultati scolastici è dell’ordine di 0,5 <span class="citation" data-cites="roth2015intelligence">(Roth et al., 2015)</span>. La <a href="#fig-qi-voti" class="quarto-xref">Figura&nbsp;<span>3.1</span></a> mostra che aspetto ha una correlazione di questa grandezza. Ogni punto è una persona. La tendenza è evidente: chi sta a destra della media nel QI sta più spesso sopra la media nei voti. Ma è una tendenza statistica, mai deterministica. Ci sono persone con buoni voti nonostante un QI modesto e persone con voti scarsi nonostante un QI elevato, per i motivi più svariati. Le eccezioni non smentiscono la correlazione: sono già incluse nel valore 0,5.</p>
+<section id="un-esempio-qi-e-voti-scolastici" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="un-esempio-qi-e-voti-scolastici"><span class="header-section-number">13.2</span> Un esempio: QI e voti scolastici</h2>
+<p>Nelle sintesi della letteratura la correlazione fra QI e risultati scolastici è dell’ordine di 0,5 <span class="citation" data-cites="roth2015intelligence">(Roth et al., 2015)</span>. La <a href="#fig-qi-voti" class="quarto-xref">Figura&nbsp;<span>13.1</span></a> mostra che aspetto ha una correlazione di questa grandezza. Ogni punto è una persona. La tendenza è evidente: chi sta a destra della media nel QI sta più spesso sopra la media nei voti. Ma è una tendenza statistica, mai deterministica. Ci sono persone con buoni voti nonostante un QI modesto e persone con voti scarsi nonostante un QI elevato, per i motivi più svariati. Le eccezioni non smentiscono la correlazione: sono già incluse nel valore 0,5.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-qi-voti" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Diagramma di dispersione con il QI sull'asse orizzontale e il successo scolastico su quello verticale, diviso in quattro quadranti dalle linee delle medie. I punti si addensano lungo una freccia crescente. Due punti cerchiati: uno in alto a sinistra, buoni voti nonostante un QI modesto, e uno in basso a destra, voti scarsi nonostante un QI elevato.">
@@ -417,13 +461,17 @@ ul.task-list li input[type="checkbox"] {
 <img src="correlazione_files/figure-html/fig-qi-voti-1.png" class="img-fluid figure-img" alt="Diagramma di dispersione con il QI sull'asse orizzontale e il successo scolastico su quello verticale, diviso in quattro quadranti dalle linee delle medie. I punti si addensano lungo una freccia crescente. Due punti cerchiati: uno in alto a sinistra, buoni voti nonostante un QI modesto, e uno in basso a destra, voti scarsi nonostante un QI elevato." width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-qi-voti-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.1: Una correlazione di 0,50 fra QI e successo scolastico. Ogni punto è una persona; le linee tratteggiate indicano le medie. La tendenza è forte ma non deterministica: sono evidenziati due casi che vanno contro la tendenza. Dati simulati.
+Figura&nbsp;13.1: Una correlazione di 0,50 fra QI e successo scolastico. Ogni punto è una persona; le linee tratteggiate indicano le medie. La tendenza è forte ma non deterministica: sono evidenziati due casi che vanno contro la tendenza. Dati simulati.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Che cosa significa, concretamente, <em>r</em> = 0,50? Un errore frequente è leggerlo come una percentuale di persone: non vuol dire che metà delle persone segue la regola e metà no. Il modo più semplice di intuirlo passa per le deviazioni standard. Se una persona è una deviazione standard sopra la media nel QI, cioè a 115, ci si aspetta che sia in media mezza deviazione standard sopra la media nei risultati scolastici (<a href="#fig-mezza-ds" class="quarto-xref">Figura&nbsp;<span>3.2</span></a>). La correlazione dice di quanto, in media, la posizione in una variabile si trasferisce all’altra. Vale per il coefficiente classico di Pearson, e il capitolo sulle distribuzioni darà a questa idea la forma precisa dei punti <em>z</em>.</p>
+<p>Che cosa significa, concretamente, <em>r</em> = 0,50? Un errore frequente è leggerlo come una percentuale di persone: non vuol dire che metà delle persone segue la regola e metà no. Il modo più semplice di intuirlo passa per le deviazioni standard. Se una persona è una deviazione standard sopra la media nel QI, cioè a 115, ci si aspetta che sia in media mezza deviazione standard sopra la media nei risultati scolastici (<a href="#fig-mezza-ds" class="quarto-xref">Figura&nbsp;<span>13.2</span></a>). La correlazione dice di quanto, in media, la posizione in una variabile si trasferisce all’altra. Vale per il coefficiente classico di Pearson, e con i punti <em>z</em> del capitolo sulle <a href="../../didattica/dati-misure-punteggi/distribuzioni-e-punteggi.html">distribuzioni</a> prende una forma precisa. Se la relazione fra due misure è lineare, il valore atteso di una persona nella seconda misura, espresso in punti <em>z</em>, è <em>r</em> volte il suo punto <em>z</em> nella prima:</p>
+<p><span class="math display">\[
+\widehat{z_Y} = r \, z_X
+\]</span></p>
+<p>Con <em>r</em> = 0,5, chi si trova a <em>z</em> = +1 nel QI ha come previsione <em>z</em> = +0,5 nei risultati scolastici. La previsione si avvicina alla media: è il fenomeno della <strong>regressione verso la media</strong>, che si presenta ogni volta che due misure non sono perfettamente correlate.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-mezza-ds" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Diagramma di dispersione con il QI da 70 a 130 sull'asse orizzontale e il successo scolastico in punti z sull'asse verticale, con una retta crescente. Linee tratteggiate rosse mostrano che a QI 100 corrisponde in media z uguale a 0 e a QI 115 corrisponde in media z uguale a più 0,50.">
@@ -432,16 +480,16 @@ Figura&nbsp;3.1: Una correlazione di 0,50 fra QI e successo scolastico. Ogni pun
 <img src="correlazione_files/figure-html/fig-mezza-ds-1.png" class="img-fluid figure-img" alt="Diagramma di dispersione con il QI da 70 a 130 sull'asse orizzontale e il successo scolastico in punti z sull'asse verticale, con una retta crescente. Linee tratteggiate rosse mostrano che a QI 100 corrisponde in media z uguale a 0 e a QI 115 corrisponde in media z uguale a più 0,50." width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mezza-ds-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.2: Che cosa significa r = +0,50: chi è una deviazione standard sopra la media nel QI (115) è in media mezza deviazione standard sopra la media nel successo scolastico (z = +0,50). La retta indica il valore atteso. Dati simulati.
+Figura&nbsp;13.2: Che cosa significa r = +0,50: chi è una deviazione standard sopra la media nel QI (115) è in media mezza deviazione standard sopra la media nel successo scolastico (z = +0,50). La retta indica il valore atteso. Dati simulati.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="quanto-è-grande-una-correlazione" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="quanto-è-grande-una-correlazione"><span class="header-section-number">3.3</span> Quanto è grande una correlazione</h2>
-<p>Esistono etichette di comodo per la grandezza di <em>r</em> (<a href="#fig-intensita" class="quarto-xref">Figura&nbsp;<span>3.3</span></a>). Una correlazione nulla descrive due cose che non c’entrano niente l’una con l’altra. Attorno a 0,20 si trova il caso più tipico di effetto vero in psicologia: una rassegna di centinaia di meta-analisi sulle differenze individuali ha trovato proprio un valore tipico di questo ordine <span class="citation" data-cites="gignac2016effect">(Gignac &amp; Szodorai, 2016)</span>. Una correlazione di 0,50, come quella fra QI e voti, è forte: variabili evidentemente molto legate. Una correlazione di 0,80, in psicologia, indica spesso la stessa cosa misurata in due modi diversi, anche se non basta da sola a stabilire che due prove misurino lo stesso costrutto.</p>
+<section id="quanto-è-grande-una-correlazione" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="quanto-è-grande-una-correlazione"><span class="header-section-number">13.3</span> Quanto è grande una correlazione</h2>
+<p>Esistono etichette di comodo per la grandezza di <em>r</em> (<a href="#fig-intensita" class="quarto-xref">Figura&nbsp;<span>13.3</span></a>). Una correlazione nulla descrive due cose che non c’entrano niente l’una con l’altra. Attorno a 0,20 si trova il caso più tipico di effetto vero in psicologia: una rassegna di centinaia di meta-analisi sulle differenze individuali ha trovato proprio un valore tipico di questo ordine <span class="citation" data-cites="gignac2016effect">(Gignac &amp; Szodorai, 2016)</span>. Una correlazione di 0,50, come quella fra QI e voti, è forte: variabili evidentemente molto legate. Una correlazione di 0,80, in psicologia, indica spesso la stessa cosa misurata in due modi diversi, anche se non basta da sola a stabilire che due prove misurino lo stesso costrutto.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-intensita" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Quattro diagrammi di dispersione. Con r uguale a 0 la nuvola è rotonda; con 0,20 appena inclinata; con 0,50 chiaramente allungata in diagonale; con 0,80 stretta lungo la diagonale.">
@@ -450,7 +498,7 @@ Figura&nbsp;3.2: Che cosa significa r = +0,50: chi è una deviazione standard so
 <img src="correlazione_files/figure-html/fig-intensita-1.png" class="img-fluid figure-img" alt="Quattro diagrammi di dispersione. Con r uguale a 0 la nuvola è rotonda; con 0,20 appena inclinata; con 0,50 chiaramente allungata in diagonale; con 0,80 stretta lungo la diagonale." width="768">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-intensita-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.3: Correlazioni di grandezza crescente, con le etichette di comodo usate nel testo. Le variabili sono in punti z; le linee tratteggiate indicano le medie. Dati simulati con correlazione esatta.
+Figura&nbsp;13.3: Correlazioni di grandezza crescente, con le etichette di comodo usate nel testo. Le variabili sono in punti z; le linee tratteggiate indicano le medie. Dati simulati con correlazione esatta.
 </figcaption>
 </figure>
 </div>
@@ -471,10 +519,10 @@ Punto metodologico: la «varianza spiegata»
 </div>
 </div>
 </section>
-<section id="casi-estremi-e-relazioni-non-lineari" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="casi-estremi-e-relazioni-non-lineari"><span class="header-section-number">3.4</span> Casi estremi e relazioni non lineari</h2>
+<section id="casi-estremi-e-relazioni-non-lineari" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="casi-estremi-e-relazioni-non-lineari"><span class="header-section-number">13.4</span> Casi estremi e relazioni non lineari</h2>
 <p>Il coefficiente di Pearson ha due punti deboli che conviene conoscere.</p>
-<p>Il primo sono i <strong>casi estremi</strong>. Pearson pesa le distanze dalla media, e un singolo punto molto lontano dagli altri può spostare <em>r</em> in modo sensibile. Nella <a href="#fig-outlier" class="quarto-xref">Figura&nbsp;<span>3.4</span></a> una nuvola senza alcuna relazione diventa una correlazione di 0,22 per colpa di un solo caso. Un rimedio è il coefficiente <strong>rho di Spearman</strong>, che lavora sui ranghi: ogni valore è sostituito dalla sua posizione nel campione. Il caso estremo diventa così semplicemente il primo della classifica, non un punto fuori dalla distribuzione, e la correlazione torna vicina a zero. Non è però una scorciatoia automatica: un valore estremo può essere un errore di inserimento da correggere oppure il dato più interessante del campione. Prima di scegliere il coefficiente, bisogna guardare i dati <span class="citation" data-cites="schober2018correlation">(Schober et al., 2018)</span>.</p>
+<p>Il primo sono i <strong>casi estremi</strong>. Pearson pesa le distanze dalla media, e un singolo punto molto lontano dagli altri può spostare <em>r</em> in modo sensibile. Nella <a href="#fig-outlier" class="quarto-xref">Figura&nbsp;<span>13.4</span></a> una nuvola senza alcuna relazione diventa una correlazione di 0,22 per colpa di un solo caso. Un rimedio è il coefficiente <strong>rho di Spearman</strong>, che lavora sui ranghi: ogni valore è sostituito dalla sua posizione nel campione. Il caso estremo diventa così semplicemente il primo della classifica, non un punto fuori dalla distribuzione, e la correlazione torna vicina a zero. Non è però una scorciatoia automatica: un valore estremo può essere un errore di inserimento da correggere oppure il dato più interessante del campione. Prima di scegliere il coefficiente, bisogna guardare i dati <span class="citation" data-cites="schober2018correlation">(Schober et al., 2018)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-outlier" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Diagramma di dispersione di 150 punti raccolti attorno all'origine, senza tendenza, e un punto isolato in alto a destra, a circa 6,5 deviazioni standard su entrambe le variabili. Nel grafico sono indicati i due coefficienti: Pearson circa 0,22, Spearman circa 0,03.">
@@ -483,13 +531,13 @@ Punto metodologico: la «varianza spiegata»
 <img src="correlazione_files/figure-html/fig-outlier-1.png" class="img-fluid figure-img" alt="Diagramma di dispersione di 150 punti raccolti attorno all'origine, senza tendenza, e un punto isolato in alto a destra, a circa 6,5 deviazioni standard su entrambe le variabili. Nel grafico sono indicati i due coefficienti: Pearson circa 0,22, Spearman circa 0,03." width="624">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-outlier-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.4: Un singolo caso estremo, in alto a destra, fa salire la correlazione di Pearson da zero a circa 0,20; la rho di Spearman, calcolata sui ranghi, resta vicina a zero. Dati simulati.
+Figura&nbsp;13.4: Un singolo caso estremo, in alto a destra, fa salire la correlazione di Pearson da zero a circa 0,20; la rho di Spearman, calcolata sui ranghi, resta vicina a zero. Dati simulati.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Il secondo punto debole è la <strong>forma</strong> della relazione. Pearson misura l’associazione <strong>lineare</strong>. Relazioni non lineari sono comuni quando si studia lo sviluppo: molte abilità crescono rapidamente nell’infanzia, rallentano nell’adolescenza, restano stabili e poi declinano. La <a href="#fig-non-lineare" class="quarto-xref">Figura&nbsp;<span>3.5</span></a> mostra punteggi simulati in una prova di ragionamento con un massimo di 60 punti. Fra 6 e 18 anni una retta descrive abbastanza bene la crescita, anche se una curva flessibile fa meglio. Sull’intero arco di vita, invece, la correlazione lineare è praticamente nulla, benché il punteggio dipenda chiaramente dall’età. Un <em>r</em> nullo dice «nessuna tendenza lineare», non «nessuna relazione». Curve flessibili, come le interpolazioni locali, descrivono meglio queste traiettorie, al prezzo di essere meno facili da riassumere in un numero. Una parabola, cioè una relazione quadratica, è un compromesso spesso deludente: prevede discretamente in media e sbaglia di molto proprio dove la curva cambia forma.</p>
+<p>Il secondo punto debole è la <strong>forma</strong> della relazione. Pearson misura l’associazione <strong>lineare</strong>. Relazioni non lineari sono comuni quando si studia lo sviluppo: molte abilità crescono rapidamente nell’infanzia, rallentano nell’adolescenza, restano stabili e poi declinano. La <a href="#fig-non-lineare" class="quarto-xref">Figura&nbsp;<span>13.5</span></a> mostra punteggi simulati in una prova di ragionamento con un massimo di 60 punti. Fra 6 e 18 anni una retta descrive abbastanza bene la crescita, anche se una curva flessibile fa meglio. Sull’intero arco di vita, invece, la correlazione lineare è praticamente nulla, benché il punteggio dipenda chiaramente dall’età. Un <em>r</em> nullo dice «nessuna tendenza lineare», non «nessuna relazione». Curve flessibili, come le interpolazioni locali, descrivono meglio queste traiettorie, al prezzo di essere meno facili da riassumere in un numero. Una parabola, cioè una relazione quadratica, è un compromesso spesso deludente: prevede discretamente in media e sbaglia di molto proprio dove la curva cambia forma.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-non-lineare" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Due diagrammi di dispersione del punteggio, da 0 a 60, contro l'età. Nel primo, da 6 a 18 anni, i punti crescono e una retta e una curva quasi coincidono. Nel secondo, da 6 a 80 anni, i punti salgono rapidamente fino ai 20 anni, restano stabili e scendono dopo i 50: la retta è quasi orizzontale, la curva rossa segue l'andamento. Nei pannelli sono riportati r e R quadro.">
@@ -498,17 +546,17 @@ Figura&nbsp;3.4: Un singolo caso estremo, in alto a destra, fa salire la correla
 <img src="correlazione_files/figure-html/fig-non-lineare-1.png" class="img-fluid figure-img" alt="Due diagrammi di dispersione del punteggio, da 0 a 60, contro l'età. Nel primo, da 6 a 18 anni, i punti crescono e una retta e una curva quasi coincidono. Nel secondo, da 6 a 80 anni, i punti salgono rapidamente fino ai 20 anni, restano stabili e scendono dopo i 50: la retta è quasi orizzontale, la curva rossa segue l'andamento. Nei pannelli sono riportati r e R quadro." width="768">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-non-lineare-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.5: Punteggi simulati in una prova di ragionamento in funzione dell’età. Nel primo pannello, fra 6 e 18 anni, la retta (tratteggiata) descrive abbastanza bene la crescita; nel secondo, sull’intero arco di vita, la correlazione lineare è quasi nulla, mentre una curva flessibile (interpolazione locale, in rosso) coglie la relazione.
+Figura&nbsp;13.5: Punteggi simulati in una prova di ragionamento in funzione dell’età. Nel primo pannello, fra 6 e 18 anni, la retta (tratteggiata) descrive abbastanza bene la crescita; nel secondo, sull’intero arco di vita, la correlazione lineare è quasi nulla, mentre una curva flessibile (interpolazione locale, in rosso) coglie la relazione.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="correlano-davvero" class="level2" data-number="3.5">
-<h2 data-number="3.5" class="anchored" data-anchor-id="correlano-davvero"><span class="header-section-number">3.5</span> Correlano davvero?</h2>
+<section id="correlano-davvero" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="correlano-davvero"><span class="header-section-number">13.5</span> Correlano davvero?</h2>
 <p>Se le cose correlano davvero, non lo fanno «e basta»: c’è un motivo. Ed è sulle correlazioni che si regge una parte enorme della ricerca non sperimentale. Prima di cercare il motivo, però, bisogna accertare che la correlazione osservata nel campione sia attendibile, cioè presumibilmente diversa da zero nella popolazione da cui il campione proviene.</p>
-<p>Una correlazione calcolata su un campione è una stima. Se lo stesso studio fosse ripetuto su altre persone, il valore cambierebbe, e quanto cambierebbe dipende soprattutto dalla numerosità. Nella <a href="#fig-campioni" class="quarto-xref">Figura&nbsp;<span>3.6</span></a> la popolazione, in grigio, ha una correlazione vera di 0,20 fra QI e apertura mentale. Un campione di 30 persone, estratto a caso, dà 0,28; uno di 200 dà 0,20. Il campione piccolo ha trovato la correlazione <em>più forte</em>, eppure è quello che non permette di concludere nulla: con 30 persone si possono ottenere valori vicini a zero, negativi, oppure doppi del valore vero, e un 0,28 è del tutto compatibile con una popolazione in cui la correlazione è zero. Con 200 persone la stima è molto più stabile, e anche un valore più piccolo si distingue dallo zero.</p>
+<p>Una correlazione calcolata su un campione è una stima. Se lo stesso studio fosse ripetuto su altre persone, il valore cambierebbe, e quanto cambierebbe dipende soprattutto dalla numerosità. Nella <a href="#fig-campioni" class="quarto-xref">Figura&nbsp;<span>13.6</span></a> la popolazione, in grigio, ha una correlazione vera di 0,20 fra QI e apertura mentale. Un campione di 30 persone, estratto a caso, dà 0,28; uno di 200 dà 0,20. Il campione piccolo ha trovato la correlazione <em>più forte</em>, eppure è quello che non permette di concludere nulla: con 30 persone si possono ottenere valori vicini a zero, negativi, oppure doppi del valore vero, e un 0,28 è del tutto compatibile con una popolazione in cui la correlazione è zero. Con 200 persone la stima è molto più stabile, e anche un valore più piccolo si distingue dallo zero.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-campioni" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Due pannelli con la stessa nuvola grigia di mille punti, QI totale in orizzontale e apertura mentale in verticale, con la nota r uguale a 0,20 nella popolazione. Nel primo sono evidenziati in rosso 30 punti, con una retta crescente, r uguale a 0,28 e p uguale a 0,13, non significativo. Nel secondo sono evidenziati 200 punti, con una retta meno inclinata, r uguale a 0,20 e p uguale a 0,004.">
@@ -517,7 +565,7 @@ Figura&nbsp;3.5: Punteggi simulati in una prova di ragionamento in funzione dell
 <img src="correlazione_files/figure-html/fig-campioni-1.png" class="img-fluid figure-img" alt="Due pannelli con la stessa nuvola grigia di mille punti, QI totale in orizzontale e apertura mentale in verticale, con la nota r uguale a 0,20 nella popolazione. Nel primo sono evidenziati in rosso 30 punti, con una retta crescente, r uguale a 0,28 e p uguale a 0,13, non significativo. Nel secondo sono evidenziati 200 punti, con una retta meno inclinata, r uguale a 0,20 e p uguale a 0,004." width="768">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-campioni-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.6: Lo stesso effetto visto con due campioni. In grigio una popolazione simulata di mille persone in cui la correlazione vera fra QI e apertura mentale è 0,20; in rosso le persone estratte a caso in un campione piccolo e in uno medio, con la retta stimata su di esse. Il campione piccolo stima una correlazione più forte, ma non permette di distinguerla da zero; quello medio stima una correlazione più debole, ma statisticamente attendibile.
+Figura&nbsp;13.6: Lo stesso effetto visto con due campioni. In grigio una popolazione simulata di mille persone in cui la correlazione vera fra QI e apertura mentale è 0,20; in rosso le persone estratte a caso in un campione piccolo e in uno medio, con la retta stimata su di esse. Il campione piccolo stima una correlazione più forte, ma non permette di distinguerla da zero; quello medio stima una correlazione più debole, ma statisticamente attendibile.
 </figcaption>
 </figure>
 </div>
@@ -525,10 +573,10 @@ Figura&nbsp;3.6: Lo stesso effetto visto con due campioni. In grigio una popolaz
 </div>
 <p>Un metodo fondamentale, anche se non l’unico, per decidere è il <strong>test di significatività</strong>: chiede se il valore osservato sia compatibile con una popolazione in cui la correlazione è zero. Il valore <em>p</em> misura questa compatibilità. Non misura la grandezza dell’effetto né la probabilità che l’ipotesi sia vera <span class="citation" data-cites="wasserstein2016pvalues">(Wasserstein &amp; Lazar, 2016)</span>. Una correlazione di 0,28 può essere «non significativa» con 30 persone e una di 0,20 «significativa» con 200: a cambiare è la precisione della stima, non la grandezza dell’effetto. Per questo conviene riportare sempre anche un intervallo di confidenza, che mostra l’ampiezza dell’incertezza.</p>
 </section>
-<section id="spiegare-perché-correlano" class="level2" data-number="3.6">
-<h2 data-number="3.6" class="anchored" data-anchor-id="spiegare-perché-correlano"><span class="header-section-number">3.6</span> Spiegare perché correlano</h2>
+<section id="spiegare-perché-correlano" class="level2" data-number="13.6">
+<h2 data-number="13.6" class="anchored" data-anchor-id="spiegare-perché-correlano"><span class="header-section-number">13.6</span> Spiegare perché correlano</h2>
 <p>Se due variabili correlano davvero, le possibilità principali sono quattro: A causa B; B causa A; le due si influenzano a vicenda, magari rafforzandosi nel tempo; oppure esistono cause comuni.</p>
-<p>Un caso che riguarda proprio l’intelligenza è la correlazione fra QI e istruzione (<a href="#fig-spiegazioni" class="quarto-xref">Figura&nbsp;<span>3.7</span></a>). L’intelligenza favorisce la prosecuzione degli studi? L’istruzione aumenta le abilità cognitive? Le due cose si alimentano a vicenda nel tempo? Oppure condizioni familiari come lo status socioeconomico influenzano entrambe? Per rispondere non basta la correlazione. Servono studi longitudinali, che mostrino se una variazione individuale nell’una anticipa una variazione nell’altra, e analisi che verifichino se la correlazione si riduce confrontando persone con condizioni ambientali simili. La risposta che emerge da diversi studi è che sono all’opera sia una causalità reciproca, compreso un effetto causale dell’istruzione sui punteggi, sia cause comuni come lo status socioeconomico della famiglia <span class="citation" data-cites="ritchie2018education">(Ritchie &amp; Tucker-Drob, 2018)</span>. Anche gli esperimenti naturali, come i cambiamenti di legge sull’obbligo scolastico, sono stati decisivi.</p>
+<p>Un caso che riguarda proprio l’intelligenza è la correlazione fra QI e istruzione (<a href="#fig-spiegazioni" class="quarto-xref">Figura&nbsp;<span>13.7</span></a>). L’intelligenza favorisce la prosecuzione degli studi? L’istruzione aumenta le abilità cognitive? Le due cose si alimentano a vicenda nel tempo? Oppure condizioni familiari come lo status socioeconomico influenzano entrambe? Per rispondere non basta la correlazione. Servono studi longitudinali, che mostrino se una variazione individuale nell’una anticipa una variazione nell’altra, e analisi che verifichino se la correlazione si riduce confrontando persone con condizioni ambientali simili. La risposta che emerge da diversi studi è che sono all’opera sia una causalità reciproca, compreso un effetto causale dell’istruzione sui punteggi, sia cause comuni come lo status socioeconomico della famiglia <span class="citation" data-cites="ritchie2018education">(Ritchie &amp; Tucker-Drob, 2018)</span>. Anche gli esperimenti naturali, come i cambiamenti di legge sull’obbligo scolastico, sono stati decisivi.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-spiegazioni" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Quattro piccoli schemi. Nel primo una freccia va da intelligenza a istruzione; nel secondo da istruzione a intelligenza; nel terzo frecce in entrambe le direzioni, ripetute nel tempo; nel quarto lo status socioeconomico manda una freccia sia all'intelligenza sia all'istruzione.">
@@ -537,7 +585,7 @@ Figura&nbsp;3.6: Lo stesso effetto visto con due campioni. In grigio una popolaz
 <img src="correlazione_files/figure-html/fig-spiegazioni-1.png" class="img-fluid figure-img" alt="Quattro piccoli schemi. Nel primo una freccia va da intelligenza a istruzione; nel secondo da istruzione a intelligenza; nel terzo frecce in entrambe le direzioni, ripetute nel tempo; nel quarto lo status socioeconomico manda una freccia sia all'intelligenza sia all'istruzione." width="640">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-spiegazioni-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.7: Quattro spiegazioni possibili della correlazione fra intelligenza e istruzione. Le frecce rappresentano ipotesi causali; le evidenze disponibili sostengono in parte sia la causalità reciproca sia le cause comuni.
+Figura&nbsp;13.7: Quattro spiegazioni possibili della correlazione fra intelligenza e istruzione. Le frecce rappresentano ipotesi causali; le evidenze disponibili sostengono in parte sia la causalità reciproca sia le cause comuni.
 </figcaption>
 </figure>
 </div>
@@ -545,9 +593,9 @@ Figura&nbsp;3.7: Quattro spiegazioni possibili della correlazione fra intelligen
 </div>
 <p>L’esempio dei gelati è più netto. Nei giorni in cui si vendono più gelati avvengono anche più omicidi e più annegamenti. Nessuno pensa che i gelati rendano violenti o facciano annegare: il caldo porta le persone fuori casa, in spiaggia e in strada. La temperatura è una <strong>causa comune</strong>. In rete si trovano intere raccolte di correlazioni assurde, come quella fra numero di pirati e riscaldamento globale, ottenute confrontando serie temporali che crescono o calano per motivi indipendenti. Fanno sorridere, ma ricordano un fatto serio: una correlazione da sola non indica la direzione causale né esclude terze variabili <span class="citation" data-cites="rohrer2018thinking">(Rohrer, 2018)</span>. Correlazione non significa causalità, anche se spesso, dietro, qualche causalità c’è. E la sequenza temporale aiuta senza risolvere tutto: se A precede B, B non può aver causato A, ma resta possibile che una terza variabile abbia preceduto entrambe.</p>
 </section>
-<section id="mediazione-e-moderazione" class="level2" data-number="3.7">
-<h2 data-number="3.7" class="anchored" data-anchor-id="mediazione-e-moderazione"><span class="header-section-number">3.7</span> Mediazione e moderazione</h2>
-<p>Due concetti aiutano a precisare le ipotesi causali. Si parla di <strong>mediazione</strong>, o causazione indiretta, quando A influenza B attraverso una o più variabili intermedie. Un consumo elevato di alcol peggiora il rendimento agli esami? Se sì, probabilmente non in modo diretto, ma attraverso più percorsi: effetti sul sonno e sulla memoria, e situazioni sociali che sottraggono tempo allo studio (<a href="#fig-mediazione" class="quarto-xref">Figura&nbsp;<span>3.8</span></a>). Una mediazione stimata con dati raccolti in un unico momento, però, non dimostra il processo nel tempo <span class="citation" data-cites="maxwell2007bias">(Maxwell &amp; Cole, 2007)</span>.</p>
+<section id="mediazione-e-moderazione" class="level2" data-number="13.7">
+<h2 data-number="13.7" class="anchored" data-anchor-id="mediazione-e-moderazione"><span class="header-section-number">13.7</span> Mediazione e moderazione</h2>
+<p>Due concetti aiutano a precisare le ipotesi causali. Si parla di <strong>mediazione</strong>, o causazione indiretta, quando A influenza B attraverso una o più variabili intermedie. Un consumo elevato di alcol peggiora il rendimento agli esami? Se sì, probabilmente non in modo diretto, ma attraverso più percorsi: effetti sul sonno e sulla memoria, e situazioni sociali che sottraggono tempo allo studio (<a href="#fig-mediazione" class="quarto-xref">Figura&nbsp;<span>13.8</span></a>). Una mediazione stimata con dati raccolti in un unico momento, però, non dimostra il processo nel tempo <span class="citation" data-cites="maxwell2007bias">(Maxwell &amp; Cole, 2007)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-mediazione" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Schema a riquadri. Dal consumo di alcol, a sinistra, partono frecce verso situazioni sociali, effetto sulla memoria ed effetto sul sonno. Le situazioni sociali puntano al tempo passato a studiare, il sonno punta anche alla memoria, e tempo di studio, memoria e sonno puntano al rendimento agli esami, a destra.">
@@ -556,13 +604,13 @@ Figura&nbsp;3.7: Quattro spiegazioni possibili della correlazione fra intelligen
 <img src="correlazione_files/figure-html/fig-mediazione-1.png" class="img-fluid figure-img" alt="Schema a riquadri. Dal consumo di alcol, a sinistra, partono frecce verso situazioni sociali, effetto sulla memoria ed effetto sul sonno. Le situazioni sociali puntano al tempo passato a studiare, il sonno punta anche alla memoria, e tempo di studio, memoria e sonno puntano al rendimento agli esami, a destra." width="640">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mediazione-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.8: Mediazione: il consumo di alcol potrebbe influire sul rendimento agli esami attraverso più percorsi indiretti, cioè gli effetti su sonno e memoria e le situazioni sociali che riducono il tempo di studio. Schema ipotetico.
+Figura&nbsp;13.8: Mediazione: il consumo di alcol potrebbe influire sul rendimento agli esami attraverso più percorsi indiretti, cioè gli effetti su sonno e memoria e le situazioni sociali che riducono il tempo di studio. Schema ipotetico.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Si parla di <strong>moderazione</strong>, o causazione modificata, quando la relazione fra A e B cambia in funzione di una terza variabile <span class="citation" data-cites="baron1986moderator">(Baron &amp; Kenny, 1986)</span>. La presenza di osservatori tende a migliorare la prestazione in compiti già automatizzati e a peggiorarla in compiti nuovi <span class="citation" data-cites="zajonc1965social">(Zajonc, 1965)</span>: il tipo di compito modera l’effetto del pubblico. Nel campo dell’intelligenza un esempio discusso riguarda lo status socioeconomico, che in alcuni studi statunitensi sembra modificare quanto le differenze genetiche si traducono in differenze di punteggio <span class="citation" data-cites="turkheimer2003socioeconomic">(Turkheimer et al., 2003)</span>. Entrambi i casi sono nella <a href="#fig-moderazione" class="quarto-xref">Figura&nbsp;<span>3.9</span></a>. Ne riparleremo nel capitolo sull’ereditabilità, insieme ai limiti di questo risultato.</p>
+<p>Si parla di <strong>moderazione</strong>, o causazione modificata, quando la relazione fra A e B cambia in funzione di una terza variabile <span class="citation" data-cites="baron1986moderator">(Baron &amp; Kenny, 1986)</span>. La presenza di osservatori tende a migliorare la prestazione in compiti già automatizzati e a peggiorarla in compiti nuovi <span class="citation" data-cites="zajonc1965social">(Zajonc, 1965)</span>: il tipo di compito modera l’effetto del pubblico. Nel campo dell’intelligenza un esempio discusso riguarda lo status socioeconomico, che in alcuni studi statunitensi sembra modificare quanto le differenze genetiche si traducono in differenze di punteggio <span class="citation" data-cites="turkheimer2003socioeconomic">(Turkheimer et al., 2003)</span>. Entrambi i casi sono nella <a href="#fig-moderazione" class="quarto-xref">Figura&nbsp;<span>13.9</span></a>. Il capitolo sull’<a href="../../didattica/basi-ambiente-cambiamento/geni-ambiente-ereditabilita.html">ereditabilità</a> discute anche i limiti di questo risultato.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-moderazione" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Due grafici a linee. Nel primo, con il numero di osservatori da 0 a 8 sull'asse orizzontale, la prestazione nel compito automatizzato sale da 72 a 80 e quella nel compito nuovo scende da 58 a 46. Nel secondo, con il punteggio poligenico da meno 2 a più 2, il QI sale da 89 a 109 con status socioeconomico elevato e solo da 88 a 92 con status basso.">
@@ -571,15 +619,15 @@ Figura&nbsp;3.8: Mediazione: il consumo di alcol potrebbe influire sul rendiment
 <img src="correlazione_files/figure-html/fig-moderazione-1.png" class="img-fluid figure-img" alt="Due grafici a linee. Nel primo, con il numero di osservatori da 0 a 8 sull'asse orizzontale, la prestazione nel compito automatizzato sale da 72 a 80 e quella nel compito nuovo scende da 58 a 46. Nel secondo, con il punteggio poligenico da meno 2 a più 2, il QI sale da 89 a 109 con status socioeconomico elevato e solo da 88 a 92 con status basso." width="768">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-moderazione-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;3.9: Due esempi di moderazione. Nel primo pannello, al crescere del numero di osservatori la prestazione migliora in un compito già automatizzato e peggiora in un compito nuovo. Nel secondo, il legame fra punteggio poligenico e QI è più forte in condizioni socioeconomiche elevate che in condizioni svantaggiate. Valori illustrativi.
+Figura&nbsp;13.9: Due esempi di moderazione. Nel primo pannello, al crescere del numero di osservatori la prestazione migliora in un compito già automatizzato e peggiora in un compito nuovo. Nel secondo, il legame fra punteggio poligenico e QI è più forte in condizioni socioeconomiche elevate che in condizioni svantaggiate. Valori illustrativi.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="quattro-controlli-prima-di-fidarsi" class="level2" data-number="3.8">
-<h2 data-number="3.8" class="anchored" data-anchor-id="quattro-controlli-prima-di-fidarsi"><span class="header-section-number">3.8</span> Quattro controlli prima di fidarsi</h2>
+<section id="quattro-controlli-prima-di-fidarsi" class="level2" data-number="13.8">
+<h2 data-number="13.8" class="anchored" data-anchor-id="quattro-controlli-prima-di-fidarsi"><span class="header-section-number">13.8</span> Quattro controlli prima di fidarsi</h2>
 <p>Una correlazione è uno dei risultati più semplici della ricerca e uno dei più facili da interpretare male. Prima di trarne conclusioni conviene controllare quattro cose: il segno, che dice la direzione; l’intensità, da leggere nel contesto della domanda; la forma dei dati, che può rendere il coefficiente fuorviante; il disegno dello studio, che decide quali spiegazioni restano in gioco. Saltare l’ultimo passaggio è l’errore più comune. Ed è quello che produce i titoli di giornale peggiori.</p>
 <div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1007,13 +1055,13 @@ In breve
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../didattica/capire-intelligenza/che-cosa-e.html" class="pagination-link" aria-label="Che cosa chiamiamo intelligenza">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Che cosa chiamiamo intelligenza</span></span>
+      <a href="../../didattica/basi-ambiente-cambiamento/potenziamento-cognitivo.html" class="pagination-link" aria-label="Si può potenziare l'intelligenza?">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Si può potenziare l’intelligenza?</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../didattica/dati-misure-punteggi/distribuzioni-e-punteggi.html" class="pagination-link" aria-label="Distribuzioni, punti z e punteggi standardizzati">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Distribuzioni, punti z e punteggi standardizzati</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../didattica/dati-misure-punteggi/qualita-della-misura.html" class="pagination-link" aria-label="Quando una misura è buona">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Quando una misura è buona</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

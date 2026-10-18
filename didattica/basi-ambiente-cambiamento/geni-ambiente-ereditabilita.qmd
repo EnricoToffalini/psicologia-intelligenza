@@ -87,6 +87,12 @@ somiglianza genetica. I gemelli monozigoti cresciuti insieme correlano attorno a
 gemelli monozigoti cresciuti separati restano molto simili, mentre i figli
 adottivi somigliano poco ai genitori adottivi [@plomin2001behavioral].
 
+::: {.rimando-strumenti}
+**Strumenti →** Che cosa significa, concretamente, una correlazione di 0,86 fra due
+gemelli, e perché una correlazione da sola non distingue geni e ambiente:
+[Correlazione e differenze individuali](../dati-misure-punteggi/correlazione.qmd).
+:::
+
 | Coppia di persone | Ambiente condiviso? | Variabilità genetica condivisa | Correlazione del QI |
 |---|:-:|:-:|:-:|
 | Gemelli monozigoti (n = 4.672) | sì | 100% | 0,86 |

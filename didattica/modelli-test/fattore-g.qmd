@@ -60,6 +60,12 @@ confrontare simboli: compiti che non si assomigliano in nulla producono punteggi
 correlati positivamente. Questo fatto ha un nome, **positive manifold**, ed è il
 punto di partenza obbligato di ogni teoria dell'intelligenza.
 
+::: {.rimando-strumenti}
+**Strumenti →** Per seguire questo capitolo basta l'idea intuitiva: una correlazione
+positiva fra due prove significa che chi va bene nell'una tende ad andare bene
+anche nell'altra. Come se ne misura e se ne giudica la grandezza: [Correlazione e differenze individuali](../dati-misure-punteggi/correlazione.qmd).
+:::
+
 La domanda è se l'intelligenza sia una cosa sola o molte. Assomiglia alla
 personalità, che si descrive con diverse dimensioni distinte? Oppure tutto tende
 a convergere su un'unica dimensione? E il QI riflette qualcosa di reale, con

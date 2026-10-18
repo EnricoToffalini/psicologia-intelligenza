@@ -236,6 +236,11 @@ lavoro, con i suoi limiti. Qui conta un punto solo: prevedere bene un esito è u
 prova importante a favore di una misura, ma non spiega perché la previsione
 funziona. Qualità della misura e spiegazione causale sono domande diverse.
 
+::: {.rimando-strumenti}
+**Strumenti →** Come si legge una correlazione di 0,50, quando è attendibile e perché
+non basta a stabilire una causa: [Correlazione e differenze individuali](../dati-misure-punteggi/correlazione.qmd).
+:::
+
 ## Come si arriva al QI
 
 Proprio perché la capacità da misurare è generale, nessun test particolare è
@@ -385,9 +390,13 @@ Ha senso solo nel confronto con le **norme**, cioè con il campione su cui il te
 pertinente alla persona valutata [@aera2014standards, standard 5.8]. La seconda:
 la scala non ha uno zero naturale né un'unità di intelligenza. Un QI di 120 non
 significa aver risolto il 120% dei problemi, né avere il 20% di intelligenza in
-più di chi ha 100. Il capitolo sulle
-[distribuzioni](../dati-misure-punteggi/distribuzioni-e-punteggi.qmd) spiega il
-meccanismo in dettaglio.
+più di chi ha 100.
+
+::: {.rimando-strumenti}
+**Strumenti →** Perché il QI si distribuisce a campana, come si passa da un punteggio
+grezzo al QI e che cosa sono punti *z*, punteggi ponderati e percentili:
+[Distribuzioni, punti z e punteggi standardizzati](../dati-misure-punteggi/distribuzioni-e-punteggi.qmd).
+:::
 
 ## Obiezioni ai test
 
