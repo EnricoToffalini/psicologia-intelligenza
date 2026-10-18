@@ -57,7 +57,7 @@ precise (@fig-afqt).
 
 ```{r}
 #| label: fig-afqt
-#| fig-cap: "Categorie del punteggio totale AFQT, espresso in percentile, e regole di reclutamento del Dipartimento della Difesa statunitense: chi rientra nella categoria V è escluso, le reclute di categoria IV (sottocategorie A, B e C, fra il 10° e il 30° percentile) non devono superare il 4%, e almeno il 60% delle reclute deve trovarsi sopra il 50° percentile. Adattamento da una slide dell'autore."
+#| fig-cap: "Categorie del punteggio totale AFQT, espresso in percentile, e regole di reclutamento del Dipartimento della Difesa statunitense: chi rientra nella categoria V è escluso, le reclute di categoria IV (sottocategorie A, B e C, fra il 10° e il 30° percentile) non devono superare il 4%, e almeno il 60% delle reclute deve trovarsi sopra il 50° percentile."
 #| fig-alt: "In alto, quattro prove (conoscenza lessicale, comprensione di brani, ragionamento aritmetico, conoscenze matematiche) con frecce verso il punteggio totale AFQT. Sotto, una curva normale divisa da linee verticali al 10°, 31°, 50°, 65° e 93° percentile nelle categorie V, IV, III B, III A, II e I. La coda sinistra, categoria V, è grigia con la scritta esclusi; la categoria IV è evidenziata con la scritta non oltre il 4% delle reclute; sopra la parte destra della curva, la scritta almeno il 60% delle reclute sopra il 50° percentile."
 #| fig-width: !expr 4.45 * scala
 #| fig-height: !expr 3.2 * scala
@@ -93,8 +93,10 @@ text(zx(1.55), 5.7, "almeno il 60% delle\nreclute sopra il 50°", cex = .72, fon
 
 Fra il 1966 e il 1971, durante la guerra del Vietnam, il segretario alla Difesa
 Robert McNamara abbassò quelle soglie con un programma chiamato «Project
-100,000». Circa 354.000 uomini che in precedenza sarebbero stati esclusi,
-molti con punteggi corrispondenti a un QI inferiore a 92 e in parte fino a circa 70, furono arruolati. La
+100,000». Circa 354.000 uomini che in precedenza sarebbero stati esclusi furono
+arruolati: per lo più reclute di categoria IV, fra il 10° e il 30° percentile,
+cioè grosso modo con un QI fra 80 e 92, e in parte con punteggi ancora più
+bassi, ammessi in deroga. La
 motivazione ufficiale era offrire disciplina, formazione e opportunità di
 integrazione a giovani di contesti svantaggiati [@warne2020know].
 
@@ -136,7 +138,7 @@ variabilità campionaria delle correlazioni in [Correlazione e differenze indivi
 
 ```{r}
 #| label: fig-attendibilita
-#| fig-cap: "Attendibilità e disattenuazione, in un esempio. Un test rapido di QI è fatto per metà di g e per metà di errore casuale. Se g correla 0,60 con la produttività lavorativa e l'errore non correla, la correlazione osservata del test è circa 0,42 (0,60 × √0,5). Conoscendo l'attendibilità, si può risalire dallo 0,42 osservato allo 0,60 sottostante. Adattamento da una slide dell'autore."
+#| fig-cap: "Attendibilità e disattenuazione, in un esempio. Un test rapido di QI è fatto per metà di g e per metà di errore casuale. Se g correla 0,60 con la produttività lavorativa e l'errore non correla, la correlazione osservata del test è circa 0,42 (0,60 × √0,5). Conoscendo l'attendibilità, si può risalire dallo 0,42 osservato allo 0,60 sottostante."
 #| fig-alt: "In alto l'equazione: QI rapido uguale 50% g più 50% errore casuale. In basso, produttività lavorativa. Tre frecce doppie scendono verso la produttività: dal QI rapido con r circa 0,42, da g, in rosso, con r circa 0,60, dall'errore casuale, tratteggiata, con r circa 0,00."
 #| fig-width: !expr 4.45 * scala
 #| fig-height: !expr 1.6 * scala
@@ -161,7 +163,7 @@ In un gruppo così omogeneo la correlazione si riduce, come mostra la
 
 ```{r}
 #| label: fig-range
-#| fig-cap: "Restrizione del range in dati simulati. In tutta la popolazione la correlazione fra QI e prestazione lavorativa è 0,60; fra le sole persone che svolgono effettivamente il lavoro (riquadro: QI fra 95 e 120 e prestazione non troppo bassa) scende a circa 0,3. Adattamento da una slide dell'autore."
+#| fig-cap: "Restrizione del range in dati simulati. In tutta la popolazione la correlazione fra QI e prestazione lavorativa è 0,60; fra le sole persone che svolgono effettivamente il lavoro (riquadro: QI fra 95 e 120 e prestazione non troppo bassa) scende a circa 0,3."
 #| fig-alt: "Diagramma di dispersione di mille punti, QI sull'asse orizzontale e prestazione lavorativa in punti z su quello verticale, con una tendenza crescente. I punti dentro un riquadro tratteggiato, con QI fra 95 e 120 e prestazione sopra meno uno, sono in rosso e presi da soli mostrano una tendenza molto più debole. In alto a sinistra r = 0,60 per tutti; nel riquadro r = 0,32."
 #| fig-width: !expr if (stampa) 4.45 else 7
 #| fig-height: !expr if (stampa) 3.2 else 4.2
@@ -198,8 +200,8 @@ La revisione non ha chiuso la questione. Altri specialisti della selezione
 sostengono che rinunciare alla correzione porti all'errore opposto, cioè a
 sottostimare sistematicamente la validità [@oh2023revisiting]. Una meta-analisi
 dei soli studi di questo secolo ha trovato una correlazione osservata media di
-0,16 e, dopo correzioni moderate, di 0,22 [@sackett2024contemporary]. Il punto di consenso è più
-modesto, ma solido: l'abilità cognitiva prevede la prestazione lavorativa, con
+0,16 e, dopo correzioni moderate, di 0,22 [@sackett2024contemporary]. Il
+punto di consenso è più modesto, ma solido: l'abilità cognitiva prevede la prestazione lavorativa, con
 una validità almeno moderata, e lo 0,5 delle sintesi classiche va trattato come
 un limite superiore piuttosto che come un dato acquisito.
 
@@ -212,7 +214,8 @@ forte nei lavori complessi, che richiedono di analizzare informazioni, decidere 
 coordinare, e in modo più debole in quelli semplici e ripetitivi. Durante la
 formazione, invece, la sua capacità predittiva è elevata quasi per qualsiasi
 lavoro: imparare un compito nuovo richiede sempre capacità cognitive
-[@schmidt2004general].
+[@schmidt2004general]. La @fig-complessita mostra le due tendenze con le stime
+classiche, che come si è visto vanno lette come limiti superiori.
 
 ```{r}
 #| label: fig-complessita
@@ -248,9 +251,10 @@ correlazione è più alta con il rendimento nella formazione e con misure
 oggettive della prestazione nei compiti centrali del ruolo, come le prove
 pratiche standardizzate usate nei ruoli militari [@cucina2024metaanalytic]. È
 più bassa con i giudizi complessivi dei superiori, che dipendono anche da
-relazioni e impressioni [@sackett2024contemporary]. È debole, ma presente, con
-la collaborazione spontanea e, in senso negativo, con assenteismo e
-comportamenti scorretti [@nye2022cognitive].
+relazioni e impressioni [@sackett2024contemporary]. Si estende anche oltre i
+compiti del ruolo: è presente con la collaborazione spontanea verso i colleghi
+e, in senso negativo e più debole, con assenteismo e comportamenti scorretti
+[@nye2022cognitive].
 
 | Indicatore | Esempi | Correlazione con QI / *g* |
 |---|---|---|
@@ -292,7 +296,7 @@ prestazione in quasi tutti i tipi di lavoro [@barrick1991big; @wilmot2019century
 | Estroversione, amicalità | Utili nei lavori a contatto con il pubblico o con compiti di guida (r da 0,23 a 0,38) |
 | Onestà, umiltà | Prevedono soprattutto, in negativo, ritiro e comportamenti devianti (r ≈ −0,44), meno la prestazione oggettiva |
 
-: Oltre *g*: abilità e tratti che contribuiscono a prevedere la prestazione lavorativa. Sintesi da @nye2022cognitive, @wilmot2019century, @lee2019importance, @sackett2022revisiting e @pletzer2025personality. {#tbl-oltre-g}
+: Oltre *g*: abilità e tratti che contribuiscono a prevedere la prestazione lavorativa. Sintesi da @nye2022cognitive, @wilmot2019century, @lee2019importance, @sackett2023revisiting e @pletzer2025personality. {#tbl-oltre-g}
 
 Molto popolari sono oggi le cosiddette **soft skills**: pensiero analitico,
 flessibilità, adattabilità, creatività, curiosità, capacità di apprendere. Il

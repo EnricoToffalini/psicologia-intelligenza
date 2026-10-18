@@ -21,7 +21,7 @@ source("../../assets/diagrammi.R")
 virgola = function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",")
 tema = theme_minimal(base_size = if (stampa) 10 else 13) +
   theme(panel.grid.minor = element_blank(), plot.title = element_text(size = 12))
-cx = if (stampa) 2.7 else 3.5  # dimensione del testo nelle annotazioni ggplot
+cx = if (stampa) 2.85 else 3.5  # dimensione del testo nelle annotazioni ggplot
 ```
 
 ::: {.inserto-strumenti}
@@ -97,14 +97,16 @@ sono già incluse nel valore 0,5.
 set.seed(5)
 z = MASS::mvrnorm(250, c(0, 0), matrix(c(1, .5, .5, 1), 2), empirical = TRUE)
 d = data.frame(qi = 100 + 15 * z[, 1], voti = z[, 2])
-ecc = d[c(which.max(d$voti - d$qi / 15), which.min(d$voti - d$qi / 15)), ]
+# Due eccezioni: i voti migliori fra chi ha QI sotto 90, i peggiori fra chi lo ha sopra 115
+lo = which(d$qi < 90); hi = which(d$qi > 115)
+ecc = d[c(lo[which.max(d$voti[lo])], hi[which.min(d$voti[hi])]), ]
 ecc$lab = c("buoni voti\nnonostante\nun QI modesto", "voti scarsi\nnonostante\nun QI elevato")
 ggplot(d, aes(qi, voti)) +
   geom_hline(yintercept = 0, linetype = 2, colour = "grey45") + geom_vline(xintercept = 100, linetype = 2, colour = "grey45") +
   geom_point(colour = "grey45", alpha = .6, size = 1.4) +
   annotate("segment", x = 62, y = -1.9, xend = 140, yend = 1.9, colour = rosso, linewidth = 1, arrow = arrow(length = unit(.2, "cm"))) +
   geom_point(data = ecc, shape = 21, size = 4.5, colour = rosso, stroke = .9) +
-  geom_text(data = ecc, aes(label = lab), hjust = c(1.25, -.25), size = cx, lineheight = .9, colour = rosso) +
+  geom_text(data = ecc, aes(label = lab), hjust = c(1.25, .5), vjust = c(.5, 1.35), size = cx, lineheight = .9, colour = rosso) +
   scale_x_continuous(breaks = seq(55, 145, 15)) +
   scale_y_continuous(expand = expansion(mult = .15)) +
   labs(x = "Quoziente di intelligenza", y = "Successo scolastico") +
@@ -117,11 +119,11 @@ regola e metà no. Il modo più semplice di intuirlo passa per le deviazioni
 standard. Se una persona è una deviazione standard sopra la media nel QI, cioè a
 115, ci si aspetta che sia in media mezza deviazione standard sopra la media nei
 risultati scolastici (@fig-mezza-ds). La correlazione dice di quanto, in media,
-la posizione in una variabile si trasferisce all'altra. Vale per il coefficiente
-classico di Pearson, e con i punti *z* del capitolo sulle
-[distribuzioni](distribuzioni-e-punteggi.qmd) prende una forma precisa. Se la
-relazione fra due misure è lineare, il valore atteso di una persona nella
-seconda misura, espresso in punti *z*, è *r* volte il suo punto *z* nella prima:
+la posizione in una variabile si trasferisce all'altra. Con i punti *z* del
+capitolo sulle [distribuzioni](distribuzioni-e-punteggi.qmd) l'idea prende una
+forma precisa. Se la relazione fra due misure è lineare, il valore atteso di una
+persona nella seconda misura, espresso in punti *z*, è *r* volte il suo punto
+*z* nella prima:
 
 $$
 \widehat{z_Y} = r \, z_X
@@ -130,7 +132,12 @@ $$
 Con *r* = 0,5, chi si trova a *z* = +1 nel QI ha come previsione *z* = +0,5 nei
 risultati scolastici. La previsione si avvicina alla media: è il fenomeno della
 **regressione verso la media**, che si presenta ogni volta che due misure non
-sono perfettamente correlate.
+sono perfettamente correlate. Non è una forza che spinge le persone verso la
+media, ma una conseguenza aritmetica della correlazione imperfetta, e vale in
+entrambe le direzioni: anche chi ha voti eccellenti avrà in media un QI alto, ma
+meno estremo dei suoi voti. Lo stesso accade fra genitori e figli: i figli di
+genitori con un QI molto alto tendono a stare sopra la media, ma meno dei
+genitori.
 
 ```{r}
 #| label: fig-mezza-ds
@@ -159,8 +166,9 @@ ggplot(d, aes(qi, voti)) +
 Esistono etichette di comodo per la grandezza di *r* (@fig-intensita). Una
 correlazione nulla descrive due cose che non c'entrano niente l'una con l'altra.
 Attorno a 0,20 si trova il caso più tipico di effetto vero in psicologia: una
-rassegna di centinaia di meta-analisi sulle differenze individuali ha trovato
-proprio un valore tipico di questo ordine [@gignac2016effect]. Una correlazione
+rassegna di oltre settecento correlazioni tratte da meta-analisi sulle
+differenze individuali ha trovato proprio un valore mediano di questo ordine
+[@gignac2016effect]. Una correlazione
 di 0,50, come quella fra QI e voti, è forte: variabili evidentemente molto
 legate. Una correlazione di 0,80, in psicologia, indica spesso la stessa cosa
 misurata in due modi diversi, anche se non basta da sola a stabilire che due
@@ -226,7 +234,7 @@ scegliere il coefficiente, bisogna guardare i dati [@schober2018correlation].
 
 ```{r}
 #| label: fig-outlier
-#| fig-cap: "Un singolo caso estremo, in alto a destra, fa salire la correlazione di Pearson da zero a circa 0,20; la rho di Spearman, calcolata sui ranghi, resta vicina a zero. Dati simulati."
+#| fig-cap: "Un singolo caso estremo, in alto a destra, fa salire la correlazione di Pearson da zero a circa 0,22; la rho di Spearman, calcolata sui ranghi, resta vicina a zero. Dati simulati."
 #| fig-alt: "Diagramma di dispersione di 150 punti raccolti attorno all'origine, senza tendenza, e un punto isolato in alto a destra, a circa 6,5 deviazioni standard su entrambe le variabili. Nel grafico sono indicati i due coefficienti: Pearson circa 0,22, Spearman circa 0,03."
 #| fig-width: !expr if (stampa) 4.45 else 6.5
 #| fig-height: !expr if (stampa) 3 else 4.2
@@ -281,7 +289,7 @@ ggplot(d, aes(eta, y)) +
   geom_jitter(colour = "grey50", alpha = .25, size = .5, height = .3) +
   geom_smooth(method = "lm", se = FALSE, colour = "grey15", linetype = 2, linewidth = .8) +
   geom_smooth(method = "loess", se = FALSE, colour = rosso, linewidth = 1) +
-  geom_text(data = stat, aes(x = x, y = 3, label = lab), hjust = 1, size = cx * .9, lineheight = .9) +
+  geom_text(data = stat, aes(x = x, y = 3, label = lab), hjust = 1, size = cx, lineheight = .9) +
   facet_wrap(~p, scales = "free_x", ncol = if (stampa) 1 else 2) +
   scale_y_continuous(limits = c(0, 62), breaks = seq(0, 60, 10)) +
   labs(x = "Età (anni)", y = "Punteggio (massimo 60)") +
@@ -447,9 +455,9 @@ peggiorarla in compiti nuovi [@zajonc1965social]: il tipo di compito modera
 l'effetto del pubblico. Nel campo dell'intelligenza un esempio discusso riguarda
 lo status socioeconomico, che in alcuni studi statunitensi sembra modificare
 quanto le differenze genetiche si traducono in differenze di punteggio
-[@turkheimer2003socioeconomic]. Entrambi i casi sono nella @fig-moderazione. Il
-capitolo sull'[ereditabilità](../basi-ambiente-cambiamento/geni-ambiente-ereditabilita.qmd)
-discute anche i limiti di questo risultato.
+[@turkheimer2003socioeconomic]. Entrambi i casi sono nella @fig-moderazione. I
+limiti di questo risultato si sono visti nel capitolo
+sull'[ereditabilità](../basi-ambiente-cambiamento/geni-ambiente-ereditabilita.qmd).
 
 ```{r}
 #| label: fig-moderazione
@@ -457,7 +465,7 @@ discute anche i limiti di questo risultato.
 #| fig-alt: "Due grafici a linee. Nel primo, con il numero di osservatori da 0 a 8 sull'asse orizzontale, la prestazione nel compito automatizzato sale da 72 a 80 e quella nel compito nuovo scende da 58 a 46. Nel secondo, con il punteggio poligenico da meno 2 a più 2, il QI sale da 89 a 109 con status socioeconomico elevato e solo da 88 a 92 con status basso."
 #| fig-width: !expr if (stampa) 4.45 else 8
 #| fig-height: !expr if (stampa) 4.6 else 3.4
-p1 = "Presenza di osservatori e prestazione"; p2 = "Punteggio poligenico (z) e QI"
+p1 = "Numero di osservatori e prestazione"; p2 = "Punteggio poligenico (z) e QI"
 d = rbind(data.frame(p = p1, x = rep(seq(0, 8, 2), 2), y = c(72, 74, 76, 78, 80, 58, 55, 52, 49, 46), g = rep(c("compito\nautomatizzato", "compito\nnuovo"), each = 5)),
           data.frame(p = p2, x = rep(-2:2, 2), y = c(89, 94, 99, 104, 109, 88, 89, 90, 91, 92), g = rep(c("status\nelevato", "status\nbasso"), each = 5)))
 d$p = factor(d$p, levels = c(p1, p2)); d$focale = d$g %in% c("compito\nnuovo", "status\nelevato")
@@ -466,7 +474,7 @@ ggplot(d, aes(x, y, group = g, colour = focale)) +
   geom_line(linewidth = 1.1) + geom_point(size = 2) +
   geom_text(data = fine, aes(label = g), hjust = -.15, size = cx, lineheight = .85) +
   scale_colour_manual(values = c("grey30", rosso), guide = "none") +
-  scale_x_continuous(expand = expansion(mult = c(.05, .45))) +
+  scale_x_continuous(breaks = function(l) if (max(l) > 4) seq(0, 8, 2) else -2:2, expand = expansion(mult = c(.05, .45))) +
   scale_y_continuous(expand = expansion(mult = .12)) +
   facet_wrap(~p, scales = "free", ncol = if (stampa) 1 else 2) +
   labs(x = NULL, y = NULL) +
@@ -491,6 +499,8 @@ i titoli di giornale peggiori.
 - *r* = 0,50 significa che chi è una deviazione standard sopra la media in una
   variabile è, in media, mezza deviazione standard sopra la media nell'altra; in
   psicologia valori attorno a 0,20 sono tipici e 0,50 è un'associazione forte.
+- Con una correlazione imperfetta la previsione è sempre meno estrema del dato
+  di partenza: è la regressione verso la media.
 - Casi estremi e relazioni non lineari possono rendere *r* fuorviante: i dati
   vanno sempre guardati.
 - Con campioni piccoli la stima è molto imprecisa; il valore *p* non misura né la

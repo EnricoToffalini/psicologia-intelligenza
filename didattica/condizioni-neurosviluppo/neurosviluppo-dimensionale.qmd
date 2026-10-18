@@ -250,7 +250,9 @@ deficit centrali fatica a spiegarlo (@fig-comorbilita). Fra le persone
 autistiche, circa una su quattro ha anche una disabilità intellettiva
 [@mutluer2022population]; prima del 2000 le stime superavano il 50%, quando
 la diagnosi di autismo era riservata ai quadri più gravi. Circa il 40% ha anche
-un ADHD [@rong2021prevalence]. Un bambino con un disturbo del linguaggio in età
+un ADHD [@rong2021prevalence]. Anche nelle forme sindromiche di disabilità
+intellettiva l'ADHD è frequente: in un campione di bambini con sindrome di Down
+riguardava quasi il 44% [@ekstein2011down]. Un bambino con un disturbo del linguaggio in età
 prescolare ha un rischio elevato di ricevere poi una diagnosi di disturbo
 dell'apprendimento [@snowling2019developmental]. Nelle casistiche cliniche dei
 disturbi dell'apprendimento, i quadri misti sono quasi la metà
@@ -261,7 +263,7 @@ seconda [@vanbergen2025cooccurrence].
 
 ```{r}
 #| label: fig-comorbilita
-#| fig-cap: "La comorbilità fra condizioni del neurosviluppo. Ogni freccia va da una condizione a un'altra e riporta la quota approssimativa di casi della prima che presentano anche la seconda; le stime variano molto con il campione e i criteri. Disabilità intellettiva e disturbi dell'apprendimento si escludono per definizione (in rosso). Adattamento da una sintesi dell'autore, basata su Mutluer et al. (2022), Rong et al. (2021), Snowling et al. (2019), Toffalini et al. (2017), van Bergen et al. (2025) e altri studi."
+#| fig-cap: "La comorbilità fra condizioni del neurosviluppo. Ogni freccia va da una condizione a un'altra e riporta la quota approssimativa di casi della prima che presentano anche la seconda; le stime variano molto con il campione e i criteri. Disabilità intellettiva e disturbi dell'apprendimento si escludono per definizione (in rosso). Adattamento da una sintesi dell'autore, basata su Ekstein et al. (2011), Mutluer et al. (2022), Rong et al. (2021), Snowling et al. (2019), Toffalini et al. (2017), van Bergen et al. (2025) e altri studi."
 #| fig-alt: "Schema con sette condizioni collegate da frecce con percentuali. Spettro dell'autismo verso disabilità intellettiva: circa 25-30%, oltre il 50% prima del 2000; disabilità intellettiva verso autismo: fino al 18%. Autismo verso ADHD: circa 40%; ADHD verso autismo: circa 20%. Disabilità intellettiva verso ADHD: 30-50% secondo la sindrome, 43% nella sindrome di Down; ADHD verso disabilità intellettiva: stima incerta, 0,5-20%. ADHD verso dislessia: circa il 36% ha anche un disturbo dell'apprendimento; dislessia verso ADHD: circa il 20%. Dislessia e discalculia: fino al 50% dei casi sono misti. Dislessia verso disortografia: oltre il 50% dei casi. Disturbo del linguaggio verso i disturbi dell'apprendimento: 40-60% dei casi. Una linea rossa tratteggiata unisce la disabilità intellettiva a dislessia e discalculia, con la scritta: esclusi per criterio."
 #| fig-width: !expr 4.45 * scala
 #| fig-height: !expr 3.9 * scala
@@ -351,11 +353,10 @@ alle regolarità e ai dettagli può essere una risorsa in molti contesti. Sono
 ipotesi, non conclusioni; ma ricordano che la stessa caratteristica può essere un
 problema in un ambiente e una risorsa in un altro.
 
-Per questo il termine **neurodivergenza** si è diffuso per indicare una
-differenza rilevante rispetto al funzionamento tipico, senza presupporre che sia
-un deficit. Il termine **disturbo** resta appropriato quando la differenza si
-traduce in disagio o compromissione significativa del funzionamento. Le due
-parole non si escludono: descrivono livelli diversi dello stesso fenomeno.
+Per questo si è diffuso il termine **neurodivergenza**, che indica una
+differenza rilevante rispetto al funzionamento tipico senza presupporre che sia
+un deficit. Non sostituisce la parola disturbo: come si vedrà nel prossimo
+capitolo, le due descrivono livelli diversi dello stesso fenomeno.
 
 ::: {.callout-note icon=false}
 ## In breve

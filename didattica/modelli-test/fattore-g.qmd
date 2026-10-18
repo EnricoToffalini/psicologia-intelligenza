@@ -77,11 +77,10 @@ sintesi gerarchica oggi prevalente.
 
 ## Perché le prestazioni correlano?
 
-Il capitolo sulla correlazione ha elencato le spiegazioni possibili di
-un'associazione: A causa B, B causa A, le due si influenzano a vicenda, oppure
-una terza variabile influenza entrambe. Applichiamole a due prove cognitive.
-Che il vocabolario causi direttamente la capacità di ruotare mentalmente una
-figura è implausibile, almeno nel presente di un adulto. Che accada il
+Un'associazione fra due misure ammette poche spiegazioni di principio: A causa
+B, B causa A, le due si influenzano a vicenda, oppure una terza variabile
+influenza entrambe. Applichiamole a due prove cognitive. Che il vocabolario
+causi direttamente la capacità di ruotare mentalmente una figura è implausibile, almeno nel presente di un adulto. Che accada il
 contrario, altrettanto. Resta l'ipotesi più semplice: una causa comune.
 Un'influenza reciproca accumulata durante lo sviluppo non è esclusa, ed è la
 base delle alternative discusse negli approfondimenti finali; ma richiede una
@@ -160,7 +159,7 @@ peso negativo: chi è più estroverso tende a dare punteggi più bassi.
 ```{r}
 #| label: fig-estroversione
 #| fig-cap: "Lo stesso modello applicato a un questionario di personalità. L'estroversione spiega le correlazioni fra le risposte agli item; ε indica la parte di ogni risposta legata alla situazione specifica e non condivisa con le altre. L'item formulato al contrario ha peso negativo. Item e pesi sono inventati a scopo illustrativo."
-#| fig-alt: "Un ovale in alto, estroversione, con frecce verso sei riquadri con affermazioni: mi piace conoscere persone nuove, inizio facilmente una conversazione con uno sconosciuto, mi piace essere al centro dell'attenzione, prendo l'iniziativa nelle situazioni sociali, mi sento a disagio fra molta gente, e puntini di sospensione. Sotto ogni affermazione la scala di risposta, da 1 a 5, invertita (da 5 a 1) per l'ultima. I pesi vanno da 0,50 a 0,78, tranne l'ultimo item, con peso meno 0,70. Sotto ciascun riquadro un piccolo ovale epsilon. Due note: epsilon indica le tendenze proprie della singola situazione; dietro l'estroversione ci sono sistemi di ricompensa, ricerca di sensazioni e migliaia di varianti genetiche."
+#| fig-alt: "Un ovale in alto, estroversione, con frecce verso sei riquadri con affermazioni: mi piace conoscere persone nuove, inizio facilmente una conversazione con uno sconosciuto, mi piace essere al centro dell'attenzione, prendo l'iniziativa nelle situazioni sociali, mi sento a disagio fra molta gente, e puntini di sospensione. Sotto ogni affermazione la scala di risposta, da 1 a 5, invertita (da 5 a 1) per la quinta. I pesi vanno da 0,50 a 0,78, tranne l'item formulato al contrario, con peso meno 0,70. Sotto ciascun riquadro un piccolo ovale epsilon. Due note: epsilon indica le tendenze proprie della singola situazione; dietro l'estroversione ci sono sistemi di ricompensa, ricerca di sensazioni e migliaia di varianti genetiche."
 #| fig-width: !expr 4.45 * scala
 #| fig-height: !expr 2.8 * scala
 modello1("estroversione", c("«Mi piace\nconoscere\npersone\nnuove»\n1 … 5", "«Inizio\nfacilmente\nuna conver-\nsazione con\nsconosciuti»\n1 … 5",

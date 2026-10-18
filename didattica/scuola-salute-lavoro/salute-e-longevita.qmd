@@ -48,8 +48,8 @@ prima del 1997 aveva ottenuto a 11 anni un punteggio medio di circa quattro punt
 inferiore a quello di chi era ancora in vita [@whalley2001longitudinal]. Fra le
 donne, circa il 70% del quarto con i punteggi più alti era vivo a 76 anni, contro
 circa il 45% del quarto con i punteggi più bassi. Fra gli uomini la differenza
-era simile, con un andamento complicato dalle morti nella Seconda guerra
-mondiale, che avevano colpito di più chi aveva punteggi alti.
+andava nella stessa direzione ma era più contenuta, anche per le morti nella
+Seconda guerra mondiale, che avevano colpito di più chi aveva punteggi alti.
 
 Lo stesso schema si è ripetuto in molte coorti: coscritti in Svezia, Danimarca,
 Norvegia e Israele, campioni statunitensi e britannici. Una meta-analisi di 16
@@ -62,7 +62,8 @@ pubblicazione selettiva.
 ## Di che cosa si muore meno
 
 Il secondo grande studio scozzese, del 1947, ha permesso di guardare alle cause.
-Più di 65.000 persone testate a 11 anni sono state seguite per 68 anni. Un QI
+Più di 65.000 persone nate nel 1936 e testate a 11 anni sono state seguite per
+68 anni. Un QI
 infantile più alto di una deviazione standard si associava a un rischio minore
 di morte per quasi tutte le cause principali (@fig-cause): malattie
 respiratorie, malattie coronariche, ictus, tumori legati al fumo, malattie
@@ -72,7 +73,7 @@ punteggi molto bassi.
 
 ```{r}
 #| label: fig-cause
-#| fig-cap: "Rapporti di rischio di morte associati a un QI a 11 anni più alto di una deviazione standard, per causa, nella coorte scozzese del 1936 seguita fino a 79 anni. Valori inferiori a 1 indicano un rischio minore; le barre orizzontali sono intervalli di confidenza al 95%. Elaborazione da Calvin et al. (2017)."
+#| fig-cap: "Rapporti di rischio di morte associati a un QI a 11 anni più alto di una deviazione standard, per causa, nella coorte scozzese nata nel 1936 (indagine del 1947), seguita fino a 79 anni. Valori inferiori a 1 indicano un rischio minore; le barre orizzontali sono intervalli di confidenza al 95%. Elaborazione da Calvin et al. (2017)."
 #| fig-alt: "Grafico a punti con nove cause di morte. Tutti i rapporti di rischio sono inferiori a 1. I più bassi, attorno a 0,72-0,76, riguardano malattie respiratorie, coronariche e ictus; i più vicini a 1 riguardano i tumori non legati al fumo e il suicidio."
 #| fig-width: !expr if (stampa) 4.45 else 7.5
 #| fig-height: !expr if (stampa) 3.3 else 4
@@ -145,7 +146,7 @@ longevità sono correlati perché dipendono dalle stesse condizioni di partenza.
 
 ```{r}
 #| label: fig-percorsi
-#| fig-cap: "Tre percorsi, non alternativi, che possono legare intelligenza e longevità. Nei primi due l'intelligenza contribuisce causalmente alla longevità, attraverso fattori socioeconomici o attraverso la capacità di capire e seguire indicazioni di salute (health literacy). Nel terzo, varianti genetiche e salute fisica infantile influenzano sia lo sviluppo del sistema nervoso, e quindi il QI, sia la salute adulta: QI e longevità sono correlati (linea tratteggiata) senza che l'uno causi l'altra. Adattamento da una slide dell'autore."
+#| fig-cap: "Tre percorsi, non alternativi, che possono legare intelligenza e longevità. Nei primi due l'intelligenza contribuisce causalmente alla longevità, attraverso fattori socioeconomici o attraverso la capacità di capire e seguire indicazioni di salute (health literacy). Nel terzo, varianti genetiche e salute fisica infantile influenzano sia lo sviluppo del sistema nervoso, e quindi il QI, sia la salute adulta: QI e longevità sono correlati (linea tratteggiata) senza che l'uno causi l'altra."
 #| fig-alt: "Tre schemi a frecce, uno sotto l'altro. Fattori socioeconomici: più QI, più scolarità, lavori più sicuri, meno logoranti e meglio retribuiti, ambienti di vita più sani e cure migliori, longevità. Health literacy: più QI porta a maggiore capacità di capire e attenersi a pratiche salutari, che si divide in due rami, capire e attuare procedure mediche e istruzioni sui farmaci, e attenersi a stili di vita salubri; entrambi portano alla longevità. Integrità del sistema e genetica: varianti genetiche favorevoli portano a integrità, efficienza e sviluppo del sistema nervoso, che porta a più QI; le varianti genetiche influenzano anche la salute fisica infantile, che influenza il sistema nervoso e la salute fisica adulta, che porta alla longevità. Una linea tratteggiata collega più QI e longevità."
 #| fig-width: !expr 4.45 * scala
 #| fig-height: !expr 4.7 * scala

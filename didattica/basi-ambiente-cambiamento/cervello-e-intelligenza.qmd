@@ -69,10 +69,12 @@ effetti molto più piccoli di quanto si credesse. Tre esempi mostrano come.
 
 Il primo. Nel 2009 uno studio su 19 persone trovò che un indice globale di
 efficienza delle reti cerebrali a riposo correlava con il QI attorno a −0,5
-[@vandenheuvel2009efficiency]. Sembrava rivoluzionario. Studi successivi su
-migliaia di partecipanti non hanno confermato un effetto di quella grandezza per
-gli indici globali di efficienza; quando emergono associazioni con la
-connettività, sono distribuite su molte reti e di entità modesta. Oggi sappiamo
+[@vandenheuvel2009efficiency]. Sembrava rivoluzionario. Uno studio recente su
+quasi seimila ragazzi, replicato su oltre ottocento adulti, non ha trovato
+alcuna associazione apprezzabile fra il fattore generale e gli indici globali di
+efficienza o di organizzazione «a piccolo mondo» delle reti; le associazioni
+affidabili riguardano le connessioni delle singole regioni, sono distribuite su
+molte reti e sono di entità modesta [@molloy2025regional]. Oggi sappiamo
 che associazioni affidabili fra misure cerebrali e caratteristiche psicologiche
 richiedono in genere migliaia di partecipanti, perché gli effetti reali sono
 piccoli [@marek2022reproducible].
@@ -227,9 +229,8 @@ L'ipotesi nella forma originale ha dato risultati incoerenti: l'efficienza
 emerge soprattutto in compiti di difficoltà moderata e in alcune regioni, e non
 sempre nella stessa direzione [@neubauer2009intelligence]. Lo stesso Haier la
 considera ancora utile, a patto di definirla e misurarla meglio
-[@haier2017neuroscience]. È
-sopravvissuta, infatti, in forme più specifiche. Le persone con QI più alto sembrano
-disattivare di più la rete cerebrale attiva a riposo, mentre attivano di più le
+[@haier2017neuroscience]. È sopravvissuta, infatti, in forme più specifiche.
+Le persone con QI più alto sembrano disattivare di più la rete cerebrale attiva a riposo, mentre attivano di più le
 aree richieste dal compito [@basten2013intelligence]. E le loro reti di
 connettività funzionale cambiano meno quando passano dal riposo a compiti
 diversi, come se fossero già predisposte al lavoro cognitivo; il risultato è

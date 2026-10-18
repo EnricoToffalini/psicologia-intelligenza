@@ -21,7 +21,7 @@ source("../../assets/diagrammi.R")
 virgola = function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",")
 tema = theme_minimal(base_size = if (stampa) 10 else 13) +
   theme(panel.grid.minor = element_blank(), plot.title = element_text(size = 12))
-cx = if (stampa) 2.7 else 3.5  # dimensione del testo nelle annotazioni ggplot
+cx = if (stampa) 2.85 else 3.5  # dimensione del testo nelle annotazioni ggplot
 ```
 
 ::: {.inserto-strumenti}
@@ -71,7 +71,7 @@ troppo aprioristica, sulla distribuzione di tutto.
 
 ```{r}
 #| label: fig-statura
-#| fig-cap: "Statura simulata di 5.000 uomini adulti, con media μ = 173,5 cm e deviazione standard σ = 4,5 cm, valori vicini a quelli raccolti da Galton nel suo laboratorio antropometrico. La linea indica la media; la freccia, una deviazione standard."
+#| fig-cap: "Statura simulata di 5.000 uomini adulti, con media μ = 173,5 cm e deviazione standard σ = 4,5 cm (valori illustrativi). La linea indica la media; la freccia, una deviazione standard."
 #| fig-alt: "Istogramma a campana della statura fra 158 e 190 centimetri. Una linea rossa verticale indica la media, 173,5; una freccia orizzontale da 173,5 a 178 indica la deviazione standard, 4,5."
 #| fig-width: !expr if (stampa) 4.45 else 7
 #| fig-height: !expr if (stampa) 2.8 else 3.8
@@ -165,8 +165,8 @@ ggplot() +
   geom_segment(data = rbind(transform(parent, x = -k), transform(parent, x = k)), aes(x = x, xend = x, y = y, yend = y - .02), colour = "grey30", linewidth = .4) +
   geom_text(data = parent, aes(x = 0, y = y + .018, label = lab), size = 3.3 * ts, fontface = "bold", colour = "grey20") +
   annotate("text", x = c(-.5, .5), y = .13, label = "34,1%", size = 3.2 * ts) +
-  annotate("text", x = c(-1.5, 1.5), y = .04, label = "13,6%", size = 3 * ts) +
-  annotate("text", x = c(-2.6, 2.6), y = .04, label = "2,1%", size = 3 * ts, colour = rosso) +
+  annotate("text", x = c(-1.5, 1.5), y = .04, label = "13,6%", size = 3.3 * ts) +
+  annotate("text", x = c(-2.6, 2.6), y = .04, label = "2,1%", size = 3.3 * ts, colour = rosso) +
   geom_text(data = righe, aes(x, y, label = testo), size = 3.6 * ts) +
   annotate("text", x = -3.6, y = unique(righe$y), label = unique(righe$scala), hjust = 1, size = 3.6 * ts, fontface = "bold") +
   geom_text(data = etich, aes(x, y, label = t), size = 3.2 * ts, fontface = "italic", colour = rosso, lineheight = .85) +
@@ -228,8 +228,9 @@ metrica arbitraria, e la variabilità fra persone diventa l'unità di misura. Un
 (@fig-cohen). Le soglie tradizionali definiscono «piccolo» un *d* di 0,2,
 «medio» 0,5 e «grande» 0,8. Sono convenzioni proposte in assenza di dati
 migliori. Le revisioni degli effetti replicati in psicologia, dove i fenomeni
-sono molto rumorosi, suggeriscono che le soglie andrebbero abbassate: un
-effetto tipico da meta-analisi è attorno a 0,30–0,35 [@funder2019evaluating].
+sono molto rumorosi, suggeriscono che le soglie andrebbero abbassate
+[@funder2019evaluating]: nelle meta-analisi di psicologia sociale, per esempio,
+il *d* mediano è attorno a 0,36 [@lovakov2021empirically].
 Come per ogni misura della grandezza di un effetto, il giudizio dipende dal contesto.
 :::
 
@@ -298,10 +299,10 @@ ggplot(d, aes(passo, pos, group = id)) +
 Il principio ha un nome: **teorema del limite centrale**. La somma di moltissime
 variabili diverse, ciascuna con un piccolo effetto, tende a distribuirsi in modo
 gaussiano, quasi indipendentemente da come sono distribuite le singole
-variabili (@fig-somma). Ecco perché la gaussiana in psicologia: tratti, abilità e
-stati mentali sono il risultato finale di moltissimi processi additivi. Non
-dipendono da una o poche cause, ma da innumerevoli fattori, piccoli o grandi,
-che si sommano.
+variabili (@fig-somma). Ecco perché la gaussiana domina in psicologia: si assume
+che tratti, abilità e stati mentali siano il risultato finale di moltissimi
+processi additivi. Non dipenderebbero da una o poche cause, ma da innumerevoli
+fattori, piccoli o grandi, che si sommano.
 
 ```{r}
 #| label: fig-somma
@@ -392,7 +393,7 @@ note = data.frame(tipo = factor(lv[c(2, 2, 3, 3)], levels = lv), v = c(min(f$zli
                           "barre fitte e basse:\npunteggi rari", "barre distanziate:\npochi punteggi\nmolto frequenti"))
 ggplot(dn, aes(v, prop)) +
   geom_segment(aes(xend = v, yend = 0), linewidth = if (stampa) 1.1 else 1.2, colour = "grey45") +
-  geom_text(data = note, aes(x = v, y = y, label = lab, hjust = hj), size = cx * .85, colour = rosso, lineheight = .85) +
+  geom_text(data = note, aes(x = v, y = y, label = lab, hjust = hj), size = cx, colour = rosso, lineheight = .85) +
   facet_wrap(~tipo, scales = "free_x", ncol = if (stampa) 1 else 3) +
   scale_y_continuous(breaks = seq(0, .15, .05), labels = function(x) virgola(x), limits = c(0, .16), expand = c(0, 0)) +
   labs(x = NULL, y = "Proporzione di persone") +
@@ -496,7 +497,8 @@ adatto agli esiti sociali che alle caratteristiche psicologiche di base.
 
 Come sappiamo che l'intelligenza è il prodotto di effetti additivi e non
 moltiplicativi? In realtà non lo sappiamo con certezza. Le distribuzioni
-approssimativamente simmetriche dei punteggi grezzi sono un indizio debole,
+approssimativamente simmetriche dei punteggi grezzi nei test tarati sono un
+indizio debole,
 perché gli item vengono selezionati proprio per ottenere quella simmetria. Per
 alcune abilità, come lettura e matematica, sono stati ipotizzati meccanismi
 cumulativi, in cui chi parte avvantaggiato accumula vantaggi ulteriori. Qualcosa
@@ -510,7 +512,8 @@ utile, plausibile, ma non un fatto di natura.
 - La gaussiana descrive bene grandezze prodotte dalla somma di molti piccoli
   effetti; le abilità cognitive, fortemente poligeniche, sono un caso plausibile.
 - Non avendo un'unità naturale, la misura psicologica usa la deviazione standard
-  come unità: QI, punteggi ponderati e punti T sono punti *z* riscalati.
+  come unità: QI, punteggi ponderati e punti T sono punti *z* riscalati, e il
+  *d* di Cohen esprime nella stessa unità la distanza fra due medie.
 - I percentili sono intuitivi ma non hanno intervalli uguali; la rarità
   statistica è un indizio da approfondire, non una diagnosi.
 - I punteggi grezzi spesso non sono gaussiani per ragioni legate allo strumento;

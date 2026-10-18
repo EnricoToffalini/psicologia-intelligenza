@@ -60,7 +60,7 @@ punteggi nelle indagini come PISA o anni di istruzione come indicatori
 dell'intelligenza. I punteggi PISA, in effetti, riflettono in larga parte un
 fattore generale [@pokropek2022general]. Ma la scorciatoia è pericolosa. Il QI,
 misurato bene, è una stima del funzionamento cognitivo attuale, non di un
-potenziale innato: anch'esso risente della scolarizzazione, come mostra il
+potenziale innato: anch'esso risente della scolarizzazione, come si è visto nel
 capitolo sul potenziamento. Ma ne risente molto meno del rendimento scolastico,
 che dipende direttamente dalla qualità delle scuole, dai programmi, dalla
 motivazione, dalle condizioni familiari, dal modo in cui una prova viene
@@ -127,7 +127,7 @@ per cui le cause comuni pesano, ma non spiegano tutto.
 
 ```{r}
 #| label: fig-matteo
-#| fig-cap: "QI e livello di scolarità si influenzano nei due sensi e si rinforzano a vicenda nel tempo (effetto Matteo). Prima colonna: il QI nell'infanzia prevede la laurea e la durata degli studi, anche a parità di status socioeconomico (Schoon, 2010). Seconda colonna: stime dell'effetto causale di un anno di scuola sul QI, secondo il tipo di studio (Ritchie e Tucker-Drob, 2018). Adattamento da una slide dell'autore."
+#| fig-cap: "QI e livello di scolarità si influenzano nei due sensi e si rinforzano a vicenda nel tempo (effetto Matteo). Prima colonna: il QI nell'infanzia prevede la laurea e la durata degli studi, anche a parità di status socioeconomico (Schoon, 2010). Seconda colonna: stime dell'effetto causale di un anno di scuola sul QI, secondo il tipo di studio (Ritchie e Tucker-Drob, 2018)."
 #| fig-alt: "In alto, due titoli: «QI causa scolarità» e «scolarità causa QI», collegati da due frecce curve opposte con la scritta effetto Matteo. Sotto il primo titolo: più una deviazione standard di QI a 10-11 anni moltiplica per 2,91 le odds di laurea a 26 anni; correlazioni fra QI ed età di uscita dagli studi 0,54, 0,47 e 0,36 nelle coorti 1946, 1958 e 1970, che diventano 0,41, 0,41 e 0,27 a parità di status socioeconomico. Sotto il secondo titolo: un anno di scuola in più causa fino a 1 punto di QI negli studi che controllano il QI di partenza, 2 punti negli studi sull'allungamento dell'obbligo, 5 punti negli studi sulla data di nascita, stima più incerta."
 #| fig-width: !expr 4.45 * scala
 #| fig-height: !expr 3.3 * scala
@@ -182,7 +182,7 @@ reddito, a parità di istruzione, esiste ma è più piccolo.
 
 ```{r}
 #| label: fig-percorso
-#| fig-cap: "L'istruzione come mediatore fra livello intellettivo generale e reddito. Le frecce spesse indicano il percorso principale, che passa per successo scolastico, livello di istruzione e status lavorativo; l'istruzione a sua volta aumenta g. Le frecce sottili indicano gli effetti diretti di g su status lavorativo e reddito, a parità di istruzione, più piccoli. Adattamento da una slide dell'autore."
+#| fig-cap: "L'istruzione come mediatore fra livello intellettivo generale e reddito. Le frecce spesse indicano il percorso principale, che passa per successo scolastico, livello di istruzione e status lavorativo; l'istruzione a sua volta aumenta g. Le frecce sottili indicano gli effetti diretti di g su status lavorativo e reddito, a parità di istruzione, più piccoli."
 #| fig-alt: "Cinque ovali. A sinistra g. In alto successo scolastico, poi in basso al centro livello di istruzione, evidenziato; in alto a destra status lavorativo, in basso a destra reddito. Frecce spesse: da g a successo scolastico, da successo scolastico a livello di istruzione, da livello di istruzione di nuovo a g, da livello di istruzione a status lavorativo, da status lavorativo a reddito. Due frecce sottili grigie partono da g, passano sotto il diagramma e arrivano a status lavorativo e a reddito."
 #| fig-width: !expr 4.45 * scala
 #| fig-height: !expr 2.4 * scala
@@ -238,14 +238,14 @@ l'espansione dell'istruzione, proseguire gli studi è diventato meno selettivo
 [@schoon2010childhood]. In Norvegia, nei maschi nati fra il 1950 e il 1991, la
 correlazione fra il punteggio al test della leva e gli anni di istruzione a 30
 anni è scesa da circa 0,6 a meno di 0,5, e quella con il valore economico medio
-del titolo raggiunto è calata ancora di più [@vanhootegem2023correlation]. È un cambiamento che solleva domande scomode: quando un
-titolo di studio diventa la norma, smette di distinguere, e la selezione si
-sposta altrove, per esempio sul tipo di scuola o di università frequentata.
+del titolo raggiunto è calata ancora di più [@vanhootegem2023correlation]. È
+un cambiamento che solleva domande scomode: quando un titolo di studio diventa
+la norma, smette di distinguere, e la selezione si sposta altrove, per esempio sul tipo di scuola o di università frequentata.
 
 ## In cima alla distribuzione
 
-Finora si è parlato della media e della parte bassa della distribuzione. Ma la
-stessa correlazione vale anche in alto, e qui circola un mito tenace: oltre una
+Finora si è parlato di correlazioni calcolate su tutta la distribuzione. Ma la
+relazione vale anche in alto, e qui circola un mito tenace: oltre una
 certa soglia, diciamo un QI di 120, l'intelligenza non farebbe più differenza,
 e conterebbero solo impegno, creatività e carattere.
 
@@ -275,8 +275,8 @@ sul rendimento degli studenti più dotati [@steenbergenhu2016hundred]. Non sono
 privilegi. Sono il riconoscimento che un programma tarato sulla media è troppo
 lento per chi sta molto sopra, esattamente come è troppo veloce per chi sta
 molto sotto. Resta infine il caso dei bambini con un'abilità generale alta e un
-disturbo dell'apprendimento: due rarità che si mascherano a vicenda, e che il
-capitolo sulla valutazione nel neurosviluppo aiuta a riconoscere.
+disturbo dell'apprendimento: due rarità che si mascherano a vicenda, come si
+vedrà nel capitolo sulla valutazione nel neurosviluppo.
 
 ## Che cosa significa, e che cosa no
 

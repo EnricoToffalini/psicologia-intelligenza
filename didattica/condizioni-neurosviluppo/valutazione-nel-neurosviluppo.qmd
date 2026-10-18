@@ -30,8 +30,9 @@ misura, sorgono problemi specifici.
 
 Oggi non esiste una cornice teorica unica per queste condizioni, se non il
 termine ombrello di **neurodiversità** (@fig-neurodiversita). Sotto
-l'ombrello stanno due concetti diversi. La *neurodivergenza* è una differenza
-rilevante del funzionamento neurologico e cognitivo rispetto a quello tipico. Il
+l'ombrello stanno due concetti diversi. La *neurodivergenza*, introdotta alla
+fine del capitolo precedente, è una differenza rilevante del funzionamento
+neurologico e cognitivo rispetto a quello tipico. Il
 *disturbo* è un esito clinicamente significativo: disagio rilevante o
 compromissione del funzionamento in aree importanti della vita. Può associarsi a
 condizioni sindromiche, che si prestano a categorie nette, o, più spesso, a
@@ -46,7 +47,7 @@ parte integrante della valutazione clinica e un tema centrale della ricerca.
 
 ```{r}
 #| label: fig-neurodiversita
-#| fig-cap: "Neurodiversità, neurodivergenza e disturbo. La neurodivergenza può tradursi, in misura variabile, in un disturbo; quando è eccezionale può diventare una risorsa; il rapporto fra risorsa e disturbo resta una domanda aperta. Adattamento da uno schema dell'autore."
+#| fig-cap: "Neurodiversità, neurodivergenza e disturbo. La neurodivergenza può tradursi, in misura variabile, in un disturbo; quando è eccezionale può diventare una risorsa; il rapporto fra risorsa e disturbo resta una domanda aperta."
 #| fig-alt: "Schema con il termine neurodiversità in alto, da cui partono due frecce: verso neurodivergenza, a sinistra, definita come differenza rilevante del funzionamento neurologico e cognitivo rispetto al neurotipico, e verso disturbo, a destra, definito come esito clinicamente significativo, sindromico o più spesso non sindromico. Tre frecce vanno da neurodivergenza a disturbo. Una freccia curva rossa, etichettata eccezionalità, va da neurodivergenza a risorsa, in basso: talento, creatività, pensiero divergente, iperfocus, plusdotazione. Una freccia doppia con un punto di domanda collega risorsa e disturbo."
 #| fig-width: !expr 4.45 * scala
 #| fig-height: !expr 3.4 * scala
@@ -127,9 +128,10 @@ va valutato sempre.
 
 ## Autismo: un paradosso
 
-Fra le persone con una diagnosi di autismo, una quota consistente, attorno a un
-terzo nelle stime epidemiologiche statunitensi, ha anche una disabilità
-intellettiva [@maenner2023prevalence]. Eppure le varianti genetiche comuni
+Fra le persone con una diagnosi di autismo, una quota consistente, fra un quarto
+nelle sintesi internazionali e oltre un terzo nelle stime epidemiologiche
+statunitensi, ha anche una disabilità intellettiva [@mutluer2022population;
+@maenner2023prevalence]. Eppure le varianti genetiche comuni
 associate all'autismo sono, in media, associate a un'intelligenza leggermente
 **più alta**: la correlazione genetica fra i due tratti è debolmente positiva
 [@savage2018genome]. Come si conciliano i due dati?
@@ -186,7 +188,7 @@ specifico.
 
 In teoria i disturbi specifici dell'apprendimento rappresentano il livello più
 circoscritto della compromissione cognitiva. Il **modello a cono** proposto da
-Cornoldi e Vecchi lo rende visibile: in cima stanno le compromissioni di alto
+Cornoldi e Vecchi lo rende visibile (@fig-cono): in cima stanno le compromissioni di alto
 livello, come la disabilità intellettiva, con effetti a cascata su qualsiasi
 compito; nel mezzo quelle di livello intermedio, come autismo e ADHD, che colpiscono
 diversi domini; alla base quelle che riguardano processi molto specifici, come
@@ -283,7 +285,8 @@ dell'apprendimento [@pizzigallo2023intellectual].
 Quando si usa una batteria in una popolazione diversa da quella su cui è stata
 costruita, bisogna chiedersi se i punteggi abbiano lo stesso significato. È la
 questione dell'**invarianza di misura**, che si articola in livelli successivi
-[@meredith1993measurement; @putnick2016measurement].
+(@tbl-invarianza), ciascuno riferito a un tipo di parametro del modello
+fattoriale (@fig-invarianza) [@meredith1993measurement; @putnick2016measurement].
 
 | Livello | Domanda | Situazione tipica nei gruppi clinici |
 |---|---|---|
@@ -296,7 +299,7 @@ questione dell'**invarianza di misura**, che si articola in livelli successivi
 
 ```{r}
 #| label: fig-invarianza
-#| fig-cap: "Dove si collocano i parametri che l'invarianza di misura confronta fra gruppi, nel modello gerarchico della WISC-IV. Pesi (frecce rosse, da g agli indici e dagli indici ai subtest): invarianza metrica. Intercette, cioè il punteggio atteso in un subtest quando l'abilità vera è esattamente nella media (triangoli): invarianza scalare. Varianze residue, cioè la parte di un indice o di un subtest non spiegata dal fattore superiore (cerchi): invarianza stretta. Adattamento da uno schema dell'autore."
+#| fig-cap: "Dove si collocano i parametri che l'invarianza di misura confronta fra gruppi, nel modello gerarchico della WISC-IV. Pesi (frecce rosse, da g agli indici e dagli indici ai subtest): invarianza metrica. Intercette, cioè il punteggio atteso in un subtest quando l'abilità vera è esattamente nella media (triangoli): invarianza scalare. Varianze residue, cioè la parte di un indice o di un subtest non spiegata dal fattore superiore (cerchi): invarianza stretta."
 #| fig-alt: "Un ovale g in alto collegato da frecce rosse a quattro ovali di indice: comprensione verbale, ragionamento percettivo, memoria di lavoro, velocità di elaborazione; accanto a ogni indice un piccolo cerchio indica la sua varianza residua. Ogni indice ha frecce rosse verso i suoi subtest, rettangoli con il nome scritto in verticale: somiglianze, vocabolario, comprensione; disegno con cubi, concetti illustrati, ragionamento con matrici; memoria di cifre, lettere e numeri; cifrario, ricerca di simboli. Sotto ogni subtest un triangolo indica l'intercetta e un cerchio la varianza residua, entrambi con una freccia verso il subtest. Una legenda associa frecce, triangoli e cerchi ai livelli metrico, scalare e stretto."
 #| fig-width: !expr 4.45 * scala
 #| fig-height: !expr 3.9 * scala

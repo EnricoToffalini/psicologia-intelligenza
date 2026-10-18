@@ -114,7 +114,7 @@ fra gemelli dizigoti, cioè, i punteggi possono differire di parecchio.
 
 ```{r}
 #| label: fig-coppie
-#| fig-cap: "Che aspetto hanno le correlazioni della tabella: QI simulati di 600 coppie per quattro tipi di parentela, con le correlazioni riportate da Plomin et al. (2001). Ogni punto è una coppia; la linea rossa è la retta di regressione. Adattamento da una slide dell'autore."
+#| fig-cap: "Che aspetto hanno le correlazioni della tabella: QI simulati di 600 coppie per quattro tipi di parentela, con le correlazioni riportate da Plomin et al. (2001). Ogni punto è una coppia; la linea rossa è la retta di regressione."
 #| fig-alt: "Quattro grafici a dispersione con il QI di una persona sull'asse orizzontale e quello dell'altra persona della coppia sull'asse verticale, entrambi da circa 55 a 145. Gemelli monozigoti cresciuti insieme, r 0,86: nuvola stretta lungo la diagonale. Gemelli dizigoti cresciuti insieme, r 0,60: nuvola più larga. Genitori e figli biologici, r 0,42, e fratelli cresciuti insieme, r 0,47: nuvole larghe, con una tendenza crescente ancora visibile."
 #| fig-width: !expr if (stampa) 4.45 else 8
 #| fig-height: !expr if (stampa) 4.6 else 7.4
@@ -228,7 +228,7 @@ partito un po' sopra la media, arriva molto sopra. L'effetto genetico iniziale
 La @tbl-amplificazione riassume l'esempio.
 
 | | Persona A: abilità generale esattamente nella media | Persona B: abilità generale un po' sopra la media |
-|------------|------------------------------------|------------------------------------|
+|----------------|----------------------------------|----------------------------------|
 | Infanzia | contesto scolastico tipico; voti medi; attività extrascolastiche tipiche | contesto scolastico tipico; voti buoni; attività extrascolastiche un po' più stimolanti |
 | Adolescenza | scuola superiore e attività tipiche | a volte classi più stimolanti; scuola superiore più impegnativa; più attenzione dagli insegnanti; amici selezionati; attività complesse |
 | Giovinezza | scelte di vita tipiche | università selettiva; contesti sociali e tempo libero sempre più stimolanti |
@@ -246,8 +246,8 @@ cambiamenti sociali sono inutili?** No. L'ereditabilità descrive l'origine
 delle differenze fra individui in una popolazione, in un certo momento storico.
 Non dice nulla sul livello medio, né su che cosa accadrebbe cambiando l'ambiente
 di tutti. L'ambiente può avere effetti enormi sull'intelligenza dell'intera
-società, come mostra il capitolo sull'effetto Flynn, senza che l'ereditabilità
-cambi. E il restante 20–40% della varianza non è poco.
+società senza che l'ereditabilità cambi, come si vedrà nel capitolo sull'effetto
+Flynn. E il restante 20–40% della varianza non è poco.
 
 **Il dato è definitivo?** Non può esserlo per principio. L'ereditabilità
 esprime il peso dei geni in rapporto all'ambiente. Se le condizioni di vita

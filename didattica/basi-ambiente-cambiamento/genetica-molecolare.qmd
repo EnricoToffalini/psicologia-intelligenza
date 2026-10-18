@@ -152,8 +152,8 @@ richiamo alla cautela, non una smentita del ruolo dei geni.
 
 ## Geni e ambiente insieme
 
-Noi semplifichiamo: geni più ambiente uguale tratto. La realtà è più intricata.
-Due esempi estremi, fuori dall'intelligenza in senso stretto, aiutano a capire.
+Geni e ambiente non agiscono come due addendi separati. Due esempi estremi,
+fuori dall'intelligenza in senso stretto, aiutano a capire.
 
 La **fenilchetonuria** è una condizione genetica recessiva. Chi eredita due copie
 alterate del gene che codifica un enzima non riesce a metabolizzare la

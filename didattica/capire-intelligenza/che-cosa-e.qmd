@@ -29,7 +29,7 @@ fila = function(x, y, pezzi, font, cex = .7, col = "black") {
 Possiamo dire che gli esseri umani sono intelligenti? Siamo l'unica specie che
 si è data da sola il nome di *sapiens*. Siamo anche una specie che altera il
 proprio ambiente, sa di farlo e non riesce a smettere. Il paradosso è antico, e
-Sternberg ha dedicato un intero volume a una sua versione in piccolo: perché
+Sternberg ha curato un intero volume su una sua versione in piccolo: perché
 persone intelligenti fanno a volte cose tanto stupide
 [@sternberg2002smart].
 
@@ -117,11 +117,13 @@ paga il prezzo di usare una parola che tutti credono di capire.
 
 Se il senso comune non basta, si può chiedere agli esperti. Il guaio è che
 ciascuno ha la sua definizione. Nel 1921 il *Journal of Educational Psychology*
-interpellò diversi studiosi [@jep1921symposium]. Per Pintner l'intelligenza era
-la capacità di adattarsi a situazioni relativamente nuove; per Woodrow, quella di
+interpellò diversi studiosi
+[@jep1921symposium; @woodrow1921symposium; @dearborn1921symposium].
+Per Pintner l'intelligenza era la capacità di adattarsi a situazioni relativamente nuove; per Woodrow, quella di
 acquisire abilità; per Dearborn, quella di trarre profitto dall'esperienza; per
 Terman, quella di condurre un ragionamento astratto. Settantasette anni dopo,
-un dibattito italiano fra studiosi di discipline diverse, dalla psicologia
+nel 1998, un dibattito italiano sulla rivista *Sistemi Intelligenti* fra
+studiosi di discipline diverse, dalla psicologia
 all'informatica, produsse una varietà simile, dal comportamento che massimizza il
 beneficio dell'organismo alla capacità di costruirsi rappresentazioni interne del
 mondo [@cornoldi2007intelligenza].
@@ -159,13 +161,13 @@ fila(2.3, 9.2, c("una ", "capacità mentale generale"), c(3, 4), cex = 1.15, col
 att = c("ragionare", "pianificare", "risolvere\nproblemi", "pensare in\ntermini astratti", "comprendere\nidee complesse",
         "apprendere\nrapidamente", "apprendere\ndall'esperienza", "...")
 # Etichette su due file sfalsate, come una scala di parole sotto il titolo
-xa = c(1.0, 2.6, 4.1, 5.7, 7.3, 8.9, 10.45, 11.65); ya = rep(c(6.3, 4.0), 4)
-xp = seq(3.0, 10.4, length.out = 8)
+xa = c(1.0, 2.6, 4.1, 5.7, 7.3, 8.9, 10.15, 11.65); ya = rep(c(6.3, 4.0), 4)
+xp = c(seq(3.0, 9.6, length.out = 7), 11.65)
 for (i in 1:8) {
   text(xa[i], ya[i], att[i], font = 3, cex = .74, adj = c(.5, 1))
   freccia(xp[i], 8.1, xa[i] + (xp[i] - xa[i]) * .12, ya[i] + .35, col = "grey35", lwd = 1.2)
 }
-text(11.15, 8.6, "«tra le\naltre cose»", font = 3, cex = .62, col = "grey30")
+text(11.2, 9.45, "«tra le\naltre cose»", font = 3, cex = .62, col = "grey30")
 ```
 
 «Generale» indica l'ampiezza del campo di applicazione, non l'uniformità dei
@@ -199,7 +201,7 @@ diverse. Per il resto del libro basta un glossario minimo:
   misurare;
 - **QI**: l'indicatore numerico con cui la si stima.
 
-Operativamente, comunque, il termine resta quasi universale per l'indicatore: il
+Per l'indicatore, invece, la parola «intelligenza» resta quasi universale: il
 **quoziente di intelligenza**, o **QI**. È un indicatore di differenze
 individuali: esprime quanto bene una persona se la cava, rispetto ad altre della
 stessa età, su una scala standardizzata. Il QI non è *g*: *g* appartiene a un
@@ -327,7 +329,7 @@ mezzo = function(x0, y0, l, verso) {
 }
 mezzo(.2, .7, .32, 2); mezzo(.52, .7, .32, 1); mezzo(.2, .38, .32, 3); mezzo(.52, .38, .32, 4)
 for (k in 1:2) mezzo(.98 + (k - 1) * .23, .95 - (k - 1) * .35, .18, c(5, 2)[k])
-text(1.07, .25, "cubi", cex = .58, col = "grey30")
+text(1.07, .25, "cubi", cex = .66, col = "grey30")
 # 6. Codifica
 riquadro(1.6, .05, 4.43, 1.45, "Completa col simbolo (tempo limitato)")
 simbolo = function(x, y, k, s = .055) {
@@ -370,12 +372,12 @@ molto alti sono rari (@fig-gaussiana).
 #| fig-width: !expr if (stampa) 4.45 else 7
 #| fig-height: !expr if (stampa) 3 else 4.2
 d = data.frame(qi = 41:159); d$n = dnorm(d$qi, 100, 15)
-cx = if (stampa) 2.6 else 3.6
+cx = if (stampa) 2.8 else 3.6
 ggplot(d, aes(qi, n)) +
   geom_col(width = 1, fill = "grey78", colour = "white", linewidth = .1) +
   scale_x_continuous(breaks = seq(40, 160, 15), limits = c(38, 162), expand = c(0, 0)) +
   scale_y_continuous(breaks = NULL, expand = expansion(c(0, .06))) +
-  annotate("text", x = 100, y = max(d$n) * 1.03, label = "curva gaussiana", vjust = 0, size = cx * .8, fontface = "italic") +
+  annotate("text", x = 100, y = max(d$n) * 1.03, label = "curva gaussiana", vjust = 0, size = cx, fontface = "italic") +
   annotate("text", x = c(62, 138), y = .022, label = c("bassi livelli\nprestativi generali", "alti livelli\nprestativi generali"), size = cx, lineheight = .9) +
   annotate("segment", x = c(85, 115), xend = c(45, 155), y = .0175, yend = .0175, arrow = arrow(length = unit(.15, "cm")), linewidth = .5, colour = rosso) +
   annotate("text", x = c(52, 148), y = .007, label = "poche\npersone", size = cx, lineheight = .9) +

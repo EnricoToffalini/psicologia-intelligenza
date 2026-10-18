@@ -32,67 +32,62 @@ stato attuale e i punti aperti; la storia dettagliata è nella cronologia di git
 
 ## Punti aperti
 
+Aggiornati dopo il ricontrollo del 18 ottobre 2026 (verifiche su Crossref,
+PubMed e articoli open access). Chiusi: Woodrow e Dearborn (seconda puntata del
+simposio, n. 4, ora citati con le loro parti), Cattell (1987), saturazioni
+WISC-IV (dichiarate analisi originale, coerenti con Kush e Canivez 2019),
+Milwaukee Project (valori verificati su Jensen 1989), Dworak et al. (2023,
+tabelle 1-2), cause di morte di Calvin et al. (2017), Frazier et al. (2004),
+43% di ADHD nella sindrome di Down (Ekstein et al. 2011), Project 100,000
+(categoria IV), fonte della slide sul lavoro (Sackett et al. 2023, IOP),
+frecce ondulate di `fig-sintesi`. Restano:
+
 1. Titolo esatto del libro di Serpico (2022), inserito come «L'intelligenza tra
    natura e cultura» sulla base delle slide.
-2. Valori della figura sulle correlazioni familiari (da Plomin et al., 2001) e
-   intervalli della figura sulle cause di morte (Calvin et al., 2017): ripresi
-   dalle slide, da confrontare con le fonti.
-3. Project 100,000, nel capitolo sul lavoro: dati riportati in forma qualitativa
-   con rinvio a Warne (2020) e Gregory (2015).
-4. `intelligenza-emotiva-e-costrutti` è breve: si può ampliare (non ci sono
-   vincoli di lunghezza).
-5. Controllo della voce rispetto ai materiali Il Mulino non ripetuto dopo la
-   stesura completa.
-6. Frazier et al. (2004) e Oh et al. (2023): metadati verificati, valori citati
-   da confrontare con il testo degli articoli.
-7. `che-cosa-e` (riallineato alle slide, ottobre 2026): verificare che le
-   definizioni di Woodrow e Dearborn compaiano nella prima puntata del simposio
-   del 1921 (pp. 123–147) e non in quelle successive; Cornoldi (2007) e
-   Sternberg (2002) inseriti a mano come libri, da controllare su copia.
-8. Stile delle figure (deciso): architettura delle slide, stile grafico del
-   libro. Avanzamento capitolo per capitolo nella tabella di `AGENTS.md`.
-9. `qualita-della-misura`: le saturazioni WISC-IV delle figure a uno e due
-   fattori vengono dalle slide (analisi dell'autore, N = 2.200); indicare la
-   fonte pubblicata, se esiste, o dichiararle analisi originale.
-10. Nuovo riferimento Cattell (1987) inserito a mano come libro: verificare.
+2. Correlazioni familiari (Plomin et al., 2001): cinque righe coincidono con
+   Bouchard e McGue (1981); da controllare sul manuale le righe 0,78/93,
+   0,24/720, 0,19/1.491 e il numero di coppie DZ (5.533).
+3. Cornoldi, *L'intelligenza* (Il Mulino): il sito dell'editore mostra solo
+   l'edizione 2009; verificare su copia o OPAC SBN l'anno 2007. Sternberg
+   (2002, volume curato) e Schweinhart et al. (2005, Perry Preschool) inseriti a
+   mano: controllare su copia. Manuale WAIS-IV (Wechsler, 2008) idem.
+4. `intelligenza-e-lavoro`: regole AFQT (non oltre il 4% di categoria IV,
+   almeno il 60% sopra il 50° percentile) senza fonte bibliografica (rapporti
+   «Population Representation in the Military Services»); valori di
+   `tbl-criteri` e `tbl-oltre-g` coincidono con le slide ma non sono confrontati
+   uno per uno con Nye (2022), Cucina et al. (2024), Pletzer e Abrahams (2025).
+5. `neurosviluppo-dimensionale`: le altre percentuali di `fig-comorbilita`
+   corrispondono alla slide ma non sono confrontate con i singoli articoli;
+   Turk (2009) non identificato.
+6. `cervello-e-intelligenza`: «correlazioni attorno a 0,2» per la sostanza
+   bianca (Penke et al. 2012: 10% di varianza con tre fattori) e r = 0,03 del
+   vincitore della gara ABCD (Pohl et al. 2019) da verificare.
+7. `effetto-flynn`: la frase sul calo nelle indagini internazionali sulle
+   competenze scolastiche non ha una fonte specifica.
+8. `qualita-della-misura`: «I QI ottenuti con strumenti diversi correlano
+   almeno 0,70» senza citazione; valori di Watkins e Smith (2013) non
+   ricontrollati sull'articolo.
+9. `intelligenza-emotiva-e-costrutti` è breve: si potrebbe ampliare con le
+   correlazioni della slide (MSCEIT, TEIQue), dopo averle verificate.
+10. Controllo della voce rispetto ai materiali Il Mulino non ripetuto dopo la
+    stesura completa.
 
-## Revisione delle figure (ottobre 2026): punti da verificare
+## Figure: scelte da confermare
 
-Tutte le figure sono state riallineate alla logica delle slide (vedi
-`AGENTS.md`). Restano da controllare:
-
-1. `potenziamento-cognitivo`: numeri del Milwaukee Project (`fig-fadeout`)
-   presi dalla slide, da confrontare con Jensen (1989); valutare se citare le
-   irregolarità di Heber; Perry Preschool senza citazione specifica; Molloy et
-   al. (2025) non citato.
-2. `effetto-flynn`: coefficienti di Dworak et al. (2023) in `fig-dworak` presi
-   dalla slide, non confrontati con l'articolo.
-3. `geni-ambiente-ereditabilita`: in età adulta ora 0,6–0,8 (intervalli della
-   slide) invece di 0,7–0,8; formula h² e Falconer resi come equazione e
-   tabella, non come schemi.
-4. `intelligenza-e-lavoro`: AFQT (non oltre il 4% di categoria IV, almeno il 60%
-   sopra il 50° percentile) senza fonte in bibliografia; Project 100,000 («QI
-   inferiore a 92 e in parte fino a circa 70») contro la slide (categoria IV,
-   QI circa 80–92); valori di `tbl-oltre-g` e `tbl-criteri` verificati solo per
-   Sackett et al. (2024); la slide di p. 34 cita Sackett et al. (2023, IOP),
-   nel testo c'è `sackett2022revisiting`.
-5. `neurosviluppo-dimensionale`: percentuali di `fig-comorbilita` verificate
-   solo in parte; Turk (2009) non identificato (43% di ADHD nella sindrome di
-   Down senza fonte); «Lee et al. (2016)» della slide sostituito da Quintin et
-   al. (2016).
-6. `alternative-a-g`: in `fig-rete-mutualismo` il legame memoria a lungo
-   termine–ragionamento, senza punta nella slide, è disegnato come freccia
-   verso il ragionamento.
-7. `modelli-gerarchici`: in `fig-sintesi` mancano le frecce ondulate «minori»
-   fra abilità ed esiti della slide; in `fattore-g` gli ovali s/ε stanno sotto
-   le prove, non sopra come nella slide, per evitare incroci.
-8. `origini-dei-test`: `fig-beta` imita il formato «Cosa manca?» dell'Army Beta
-   con disegni originali; gli item storici Binet-Simon e Army Alpha/Beta
-   (pubblico dominio) si potrebbero mostrare come immagini dalle fonti
-   originali, dopo verifica della provenienza.
-9. Grafici raster di articoli non ridisegnati (per esempio Turkheimer et al.
-   2003, Tucker-Drob e Bates 2016, Sundet 2004, Van Hootegem 2023): si possono
-   ricostruire solo da dati pubblicati.
+1. `fattore-g`: gli ovali s/ε stanno sotto le prove, non sopra come nella
+   slide, per evitare incroci di frecce.
+2. `alternative-a-g`: in `fig-rete-mutualismo` il legame memoria a lungo
+   termine–ragionamento, senza punta nella slide, è una freccia verso il
+   ragionamento.
+3. `origini-dei-test`: `fig-beta` imita il formato «Cosa manca?» dell'Army Beta
+   con disegni originali; gli item storici (pubblico dominio) si potrebbero
+   mostrare come immagini dalle fonti originali, dopo verifica della
+   provenienza.
+4. `perche-studiarla`: nella `fig-foresta`, densa, alcune etichette restano un
+   po' sotto la soglia di leggibilità (cex 0,57–0,62).
+5. Grafici raster di articoli non ridisegnati (Turkheimer et al. 2003,
+   Tucker-Drob e Bates 2016, Sundet 2004, Van Hootegem 2023): ricostruibili
+   solo dalle stime pubblicate nelle tabelle degli articoli.
 
 ## Note tecniche
 

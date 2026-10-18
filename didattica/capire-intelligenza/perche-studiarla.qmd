@@ -202,7 +202,7 @@ immagine = function(file, x0, y0, h) {
   rasterImage(img, x0, y0, x0 + w, y0 + h)
 }
 # Testo con un alone bianco, leggibile sopra le chiome
-etichetta = function(x, y, t, cex = .56, font = 2, col = "black", srt = 0) {
+etichetta = function(x, y, t, cex = .6, font = 2, col = "black", srt = 0) {
   for (a in seq(0, 2 * pi, length.out = 13)) text(x + .012 * cos(a), y + .012 * sin(a), t, cex = cex, font = font, col = "white", srt = srt)
   text(x, y, t, cex = cex, font = font, col = col, srt = srt)
 }
@@ -221,19 +221,19 @@ for (i in 1:nrow(voci)) etichetta(as.numeric(voci[i, 1]), as.numeric(voci[i, 2])
 personalita = rbind(c(3.6, 2.75, "Estroversione"), c(3.6, 2.5, "Coscienziosità"), c(3.6, 2.25, "Nevroticismo"),
                     c(3.6, 2.0, "Apertura"), c(3.6, 1.75, "Amicalità"), c(4.17, 2.87, "Curiosità"), c(4.17, 2.62, "Leadership"),
                     c(4.17, 2.37, "Creatività"), c(4.17, 2.12, "Coraggio"), c(4.17, 1.82, "Character\nstrengths"))
-for (i in 1:nrow(personalita)) etichetta(as.numeric(personalita[i, 1]), as.numeric(personalita[i, 2]), personalita[i, 3], cex = .52)
+for (i in 1:nrow(personalita)) etichetta(as.numeric(personalita[i, 1]), as.numeric(personalita[i, 2]), personalita[i, 3], cex = .57)
 etichetta(3.6, 3.0, "Big five", cex = .66); etichetta(4.17, 3.12, "Soft skills", cex = .66); etichetta(3.9, 3.38, "...")
 etichetta(.8, 1.6, "fattore g", cex = .95); etichetta(2.7, 1.3, "fattore p", cex = .95)
-etichetta(1.81, 2.3, "Neurodivergenza (dislessia, ADHD, autismo, ...)", cex = .54, font = 3, srt = 90)
+etichetta(1.81, 2.3, "Neurodivergenza (dislessia, ADHD, autismo, ...)", cex = .58, font = 3, srt = 90)
 text(.8, .88, "Intelligenza /\nabilità cognitive", font = 2, cex = .66, col = rosso)
-text(.8, .6, "es. CHC", font = 3, cex = .56, col = "grey30")
+text(.8, .6, "es. CHC", font = 3, cex = .62, col = "grey30")
 text(2.7, .88, "Psicopatologia\ndimensionale", font = 2, cex = .66, col = rosso)
-text(2.7, .6, "es. HiTOP", font = 3, cex = .56, col = "grey30")
+text(2.7, .6, "es. HiTOP", font = 3, cex = .62, col = "grey30")
 text(3.93, .88, "Personalità /\nstili e competenze", font = 2, cex = .62, col = rosso)
 freccia(1.47, .88, 1.97, .88, code = 3, col = "grey35", lwd = 1.3)
 freccia(3.16, .88, 3.42, .88, code = 3, col = "grey35", lwd = 1.3)
 rect(0, 0, 4.45, .42, col = "grey90", border = NA)
-text(2.225, .21, "Basi comuni: pleiotropia, poligenicità, basi neurobiologiche, traiettorie\ndi sviluppo, esperienza, interazioni con l'ambiente, epigenetica", cex = .56, font = 3)
+text(2.225, .21, "Basi comuni: pleiotropia, poligenicità, basi neurobiologiche, traiettorie\ndi sviluppo, esperienza, interazioni con l'ambiente, epigenetica", cex = .6, font = 3)
 ```
 
 Fra le chiome delle abilità cognitive e della psicopatologia corre la
@@ -271,9 +271,9 @@ text(6, 4.6, "studio delle differenze individuali nelle abilità cognitive", cex
 titolo = function(x, y, t, s, cex_s = .6) { text(x, y, t, font = 2, cex = .74); text(x, y - .95, s, cex = cex_s, col = "grey30", adj = c(.5, 1)) }
 titolo(2.2, 9.3, "PSICOMETRIA", "sviluppo di test, misure,\npunteggi, modelli statistici")
 titolo(9.8, 9.1, "GENETICA DEL\nCOMPORTAMENTO", "studi sui gemelli, GWAS")
-text(10.3, 6.6, "migliaia di varianti\ngenetiche additive,\nmolto pleiotropiche", cex = .56, font = 3, col = "grey30")
+text(10.3, 6.6, "migliaia di varianti\ngenetiche additive,\nmolto pleiotropiche", cex = .62, font = 3, col = "grey30")
 titolo(2.1, 2.3, "NEUROSCIENZE\nCOGNITIVE", "basi neurobiologiche delle\ndifferenze individuali")
-text(1.75, 5.9, "perché un cervello esprime\npiù intelligenza di un altro,\nin tutte le abilità insieme?", cex = .56, font = 3, col = "grey30")
+text(1.75, 5.9, "perché un cervello esprime\npiù intelligenza di un altro,\nin tutte le abilità insieme?", cex = .62, font = 3, col = "grey30")
 titolo(6, 2.4, "APPLICAZIONI CLINICHE,\nSOCIALI, NELLE\nORGANIZZAZIONI", "")
 titolo(10.1, 2.3, "NEUROSVILUPPO,\nARCO DI VITA", "neurodiversità, discrepanze,\ncrescita e declino delle\nabilità, traiettorie")
 curva(4.9, 6.3, 4.4, 8.9, piega = .3)
@@ -295,7 +295,7 @@ particolarmente ampia.
 L'altra parte del problema è emotiva. Le obiezioni si somigliano: il QI serve a
 discriminare; non si possono ridurre le persone a numeri; siamo tutti uguali;
 nella vita conta l'impegno, non il QI; ognuno è un genio a modo suo. Alcune
-sono slogan. Altre contengono un nucleo serio, che i capitoli successivi
+sono slogan. Altre contengono un nucleo fondato, che i capitoli successivi
 prenderanno sul serio.
 
 Questa resistenza non nasce dal nulla. Nella prima metà del Novecento i test di
@@ -341,6 +341,10 @@ invece che con opinioni.
   variabili latenti, che servono a tutta la psicologia.
 - La psicologia dei processi generali e quella delle differenze individuali
   pongono domande diverse anche sugli stessi fenomeni.
+- Abilità cognitive, personalità e psicopatologia si descrivono con modelli
+  simili, tratti specifici raggruppati in dimensioni più ampie; l'intelligenza è
+  l'area studiata più a lungo e sta al crocevia fra psicometria, genetica,
+  neuroscienze e sviluppo.
 - La storia dei test include abusi reali. Riconoscerli non implica rinunciare a
   misurare, ma pretendere misure valide e interpretazioni prudenti.
 :::

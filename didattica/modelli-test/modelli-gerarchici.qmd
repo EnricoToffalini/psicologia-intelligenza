@@ -178,9 +178,9 @@ lines(c(7.95, 7.75, 7.75, 7.55, 7.75, 7.75, 7.95), c(8.6, 8.4, 5.8, 5.6, 5.4, 2.
 text(9.75, 1.3, "X = pera, Y = fungo,\nZ = cipolla", cex = .7, font = 3, col = "grey30")
 ```
 
-Secondo la **teoria dell'investimento** di
-Cattell, l'intelligenza fluida emerge per prima e fornisce la capacità con cui,
-nel tempo, si costruisce quella cristallizzata.
+Secondo la **teoria dell'investimento** di Cattell, l'intelligenza fluida emerge
+per prima e fornisce la capacità con cui, nel tempo, si costruisce quella
+cristallizzata.
 
 Cattell non pensava davvero a due intelligenze separate: era sostanzialmente un
 unitarista, e considerava Gf e Gc due modi in cui la stessa capacità si
@@ -242,8 +242,8 @@ specifiche di ogni prova [@vernon1950structure] (@fig-vernon).
 #| fig-cap: "Il modello gerarchico di Vernon: il fattore g, due fattori principali che distinguono per tipo di materiale, fattori di gruppo minori e abilità specifiche di ciascuna prova. Elaborazione da Vernon (1950); elenco non completo."
 #| fig-alt: "In alto il fattore g, con frecce verso due fattori: verbale-istruzione, v:ed, e spaziale-pratico-meccanico, k:m. Dal primo frecce verso comprensione verbale, vocaboli e lessico, abilità matematiche; dal secondo verso ragionamento visivo, velocità percettiva, abilità psicomotorie. Da ciascuno partono frecce verso una barra in basso: abilità test-specifiche, s."
 #| fig-width: !expr 4.45 * scala
-#| fig-height: !expr 2.6 * scala
-tela(c(0, 12), c(0, 10))
+#| fig-height: !expr 2.4 * scala
+tela(c(0, 12), c(.8, 10))
 text(6, 9.4, "fattore g", font = 2, cex = 1, col = rosso)
 text(12, 9.6, "fattori principali,\nper tipo di materiale", adj = c(1, 1), cex = .68, font = 3, col = "grey30")
 gr = c(3.1, 8.9)
@@ -261,9 +261,8 @@ rect(0, 1.0, 12, 2.15, col = "grey92", border = NA)
 text(6, 1.57, "abilità test-specifiche («s»)", cex = .75, font = 3, col = "grey30")
 ```
 
-La formulazione oggi più
-citata è il modello **Cattell-Horn-Carroll** (CHC). La sua storia combina tre
-contributi. Cattell introdusse la distinzione fra fluida e cristallizzata. John
+La formulazione oggi più citata è il modello **Cattell-Horn-Carroll** (CHC). La
+sua storia combina tre contributi. Cattell introdusse la distinzione fra fluida e cristallizzata. John
 Horn, rifiutando il fattore generale, mostrò che con l'analisi fattoriale si
 potevano distinguere diversi altri domini. John Carroll, dopo aver rianalizzato
 centinaia di insiemi di dati, propose una sintesi a tre strati
@@ -339,16 +338,17 @@ parte il fattore generale; in parte l'abilità verbale, comune alle prove
 linguistiche; in parte la conoscenza specifica delle parole presenti nella
 prova. Il resto è errore: casualità, numero limitato di item, effetti
 transitori come una notte dormita male. Componente specifica ed errore, insieme,
-possono pesare per il 30–40% della varianza dei singoli subtest; l'errore da
-solo, con attendibilità tipiche fra 0,80 e 0,90, ne rappresenta il 10–20%. Lo
-stesso vale per una prova di rotazione mentale, con il dominio visuospaziale al
+possono pesare per il 30–40% della varianza dei singoli subtest. L'errore da
+solo ne rappresenta il 10–20%: è la quota che manca a un'attendibilità, cioè
+alla coerenza del punteggio da una misurazione all'altra, tipicamente fra
+0,80 e 0,90. Lo stesso vale per una prova di rotazione mentale, con il dominio visuospaziale al
 posto di quello verbale (@fig-livelli-prestazione). I livelli alti sono quelli di interesse
 teorico; quelli bassi, spesso, non sono interpretabili.
 
 ```{r}
 #| label: fig-livelli-prestazione
 #| fig-cap: "Che cosa spiega la prestazione a una prova cognitiva. Una prova di vocabolario e una di rotazione mentale riflettono lo stesso fattore generale, abilità di dominio diverse, abilità specifiche del compito e, infine, errore di misura ed effetti transitori. Andando verso l'alto cresce l'interesse teorico; verso il basso cresce la parte non interpretabile."
-#| fig-alt: "Schema a livelli sovrapposti. In alto due esempi di prova, vocabolario («che cosa significa ineffabile?») e rotazione mentale, con frecce verso il fattore generale g. Sotto: abilità in un dominio cognitivo, verbale o linguistico per la prima prova e visivo o spaziale per la seconda; poi una linea di separazione e le abilità specifiche del compito, conoscenza del vocabolario e abilità di rotazione mentale; più in basso, in grigio, errore di misura ed effetti transitori. A sinistra una freccia verso l'alto, di interesse teorico, e una verso il basso, spesso non interpretabile. Una graffa raccoglie gli ultimi due livelli con la nota: la varianza residua può superare il 30-40% di un singolo subtest."
+#| fig-alt: "Schema a livelli sovrapposti. In alto due esempi di prova, vocabolario («che cosa significa ineffabile?») e rotazione mentale, con frecce verso il fattore generale g. Sotto: abilità in un dominio cognitivo, verbale o linguistico per la prima prova e visivo o spaziale per la seconda; poi una linea di separazione e le abilità specifiche del compito, conoscenza del vocabolario e abilità di rotazione mentale; più in basso, in grigio, errore di misura ed effetti transitori. A sinistra una freccia verso l'alto, di interesse teorico, e una verso il basso, spesso non interpretabile. Una graffa raccoglie gli ultimi due livelli con la nota: la varianza residua, insieme alla componente specifica s, può superare il 30-40% di un singolo subtest."
 #| fig-width: !expr 4.45 * scala
 #| fig-height: !expr 3.2 * scala
 tela(c(0, 12), c(0, 10))
@@ -365,7 +365,7 @@ text(5.3, 2.75, "Errore di misura (casualità,\nnumero limitato di item)", cex =
 text(5.3, 1.25, "Effetti transitori (sonno, ora\ndel giorno, stimolanti…)", cex = .72, col = "grey45", font = 2)
 # graffa che raccoglie errore ed effetti transitori
 lines(c(8.6, 8.8, 8.8, 9.0, 8.8, 8.8, 8.6), c(3.4, 3.2, 2.15, 2.0, 1.85, .8, .6), col = "grey35", lwd = scala)
-text(9.15, 2.0, "varianza residua:\npuò superare il\n30–40% di un\nsingolo subtest", adj = 0, cex = .68, font = 3, col = "grey30")
+text(9.15, 2.0, "varianza residua:\ncon la «s» può\nsuperare il 30–40%\ndi un subtest", adj = 0, cex = .68, font = 3, col = "grey30")
 freccia(.4, 5.6, .4, 8.4, col = rosso, lwd = 1.2); freccia(.4, 4.8, .4, 1.2, col = "grey45", lwd = 1.2)
 text(.9, 7.0, "di interesse\nteorico", srt = 90, cex = .68, font = 3, col = rosso)
 text(.9, 3.0, "spesso non\ninterpretabile", srt = 90, cex = .68, font = 3, col = "grey35")
@@ -379,7 +379,7 @@ principale continua a preferire una visione di fatto unitaria
 (@tbl-prevalenza).
 
 | Livello | Peso nella batteria | Che cosa se ne può dire |
-|---|---|---|
+|----|------|--------|
 | Fattore *g* | dominante, misura attendibile | un QI di 115 è interpretabile, stabile, replicabile |
 | Abilità di dominio | seguono molto *g*; al netto di *g* sono poco attendibili | indici come verbale = 122 e percettivo = 113 sono in gran parte ridondanti; ripetendo il test potrebbero perfino invertirsi |
 | Abilità specifiche | pressoché non misurabili con una batteria | i singoli subtest, come matrici o cubi, non sono interpretabili da soli |
@@ -390,11 +390,13 @@ principale continua a preferire una visione di fatto unitaria
 Nelle batterie multicomponenziali il fattore generale spiega da solo la maggior
 parte della varianza comune ai subtest: nell'analisi della WISC-IV statunitense
 più di due terzi [@watkins2006orthogonal]. I fattori di dominio, al netto di
-*g*, ne spiegano poca e sono poco attendibili, come si è visto nel capitolo
-sulla qualità della misura [@gignac2017evaluating]. È inoltre il fattore generale
-a spiegare con regolarità gli esiti della vita reale: risultati scolastici,
-prestazione lavorativa, salute e longevità. Ed è la componente più chiaramente
-ereditabile.
+*g*, ne spiegano poca e sono poco attendibili [@gignac2017evaluating]; il
+capitolo sulla qualità della misura mostrerà come lo si verifica. È inoltre il
+fattore generale a prevedere con regolarità gli esiti della vita reale:
+risultati scolastici, prestazione lavorativa, salute e longevità
+[@deary2012intelligence]. Ed è la componente più chiaramente ereditabile:
+le stesse varianti genetiche agiscono in larga parte su abilità diverse
+[@plomin2015genetics].
 
 Questo vale per la popolazione nel suo insieme. Può non valere per individui
 con discrepanze molto ampie fra abilità, o in gruppi con condizioni del
@@ -478,8 +480,8 @@ diverso.
 
 ```{r}
 #| label: fig-sintesi
-#| fig-cap: "Una sintesi moderna. Numerosissimi fattori genetici, ambientali e di esperienza producono un assetto più o meno favorevole alla prestazione cognitiva generale, riassunto statisticamente da g; g sostiene le abilità di dominio, che si osservano nelle prove di un test del QI; lo stesso g prevede esiti importanti della vita reale, che dipendono anche da altre cause (frecce grigie)."
-#| fig-alt: "In alto molte piccole frecce, numerosissimi fattori poligenici, ambientali e di esperienza, puntano verso un grande ovale rosso con la lettera g. Da g partono frecce verso sei ovali di abilità: verbali, visuo-spaziali, ragionamento fluido, memoria, velocità e puntini; gli ovali poggiano su un riquadro, test del QI, che elenca prove come vocabolario, nomina categorie, rotazione mentale, completa figure, completa serie logiche, completa matrici, barrage, cifrario, ripeti cifre e ricorda figure. A destra g manda frecce rosse verso quattro esiti: successo scolastico, prestazione lavorativa, condizione sociale, longevità e salute; piccole frecce grigie dall'esterno indicano altre cause."
+#| fig-cap: "Una sintesi moderna. Numerosissimi fattori genetici, ambientali e di esperienza producono un assetto più o meno favorevole alla prestazione cognitiva generale, riassunto statisticamente da g; g sostiene le abilità di dominio, che si osservano nelle prove di un test del QI; lo stesso g prevede esiti importanti della vita reale, che dipendono anche da altre cause (frecce brevi) e, in misura minore, dalle abilità specifiche (frecce ondulate)."
+#| fig-alt: "In alto molte piccole frecce, numerosissimi fattori poligenici, ambientali e di esperienza, puntano verso un grande ovale rosso con la lettera g. Da g partono frecce verso sei ovali di abilità: verbali, visuo-spaziali, ragionamento fluido, memoria, velocità e puntini; gli ovali poggiano su un riquadro, test del QI, che elenca prove come vocabolario, nomina categorie, rotazione mentale, completa figure, completa serie logiche, completa matrici, barrage, cifrario, ripeti cifre e ricorda figure. A destra g manda frecce rosse verso quattro esiti: successo scolastico, prestazione lavorativa, condizione sociale, longevità e salute; piccole frecce grigie dall'esterno indicano altre cause, e tre brevi frecce ondulate grigie, dalle abilità verso gli esiti, indicano i contributi minori delle abilità specifiche."
 #| fig-width: !expr 4.45 * scala
 #| fig-height: !expr 3.6 * scala
 tela(c(0, 12), c(0, 10))
@@ -504,7 +506,16 @@ for (i in 1:4) {
   collega(g, o, col = rosso, lwd = 1.4)
   freccia(11.95, ye[i] + .95, 11.55, ye[i] + .52, col = "grey45", lwd = .9)
 }
-text(11.9, 2.4, "frecce grigie:\naltre cause", adj = c(1, 1), cex = .68, font = 3, col = "grey35")
+# frecce ondulate: contributi minori delle abilità specifiche, oltre a g
+onda = function(x0, y0, x1, y1, col = "grey45") {
+  t = seq(0, 1, length.out = 60); L = sqrt((x1 - x0)^2 + (y1 - y0)^2)
+  x = x0 + t * (x1 - x0) - .14 * sin(t * 3 * pi) * (y1 - y0) / L
+  y = y0 + t * (y1 - y0) + .14 * sin(t * 3 * pi) * (x1 - x0) / L
+  lines(x[1:57], y[1:57], col = col, lwd = .9 * scala)
+  punta(x[56], y[56], x[60], y[60], col = col)
+}
+onda(8.6, 5.0, 9.05, 5.05); onda(8.6, 3.75, 9.05, 3.55); onda(8.6, 2.6, 9.4, 2.75)
+text(11.9, 2.15, "frecce brevi:\naltre cause;\nondulate: abilità\nspecifiche", adj = c(1, 1), cex = .68, font = 3, col = "grey35")
 ```
 
 Perché è importante? Perché si misura in modo affidabile, stabile e
