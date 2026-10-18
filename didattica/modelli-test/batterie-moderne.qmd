@@ -32,33 +32,55 @@ hoc per illustrare il tipo di prova, non equivalenti a item reali.
 ## Un piccolo glossario
 
 Il linguaggio dei test usa alcuni termini con un significato preciso
-(@fig-glossario-test). Una **batteria** è lo strumento completo; i suoi
+(@tbl-glossario-test). Una **batteria** è lo strumento completo; i suoi
 **indici** sono i punteggi standardizzati che stimano un costrutto, dal QI
 totale agli indici di dominio; ogni indice aggrega alcuni **subtest**, cioè
 singole prove; ogni subtest è una sequenza di **item**, i singoli problemi,
 ordinati per difficoltà.
 
-```{r}
-#| label: fig-glossario-test
-#| fig-cap: "Mini glossario dei test: batteria, indice, subtest e item, con una definizione ed esempi per ciascun termine."
-#| fig-alt: "Quattro righe. Batteria: strumento completo per valutare un'area del funzionamento psicologico, come l'intelligenza, articolato in componenti, indici e subtest; per tradizione spesso chiamato scala; esempi WISC-V e IDS-2. Indice: indicatore numerico che stima un costrutto latente su una metrica standardizzata, spesso aggregando più subtest; esempi QI totale, indice di comprensione verbale, indice visuo-spaziale. Subtest: singola prova che misura una particolare abilità, composta da item ordinati per difficoltà; esempi vocabolario, disegno con cubi. Item: singolo problema in un subtest, a risposta giusta o sbagliata o con pochi gradi di accuratezza; esempio: che cosa significa una certa parola."
-#| fig-width: !expr 4.45 * scala
-#| fig-height: !expr 2.9 * scala
-tela(c(0, 12), c(0, 10))
-termini = c("BATTERIA", "INDICE", "SUBTEST", "ITEM")
-defin = c("Strumento completo per la valutazione di un'area del funzionamento psicologico (es. intelligenza), articolato in componenti, indici e subtest; per tradizione spesso chiamato «scala»",
-          "Indicatore numerico che stima un costrutto latente (es. abilità mentale generale) su una metrica standardizzata, come punteggio di deviazione dalla media; spesso aggrega più subtest",
-          "Singola prova che misura una particolare abilità o componente del costrutto, di solito una sequenza di item ordinati per difficoltà",
-          "Singolo problema all'interno di un subtest, a risposta giusta o sbagliata o valutato su pochi gradi di accuratezza")
-esempi = c("es. WISC-V; IDS-2", "es. QI totale; indice di comprensione verbale; indice visuo-spaziale", "es. vocabolario; disegno con cubi", "es. «che cosa significa questa parola?»")
-y = c(8.7, 6.2, 3.7, 1.2)
-for (i in 1:4) {
-  text(.1, y[i], termini[i], adj = 0, font = 4, cex = .72, col = rosso)
-  freccia(2.35, y[i], 3.05, y[i], col = "grey35")
-  text(3.2, y[i], paste(strwrap(defin[i], 50), collapse = "\n"), adj = 0, cex = .47)
-  text(9.4, y[i], paste(strwrap(esempi[i], 22), collapse = "\n"), adj = 0, cex = .47, font = 3, col = "grey35")
-}
-```
+| Termine | Che cos'è | Esempi |
+|---|---|---|
+| Batteria | Strumento completo per valutare un'area del funzionamento psicologico, articolato in indici e subtest; per tradizione spesso chiamato «scala» | WISC-V, IDS-2 |
+| Indice | Punteggio standardizzato che stima un costrutto latente, di solito aggregando più subtest | QI totale, indice di comprensione verbale |
+| Subtest | Singola prova che misura una particolare abilità, fatta di item ordinati per difficoltà | Vocabolario, disegno con cubi |
+| Item | Singolo problema di un subtest, a risposta giusta o sbagliata o valutato su pochi gradi di accuratezza | «Che cosa significa questa parola?» |
+
+: Mini glossario dei test. {#tbl-glossario-test}
+
+## Che aspetto hanno le prove
+
+Gli item delle batterie in uso sono riservati: diffonderli renderebbe il test
+meno valido per chi lo incontrerà. Si può però mostrare la *logica* dei diversi
+tipi di prova con item costruiti apposta, che non coincidono con quelli di
+alcuno strumento pubblicato. La @tbl-item ne raccoglie alcuni, ordinati per area
+del modello CHC; gli esempi visivi (matrici, rotazione mentale, disegno con
+cubi, codifica di simboli) sono nella @fig-item.
+
+| Area (CHC) | Tipo di prova | Esempio di item |
+|-------|------|------------|
+| Conoscenza (*Gc*) | Vocabolario | Che cosa significa «sporadico»? |
+| Conoscenza (*Gc*) | Somiglianze | In che cosa si somigliano un ponte e una stretta di mano? |
+| Conoscenza (*Gc*) | Informazione | Perché in inverno le giornate sono più corte? |
+| Ragionamento fluido (*Gf*) | Serie numeriche | Quale numero continua la serie 2, 3, 5, 8, 12, …? |
+| Ragionamento fluido (*Gf*) | Analogie verbali | Guanto sta a mano come calzino sta a …? |
+| Ragionamento fluido (*Gf*) | Matrici | Quale figura completa la tabella? (risposta a scelta fra sei o otto) |
+| Conoscenza quantitativa (*Gq*) | Problemi aritmetici a mente | Un libro costa 12 euro; con lo sconto del 25%, quanto si paga? |
+| Memoria di lavoro (*Gwm*) | Cifre all'indietro | Ascolta «4 – 9 – 2 – 7» e ripeti la serie al contrario |
+| Memoria di lavoro (*Gwm*) | Riordino di lettere e numeri | Ascolta «L – 3 – B – 1» e ripeti prima i numeri in ordine crescente, poi le lettere in ordine alfabetico |
+| Elaborazione visiva (*Gv*) | Rotazione mentale | Quali di queste figure, ruotate, coincidono con il modello? |
+| Velocità di elaborazione (*Gs*) | Ricerca di simboli | In due minuti, barra tutti i ▲ in una lunga fila di ▲ △ ■ ● □ ○ |
+| Memoria a lungo termine (*Gl*) | Rievocazione differita | Dopo venti minuti, ripeti le parole della lista ascoltata all'inizio |
+
+: Esempi di item costruiti per questo libro, sul modello di tipi di prova diffusi nelle batterie di intelligenza. Le soluzioni non sono uniche per tutti gli item verbali: nei test reali le risposte si valutano con criteri dettagliati, spesso con punteggi parziali (per esempio 0, 1 o 2 punti per una somiglianza vaga, concreta o astratta). {#tbl-item}
+
+Due dettagli contano più dell'aspetto degli item. Il primo è l'ordine: dentro
+ogni subtest gli item vanno dal facilissimo al molto difficile, e la prova si
+interrompe dopo un certo numero di errori consecutivi. Così la stessa prova
+serve a un bambino di sei anni e a un adulto, e nessuno passa mezz'ora su
+problemi tutti troppo facili o tutti impossibili. Il secondo è il tempo: in molte
+prove visive e di velocità conta quanti item si completano entro un limite, e in
+alcune si guadagnano punti in più rispondendo in fretta. Per questo la stessa
+abilità, misurata con o senza limite di tempo, può dare risultati diversi.
 
 ## Wechsler e il QI di deviazione
 
@@ -82,11 +104,17 @@ La seconda, più importante, era il **QI di deviazione**. Invece di confrontare
 età mentale e cronologica, Wechsler confrontava la prestazione di una persona
 con quella dei coetanei del campione normativo, e la esprimeva come distanza
 dalla loro media su una scala con media 100 e deviazione standard 15. È
-esattamente la logica dei punti *z* vista nel capitolo sulle distribuzioni. Il
-QI di deviazione funziona a ogni età e ha lo stesso significato in qualunque
-punto della vita: 115 indica sempre una deviazione standard sopra la media dei
+esattamente la logica dei punti *z*: la distanza dalla media si conta in
+deviazioni standard, cioè nella dispersione tipica dei punteggi attorno alla
+media. Il QI di deviazione funziona a ogni età e ha lo stesso significato in
+qualunque punto della vita: 115 indica sempre una deviazione standard sopra la media dei
 coetanei. Questa metrica è diventata universale ed è usata ancora oggi per quasi
 tutti i test psicologici.
+
+::: {.rimando-strumenti}
+**Strumenti →** Punti *z*, QI di deviazione, punteggi ponderati e percentili, con
+le loro trappole: [Distribuzioni, punti z e punteggi standardizzati](../dati-misure-punteggi/distribuzioni-e-punteggi.qmd), subito dopo questa parte.
+:::
 
 Wechsler aveva un'ispirazione pragmatica e in fondo unitarista. Voleva
 anzitutto misurare bene il QI totale. Considerava i subtest misure diverse della
@@ -115,7 +143,7 @@ La @fig-edizioni riassume il passaggio.
 #| fig-cap: "Come è cambiata la struttura delle scale Wechsler, con una progressiva aggiunta di indici e articolazioni fattoriali migliori: dal QI verbale e di performance delle prime tre edizioni ai quattro indici della quarta, ai cinque indici primari della quinta, più vicini al modello CHC. Le edizioni intermedie (una terza edizione orientata ai processi, estensioni della quarta) hanno preparato i passaggi."
 #| fig-alt: "Tre alberi. Prime tre edizioni, dagli anni Trenta agli anni Novanta: QI totale diviso in QI verbale e QI di performance, con la frase di Wechsler: misure diverse dell'intelligenza, non misure di tipi diversi di intelligenza. Quarta edizione, anni Duemila: QI totale con quattro indici, comprensione verbale, ragionamento percettivo, memoria di lavoro, velocità di elaborazione; indici di ispirazione cognitiva e neuropsicologica, utili per un profilo più articolato. Quinta edizione, dagli anni Dieci: cinque indici, con il ragionamento percettivo diviso in visuospaziale e ragionamento fluido; rimando più esplicito al modello CHC."
 #| fig-width: !expr if (stampa) 4.45 else 4.45 * 2.1
-#| fig-height: !expr if (stampa) 4.6 else 2.6 * 1.6
+#| fig-height: !expr if (stampa) 4.5 else 2.6 * 1.6
 fo = c("QI verbale", "QI di\nperformance")
 qu = c("Compren-\nsione\nverbale", "Ragiona-\nmento\npercettivo", "Memoria\ndi lavoro", "Velocità\ndi elabo-\nrazione")
 ci = c("Compren-\nsione\nverbale", "Visuo-\nspaziale", "Ragiona-\nmento\nfluido", "Memoria\ndi lavoro", "Velocità\ndi elabo-\nrazione")
@@ -123,15 +151,18 @@ note = c("Wechsler: «misure diverse dell'intelligenza,\nnon misure di tipi dive
          "indici di ispirazione cognitiva e\nneuropsicologica: profilo più articolato,\ndiscrepanze interne",
          "rimando esplicito al CHC (ragionamento\nfluido); memoria di lavoro verbale\ne visiva; alcuni subtest spostati")
 if (stampa) {
-  tela(c(0, 12), c(-.6, 15))
+  tela(c(0, 12), c(.3, 15.3))
   albero = function(y, titolo, sotto, foglie, nota) {
     text(0, y - .2, titolo, adj = c(0, 0), cex = .68, font = 2)
-    text(0, y - .4, sotto, adj = c(0, 1), cex = .58, col = "grey40")
+    text(0, y - .4, sotto, adj = c(0, 1), cex = .66, col = "grey40")
     r = nodo(7.3, y, "QI totale", w = 2.3, h = .9, bg = "white", border = rosso, col = rosso, font = 2, cex = .64)
-    xs = if (length(foglie) == 2) c(5, 9.6) else seq(3.3, 10.95, length.out = length(foglie))
-    w = min(2.2, 9.6 / length(foglie))
-    for (i in seq_along(foglie)) collega(r, nodo(xs[i], y - 2.3, foglie[i], w = w * .86, h = 1.5, bg = "grey95", cex = .52), col = "grey35")
-    text(0, y - 3.35, gsub("\n", " ", nota), adj = c(0, 1), cex = .45, font = 3, col = rosso)
+    xs = if (length(foglie) == 2) c(5, 9.6) else seq(1.05, 10.95, length.out = length(foglie))
+    # frecce dal bordo inferiore del QI totale al bordo superiore di ogni indice, senza attraversare gli altri
+    for (i in seq_along(foglie)) {
+      nodo(xs[i], y - 2.3, foglie[i], w = 2, h = 1.6, bg = "grey95", cex = .66)
+      freccia(7.3 + (xs[i] - 7.3) * .18, y - .45, xs[i], y - 1.5, col = "grey35")
+    }
+    text(0, y - 3.3, paste(strwrap(gsub("\n", " ", nota), 66), collapse = "\n"), adj = c(0, 1), cex = .64, font = 3, col = rosso)
   }
   albero(14.6, "1ª-3ª edizione", "anni '30-'90", fo, note[1])
   segments(0, 10.55, 12, 10.55, col = "grey80", lwd = scala)
@@ -142,11 +173,11 @@ if (stampa) {
   # Nel sito le tre edizioni sono affiancate, come nella slide
   tela(c(0, 25.2), c(0, 10.5))
   colonna = function(x0, titolo, sotto, foglie, nota) {
-    text(x0 + 3.9, 9.6, titolo, cex = .7, font = 2); text(x0 + 3.9, 9.05, sotto, cex = .5, col = "grey40")
+    text(x0 + 3.9, 9.6, titolo, cex = .7, font = 2); text(x0 + 3.9, 9.05, sotto, cex = .58, col = "grey40")
     r = nodo(x0 + 3.9, 7.8, "QI totale", w = 2.6, h = .9, bg = "white", border = rosso, col = rosso, font = 2, cex = .6)
     xs = if (length(foglie) == 2) x0 + c(2.3, 5.5) else seq(x0 + .8, x0 + 7, length.out = length(foglie))
-    for (i in seq_along(foglie)) collega(r, nodo(xs[i], 5, foglie[i], w = min(2.6, 7.4 / length(foglie) * .92), h = 1.9, bg = "grey95", cex = .44), col = "grey35")
-    text(x0 + 3.9, 2.2, nota, cex = .46, font = 3, col = rosso)
+    for (i in seq_along(foglie)) collega(r, nodo(xs[i], 5, foglie[i], w = min(2.6, 7.4 / length(foglie) * .92), h = 2.1, bg = "grey95", cex = if (length(foglie) > 4) .47 else .54), col = "grey35")
+    text(x0 + 3.9, 2.0, nota, cex = .56, font = 3, col = rosso)
   }
   colonna(0, "1ª-3ª edizione", "anni '30-'90", fo, note[1])
   colonna(8.6, "4ª edizione", "anni 2000", qu, note[2])
@@ -166,7 +197,7 @@ cinque indici primari, una decina di subtest principali e altri subtest
 supplementari. I principali tipi di prova sono questi.
 
 | Indice | Che cosa valuta | Subtest (primari in corsivo) | Tipo di prova |
-|---|---|---|---|
+|----|-----|-----|------|
 | Comprensione verbale | Conoscenza delle parole, dei concetti e del mondo | *Somiglianze*, *Vocabolario*, Informazione, Comprensione | Spiegare che cosa hanno in comune due concetti; definire parole |
 | Visuospaziale | Analisi di dettagli visivi e relazioni spaziali | *Disegno con cubi*, *Puzzle* | Riprodurre un modello con cubi colorati; scegliere i pezzi che compongono una figura |
 | Ragionamento fluido | Ragionamento induttivo e deduttivo, astrazione di regole | *Matrici*, *Confronto di pesi*, Concetti illustrati, Ragionamento aritmetico | Completare matrici di figure; trovare ciò che bilancia una serie di pesi |
@@ -185,8 +216,9 @@ La struttura a cinque fattori delle scale Wechsler più recenti è stata
 contestata. Alcune rianalisi dei dati normativi trovano che quattro fattori di
 dominio, più un fattore generale molto forte, descrivano i dati altrettanto
 bene, e che la varianza specifica di molti indici sia modesta
-[@canivez2017structural]. È lo stesso problema discusso nel capitolo sulla
-qualità della misura: i domini esistono, ma al netto di *g* pesano poco.
+[@canivez2017structural]. È lo stesso problema incontrato con i modelli
+gerarchici, che il capitolo sulla qualità della misura riprenderà: i domini
+esistono, ma al netto di *g* pesano poco.
 
 ## Leggere un profilo
 
@@ -199,7 +231,7 @@ Il QI totale è la stima più attendibile e stabile. Gli indici di dominio seguo
 in gran parte il fattore generale e, considerati da soli, sono meno attendibili:
 se si ripetesse la valutazione, la differenza fra due indici potrebbe ridursi o
 addirittura invertirsi. I singoli subtest, ancora meno affidabili, non vanno
-interpretati isolatamente. Il capitolo sulla qualità della misura ha mostrato
+interpretati isolatamente. Il capitolo sulla qualità della misura mostrerà
 perché.
 
 Questo non significa che i profili siano inutili. Possono essere informativi
@@ -256,9 +288,9 @@ quando lingua, scolarità e familiarità con le prove differiscono, cioè propri
 nelle condizioni in cui fallirono i test dell'esercito statunitense. Le
 differenze medie fra gruppi definiti per etnia o nazionalità sollevano, oltre a
 queste, domande sulle cause a cui l'ereditabilità stimata dentro ciascun gruppo
-non può rispondere da sola; il caso del divario Nord-Sud discusso nel capitolo
-sulla scuola mostra quanto fragili possano essere i dati su cui si costruiscono
-certe conclusioni.
+non può rispondere da sola; il caso del divario Nord-Sud, che si vedrà nel
+capitolo sulla scuola, mostra quanto fragili possano essere i dati su cui si
+costruiscono certe conclusioni.
 
 Il caso dei sessi è istruttivo. Nell'abilità generale le differenze medie fra
 maschi e femmine sono trascurabili; ne esistono alcune in abilità specifiche,

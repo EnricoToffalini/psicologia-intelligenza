@@ -29,7 +29,7 @@ fila = function(x, y, pezzi, font, cex = .7, col = "black") {
 Possiamo dire che gli esseri umani sono intelligenti? Siamo l'unica specie che
 si è data da sola il nome di *sapiens*. Siamo anche una specie che altera il
 proprio ambiente, sa di farlo e non riesce a smettere. Il paradosso è antico, e
-Sternberg ha dedicato un intero volume a una sua versione in piccolo: perché
+Sternberg ha curato un intero volume su una sua versione in piccolo: perché
 persone intelligenti fanno a volte cose tanto stupide
 [@sternberg2002smart].
 
@@ -117,11 +117,13 @@ paga il prezzo di usare una parola che tutti credono di capire.
 
 Se il senso comune non basta, si può chiedere agli esperti. Il guaio è che
 ciascuno ha la sua definizione. Nel 1921 il *Journal of Educational Psychology*
-interpellò diversi studiosi [@jep1921symposium]. Per Pintner l'intelligenza era
-la capacità di adattarsi a situazioni relativamente nuove; per Woodrow, quella di
+interpellò diversi studiosi
+[@jep1921symposium; @woodrow1921symposium; @dearborn1921symposium].
+Per Pintner l'intelligenza era la capacità di adattarsi a situazioni relativamente nuove; per Woodrow, quella di
 acquisire abilità; per Dearborn, quella di trarre profitto dall'esperienza; per
 Terman, quella di condurre un ragionamento astratto. Settantasette anni dopo,
-un dibattito italiano fra studiosi di discipline diverse, dalla psicologia
+nel 1998, un dibattito italiano sulla rivista *Sistemi Intelligenti* fra
+studiosi di discipline diverse, dalla psicologia
 all'informatica, produsse una varietà simile, dal comportamento che massimizza il
 beneficio dell'organismo alla capacità di costruirsi rappresentazioni interne del
 mondo [@cornoldi2007intelligenza].
@@ -151,20 +153,21 @@ circonda, di dare senso alle cose e capire che cosa fare
 ```{r}
 #| label: fig-definizione
 #| fig-cap: "Una capacità mentale generale e alcune delle attività in cui interviene, «tra le altre cose». Elaborazione da Gottfredson (1997)."
-#| fig-alt: "In alto la scritta una capacità mentale generale, da cui partono a ventaglio frecce verso otto attività: ragionare, pianificare, risolvere problemi, pensare in termini astratti, comprendere idee complesse, apprendere rapidamente, apprendere dall'esperienza e puntini di sospensione, con la nota tra le altre cose."
+#| fig-alt: "In alto la scritta una capacità mentale generale, da cui partono a ventaglio frecce brevi verso otto attività, disposte su due file sfalsate: ragionare, pianificare, risolvere problemi, pensare in termini astratti, comprendere idee complesse, apprendere rapidamente, apprendere dall'esperienza e puntini di sospensione, con la nota tra le altre cose."
 #| fig-width: !expr 4.45 * scala
-#| fig-height: !expr 2.4 * scala
-tela(c(0, 12), c(1, 10))
-fila(2.2, 9.1, c("una ", "capacità mentale generale"), c(3, 2), cex = 1, col = c("grey30", rosso))
-att = c("ragionare", "pianificare", "risolvere\nproblemi", "pensare\nin termini\nastratti", "comprendere\nidee\ncomplesse",
+#| fig-height: !expr 1.95 * scala
+tela(c(0, 12), c(2, 10))
+fila(2.3, 9.2, c("una ", "capacità mentale generale"), c(3, 4), cex = 1.15, col = c("grey30", rosso))
+att = c("ragionare", "pianificare", "risolvere\nproblemi", "pensare in\ntermini astratti", "comprendere\nidee complesse",
         "apprendere\nrapidamente", "apprendere\ndall'esperienza", "...")
-xa = c(.75, 1.85, 3.2, 4.75, 6.4, 8.15, 10.0, 11.5); ya = c(6.3, 4.7, 3.2, 2.7, 2.7, 2.9, 2.6, 3.9)
-xp = seq(3.0, 9.6, length.out = 8)
+# Etichette su due file sfalsate, come una scala di parole sotto il titolo
+xa = c(1.0, 2.6, 4.1, 5.7, 7.3, 8.9, 10.15, 11.65); ya = rep(c(6.3, 4.0), 4)
+xp = c(seq(3.0, 9.6, length.out = 7), 11.65)
 for (i in 1:8) {
-  text(xa[i], ya[i], att[i], font = 3, cex = if (stampa) .58 else .64, adj = c(.5, 1))
-  freccia(xp[i], 8.2, xa[i] + c(.6, .35, .2, .1, 0, -.1, -.25, -.2)[i], ya[i] + .35, col = "grey35", lwd = .9)
+  text(xa[i], ya[i], att[i], font = 3, cex = .74, adj = c(.5, 1))
+  freccia(xp[i], 8.1, xa[i] + (xp[i] - xa[i]) * .12, ya[i] + .35, col = "grey35", lwd = 1.2)
 }
-text(11.1, 6.6, "«tra le\naltre cose»", font = 3, cex = .45, col = "grey40")
+text(11.2, 9.45, "«tra le\naltre cose»", font = 3, cex = .62, col = "grey30")
 ```
 
 «Generale» indica l'ampiezza del campo di applicazione, non l'uniformità dei
@@ -192,24 +195,13 @@ preferisce spesso parlare di **abilità mentale generale** (*GMA*, molto
 frequente), abilità cognitiva generale, abilità generale o semplicemente **_g_**.
 Quest'ultima sigla è classica nella letteratura psicometrica e ha un significato
 tecnico più ristretto: il fattore comune ricavato dalle correlazioni fra prove
-diverse. Per il resto del libro basta un glossario minimo (@fig-glossario).
+diverse. Per il resto del libro basta un glossario minimo:
 
-```{r}
-#| label: fig-glossario
-#| fig-cap: "Glossario minimo: la capacità che si vuole misurare e l'indicatore numerico con cui la si stima."
-#| fig-alt: "Dalla scritta glossario minimo partono due frecce. La prima porta ad abilità mentale o cognitiva generale, GMA o g: la cosa che si vuole misurare. La seconda porta a QI: l'indicatore numerico."
-#| fig-width: !expr 4.45 * scala
-#| fig-height: !expr 1.4 * scala
-tela(c(0, 12), c(0, 10))
-segments(0, c(9.6, .4), 12, c(9.6, .4), lwd = .8 * scala, col = "grey70")
-text(.2, 5, "glossario minimo", adj = c(0, .5), cex = .85, font = 2)
-freccia(3.5, 5.3, 5.0, 7.2, col = "grey35", lwd = .9); freccia(3.5, 4.7, 5.0, 2.4, col = "grey35", lwd = .9)
-text(5.15, 8.1, "«abilità mentale / cognitiva generale»", adj = c(0, .5), font = 3, cex = .68, col = rosso)
-fila(5.15, 6.5, c("«GMA» o «", "g", "»", "  →  la cosa che si vuole misurare"), c(3, 3, 3, 1), cex = .68, col = c(rosso, rosso, rosso, 1))
-fila(5.15, 2.4, c("«QI»", "  →  l'indicatore numerico"), c(2, 1), cex = .68)
-```
+- **abilità mentale (o cognitiva) generale**, *GMA* o *g*: la cosa che si vuole
+  misurare;
+- **QI**: l'indicatore numerico con cui la si stima.
 
-Operativamente, comunque, il termine resta quasi universale per l'indicatore: il
+Per l'indicatore, invece, la parola «intelligenza» resta quasi universale: il
 **quoziente di intelligenza**, o **QI**. È un indicatore di differenze
 individuali: esprime quanto bene una persona se la cava, rispetto ad altre della
 stessa età, su una scala standardizzata. Il QI non è *g*: *g* appartiene a un
@@ -246,15 +238,125 @@ lavoro, con i suoi limiti. Qui conta un punto solo: prevedere bene un esito è u
 prova importante a favore di una misura, ma non spiega perché la previsione
 funziona. Qualità della misura e spiegazione causale sono domande diverse.
 
+::: {.rimando-strumenti}
+**Strumenti →** Come si legge una correlazione di 0,50, quando è attendibile e perché
+non basta a stabilire una causa: [Correlazione e differenze individuali](../dati-misure-punteggi/correlazione.qmd).
+:::
+
 ## Come si arriva al QI
 
 Proprio perché la capacità da misurare è generale, nessun test particolare è
 ideale da solo. Si preferisce comporre prove di natura diversa: completare una
-figura scegliendo il pezzo mancante, rispondere a domande di cultura generale,
-riconoscere quali figure sono uguali a un modello dopo una rotazione, costruire
-un disegno con dei blocchi, associare simboli a cifre il più in fretta possibile.
-Ogni prova ha i suoi difetti particolari; mettendone insieme molte, i difetti
-pesano meno.
+tabella di figure scegliendo il pezzo mancante, rispondere a domande di cultura
+generale o spiegare il significato di una parola, ripetere una serie di cifre,
+ricordare una posizione, riconoscere quali figure sono uguali a un modello dopo
+una rotazione, costruire un disegno con dei cubi, associare simboli a cifre il
+più in fretta possibile (@fig-item). Ogni prova ha i suoi difetti particolari;
+mettendone insieme molte, i difetti pesano meno.
+
+```{r}
+#| label: fig-item
+#| fig-cap: "Esempi di item di prove cognitive diverse. Sono item costruiti per questo libro: riprendono la logica di prove molto diffuse (matrici, cultura generale, vocabolario, ripetizione di cifre, memoria visuo-spaziale, rotazione mentale, disegno con cubi, codifica di simboli), ma non riproducono item di test pubblicati. Soluzioni: matrice, figura 3; rotazione, A, C ed E (B e D sono immagini speculari)."
+#| fig-alt: "Sei riquadri di esempi. Primo: una tabella tre per tre di figure, cerchi, quadrati e triangoli, vuoti, attraversati da una linea o da una croce, con l'ultima casella vuota e sei alternative numerate. Secondo: due domande scritte, a quale evento storico è associato l'anno 1789 e che cosa significa ineffabile, con quattro alternative. Terzo: la serie di cifre 1, 7, 4, 3, 9, 2, 8 da ripetere e una griglia quattro per quattro con cinque caselle colorate, accanto a una griglia vuota in cui riprodurle. Quarto: una figura a forma di L con un punto e cinque figure ruotate, alcune delle quali sono la sua immagine speculare. Quinto: un modello di quattro quadrati divisi in diagonale fra rosso e bianco, da ricostruire con i cubi. Sesto: una chiave che associa le cifre da 1 a 6 a sei simboli e una fila di cifre sotto cui scrivere i simboli, con i primi due già completati."
+#| fig-width: !expr 4.45 * scala
+#| fig-height: !expr 5.5 * scala
+tela(c(0, 4.45), c(0, 5.5))
+riquadro = function(x0, y0, x1, y1, titolo) {
+  rect(x0, y0, x1, y1, border = "grey60", lwd = .8 * scala)
+  text(x0, y1 + .04, titolo, adj = c(0, 0), font = 3, cex = .66, col = "grey20")
+}
+# Figure per la matrice: forma (1 cerchio, 2 quadrato, 3 triangolo) e segno interno (0, linea, croce)
+figura = function(x, y, forma, segno, r = .12) {
+  t = seq(0, 2 * pi, length.out = 60)
+  if (forma == 1) polygon(x + r * cos(t), y + r * sin(t), lwd = 1.1 * scala)
+  if (forma == 2) rect(x - r * .9, y - r * .9, x + r * .9, y + r * .9, lwd = 1.1 * scala)
+  if (forma == 3) polygon(x + r * c(-1.05, 1.05, 0), y + r * c(-.8, -.8, 1.05), lwd = 1.1 * scala)
+  if (segno >= 1) segments(x - r * .55, y - .1 * r, x + r * .55, y - .1 * r, lwd = 1.1 * scala)
+  if (segno == 2) segments(x, y - r * .6, x, y + r * .45, lwd = 1.1 * scala)
+}
+# 1. Matrice
+riquadro(.02, 3.55, 2.12, 5.3, "Quale figura completa la tabella?")
+rect(.25, 4.18, 1.6, 5.22, border = "grey30", lwd = scala)
+for (i in 1:3) for (j in 1:3) {
+  x = .25 + (j - .5) * .45; y = 5.22 - (i - .5) * .347
+  if (i < 3 || j < 3) figura(x, y, i, j - 1) else rect(x - .17, y - .14, x + .17, y + .14, border = "grey50", lty = 2, lwd = scala)
+}
+alt = rbind(c(3, 1), c(2, 2), c(3, 2), c(1, 2), c(3, 0), c(2, 1))
+for (k in 1:6) {
+  x = .22 + (k - 1) * .33
+  rect(x - .14, 3.65, x + .14, 3.93, border = "grey60", lwd = .8 * scala)
+  figura(x, 3.79, alt[k, 1], alt[k, 2], r = .09)
+  text(x, 4.0, k, cex = .6)
+}
+# 2. Cultura generale e vocabolario
+riquadro(2.3, 3.55, 4.43, 5.3, "Rispondi alle domande")
+text(2.38, 5.03, "A quale evento storico è\nassociato l'anno 1789?", adj = c(0, .5), cex = .7)
+text(2.38, 4.55, "Che cosa significa «ineffabile»?", adj = c(0, .5), cex = .7)
+text(2.45, 4.08, "A) Che non può essere negato\nB) Che non può essere espresso\n     a parole\nC) Caratterizzato da lunghe pause\nD) Superfluo, inutile", adj = c(0, .5), cex = .62, col = "grey20")
+# 3. Memoria: cifre e griglia
+riquadro(.02, 1.75, 2.12, 3.25, "Ripeti la serie, poi ricorda la griglia")
+text(1.07, 2.98, "1 – 7 – 4 – 3 – 9 – 2 – 8", cex = .9, font = 2)
+piene = rbind(c(1, 3), c(2, 1), c(3, 2), c(4, 3), c(4, 4))
+for (g in 0:1) for (i in 1:4) for (j in 1:4) {
+  x0 = .3 + g * 1.0 + (j - 1) * .15; y0 = 2.55 - i * .15
+  pieno = g == 0 && any(piene[, 1] == i & piene[, 2] == j)
+  rect(x0, y0, x0 + .15, y0 + .15, col = if (pieno) rosso else "white", border = "grey40", lwd = .8 * scala)
+}
+freccia(.98, 2.25, 1.22, 2.25, col = "grey35", lwd = 1.2)
+# 4. Rotazione mentale
+riquadro(2.3, 1.75, 4.43, 3.25, "Quali sono uguali alla prima, se ruotate?")
+elle = function(x, y, angolo, specchio = FALSE, s = .075) {
+  px = c(0, 1, 1, 3, 3, 0) - 1.2; py = c(0, 0, 2, 2, 3, 3) - 1.5
+  if (specchio) px = -px
+  a = angolo * pi / 180
+  polygon(x + s * (px * cos(a) - py * sin(a)), y + s * (px * sin(a) + py * cos(a)), col = "grey80", border = "grey20", lwd = scala)
+  dx = (if (specchio) -1 else 1) * (2.6 - 1.2); dy = 2.6 - 1.5
+  points(x + s * (dx * cos(a) - dy * sin(a)), y + s * (dx * sin(a) + dy * cos(a)), pch = 16, cex = .45 * scala)
+}
+elle(2.6, 2.45, 0)
+segments(2.88, 1.95, 2.88, 2.95, col = "grey50", lwd = scala)
+rot = list(c(90, 0), c(0, 1), c(200, 0), c(270, 1), c(130, 0))
+for (k in 1:5) {
+  elle(2.93 + k * .26, 2.45, rot[[k]][1], rot[[k]][2] == 1, s = .062)
+  text(2.93 + k * .26, 2.1, LETTERS[k], cex = .62, col = "grey30")
+}
+# 5. Disegno con cubi
+riquadro(.02, .05, 1.45, 1.45, "Costruisci la figura")
+mezzo = function(x0, y0, l, verso) {
+  rect(x0, y0, x0 + l, y0 + l, col = "white", border = "grey20", lwd = scala)
+  v = switch(verso, list(c(0, 1, 0), c(0, 0, 1)), list(c(0, 1, 1), c(0, 0, 1)), list(c(0, 1, 1), c(0, 1, 0)), list(c(0, 0, 1), c(0, 1, 1)), list(c(0, 1, 1, 0), c(0, 0, 1, 1)))
+  polygon(x0 + l * v[[1]], y0 + l * v[[2]], col = rosso, border = "grey20", lwd = scala)
+}
+mezzo(.2, .7, .32, 2); mezzo(.52, .7, .32, 1); mezzo(.2, .38, .32, 3); mezzo(.52, .38, .32, 4)
+for (k in 1:2) mezzo(.98 + (k - 1) * .23, .95 - (k - 1) * .35, .18, c(5, 2)[k])
+text(1.07, .25, "cubi", cex = .66, col = "grey30")
+# 6. Codifica
+riquadro(1.6, .05, 4.43, 1.45, "Completa col simbolo (tempo limitato)")
+simbolo = function(x, y, k, s = .055) {
+  w = scala
+  switch(k,
+    segments(c(x - s, x), c(y, y - s), c(x + s, x), c(y, y + s), lwd = w),
+    segments(c(x - s, x), c(y - s, y + s), c(x, x + s), c(y + s, y - s), lwd = w),
+    segments(x - s, c(y - s * .4, y + s * .4), x + s, c(y - s * .4, y + s * .4), lwd = w),
+    segments(c(x - s, x), c(y - s, y - s), c(x + s, x), c(y - s, y + s), lwd = w),
+    symbols(x, y, circles = s * .8, inches = FALSE, add = TRUE, lwd = w),
+    segments(c(x - s, x - s), c(y - s, y + s), c(x + s, x + s), c(y + s, y - s), lwd = w))
+}
+for (k in 1:6) {
+  x = 1.85 + (k - 1) * .3
+  rect(x - .13, .93, x + .13, 1.33, border = "grey40", lwd = .8 * scala)
+  segments(x - .13, 1.13, x + .13, 1.13, col = "grey40", lwd = .8 * scala)
+  text(x, 1.23, k, cex = .62); simbolo(x, 1.03, k)
+}
+cifre = c(3, 1, 5, 2, 6, 4, 1, 3, 2, 5)
+for (k in seq_along(cifre)) {
+  x = 1.82 + (k - 1) * .26
+  rect(x - .11, .2, x + .11, .6, border = "grey40", lwd = .8 * scala)
+  segments(x - .11, .4, x + .11, .4, col = "grey40", lwd = .8 * scala)
+  text(x, .5, cifre[k], cex = .62)
+  if (k <= 2) simbolo(x, .3, cifre[k], s = .05)
+}
+```
 
 Il punteggio di ciascuna prova viene **standardizzato**, cioè confrontato con
 quello di un campione di riferimento della stessa età; i punteggi standardizzati
@@ -270,12 +372,12 @@ molto alti sono rari (@fig-gaussiana).
 #| fig-width: !expr if (stampa) 4.45 else 7
 #| fig-height: !expr if (stampa) 3 else 4.2
 d = data.frame(qi = 41:159); d$n = dnorm(d$qi, 100, 15)
-cx = if (stampa) 2.6 else 3.6
+cx = if (stampa) 2.8 else 3.6
 ggplot(d, aes(qi, n)) +
   geom_col(width = 1, fill = "grey78", colour = "white", linewidth = .1) +
   scale_x_continuous(breaks = seq(40, 160, 15), limits = c(38, 162), expand = c(0, 0)) +
   scale_y_continuous(breaks = NULL, expand = expansion(c(0, .06))) +
-  annotate("text", x = 100, y = max(d$n) * 1.03, label = "curva gaussiana", vjust = 0, size = cx * .8, fontface = "italic") +
+  annotate("text", x = 100, y = max(d$n) * 1.03, label = "curva gaussiana", vjust = 0, size = cx, fontface = "italic") +
   annotate("text", x = c(62, 138), y = .022, label = c("bassi livelli\nprestativi generali", "alti livelli\nprestativi generali"), size = cx, lineheight = .9) +
   annotate("segment", x = c(85, 115), xend = c(45, 155), y = .0175, yend = .0175, arrow = arrow(length = unit(.15, "cm")), linewidth = .5, colour = rosso) +
   annotate("text", x = c(52, 148), y = .007, label = "poche\npersone", size = cx, lineheight = .9) +
@@ -290,9 +392,13 @@ Ha senso solo nel confronto con le **norme**, cioè con il campione su cui il te
 pertinente alla persona valutata [@aera2014standards, standard 5.8]. La seconda:
 la scala non ha uno zero naturale né un'unità di intelligenza. Un QI di 120 non
 significa aver risolto il 120% dei problemi, né avere il 20% di intelligenza in
-più di chi ha 100. Il capitolo sulle
-[distribuzioni](../dati-misure-punteggi/distribuzioni-e-punteggi.qmd) spiega il
-meccanismo in dettaglio.
+più di chi ha 100.
+
+::: {.rimando-strumenti}
+**Strumenti →** Perché il QI si distribuisce a campana, come si passa da un punteggio
+grezzo al QI e che cosa sono punti *z*, punteggi ponderati e percentili:
+[Distribuzioni, punti z e punteggi standardizzati](../dati-misure-punteggi/distribuzioni-e-punteggi.qmd).
+:::
 
 ## Obiezioni ai test
 

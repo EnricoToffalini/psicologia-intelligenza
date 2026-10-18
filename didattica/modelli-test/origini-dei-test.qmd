@@ -32,28 +32,29 @@ riprende il filo dalle scale moderne.
 
 ```{r}
 #| label: fig-cronologia
-#| fig-cap: "Le tappe principali della storia dei test di intelligenza. Le date in nero sono discusse in questo capitolo, quelle in grigio nel successivo. Schema originale."
-#| fig-alt: "Linea del tempo verticale dal 1880 al 1940. Anni Ottanta dell'Ottocento: laboratorio antropometrico di Galton. 1901: i test mentali non predicono i voti. 1905: scala Binet-Simon. 1908: età mentale. 1912: quoziente intellettivo di Stern. 1916: Stanford-Binet di Terman. 1917: Army Alpha e Army Beta. 1926: SAT. 1938: matrici di Raven. 1939: Wechsler-Bellevue e QI di deviazione."
+#| fig-cap: "Le tappe principali della storia dei test di intelligenza, raggruppate in quattro fasi: primi tentativi, svolta clinico-educativa, test di massa, Wechsler e clinica moderna. Le date in nero sono discusse in questo capitolo, quelle in grigio nel successivo."
+#| fig-alt: "Linea del tempo verticale dal 1880 al 1940, divisa in quattro fasi: primi tentativi, svolta clinico-educativa, test di massa, Wechsler e clinica moderna. Anni Ottanta dell'Ottocento: laboratorio antropometrico di Galton. 1901: i test mentali non predicono i voti. 1905: scala Binet-Simon. 1908: età mentale. 1912: quoziente intellettivo di Stern. 1916: Stanford-Binet di Terman. 1917: Army Alpha e Army Beta. 1926: SAT. 1938: matrici di Raven. 1939: Wechsler-Bellevue e QI di deviazione."
 #| fig-width: !expr 4.45 * scala
 #| fig-height: !expr 3.4 * scala
 ev = data.frame(
   anno = c(1884, 1901, 1905, 1908, 1912, 1916, 1917, 1926, 1938, 1939),
   testo = c("Galton: laboratorio antropometrico", "Wissler: i test mentali non predicono i voti",
             "Binet e Simon: la prima scala", "Binet: l'età mentale", "Stern: il quoziente intellettivo",
-            "Terman: la Stanford-Binet", "Army Alpha e Army Beta: il testing di massa",
-            "Nasce il SAT", "Raven: le matrici progressive", "Wechsler: la Wechsler-Bellevue e il QI di deviazione"),
+            "Terman: la Stanford-Binet", "Army Alpha e Beta: il testing di massa",
+            "Nasce il SAT", "Raven: le matrici progressive", "Wechsler: Wechsler-Bellevue, QI di deviazione"),
   dopo = c(rep(FALSE, 8), TRUE, TRUE))
 ev$y = seq(9.5, .5, length.out = nrow(ev))
 tela(c(0, 12), c(0, 10))
-segments(2.2, 10, 2.2, 0, col = "grey60", lwd = 1.5 * scala)
+segments(2.45, 10, 2.45, 0, col = "grey60", lwd = 1.5 * scala)
 passo = ev$y[1] - ev$y[2]
-fasi = data.frame(da = c(1, 3, 7, 9), a = c(2, 6, 8, 10), col = c("grey90", "#F2DEDE", "grey90", "#F2DEDE"),
-                  nome = c("Misure\nsensoriali", "Scale per\nla scuola", "Test di\nmassa", "Batterie\nmoderne"))
-fasi$y0 = ev$y[fasi$da] + passo * .45; fasi$y1 = ev$y[fasi$a] - passo * .45
-for (i in 1:4) { rect(0, fasi$y1[i], 1.7, fasi$y0[i], col = fasi$col[i], border = NA); text(.85, (fasi$y0[i] + fasi$y1[i]) / 2, fasi$nome[i], cex = .56, font = 3) }
-points(rep(2.2, nrow(ev)), ev$y, pch = 21, bg = ifelse(ev$dopo, "grey70", rosso), col = "white", cex = 1.3)
-text(2.55, ev$y, ifelse(ev$anno == 1884, "anni '80", ev$anno), adj = 0, cex = .64, font = 2, col = ifelse(ev$dopo, "grey45", "black"))
-text(4.05, ev$y, ev$testo, adj = 0, cex = .64, col = ifelse(ev$dopo, "grey45", "black"))
+# fasi storiche: Galton, svolta clinico-educativa, testing di massa, Wechsler e clinica moderna
+fasi = data.frame(da = c(1, 3, 7, 9), a = c(2, 6, 8, 10), col = c("grey95", "grey88", "grey95", "grey88"),
+                  nome = c("Primi\ntentativi", "Svolta\nclinico-\neducativa", "Test di\nmassa", "Wechsler,\nclinica\nmoderna"))
+fasi$y0 = ev$y[fasi$da] + passo * .48; fasi$y1 = ev$y[fasi$a] - passo * .48
+for (i in 1:4) { rect(0, fasi$y1[i], 2.05, fasi$y0[i], col = fasi$col[i], border = NA); text(1.02, (fasi$y0[i] + fasi$y1[i]) / 2, fasi$nome[i], cex = .7, font = 3) }
+points(rep(2.45, nrow(ev)), ev$y, pch = 21, bg = ifelse(ev$dopo, "grey65", rosso), col = "white", cex = 1.4)
+text(2.8, ev$y, ifelse(ev$anno == 1884, "anni '80", ev$anno), adj = 0, cex = .75, font = 2, col = ifelse(ev$dopo, "grey45", "black"))
+text(4.5, ev$y, ev$testo, adj = 0, cex = .75, col = ifelse(ev$dopo, "grey45", "black"))
 ```
 
 ## Galton: un fallimento istruttivo
@@ -123,7 +124,27 @@ crescente e il bambino veniva classificato in categorie qualitative, con
 etichette mediche dell'epoca oggi giustamente abbandonate. Nella revisione del
 1908 Binet introdusse un'idea più elegante: l'**età mentale**. Se un bambino
 superava le prove che la maggior parte dei bambini di otto anni supera, la sua
-età mentale era otto anni, qualunque fosse la sua età anagrafica.
+età mentale era otto anni, qualunque fosse la sua età anagrafica. Le prove erano
+assegnate ai livelli di età, da 3 a 13 anni, in base alla quota di bambini che
+le superava (@tbl-binet1908).
+
+| Età | Alcune prove della scala del 1908 |
+|:-:|---|
+| 3 anni | indicare occhi, naso e bocca; nominare oggetti in una figura; ripetere 2 cifre; dire il proprio cognome |
+| 5 anni | dire quale di due scatole pesa di più; copiare un quadrato; contare 4 monete; ricomporre un rettangolo tagliato in due pezzi |
+| 7 anni | indicare che cosa manca in un disegno; copiare un triangolo e un rombo; ripetere 5 cifre; descrivere una figura |
+| 9 anni | dire la data completa; nominare i giorni della settimana; dare il resto di una piccola somma; ordinare 5 pesi |
+| 11 anni | trovare l'assurdità in una frase; usare 3 parole date in una sola frase; dire più di 60 parole in 3 minuti; definire termini astratti |
+| 13 anni | ritagliare un foglio piegato e prevederne la forma; distinguere il significato di parole astratte |
+
+: Esempi di prove della scala Binet-Simon del 1908, per livello di età. Elaborazione da @binet1916development [pp. 238--239]. {#tbl-binet1908}
+
+Le prove erano semplici da presentare e richiedevano comprensione e giudizio, non
+nozioni scolastiche. Nella prova delle assurdità, per esempio, l'esaminatore
+leggeva lentamente una frase come «Uno sfortunato ciclista si è rotto la testa
+ed è morto sul colpo; l'hanno portato all'ospedale e si teme molto che non
+possa guarire», e chiedeva che cosa ci fosse di sciocco [@binet1916development,
+p. 228; traduzione nostra].
 
 Nel 1912 William Stern propose di dividere l'età mentale per l'età cronologica
 [@stern1912psychologischen]. Lewis Terman moltiplicò il rapporto per cento e lo
@@ -217,6 +238,34 @@ carta e matita [@yerkes1921psychological]. Nacquero così due strumenti:
   e prove non verbali: labirinti, completamento di figure, cifrari, sequenze di
   simboli.
 
+Nel Beta l'esaminatore non spiegava a parole. Guardava un disegno alla lavagna,
+si mostrava perplesso, poi «capiva» e completava la parte mancante; le reclute
+dovevano fare lo stesso sul proprio foglio (@fig-beta).
+
+```{r}
+#| label: fig-beta
+#| fig-cap: "Tre item disegnati sul modello della prova «Cosa manca?» dell'Army Beta: a ogni figura manca un particolare da aggiungere. Disegni originali; il formato della prova è descritto da Yerkes (1921)."
+#| fig-alt: "Tre disegni semplici in riquadri numerati: un volto con occhi e naso ma senza bocca; una busta con l'indirizzo ma senza francobollo; un orologio con le tacche delle ore e i numeri 3, 6, 9 e 12, ma senza lancette."
+#| fig-width: !expr 4.45 * scala
+#| fig-height: !expr 1.6 * scala
+tela(c(0, 12), c(0, 4))
+for (k in 1:3) { rect(4 * k - 3.9, .05, 4 * k - .1, 3.95, border = "grey35", lwd = scala); text(4 * k - 3.7, 3.7, k, cex = .75, font = 2) }
+t = seq(0, 2 * pi, length.out = 100)
+# 1. volto senza bocca
+polygon(2 + .95 * cos(t), 2 + 1.35 * sin(t), border = "grey15", lwd = 1.3 * scala)
+points(c(1.6, 2.4), c(2.4, 2.4), pch = 19, cex = .8)
+lines(c(2, 1.85, 2.05), c(2.25, 1.75, 1.7), lwd = scala)
+# 2. busta con indirizzo, senza francobollo
+rect(4.5, .9, 7.5, 3.0, border = "grey15", lwd = 1.3 * scala)
+segments(5.4, c(1.9, 1.6, 1.3), c(7.0, 6.7, 6.9), c(1.9, 1.6, 1.3), col = "grey30", lwd = scala)
+# 3. orologio senza lancette
+symbols(10, 2, circles = 1.35, inches = FALSE, add = TRUE, fg = "grey15", lwd = 1.3 * scala)
+a = pi / 2 - (1:12) * pi / 6
+segments(10 + 1.2 * cos(a), 2 + 1.2 * sin(a), 10 + 1.35 * cos(a), 2 + 1.35 * sin(a), col = "grey15", lwd = scala)
+text(10 + .92 * cos(a[c(3, 6, 9, 12)]), 2 + .92 * sin(a[c(3, 6, 9, 12)]), c(3, 6, 9, 12), cex = .72)
+points(10, 2, pch = 19, cex = .5)
+```
+
 I punteggi grezzi, fino a 212 punti per l'Alpha e 118 per il Beta, venivano
 convertiti in fasce, dalla A, «molto superiore», alla E, corrispondenti grosso
 modo a percentuali fisse della distribuzione (@tbl-army). Le fasce orientavano
@@ -246,7 +295,13 @@ matita richiede familiarità con la scuola. Le condizioni di somministrazione
 erano spesso caotiche, e reclute che avrebbero dovuto svolgere il Beta finivano
 per svolgere l'Alpha. Alcune prove dell'Alpha erano domande di cultura generale
 statunitense, che misuravano soprattutto quanto a lungo si era vissuti nel
-paese.
+paese. Nella prova di informazione, per esempio, bisognava sottolineare la
+risposta giusta fra quattro: «Il Wyandotte è una razza di: cavalli, polli,
+bovini, granito»; «Crisco è: un medicinale, un disinfettante, un dentifricio, un
+prodotto alimentare»; «Velvet Joe compare nelle pubblicità di: dentifricio in
+polvere, tessuti, tabacco, sapone» [@yerkes1921psychological, p. 228;
+traduzione nostra]. Per un immigrato arrivato da poco, sapere che il Wyandotte è
+una razza di polli non aveva nulla a che fare con l'intelligenza.
 
 ## Dai test ai pregiudizi
 

@@ -51,15 +51,31 @@ collega = function(a, b, col = "grey25", lwd = 1.1, lty = 1, code = 2, gap = .06
   p0 = bordo(a, dx, dy); p1 = bordo(b, -dx, -dy)
   u = c(dx, dy) / sqrt(dx^2 + dy^2)
   p0 = p0 + gap * u; p1 = p1 - gap * u
-  if (code == 0) segments(p0[1], p0[2], p1[1], p1[2], col = col, lwd = lwd * scala, lty = lty)
-  else arrows(p0[1], p0[2], p1[1], p1[2], length = .06 * scala, angle = 22, code = code,
-              col = col, lwd = lwd * scala, lty = lty)
+  freccia(p0[1], p0[2], p1[1], p1[2], col = col, lwd = lwd, lty = lty, code = code)
   if (!is.null(etichetta)) {
     m = p0 + pos_et * (p1 - p0)
     text(m[1], m[2], etichetta, cex = cex_et, col = col_et, adj = adj_et)
   }
 }
 
-# Freccia libera fra due punti
-freccia = function(x0, y0, x1, y1, col = "grey25", lwd = 1.1, lty = 1, code = 2)
-  arrows(x0, y0, x1, y1, length = .06 * scala, angle = 22, code = code, col = col, lwd = lwd * scala, lty = lty)
+# Punta piena di freccia in (x1, y1), orientata da (x0, y0); lunghezza in pollici.
+# Le punte piene e larghe restano leggibili anche nella pagina A5.
+punta = function(x0, y0, x1, y1, col = "grey25", lunghezza = .1, larghezza = .075) {
+  ux = diff(par("usr")[1:2]) / par("pin")[1]; uy = diff(par("usr")[3:4]) / par("pin")[2]
+  dx = (x1 - x0) / ux; dy = (y1 - y0) / uy; d = sqrt(dx^2 + dy^2)
+  if (d == 0) return(invisible(c(x1, y1)))
+  dx = dx / d; dy = dy / d; L = lunghezza * scala; W = larghezza * scala / 2
+  bx = x1 - L * dx * ux; by = y1 - L * dy * uy
+  polygon(c(x1, bx - W * dy * ux, bx + W * dy * ux), c(y1, by + W * dx * uy, by - W * dx * uy),
+          col = col, border = col, lwd = .5)
+  invisible(c(bx, by))
+}
+
+# Freccia libera fra due punti, con punta piena.
+# code = 2: verso (x1, y1); code = 1: verso (x0, y0); code = 3: doppia; code = 0: linea.
+freccia = function(x0, y0, x1, y1, col = "grey25", lwd = 1.1, lty = 1, code = 2) {
+  a = c(x0, y0); b = c(x1, y1)
+  if (code %in% c(2, 3)) b = punta(x0, y0, x1, y1, col = col)
+  if (code %in% c(1, 3)) a = punta(x1, y1, x0, y0, col = col)
+  segments(a[1], a[2], b[1], b[2], col = col, lwd = lwd * scala, lty = lty, lend = 1)
+}

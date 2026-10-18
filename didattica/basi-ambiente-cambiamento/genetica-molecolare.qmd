@@ -105,15 +105,15 @@ mancante**, che riguarda quasi tutti i tratti complessi [@manolio2009finding].
 ```{r}
 #| label: fig-mancante
 #| fig-cap: "L'ereditabilità mancante. Quota di varianza del QI attribuita alle differenze genetiche dagli studi sui gemelli (adulti) e dall'analisi di tutti gli SNP comuni, e quota prevista oggi da un punteggio poligenico costruito sui GWAS degli anni di istruzione. Intervalli indicativi dalle fonti citate nel testo."
-#| fig-alt: "Tre barre orizzontali di varianza spiegata: studi sui gemelli negli adulti dal 60 all'80 per cento; ereditabilità SNP dal 20 al 30 per cento; punteggio poligenico dal 7 al 10 per cento."
+#| fig-alt: "Tre barre orizzontali su una scala da 0 a 100 per cento, con l'intervallo evidenziato in rosso: studi sui gemelli negli adulti dal 60 all'80 per cento; ereditabilità SNP dal 20 al 30 per cento; punteggio poligenico dal 7 al 10 per cento."
 #| fig-width: !expr if (stampa) 4.45 else 7
 #| fig-height: !expr if (stampa) 1.9 else 2.6
 d = data.frame(fonte = factor(1:3, labels = c("Studi sui gemelli\n(adulti)", "Ereditabilità SNP\n(GCTA)", "Punteggio\npoligenico")),
                lo = c(60, 20, 7), hi = c(80, 30, 10))
 ggplot(d, aes(y = fonte, yend = fonte)) +
-  geom_segment(aes(x = 0, xend = hi), colour = "grey88", linewidth = if (stampa) 7 else 10) +
+  geom_segment(aes(x = 0, xend = 100), colour = "grey93", linewidth = if (stampa) 7 else 10) +
   geom_segment(aes(x = lo, xend = hi), colour = rosso, linewidth = if (stampa) 7 else 10) +
-  geom_text(aes(x = hi, label = paste0(lo, "-", hi, "%")), hjust = -.15, size = if (stampa) 3 else 3.6) +
+  geom_text(aes(x = hi, label = paste0(lo, "–", hi, "%")), hjust = -.15, size = if (stampa) 3.2 else 4.3) +
   scale_y_discrete(limits = rev) +
   scale_x_continuous(limits = c(0, 100), breaks = seq(0, 100, 20), labels = function(x) paste0(x, "%")) +
   labs(x = "Varianza del QI attribuita ai geni o prevista", y = NULL) +
@@ -152,8 +152,8 @@ richiamo alla cautela, non una smentita del ruolo dei geni.
 
 ## Geni e ambiente insieme
 
-Noi semplifichiamo: geni più ambiente uguale tratto. La realtà è più intricata.
-Due esempi estremi, fuori dall'intelligenza in senso stretto, aiutano a capire.
+Geni e ambiente non agiscono come due addendi separati. Due esempi estremi,
+fuori dall'intelligenza in senso stretto, aiutano a capire.
 
 La **fenilchetonuria** è una condizione genetica recessiva. Chi eredita due copie
 alterate del gene che codifica un enzima non riesce a metabolizzare la
@@ -172,31 +172,67 @@ rischio, ma il rischio si esprime in misura diversa a seconda dello stile di
 vita.
 
 Per l'intelligenza, l'interazione con lo status socioeconomico vista nel
-capitolo precedente è un caso dello stesso tipo. Fra geni e punteggi ci sono lo
-sviluppo prenatale, la salute, il reddito familiare, lo stile educativo, i
-coetanei, la scuola, l'organizzazione progressiva del sistema nervoso.
-Ciascun passaggio può modulare gli effetti degli altri.
+capitolo precedente è un caso dello stesso tipo. Per semplicità si scrive
+«genetica + ambiente → tratto», ma la realtà è molto più intricata
+(@fig-sviluppo). Molti geni e molti fattori ambientali, dall'ordine di nascita
+all'ambiente prenatale, dalla salute allo status socioeconomico, dallo stile
+educativo dei genitori alla scuola, si intrecciano lungo lo sviluppo
+individuale. Ciascuno modula gli effetti degli altri, e tutti passano per
+l'organizzazione progressiva del sistema neurocognitivo. Il tratto che ne
+risulta, poi, non è un punto d'arrivo: un bambino più o meno capace suscita
+risposte diverse dai genitori, riceve rinforzi diversi, frequenta coetanei e
+percorsi scolastici diversi. È la correlazione gene-ambiente incontrata nel
+capitolo precedente, vista dall'interno.
 
 ```{r}
 #| label: fig-sviluppo
-#| fig-cap: "Geni e ambiente non si sommano semplicemente: agiscono insieme lungo lo sviluppo, attraverso l'organizzazione progressiva del sistema nervoso, e il tratto che ne risulta modifica a sua volta l'ambiente in cui la persona vive (frecce tratteggiate). Schema originale, ispirato a Turkheimer (2000)."
-#| fig-alt: "A sinistra in alto molti geni, in basso molti fattori ambientali: ambiente prenatale, salute, status socioeconomico, stile educativo, coetanei, scuola. Tutti puntano a un ovale centrale, sviluppo e organizzazione del sistema nervoso, che punta al tratto a destra, per esempio il QI. Dal tratto partono frecce tratteggiate che tornano verso coetanei e scuola."
+#| fig-cap: "Genetica e ambiente non si sommano: si intrecciano lungo lo sviluppo individuale, passando per l'organizzazione del sistema neurocognitivo, e il tratto che ne risulta torna a modificare l'ambiente (frecce in basso). Adattamento da uno schema di Turkheimer (2000)."
+#| fig-alt: "A sinistra in alto un elenco di geni (gene 1, gene 2, gene 3 e altri), sotto un elenco di fattori ambientali: ordine di nascita, ambiente prenatale, salute generale, stato socioeconomico, stile educativo, rinforzi, presenza dei coetanei, scolarizzazione. Da tutti partono linee curve che si intrecciano attorno alla scritta organizzazione del sistema neurocognitivo e terminano con frecce sul tratto fenotipico, per esempio il QI, a destra. In alto una grande freccia indica la direzione dello sviluppo individuale. Dal tratto partono quattro frecce curve che tornano in basso verso stile educativo, rinforzi, coetanei e scolarizzazione."
 #| fig-width: !expr 4.45 * scala
-#| fig-height: !expr 3.2 * scala
+#| fig-height: !expr 3.5 * scala
 tela(c(0, 12), c(0, 10))
-sv = nodo(6.6, 4.3, "sviluppo e\norganizzazione del\nsistema nervoso", w = 3.5, h = 2.6, forma = "ovale", bg = "grey93", cex = .64)
-tr = nodo(10.7, 4.3, "tratto\n(es. QI)", w = 2.2, h = 1.6, bg = "grey85", font = 2, cex = .7)
-collega(sv, tr, lwd = 1.6)
-for (i in 1:3) collega(nodo(c(3.7, 5.6, 7.5)[i], 9.3, paste("gene", i), w = 1.7, h = .7, bg = "white", cex = .58), sv, col = rosso, lwd = .8)
-text(9.1, 9.3, "...", cex = .8, col = rosso)
-amb = c("ambiente prenatale", "salute", "status socioeconomico", "stile educativo", "coetanei", "scuola")
-ya = seq(7.2, .6, length.out = 6)
-na = lapply(1:6, function(i) nodo(1.6, ya[i], amb[i], w = 3, h = .7, bg = "white", cex = .58))
-for (n in na) collega(n, sv, col = "grey35", lwd = .8)
-for (i in 5:6) {
-  xs = c(10.7, 10.7, 8); ys = c(3.45, ya[i] - .1, ya[i] - .1)
-  xspline(xs, ys, shape = c(0, 1, 0), border = "grey35", lty = 2, lwd = scala)
-  freccia(8, ya[i] - .1, 3.2, ya[i], col = "grey35", lty = 2)
+set.seed(33)
+cx = 6.3; cy = 5.6
+# linea curva da (x0, y0) al tratto, passando in modo irregolare per il centro
+filo = function(x0, y0, y1, col = "grey35") {
+  p = xspline(c(x0, x0 + (cx - x0) * .5, cx + runif(1, -.6, .6), 8.95),
+              c(y0, cy + runif(1, -1.4, 1.4), cy + runif(1, -1, 1), y1), shape = c(0, 1, 1, 0), draw = FALSE)
+  n = length(p$x)
+  lines(p$x[-n], p$y[-n], col = col, lwd = .9 * scala)
+  punta(p$x[n - 3], p$y[n - 3], p$x[n], p$y[n], col = col, lunghezza = .08, larghezza = .065)
+}
+# grande freccia dello sviluppo individuale
+polygon(c(4.6, 9.3, 9.3, 10.1, 9.3, 9.3, 4.6), c(8.7, 8.7, 8.45, 9.1, 9.75, 9.5, 9.5), col = "grey35", border = NA)
+text(6.95, 9.1, "sviluppo individuale", col = "white", font = 2, cex = .75)
+# geni
+geni = c("Gene 1", "Gene 2", "Gene 3", "…")
+yg = c(9.6, 9.05, 8.5, 7.95)
+text(.4, yg, geni, adj = 0, font = 2, cex = .75)
+for (i in 1:4) freccia(.55 + strwidth(geni[i], cex = .75, font = 2), yg[i], 2.6 + .55 * i, 7.0 - .1 * i, col = "grey35", lwd = .9)
+# fattori ambientali: i primi in colonna, gli altri a ventaglio in basso
+amb = c("Ordine di nascita", "Ambiente prenatale", "Salute generale", "Stato socioeconomico", "Stile educativo", "Rinforzi", "Presenza dei\ncoetanei", "Scolarizzazione")
+xa = c(.1, .1, .1, .1, .5, 2.6, 4.2, 6.1); ya = c(6.75, 6.0, 5.25, 4.5, 3.5, 2.75, 2.15, 1.6)
+text(xa, ya, amb, adj = 0, font = 2, cex = .72)
+# partenze dei fili: a destra delle etichette in colonna, sopra quelle a ventaglio
+x0 = c(xa[1:4] + strwidth(amb[1:4], cex = .72, font = 2) + .15, xa[5:8] + c(.9, .5, .6, .9))
+y0 = c(ya[1:4], ya[5:8] + c(.3, .3, .5, .3))
+yfine = seq(4.6, 6.6, length.out = 11)
+ordine = sample(11)
+for (i in 1:8) filo(x0[i], y0[i], yfine[ordine[i]])
+for (i in 1:3) filo(2.6 + .55 * i, 7.0 - .1 * i, yfine[ordine[8 + i]])
+# etichetta centrale su fondo bianco
+rect(cx - 1.55, cy - .55, cx + 1.55, cy + .55, col = "white", border = NA)
+text(cx, cy, "Organizzazione del\nsistema neurocognitivo", font = 2, cex = .72)
+text(10.4, cy, "Tratto\nfenotipico\n(es. QI)", font = 2, cex = .9, col = rosso)
+# il tratto torna sull'ambiente
+ritorno = list(c(10.9, 1.5, 3.15), c(10.55, 3.0, 2.35), c(10.2, 4.7, 1.6), c(9.85, 7.4, 1.25))
+prof = c(.2, .55, .85, 1.1)
+for (i in 1:4) {
+  r = ritorno[[i]]
+  p = xspline(c(r[1], r[1], r[2] + .3, r[2]), c(4.3, prof[i], prof[i], r[3] - .05), shape = c(0, 1, 1, 0), draw = FALSE)
+  n = length(p$x)
+  lines(p$x[-n], p$y[-n], col = "grey35", lwd = .9 * scala)
+  punta(p$x[n - 3], p$y[n - 3], p$x[n], p$y[n], col = "grey35", lunghezza = .08, larghezza = .065)
 }
 ```
 
@@ -210,9 +246,39 @@ Questo spiega in parte la positive manifold. Le basi genetiche di abilità
 cognitive diverse si sovrappongono in larga misura: le stesse varianti
 contribuiscono alla memoria, al linguaggio, al ragionamento. Si parla per questo
 di **geni generalisti** [@kovas2006generalist]. Gli stessi geni influenzano lo
-sviluppo di molte aree cerebrali, e ogni area partecipa a molti processi
-cognitivi. Le cause comuni ipotizzate da Spearman hanno, almeno in parte, una
-base genetica.
+sviluppo di diverse aree del cervello o caratteristiche neurobiologiche, e
+ciascuna di queste influenza numerosi processi cognitivi (@fig-pleiotropia). I
+processi finiscono così per correlare fra loro perché hanno cause comuni. Le
+cause comuni ipotizzate da Spearman hanno, almeno in parte, una base genetica.
+
+```{r}
+#| label: fig-pleiotropia
+#| fig-cap: "Geni generalisti e pleiotropia. Uno stesso gene influenza più aree o caratteristiche del cervello, e ciascuna di queste partecipa a più processi cognitivi: i processi risultano correlati (r) perché hanno cause comuni. Elaborazione da Kovas e Plomin (2006)."
+#| fig-alt: "Da sinistra a destra: un ovale gene 1, da cui partono tre frecce rosse verso tre piccoli riquadri numerati 1, 2 e 3 dentro un grande ovale, il cervello. Da ciascun riquadro partono due o tre frecce verso tre riquadri a destra, processo cognitivo 1, 2 e 3. Archi con doppia punta, etichettati r, collegano fra loro i tre processi."
+#| fig-width: !expr 4.45 * scala
+#| fig-height: !expr 2.7 * scala
+tela(c(0, 12), c(0, 8))
+cerv = nodo(4.7, 3.9, "", w = 3.8, h = 6.2, forma = "ovale", bg = "grey95", border = "grey60")
+text(4.7, 7.45, "cervello: aree o caratteristiche\nneurobiologiche", cex = .68, col = "grey30")
+gene = nodo(1, 3.9, "Gene 1", w = 1.9, h = 1.2, forma = "ovale", bg = "white", border = rosso, col = rosso, font = 2, cex = .78, lwd = 1.4)
+aree = list(nodo(4.9, 5.6, "1", w = .8, h = .75, bg = "white", font = 2, cex = .78),
+            nodo(4.1, 3.9, "2", w = .8, h = .75, bg = "white", font = 2, cex = .78),
+            nodo(5.2, 2.2, "3", w = .8, h = .75, bg = "white", font = 2, cex = .78))
+proc = lapply(1:3, function(i) nodo(9.1, c(6.5, 3.9, 1.3)[i], paste0("processo\ncognitivo ", i), w = 2.3, h = 1.35, bg = "grey95", cex = .74))
+for (a in aree) collega(gene, a, col = rosso, lwd = 1.2)
+legami = list(c(1, 1), c(1, 2), c(2, 1), c(2, 2), c(2, 3), c(3, 2), c(3, 3))
+for (l in legami) collega(aree[[l[1]]], proc[[l[2]]], col = "grey35", lwd = 1)
+# correlazioni fra i processi: archi con doppia punta a destra dei riquadri
+arco = function(y0, y1, sporgenza) {
+  p = xspline(c(10.3, 10.3 + sporgenza, 10.3), c(y0, (y0 + y1) / 2, y1), shape = c(0, 1, 0), draw = FALSE)
+  n = length(p$x)
+  lines(p$x[3:(n - 2)], p$y[3:(n - 2)], col = "grey35", lwd = scala)
+  punta(p$x[4], p$y[4], p$x[1], p$y[1], col = "grey35", lunghezza = .08, larghezza = .065)
+  punta(p$x[n - 3], p$y[n - 3], p$x[n], p$y[n], col = "grey35", lunghezza = .08, larghezza = .065)
+  text(10.3 + sporgenza * .6 + .2, (y0 + y1) / 2, "r", font = 3, cex = .8)
+}
+arco(6.15, 4.25, .55); arco(3.55, 1.65, .55); arco(6.95, .85, 1.5)
+```
 
 La sovrapposizione si estende oltre la cognizione. Le varianti associate
 all'intelligenza sono fortemente associate anche agli anni di istruzione e, in
@@ -229,10 +295,24 @@ Anche gli studi sui gemelli permettono di stimare quanto due tratti abbiano basi
 genetiche comuni. Si usano le **correlazioni incrociate**: il punteggio di un
 gemello in lettura con il punteggio dell'altro gemello in matematica. Se questa
 correlazione è più alta nei monozigoti che nei dizigoti, una parte di ciò che
-lega lettura e matematica è genetica. La correlazione genetica *r*~G~ si ottiene
-rapportando la covarianza genetica fra i due tratti, stimata come
-2 × (*r*~MZ,incrociata~ − *r*~DZ,incrociata~), alla radice del prodotto delle due
-ereditabilità.
+lega lettura e matematica è genetica. La **correlazione genetica** *r*~G~ dice
+quanto sono sovrapposte le basi genetiche dei due tratti, *x* e *y*. Si ottiene
+rapportando la covarianza genetica fra i tratti alla radice del prodotto delle
+due ereditabilità:
+
+$$
+r_G = \frac{A_{12}}{\sqrt{A_{11}\,A_{22}}}
+    = \frac{2\,(\overbrace{r^{xy}_{MZ}}^{\text{incrociata, MZ}} - \overbrace{r^{xy}_{DZ}}^{\text{incrociata, DZ}})}{\sqrt{\underbrace{h^2_x}_{\text{tratto }x}\;\underbrace{h^2_y}_{\text{tratto }y}}}
+$$
+
+Un esempio con numeri plausibili. In lettura *r*~MZ~ = 0,80 e *r*~DZ~ = 0,47,
+quindi *h*²~*x*~ = 2 × (0,80 − 0,47) = 0,66. In matematica *r*~MZ~ = 0,72 e
+*r*~DZ~ = 0,48, quindi *h*²~*y*~ = 0,48. Le correlazioni incrociate valgono in
+media 0,51 nei monozigoti (0,53 e 0,49, a seconda di quale gemello si prende per
+la lettura) e 0,305 nei dizigoti (0,32 e 0,29). La covarianza genetica è
+2 × (0,51 − 0,305) = 0,41, e *r*~G~ = 0,41 / √(0,66 × 0,48) ≈ 0,73. Se la
+correlazione fra lettura e matematica nella popolazione è 0,60, circa due terzi
+di essa (0,41 su 0,60) hanno origine genetica.
 :::
 
 ## Le leggi della genetica del comportamento
@@ -256,8 +336,10 @@ contino non è più in discussione. In discussione sono i meccanismi: come migli
 di varianti producano differenze nel cervello, come queste si traducano in
 differenze nelle prestazioni, e come l'ambiente amplifichi, attenui o
 indirizzi il processo. Le risposte richiedono di unire genetica, neuroscienze e
-psicologia dello sviluppo. Il prossimo capitolo affronta il secondo anello della
-catena: il cervello.
+psicologia dello sviluppo. Prima di arrivare al cervello, però, conviene
+fermarsi su un fatto che sembra contraddire tutto questo: in poche generazioni i
+punteggi di intere popolazioni sono saliti di decine di punti. È il tema del
+prossimo capitolo.
 
 ::: {.callout-note icon=false}
 ## In breve

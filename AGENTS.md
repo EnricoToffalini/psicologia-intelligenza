@@ -67,10 +67,44 @@ L'utente ha autorizzato la stesura completa della sezione didattica secondo la
 struttura di `progetto/PIANO-DIDATTICA.md` («facciamo tutto e poi aggiustiamo»). È
 presente una **prima stesura di tutti i 21 capitoli** (19 del nucleo più i due
 approfondimenti), integrata in `_quarto.yml` e `references.bib`. La fase
-attuale è la **revisione**: correzioni di contenuto, voce, lunghezza e figure
+attuale è la **revisione**: correzioni di contenuto, voce e figure
 vanno fatte sui capitoli esistenti, senza riscriverli da zero e senza cambiare
 slug o struttura delle parti salvo richiesta dell'utente. Stato dettagliato e
 punti aperti in `progetto/stato-lavori.md`.
+
+## Architettura: capitoli concettuali e parti «Strumenti»
+
+Ordine deciso dall'autore (ottobre 2026), vicino alla sequenza del corso
+(cartella Drive delle slide, mazzi 0-13): si parte dai capitoli concettuali, e i
+capitoli tecnici stanno al centro, in due parti verdi chiamate «Strumenti», nel
+punto in cui il corso li introduce.
+
+1. Capire l'intelligenza: `perche-studiarla`, `che-cosa-e`
+2. Modelli e test: `fattore-g`, `modelli-gerarchici`, `origini-dei-test`,
+   `batterie-moderne`
+3. **Strumenti I** · Punteggi e distribuzioni: `distribuzioni-e-punteggi`
+4. Basi biologiche, ambiente e cambiamento: `geni-ambiente-ereditabilita`,
+   `genetica-molecolare`, `effetto-flynn`, `cervello-e-intelligenza`,
+   `potenziamento-cognitivo`
+5. **Strumenti II** · Correlazione e qualità della misura: `correlazione`,
+   `qualita-della-misura`
+6. Scuola, salute e lavoro; 7. Neurosviluppo; 8. Approfondimenti: oltre *g*
+
+Regole:
+
+- I capitoli «Strumenti» (cartella `didattica/dati-misure-punteggi/`) si
+  leggono da soli o si saltano. Hanno `body-classes: capitolo-strumenti` nel
+  front matter (verde nel sito) e un riquadro iniziale `::: {.inserto-strumenti}`
+  che dice che cosa trattano, che cosa presuppongono e dove servono. Nel PDF le
+  loro parti hanno titoli, testatine e un'unghiatura verdi: il filtro
+  `assets/pdf-layout.lua` riconosce le parti il cui nome comincia con
+  «Strumenti»; non cambiare quel prefisso.
+- I capitoli concettuali non devono dipendere dai tecnici: spiegano in modo
+  intuitivo ciò che serve e rimandano con un riquadro
+  `::: {.rimando-strumenti}` che comincia con «**Strumenti →**», pochi e solo
+  dove un lettore vorrebbe davvero approfondire.
+- Nei rimandi testuali fra capitoli rispettare l'ordine: «si vedrà» per i
+  capitoli successivi, «visto» per i precedenti.
 
 ## Revisione in corso: allineamento alle slide
 
@@ -114,34 +148,30 @@ completo. Attenzione: nei comandi shell le sequenze `\\n` dentro heredoc
 possono diventare a capo reali nelle stringhe R; modificare il codice R con
 l'editor, non con script incollati nella shell.
 
-Avanzamento (ottobre 2026). «Fatto» = sequenza del testo riallineata alle slide
-e diagrammi dell'autore riprodotti; «parziale» = solo alcune figure o tabelle.
+Avanzamento (ottobre 2026). Dopo una seconda revisione di tutte le figure
+(richiesta dell'autore: rispettare la **logica** delle slide, non solo lo stile)
+tutti i capitoli hanno le figure riallineate; restano fuori soprattutto grafici
+raster di articoli. Punti aperti per capitolo in `progetto/stato-lavori.md`.
 
-| Capitolo | Mazzo | Stato e cose rimaste |
-|---|---|---|
-| `che-cosa-e` | 1. Cosa è intelligenza | **fatto** (pp. 7, 14, 17, 21) |
-| `perche-studiarla` | 0. Perché studiare | **fatto** (pp. 7, 10, 11) |
-| `correlazione` | La Correlazione spiegata facile | **fatto** (pp. 5-19; grafici simulati al posto di quelli con emoji) |
-| `distribuzioni-e-punteggi` | La Gaussiana e i punti z | **fatto** (pp. 3-25); restano fuori la tabella grezzo-ponderato (p. 26) e le foto della tavola di Galton |
-| `qualita-della-misura` | I Criteri psicometrici | **fatto** (pp. 8-17); da fare l'esempio IDS-2 (p. 18), saturazioni non nelle slide |
-| `fattore-g` | 2. Unitaria, multipla, gerarchica | **fatto** (pp. 6, 7, 8); la vecchia `fig-manifold` è rimasta |
-| `modelli-gerarchici` | 2. Unitaria, multipla, gerarchica | **fatto** (pp. 33, 39, 40, 42, 47, 48, 50-51, 54); manca il problema X+Y (p. 34) come figura |
-| `origini-dei-test` | 3. Storia dei Test | **parziale**: tabella delle fasce Army (p. 24); linea del tempo già presente |
-| `batterie-moderne` | 3. Storia dei Test | **fatto** (pp. 2, 31, 32 come tabella) |
-| `geni-ambiente-ereditabilita` | 4. Basi genetiche | **parziale**: tabelle di p. 10 e p. 15; da fare formula h² (p. 6) e Falconer (p. 12) come schema |
-| `genetica-molecolare` | 4. Basi genetiche | da fare: schema Turkheimer (p. 33) da avvicinare alla slide; correlazione genetica (p. 39) |
-| `effetto-flynn` | 5. Effetto Flynn | **parziale**: g contro s (p. 17), tabella delle ipotesi (p. 11); cause (p. 19) già fedele |
-| `cervello-e-intelligenza` | 6. Basi neurobiologiche | da fare (quasi solo raster di articoli: valutare) |
-| `potenziamento-cognitivo` | 7. Potenziamento | da fare: fadeout (p. 8), controllo attivo (p. 23), schema di Warne su g (p. 30) |
-| `scuola-e-condizioni-sociali` | 8. Scuola, salute, lavoro | da fare: QI↔scolarità (p. 8), mediazione SES (p. 10), Davies (p. 11) |
-| `salute-e-longevita` | 8. Scuola, salute, lavoro | da fare: tre percorsi a frecce (p. 19) |
-| `intelligenza-e-lavoro` | 8. Scuola, salute, lavoro | da fare: ASVAB/AFQT (p. 23), attendibilità (p. 27), tabella Cucina/Nye/Sackett (p. 32), «oltre g» (p. 34) |
-| `neurosviluppo-dimensionale` | Neurosviluppo: cosa sono | da fare: comorbilità con frecce e percentuali (p. 35) solo dopo aver aggiunto le fonti (Mutluer 2022, Rong 2021, Snowling 2019, Turk 2009, van Bergen 2025) |
-| `valutazione-nel-neurosviluppo` | Neurosviluppo: valutazione | da fare: neurodivergenza/disturbo (p. 2), profili sindromici (p. 8); cono e specificità già vicini |
-| `alternative-a-g`, `intelligenza-emotiva-e-costrutti` | Oltre g | da fare (pp. 3, 8, 10, 12, 13, 14) |
+Regole emerse dalla revisione:
 
-Molte figure già presenti nei capitoli «da fare» sono ridisegni liberi: vanno
-riportate all'architettura della slide corrispondente.
+- **Leggibilità prima di tutto.** Nel PDF il testo delle figure non scende sotto
+  circa 8 pt (`cex` ≥ 0,68 nei diagrammi, `size` ≥ 2,8 in ggplot); frecce corte,
+  spazio alle parole. `freccia()` e `collega()` disegnano punte piene e larghe:
+  non usare `arrows()` direttamente.
+- **Niente figure banali.** Glossari e schemi minimi diventano prosa, elenco o
+  tabella, non figure numerate.
+- **Il messaggio della figura è quello della slide**, senza implicazioni spurie
+  (esempio: nel confronto fra campioni il campione piccolo ha un effetto *più
+  grande* ma non significativo).
+- **Illustrazioni dell'autore.** Le immagini raster create dall'autore (per ora
+  gli alberi della «foresta», in `didattica/capire-intelligenza/immagini/`) si
+  possono usare direttamente, con etichette sovrapposte in R.
+- **Esempi di item.** Il libro deve mostrare che aspetto hanno le prove: item
+  costruiti ad hoc che ne imitano la logica (`fig-item` in `che-cosa-e`,
+  `tbl-item` in `batterie-moderne`), item storici di pubblico dominio citati
+  dalla fonte (`origini-dei-test`). Mai item di test in commercio.
+
 
 ## Codifiche e caratteri speciali
 
@@ -243,9 +273,9 @@ ha rovinato tutte le figure del libro e del sito. Regole:
 - Ogni pagina deve avere una domanda o tesi riconoscibile, un percorso logico e
   una breve chiusura. Evitare sia pagine enciclopediche sia frammenti troppo
   brevi.
-- Obiettivo ordinario: 1.400–2.200 parole per pagina, escluse bibliografia,
-  didascalie e materiali opzionali. Superare 2.500 parole solo con una ragione
-  editoriale esplicita; sotto 1.100 parole valutare l'accorpamento.
+- Nessun vincolo di lunghezza (decisione dell'autore, ottobre 2026): è un libro,
+  e un capitolo è lungo quanto serve al suo contenuto. Si taglia ciò che è
+  ripetitivo o inventato, non ciò che è lungo.
 - Usare le parti di Quarto per raggruppare pagine affini. Nel sito, una pagina
   Quarto corrisponde normalmente a un capitolo leggibile per intero.
 - Distinguere sempre descrizione dell'evidenza, interpretazione e limiti. Non
@@ -384,7 +414,7 @@ Un capitolo è pronto per l'integrazione quando:
 
 - rispetta obiettivo e confini descritti nel piano;
 - non duplica in modo sostanziale altri capitoli;
-- ha lunghezza motivata e leggibile;
+- ha la lunghezza che il contenuto richiede, senza ripetizioni;
 - ogni affermazione quantitativa o controversa ha una fonte adeguata;
 - ogni figura ha didascalia, testo alternativo, provenienza e decisione di
   copyright documentata;

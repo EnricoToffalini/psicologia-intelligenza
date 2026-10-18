@@ -49,8 +49,10 @@ illustrativo, ma è molto tipico.
 La valutazione cognitiva restituisce un QI totale di 84. Il dato, letto da solo,
 indicherebbe un funzionamento generale sotto la media. Ma gli indici raccontano
 altro: comprensione verbale e ragionamento sono nella media, memoria di lavoro e
-velocità di elaborazione molto sotto. L'indice di abilità generale, che esclude
-memoria di lavoro e velocità, è 100. Le prove di lettura e scrittura sono molto
+velocità di elaborazione molto sotto (@fig-caso). Nei subtest la caduta è ancora
+più netta: la memoria di cifre è quasi al minimo della scala, mentre il
+ragionamento con matrici è sopra la media. L'indice di abilità generale, che
+esclude memoria di lavoro e velocità, è 100. Le prove di lettura e scrittura sono molto
 deboli, quelle di matematica deboli soprattutto nel calcolo scritto. Il
 questionario sull'ansia per la matematica dà valori elevati. I questionari
 sull'attenzione compilati da genitori e insegnanti indicano difficoltà rilevanti,
@@ -58,25 +60,29 @@ non confermate in modo netto dalle prove attentive.
 
 ```{r}
 #| label: fig-caso
-#| fig-cap: "Il profilo del caso illustrativo. Il QI totale (84) risente delle cadute in memoria di lavoro e velocità di elaborazione; l'indice di abilità generale (100), che le esclude, è nella media come comprensione verbale e ragionamento percettivo. La fascia grigia indica l'intervallo fra 85 e 115. Dati costruiti a scopo illustrativo."
-#| fig-alt: "Grafico a punti di sei punteggi su scala QI. Comprensione verbale 96 e ragionamento percettivo 104, nella media; memoria di lavoro 64 e velocità di elaborazione 79, sotto la media; QI totale 84 e indice di abilità generale 100."
+#| fig-cap: "Il profilo del caso illustrativo: punteggi ponderati nei dieci subtest principali di una scala Wechsler (media 10, deviazione standard 3), raggruppati nei quattro indici, con il punteggio di ciascun indice in scala QI. In rosso i subtest più di una deviazione standard sotto la media: tutti in memoria di lavoro e velocità di elaborazione. Il QI totale (84) risente di queste cadute; l'indice di abilità generale (100), che le esclude, no. Dati costruiti a scopo illustrativo."
+#| fig-alt: "Profilo a punti e linee di dieci subtest, divisi in quattro gruppi. Comprensione verbale, indice 96: somiglianze 10, vocabolario 8, comprensione 10. Ragionamento percettivo, indice 104: disegno con cubi 9, concetti illustrati 11, ragionamento con matrici 12. Memoria di lavoro, indice 64: memoria di cifre 2, riordinamento di lettere e numeri 6, entrambi in rosso. Velocità di elaborazione, indice 79: cifrario 5, in rosso, e ricerca di simboli 8. Una linea tratteggiata segna la media, 10. In alto: QI totale 84, indice di abilità generale 100."
 #| fig-width: !expr if (stampa) 4.45 else 7
-#| fig-height: !expr if (stampa) 2.6 else 3.4
-d = data.frame(ind = c("Compren-\nsione\nverbale", "Ragiona-\nmento\npercettivo", "Memoria\ndi lavoro", "Velocità\ndi elabo-\nrazione", "QI\ntotale", "Abilità\ngenerale"),
-               v = c(96, 104, 64, 79, 84, 100), tipo = rep(c("Indici", "Punteggi globali"), c(4, 2)))
-d$ind = factor(d$ind, levels = d$ind)
-ggplot(d, aes(ind, v)) +
-  geom_blank() +
-  annotate("rect", xmin = -Inf, xmax = Inf, ymin = 85, ymax = 115, fill = "grey92") +
-  geom_hline(yintercept = 100, colour = "grey60", linetype = 2) +
-  geom_vline(xintercept = 4.5, colour = "grey70") +
-  geom_line(data = subset(d, tipo == "Indici"), aes(group = 1), colour = "grey40") +
-  geom_point(aes(colour = tipo), size = 3) +
-  geom_text(aes(label = v), vjust = -1, size = if (stampa) 3 else 3.6) +
+#| fig-height: !expr if (stampa) 3.3 else 4.2
+d = data.frame(sub = c("Somiglianze", "Vocabolario", "Comprensione", "Disegno con cubi", "Concetti illustrati", "Ragion. con matrici",
+                       "Memoria di cifre", "Lettere e numeri", "Cifrario", "Ricerca di simboli"),
+               pp = c(10, 8, 10, 9, 11, 12, 2, 6, 5, 8),
+               ind = rep(c("Comprensione\nverbale\n96", "Ragionamento\npercettivo\n104", "Memoria\ndi lavoro\n64", "Velocità di\nelaborazione\n79"), c(3, 3, 2, 2)))
+d$sub = factor(d$sub, levels = d$sub); d$ind = factor(d$ind, levels = unique(d$ind))
+d$basso = d$pp < 7
+ggplot(d, aes(sub, pp)) +
+  geom_hline(yintercept = 10, colour = "grey50", linetype = 2) +
+  geom_line(aes(group = ind), colour = "grey40") +
+  geom_point(aes(colour = basso), size = if (stampa) 2.4 else 3) +
+  geom_text(aes(label = pp, colour = basso), vjust = -1, size = if (stampa) 3 else 3.8) +
+  facet_grid(~ ind, scales = "free_x", space = "free_x") +
   scale_colour_manual(values = c("grey20", rosso), guide = "none") +
-  scale_y_continuous(limits = c(55, 125), breaks = seq(55, 115, 15)) +
-  labs(x = NULL, y = "Punteggio (scala QI)") +
-  tema + theme(panel.grid.major.x = element_blank(), axis.text.x = element_text(size = if (stampa) 7 else 10))
+  scale_y_continuous(limits = c(1, 14), breaks = c(1, 4, 7, 10, 13)) +
+  labs(x = NULL, y = "Punteggio ponderato", title = "QI totale = 84, ma indice di abilità generale = 100") +
+  tema + theme(panel.grid.major.x = element_blank(), axis.text.x = element_text(angle = 50, hjust = 1),
+               strip.text = element_text(size = if (stampa) 8 else 11, lineheight = .9),
+               plot.title = element_text(size = if (stampa) 10 else 13, face = "bold", hjust = .5),
+               panel.spacing.x = unit(if (stampa) .25 else .5, "lines"))
 ```
 
 La conclusione sarà probabilmente una diagnosi di disturbo misto delle abilità
@@ -188,26 +194,41 @@ normalità: non esiste un nucleo genetico distinto del disturbo
 Ne segue che la prevalenza di questi disturbi dipende dalla soglia scelta
 (@fig-soglie). Le soglie riflettono convenzioni di rarità, come il 5° percentile o
 due deviazioni standard sotto la media, e considerazioni pragmatiche sul bisogno
-di supporto. Sono decisioni ragionevoli, non scoperte.
+di supporto. Con la prima convenzione la «prevalenza» è il 5%, con la seconda
+circa il 2%. Sono decisioni ragionevoli, non scoperte. E quando le difficoltà
+sono molte, ciascuna appena sotto soglia, nessuna convenzione aiuta: la
+decisione resta difficile.
+
+::: {.rimando-strumenti}
+**Strumenti →** Percentili, deviazioni standard e rarità statistica, e perché un
+punteggio vicino al tetto o al pavimento di un test è poco informativo: [Distribuzioni, punti z e punteggi standardizzati](../dati-misure-punteggi/distribuzioni-e-punteggi.qmd).
+:::
 
 ```{r}
 #| label: fig-soglie
-#| fig-cap: "Distribuzione continua di un'abilità e due possibili soglie diagnostiche. Una soglia a −1,5 deviazioni standard identifica circa il 7% della popolazione; una a −2 circa il 2%. La distribuzione non contiene alcun punto di discontinuità."
-#| fig-alt: "Curva a campana con due linee verticali tratteggiate a meno 2 e meno 1,5 deviazioni standard. Le aree a sinistra delle soglie sono colorate con intensità diversa."
+#| fig-cap: "Non esiste una soglia naturale. L'abilità o il tratto, misurati con strumenti standardizzati, hanno una distribuzione continua: verso sinistra il livello diventa via via più problematico (sfumatura), senza alcun punto di discontinuità. Le linee tratteggiate indicano due soglie convenzionali di rarità: −2 deviazioni standard (circa il 2% della popolazione) e il 5° percentile (z ≈ −1,64)."
+#| fig-alt: "Curva a campana su un asse in punti z da meno 4 a 4. L'area sotto la coda sinistra è colorata di rosso con una sfumatura che parte trasparente attorno a meno 1 e diventa più intensa verso meno 3; una freccia verso sinistra è etichettata livello problematico. Due linee verticali tratteggiate, a meno 2 e a meno 1,64, sono etichettate meno 2 DS e 5° percentile."
 #| fig-width: !expr if (stampa) 4.45 else 7
-#| fig-height: !expr if (stampa) 2.6 else 3.4
-x = seq(-4, 4, .01)
+#| fig-height: !expr if (stampa) 2.8 else 3.6
+x = seq(-4, 4, .005)
 d = data.frame(x, y = dnorm(x))
+# sfumatura: trasparente a z = -0,9, più intensa verso sinistra
+s = subset(d, x < -.9)
+s$a = pmin(1, (-.9 - s$x) / 1.8) * .7
+dimensione = if (stampa) 3 else 3.8
 ggplot(d, aes(x, y)) +
-  geom_area(data = subset(d, x <= -1.5), fill = rosso, alpha = .35) +
-  geom_area(data = subset(d, x <= -2), fill = rosso, alpha = .6) +
+  geom_segment(data = s, aes(xend = x, yend = 0, alpha = a), colour = rosso, linewidth = .6) +
+  scale_alpha_identity() +
   geom_line(linewidth = .9) +
-  geom_vline(xintercept = c(-2, -1.5), linetype = 2) +
-  annotate("text", x = -2.05, y = .25, label = "soglia a -2 DS\n(circa 2%)", hjust = 1, size = if (stampa) 3 else 3.6) +
-  # Nel PDF l'etichetta della seconda soglia sta sopra la curva, per non sovrapporsi.
-  annotate("text", x = -1.45, y = if (stampa) .45 else .32, hjust = 0, size = if (stampa) 3 else 3.6,
-           label = if (stampa) "soglia a -1,5 DS (circa 7%)" else "soglia a -1,5 DS\n(circa 7%)") +
-  labs(x = "Abilità (punti z)", y = NULL) +
+  annotate("segment", x = c(-2, qnorm(.05)), xend = c(-2, qnorm(.05)), y = 0, yend = .3, linetype = 2, colour = "grey30") +
+  annotate("text", x = -2.07, y = .3, label = "−2 DS", angle = 90, hjust = 1, vjust = 0, size = dimensione, colour = "grey30") +
+  annotate("text", x = qnorm(.05) + .07, y = .3, label = "5° percentile", angle = 90, hjust = 1, vjust = 1, size = dimensione, colour = "grey30") +
+  annotate("segment", x = -2.5, xend = -3.6, y = .1, yend = .1, colour = rosso,
+           arrow = arrow(length = unit(if (stampa) .09 else .13, "inches"), type = "closed")) +
+  annotate("text", x = -3.05, y = .115, label = "livello\nproblematico", vjust = 0, lineheight = .9, size = dimensione, colour = rosso) +
+  annotate("text", x = -4, y = .41, label = "Non esiste una «soglia naturale»", hjust = 0, size = dimensione + .3, fontface = "bold") +
+  scale_x_continuous(breaks = -4:4, labels = function(x) sub("-", "−", x)) +
+  labs(x = "Abilità o tratto (punti z)", y = NULL) +
   tema + theme(axis.text.y = element_blank(), panel.grid.major.y = element_blank())
 ```
 
@@ -224,30 +245,66 @@ debolmente.
 
 Il secondo problema per l'approccio categoriale è la **comorbilità**. Le
 condizioni del neurosviluppo si presentano insieme molto più spesso di quanto ci
-si aspetterebbe se fossero indipendenti. Una parte consistente delle persone
-autistiche ha anche una disabilità intellettiva o un ADHD; la dislessia si
-associa spesso alla disortografia e a difficoltà in matematica; ADHD e disturbi
-dell'apprendimento co-occorrono con frequenza elevata. Nelle casistiche
-cliniche dei disturbi dell'apprendimento, i quadri misti sono la norma più che
-l'eccezione [@toffalini2017strengths].
+si aspetterebbe se fossero indipendenti, e un approccio fatto di categorie e
+deficit centrali fatica a spiegarlo (@fig-comorbilita). Fra le persone
+autistiche, circa una su quattro ha anche una disabilità intellettiva
+[@mutluer2022population]; prima del 2000 le stime superavano il 50%, quando
+la diagnosi di autismo era riservata ai quadri più gravi. Circa il 40% ha anche
+un ADHD [@rong2021prevalence]. Anche nelle forme sindromiche di disabilità
+intellettiva l'ADHD è frequente: in un campione di bambini con sindrome di Down
+riguardava quasi il 44% [@ekstein2011down]. Un bambino con un disturbo del linguaggio in età
+prescolare ha un rischio elevato di ricevere poi una diagnosi di disturbo
+dell'apprendimento [@snowling2019developmental]. Nelle casistiche cliniche dei
+disturbi dell'apprendimento, i quadri misti sono quasi la metà
+[@toffalini2017strengths]. Anche nella popolazione generale, dove la
+maggior parte dei bambini con ADHD, dislessia o discalculia ha una sola
+diagnosi, chi ne ha una ha da due a tre volte più probabilità di averne una
+seconda [@vanbergen2025cooccurrence].
 
 ```{r}
 #| label: fig-comorbilita
-#| fig-cap: "Le principali sovrapposizioni fra condizioni del neurosviluppo. Ogni linea indica una co-occorrenza molto più frequente di quanto ci si aspetterebbe se le condizioni fossero indipendenti; le linee più spesse indicano le sovrapposizioni più ampie. Schema originale e semplificato."
-#| fig-alt: "Rete di sette condizioni: disabilità intellettiva, disturbo dello spettro autistico, ADHD, dislessia, disortografia, discalculia, disturbo del linguaggio. Linee collegano quasi tutte le coppie; le più spesse uniscono autismo e disabilità intellettiva, autismo e ADHD, dislessia e disortografia, dislessia e discalculia."
+#| fig-cap: "La comorbilità fra condizioni del neurosviluppo. Ogni freccia va da una condizione a un'altra e riporta la quota approssimativa di casi della prima che presentano anche la seconda; le stime variano molto con il campione e i criteri. Disabilità intellettiva e disturbi dell'apprendimento si escludono per definizione (in rosso). Adattamento da una sintesi dell'autore, basata su Ekstein et al. (2011), Mutluer et al. (2022), Rong et al. (2021), Snowling et al. (2019), Toffalini et al. (2017), van Bergen et al. (2025) e altri studi."
+#| fig-alt: "Schema con sette condizioni collegate da frecce con percentuali. Spettro dell'autismo verso disabilità intellettiva: circa 25-30%, oltre il 50% prima del 2000; disabilità intellettiva verso autismo: fino al 18%. Autismo verso ADHD: circa 40%; ADHD verso autismo: circa 20%. Disabilità intellettiva verso ADHD: 30-50% secondo la sindrome, 43% nella sindrome di Down; ADHD verso disabilità intellettiva: stima incerta, 0,5-20%. ADHD verso dislessia: circa il 36% ha anche un disturbo dell'apprendimento; dislessia verso ADHD: circa il 20%. Dislessia e discalculia: fino al 50% dei casi sono misti. Dislessia verso disortografia: oltre il 50% dei casi. Disturbo del linguaggio verso i disturbi dell'apprendimento: 40-60% dei casi. Una linea rossa tratteggiata unisce la disabilità intellettiva a dislessia e discalculia, con la scritta: esclusi per criterio."
 #| fig-width: !expr 4.45 * scala
-#| fig-height: !expr 2.9 * scala
-tela(c(0, 12), c(0, 10))
-pos = list(DI = c(6, 9), ASD = c(1.7, 6.4), ADHD = c(10.3, 6.4), Dis = c(8.3, 2.6), Disc = c(3.7, 2.6), Dort = c(10.6, .7), Ling = c(1.3, .7))
-nomi = c(DI = "Disabilità\nintellettiva", ASD = "Spettro\nautistico", ADHD = "ADHD", Dis = "Dislessia", Disc = "Discalculia", Dort = "Disortografia", Ling = "Disturbo del\nlinguaggio")
-archi = data.frame(a = c("ASD", "ASD", "DI", "ADHD", "ADHD", "Dis", "Dis", "Ling", "DI", "ADHD"),
-                   b = c("DI", "ADHD", "ADHD", "Dis", "Disc", "Dort", "Disc", "Dis", "Ling", "Dort"),
-                   forte = c(TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE, FALSE))
-for (i in seq_len(nrow(archi))) {
-  p = pos[[archi$a[i]]]; q = pos[[archi$b[i]]]
-  segments(p[1], p[2], q[1], q[2], col = if (archi$forte[i]) rosso else "grey55", lwd = (if (archi$forte[i]) 3 else 1.3) * scala)
-}
-for (k in names(pos)) nodo(pos[[k]][1], pos[[k]][2], nomi[[k]], w = 2.5, h = 1.4, forma = "ovale", bg = "grey95", cex = .6, font = 2)
+#| fig-height: !expr 3.9 * scala
+tela(c(0, 12), c(0, 10.4))
+etichetta = function(x, y, testo, adj = c(.5, .5), col = "grey30") text(x, y, testo, adj = adj, cex = .68, col = col)
+nome = function(x, y, testo) text(x, y, testo, cex = .9, font = 2)
+nome(6, 9.9, "Disabilità intellettiva")
+nome(1.25, 6.25, "Spettro\ndell'autismo")
+nome(10.9, 6.25, "ADHD")
+nome(2.6, 2.6, "Discalculia")
+nome(7.6, 2.6, "Dislessia")
+nome(9.2, .4, "Disortografia")
+nome(1.35, .55, "Disturbo del\nlinguaggio")
+# autismo e disabilità intellettiva
+freccia(.9, 7.3, 3.4, 9.6); freccia(3.9, 9.3, 1.45, 7.25)
+etichetta(.1, 9.2, "≈25-30%\n(prima del 2000\noltre il 50%)", adj = c(0, .5))
+etichetta(3.1, 8.05, "fino al 18%", adj = c(0, .5))
+# disabilità intellettiva e ADHD
+freccia(8.6, 9.6, 11.1, 7.3); freccia(10.55, 7.25, 8.1, 9.3)
+etichetta(11.95, 9.25, "30-50% secondo\nla sindrome (43%\nnella s. di Down)", adj = c(1, .5))
+etichetta(8.95, 8.05, "incerta:\n0,5-20%", adj = c(1, .5))
+# autismo e ADHD
+freccia(2.9, 6.55, 9.9, 6.55); freccia(9.9, 5.95, 2.9, 5.95)
+etichetta(4.3, 6.6, "≈40%", adj = c(.5, -.35)); etichetta(4.3, 5.9, "≈20%", adj = c(.5, 1.35))
+# esclusione per criterio
+segments(6, 9.45, 6, 4.4, col = rosso, lty = 2, lwd = 1.3 * scala)
+freccia(6, 4.4, 3.5, 3.0, col = rosso, lty = 2, lwd = 1.3); freccia(6, 4.4, 7.2, 3.0, col = rosso, lty = 2, lwd = 1.3)
+etichetta(5.8, 4.75, "esclusi per\ncriterio", adj = c(1, .5), col = rosso)
+# ADHD e dislessia
+freccia(11.0, 5.45, 8.5, 2.9); freccia(8.75, 2.3, 11.4, 4.95)
+etichetta(9.35, 4.4, "≈36% ha\nanche un DSA", adj = c(1, .5))
+etichetta(11.95, 3.25, "≈20% ha\nanche ADHD", adj = c(1, .5))
+# discalculia e dislessia
+freccia(4.0, 2.6, 6.65, 2.6, code = 3)
+etichetta(5.3, 3.1, "fino al 50% dei\ncasi sono «misti»")
+# dislessia e disortografia
+freccia(7.8, 2.2, 8.75, .8)
+etichetta(8.6, 1.65, "ritenuta secondaria\nalla dislessia: oltre\nil 50% dei casi", adj = c(0, .5))
+# disturbo del linguaggio
+freccia(2.5, .95, 5.2, 2.3)
+etichetta(3.5, .45, "precursore di DSA\nnel 40-60% dei casi", adj = c(0, .5))
 ```
 
 Sotto le etichette troviamo quindi tratti **continui**, con soglie arbitrarie, e
@@ -296,11 +353,10 @@ alle regolarità e ai dettagli può essere una risorsa in molti contesti. Sono
 ipotesi, non conclusioni; ma ricordano che la stessa caratteristica può essere un
 problema in un ambiente e una risorsa in un altro.
 
-Per questo il termine **neurodivergenza** si è diffuso per indicare una
-differenza rilevante rispetto al funzionamento tipico, senza presupporre che sia
-un deficit. Il termine **disturbo** resta appropriato quando la differenza si
-traduce in disagio o compromissione significativa del funzionamento. Le due
-parole non si escludono: descrivono livelli diversi dello stesso fenomeno.
+Per questo si è diffuso il termine **neurodivergenza**, che indica una
+differenza rilevante rispetto al funzionamento tipico senza presupporre che sia
+un deficit. Non sostituisce la parola disturbo: come si vedrà nel prossimo
+capitolo, le due descrivono livelli diversi dello stesso fenomeno.
 
 ::: {.callout-note icon=false}
 ## In breve

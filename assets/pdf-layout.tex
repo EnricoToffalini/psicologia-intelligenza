@@ -4,9 +4,7 @@
 \definecolor{libroRosso}{HTML}{9A0000}
 \definecolor{libroGrigio}{HTML}{625E59}
 \addtokomafont{title}{\color{libroRosso}}
-\addtokomafont{part}{\color{libroRosso}}
 \addtokomafont{partnumber}{\color{libroGrigio}}
-\addtokomafont{chapter}{\color{libroRosso}}
 \addtokomafont{chapterprefix}{\color{libroGrigio}}
 % Titoli nello stesso carattere del testo (non in sans), come in un libro;
 % intestazioni discrete in corsivo grigio, senza filetti.
@@ -18,12 +16,9 @@
 % Frontespizio: sottotitolo e affiliazione.
 \addtokomafont{subtitle}{\itshape\color{libroGrigio}}
 \publishers{\small Dipartimento di Psicologia Generale\\Università di Padova}
-% Apertura di capitolo: breve filetto rosso, numero grigio, titolo rosso.
+% Apertura di capitolo: breve filetto, numero grigio, titolo nel colore
+% d'accento (rosso; verde nelle parti «Strumenti», vedi in fondo).
 \renewcommand*{\chapterformat}{{\color{libroGrigio}\thechapter}\enskip}
-\renewcommand*{\chapterheadstartvskip}{%
-  \vspace*{1.5\baselineskip}%
-  {\noindent\color{libroRosso}\rule{2.2em}{1.6pt}\par}%
-  \vspace{.7\baselineskip}}
 % Indice più leggero: capitoli in tondo, parti in grassetto.
 \addtokomafont{chapterentry}{\mdseries}
 % Riquadri (callout) nei colori del libro invece dell'azzurro predefinito.
@@ -72,3 +67,44 @@
 \PassOptionsToPackage{linktoc=page}{hyperref}
 \DeclareTOCStyleEntry[numwidth=2.4em,pagenumberwidth=2.2em,rightindent=3.2em]{tocline}{chapter}
 \RedeclareSectionCommand[tocnumwidth=2.6em]{part}
+% Parti «Strumenti»: capitoli tecnici, leggibili da soli o saltabili.
+% Il filtro pdf-layout.lua attiva \strumentitrue prima delle loro parti e
+% \strumentifalse prima delle altre: titoli, filetto e testatine diventano verdi
+% e sul margine esterno compare un'unghiatura verde con la scritta STRUMENTI.
+\definecolor{libroVerde}{HTML}{2F6B3B}
+\definecolor{libroVerdeChiaro}{HTML}{EAF2EB}
+\newif\ifstrumenti
+\colorlet{libroAccento}{libroRosso}
+\colorlet{libroTestatina}{libroGrigio}
+\newcommand*{\strumentiinizio}{\global\strumentitrue
+  \xglobal\colorlet{libroAccento}{libroVerde}\xglobal\colorlet{libroTestatina}{libroVerde}}
+\newcommand*{\strumentifine}{\global\strumentifalse
+  \xglobal\colorlet{libroAccento}{libroRosso}\xglobal\colorlet{libroTestatina}{libroGrigio}}
+\setkomafont{pageheadfoot}{\normalfont\small\itshape\color{libroTestatina}}
+\addtokomafont{part}{\color{libroAccento}}
+\addtokomafont{chapter}{\color{libroAccento}}
+\renewcommand*{\chapterheadstartvskip}{%
+  \vspace*{1.5\baselineskip}%
+  {\noindent\color{libroAccento}\rule{2.2em}{1.6pt}\par}%
+  \vspace{.7\baselineskip}}
+\AddToHook{shipout/background}{%
+  \ifstrumenti
+    \ifodd\value{page}%
+      \put(\dimexpr\paperwidth-4.5mm\relax,-58mm){\color{libroVerde}\rule{4.5mm}{40mm}}%
+      \put(\dimexpr\paperwidth-2.25mm\relax,-38mm){\makebox(0,0){\rotatebox{-90}{\color{white}\sffamily\scriptsize\bfseries STRUMENTI}}}%
+    \else
+      \put(0mm,-58mm){\color{libroVerde}\rule{4.5mm}{40mm}}%
+      \put(2.25mm,-38mm){\makebox(0,0){\rotatebox{90}{\color{white}\sffamily\scriptsize\bfseries STRUMENTI}}}%
+    \fi
+  \fi}
+% Riquadro d'apertura dei capitoli «Strumenti» e rimandi dai capitoli concettuali.
+\AtBeginDocument{%
+  \newtcolorbox{insertostrumenti}{enhanced, breakable, colback=libroVerdeChiaro,
+    colframe=libroVerde, boxrule=0pt, leftrule=3pt, arc=2pt, left=8pt, right=8pt,
+    top=6pt, bottom=6pt, fontupper=\small,
+    before upper={\setlength{\parskip}{4pt}\hypersetup{linkcolor=libroVerde}}}%
+  \newtcolorbox{rimandostrumenti}{enhanced, breakable, colback=white,
+    colframe=libroVerde, boxrule=0pt, leftrule=2pt, arc=0pt, left=7pt, right=4pt,
+    top=3pt, bottom=3pt, fontupper=\small\itshape,
+    before upper={\hypersetup{linkcolor=libroVerde}}}%
+}

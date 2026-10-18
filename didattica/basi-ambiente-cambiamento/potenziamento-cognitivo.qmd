@@ -83,17 +83,75 @@ può proporre l'adozione come trattamento.
 Si può allora portare il buon ambiente al bambino? Negli Stati Uniti, a partire
 dagli anni Sessanta, diversi progetti hanno offerto a bambini di famiglie molto
 povere servizi prescolari di alta qualità, spesso insieme a sostegno alle madri,
-cure mediche e pasti regolari. Alcuni, come il Carolina Abecedarian Project e il
-Perry Preschool Project, avevano un disegno sperimentale con assegnazione
-casuale.
+cure mediche e pasti regolari. Alcuni avevano un disegno sperimentale con
+assegnazione casuale.
 
-I risultati iniziali erano promettenti: guadagni di diversi punti di QI, talvolta
-più di dieci, all'ingresso nella scuola primaria. Poi è arrivato il **fadeout**:
-negli anni successivi la differenza fra bambini trattati e di controllo si
-riduceva, fino a scomparire o quasi [@campbell2002early]. Le meta-analisi degli
+Il caso più spettacolare è il Milwaukee Project, avviato nel 1966 con famiglie
+afroamericane molto povere e madri con QI inferiore a 75: venti bambini
+assegnati all'intervento, venti al controllo. I primi frequentavano ogni giorno,
+fino ai sei anni, un servizio per l'infanzia di alta qualità, con un adulto ogni
+uno-tre bambini; le madri ricevevano per un anno e mezzo visite domestiche di
+alcune ore, più volte alla settimana, su cura dei figli, igiene, alimentazione e
+gestione della casa. A sei anni la differenza fra i due gruppi era di 21–32
+punti di QI, a seconda del test [@jensen1989milwaukee]. Sono numeri da prendere
+con prudenza: i gruppi erano minuscoli, il resoconto completo arrivò solo
+vent'anni dopo, in un libro, e il primo direttore del progetto, Rick Heber, fu
+condannato nel 1981 per essersi appropriato dei fondi di un altro progetto
+[@jensen1989milwaukee]. Altri progetti randomizzati ottennero guadagni più
+contenuti ma chiari: circa 7,5 punti a cinque anni nel Carolina Abecedarian
+Project [@campbell2002early], circa 12 nel Perry Preschool Project
+[@schweinhart2005lifetime].
+
+Poi è arrivato il **fadeout** (@fig-fadeout). Nel Milwaukee Project il vantaggio
+era sceso a 18 punti a dieci anni e a 10 punti a quattordici. I risultati
+scolastici raccontano la stessa storia con un dettaglio in più: in prima
+elementare i bambini trattati erano sopra i controlli in lettura e matematica,
+ma già lontani dalla media della popolazione; in quarta erano scesi entrambi i
+gruppi attorno al 10° percentile o poco sopra, e la distanza si era ridotta in
+lettura e quasi annullata in matematica [@jensen1989milwaukee]. Gli altri progetti
+seguirono lo stesso percorso: nell'Abecedarian restavano circa 5 punti a otto
+anni [@campbell2002early], nel Perry Preschool il vantaggio era sparito entro la
+fine della scuola primaria [@schweinhart2005lifetime]. Le meta-analisi degli
 studi randomizzati su interventi prescolari confermano lo schema: guadagni
 iniziali di alcuni punti, persi in gran parte entro pochi anni dalla fine
 dell'intervento [@protzko2015environment].
+
+```{r}
+#| label: fig-fadeout
+#| fig-cap: "Il fadeout nel Milwaukee Project. Primo pannello: vantaggio di QI del gruppo sperimentale sul gruppo di controllo a 6, 10 e 14 anni (a 6 anni 21 punti con la WPPSI e 32 con la Stanford-Binet; il punto indica il centro dell'intervallo). Secondo pannello: percentile medio nelle prove di lettura e di matematica (Metropolitan Achievement Tests) alla fine della prima e della quarta elementare. Elaborazione dai dati riportati in Jensen (1989)."
+#| fig-alt: "Primo pannello: il vantaggio di QI del gruppo sperimentale scende da 21-32 punti a 6 anni a 18 punti a 10 anni e a 10 punti a 14 anni. Secondo pannello, diviso in lettura e matematica: dalla prima alla quarta elementare il gruppo sperimentale scende dal 49° al 19° percentile in lettura e dal 34° all'11° in matematica; il gruppo di controllo dal 32° al 9° in lettura e dal 18° al 9° in matematica."
+#| fig-width: !expr if (stampa) 4.45 else 8
+#| fig-height: !expr if (stampa) 5.4 else 3.8
+library(patchwork)
+qi = data.frame(eta = c(6, 10, 14), vantaggio = c(26.5, 18, 10), min = c(21, 18, 10), max = c(32, 18, 10),
+                etichetta = c("+21/+32", "+18", "+10"))
+p1 = ggplot(qi, aes(eta, vantaggio)) +
+  geom_hline(yintercept = 0, colour = "grey60") +
+  geom_linerange(aes(ymin = min, ymax = max), colour = rosso, linewidth = 1.1) +
+  geom_line(colour = rosso, linewidth = 1.1) + geom_point(colour = rosso, size = 2.6) +
+  geom_text(aes(label = etichetta, y = max), vjust = -.8, size = if (stampa) 3.2 else 4.2) +
+  scale_x_continuous(breaks = c(6, 10, 14), limits = c(5, 15)) +
+  scale_y_continuous(limits = c(0, 36), breaks = seq(0, 30, 10)) +
+  labs(x = "Età (anni)", y = "Vantaggio in punti QI\ndel gruppo sperimentale", title = "QI") +
+  tema
+sc = data.frame(classe = rep(c("Prima", "Quarta"), each = 4),
+                prova = rep(c("Lettura", "Lettura", "Matematica", "Matematica"), 2),
+                gruppo = rep(c("Sperimentale", "Controllo"), 4),
+                perc = c(49, 32, 34, 18, 19, 9, 11, 9))
+sc$gruppo = factor(sc$gruppo, c("Sperimentale", "Controllo"))
+p2 = ggplot(sc, aes(classe, perc, colour = gruppo, group = gruppo)) +
+  geom_line(linewidth = 1.1) + geom_point(size = 2.6) +
+  geom_text(aes(label = perc), hjust = rep(c(1.6, -.6), each = 4), vjust = c(.5, .5, .5, .5, -.3, 1.3, -.3, 1.3), size = if (stampa) 3 else 3.8, show.legend = FALSE) +
+  facet_wrap(~ prova) +
+  scale_colour_manual(values = c(rosso, "grey45"), name = NULL) +
+  scale_y_continuous(limits = c(0, 55), breaks = seq(0, 50, 10)) +
+  scale_x_discrete(expand = expansion(add = .5)) +
+  labs(x = "Classe della scuola primaria", y = "Percentile", title = "Risultati scolastici") +
+  tema + theme(legend.position = "bottom", plot.title = element_text(size = if (stampa) 10 else 13),
+               strip.text = element_text(size = if (stampa) 9 else 12))
+p1 = p1 + theme(plot.title = element_text(size = if (stampa) 10 else 13))
+if (stampa) p1 / p2 + plot_layout(heights = c(1, 1.15)) else p1 + p2 + plot_layout(widths = c(1, 1.5))
+```
 
 Questi studi lasciano alcuni punti fermi.
 
@@ -177,60 +235,122 @@ partecipanti aveva trovato miglioramenti solo nei compiti allenati
 Perché la letteratura iniziale era così ottimista? Per una combinazione di
 problemi metodologici ricorrenti.
 
-- **Controlli passivi.** Il gruppo allenato riceveva attenzione, aveva aspettative
-  di miglioramento, si familiarizzava con le prove. Il gruppo di controllo
-  aspettava. Senza un **controllo attivo**, che svolga un'attività di pari
-  impegno e creda anch'esso di essere allenato, ogni differenza può derivare da
-  motivazione e aspettative.
-- **Abbandoni selettivi.** Chi non era motivato abbandonava il training più
-  spesso di chi aspettava, lasciando nel gruppo allenato i più motivati.
-- **Flessibilità analitica.** Molte misure, molte analisi possibili, pochi studi
-  preregistrati: le possibilità di trovare qualcosa di «significativo» per caso
-  erano altissime.
-- **Pubblicazione selettiva.** Gli studi con risultati significativi venivano
-  pubblicati più facilmente di quelli nulli.
+- **Pubblicazione selettiva.** Le riviste preferivano nettamente gli effetti
+  «statisticamente significativi» e tendevano a respingere gli studi nulli.
+- **Flessibilità analitica.** Molte misure, molti partecipanti esclusi o inclusi
+  a discrezione, molte analisi tentate e solo alcune riportate: le possibilità di
+  trovare qualcosa di «significativo» per caso erano altissime.
+- **Nessuna preregistrazione.** Erano di fatto studi clinici randomizzati, ma
+  quasi mai dichiaravano in anticipo ipotesi, misure e analisi.
+- **Controlli passivi.** Mancava quasi sempre l'equivalente psicologico del
+  placebo.
 
-L'ultimo problema lascia una traccia riconoscibile (@fig-funnel). Se si
-pubblicano soprattutto i risultati significativi, gli studi piccoli, che hanno
-stime imprecise, entrano in letteratura solo quando trovano effetti grandi. Gli
-studi grandi, più precisi, riportano effetti piccoli. Il risultato è
-un'asimmetria: l'effetto stimato cresce al diminuire della precisione. Esistono
-metodi per correggere la distorsione, stimando l'effetto che avrebbe uno studio
-infinitamente preciso.
+L'ultimo punto merita un confronto esplicito (@tbl-controllo). Il gruppo
+allenato non differisce dal gruppo di controllo soltanto per il training.
+
+| | Gruppo allenato | Controllo passivo | Controllo attivo |
+|---|---|---|---|
+| Attenzione ricevuta | molta | poca | pari a quella del gruppo allenato |
+| Aspettative di migliorare | alte | nessuna | alte: crede di essere in trattamento |
+| Familiarità con le prove | ripetuta esposizione a test e contesto | nessuna | la stessa |
+| Impegno richiesto e abbandoni | alto; i meno motivati abbandonano | basso; pochi abbandoni | lo stesso |
+
+: Che cosa distingue il gruppo allenato da un controllo passivo e da un controllo attivo. {#tbl-controllo}
+
+Con un controllo passivo, il gruppo allenato ha il massimo stimolo ad aumentare
+il punteggio nei test, anche se l'abilità «vera» non è cambiata, e perde per
+strada i partecipanti meno motivati. Negli studi clinici sui farmaci il placebo
+è obbligatorio. In psicologia un **controllo attivo** è difficile da costruire,
+ma si può fare: deve credere di essere in trattamento, essere ugualmente motivato
+e sottoposto agli stessi test ripetuti.
+
+La pubblicazione selettiva, invece, lascia una traccia riconoscibile. Gli studi
+piccoli, che hanno stime imprecise, entrano in letteratura solo quando trovano
+effetti grandi, perché solo così raggiungono la significatività. Gli studi
+grandi, più precisi, riportano effetti piccoli, spesso vicini a zero. Il
+risultato è un'asimmetria: l'effetto stimato cresce al diminuire della
+precisione. Ma la si può sfruttare per correggere la stima. Se gli studi poco
+precisi riportano effetti grandi e quelli molto precisi effetti piccoli, quale
+effetto dovrebbe riportare un ipotetico studio infinitamente preciso? Basta
+prolungare la tendenza fino a un errore standard nullo (@fig-funnel).
 
 ```{r}
 #| label: fig-funnel
-#| fig-cap: "Simulazione di pubblicazione selettiva. 1.500 studi di numerosità diversa stimano un effetto vero pari a zero; quelli con un risultato positivo significativo vengono sempre pubblicati, gli altri solo nel 6% dei casi. La media degli effetti pubblicati è circa 0,2; gli studi piccoli riportano gli effetti più grandi. La retta che lega effetto ed errore standard incontra l'asse degli effetti, dove l'errore è nullo, vicino a zero."
-#| fig-alt: "Diagramma con l'effetto stimato sull'asse orizzontale e l'errore standard sull'asse verticale, invertito. I punti formano un triangolo asimmetrico spostato verso effetti positivi negli studi meno precisi. Una retta inclinata incontra l'asse degli effetti vicino a zero."
+#| fig-cap: "Pubblicazione selettiva e sua correzione, in una simulazione realistica. Gli studi pubblicati (30) stimano un effetto vero pari a zero; quelli con un risultato positivo significativo vengono sempre pubblicati, gli altri raramente. La media degli effetti pubblicati è 0,20 (linea verticale, al centro dell'imbuto tratteggiato). Gli studi meno precisi, in basso, riportano gli effetti più grandi. La retta rossa prolunga questa tendenza fino a un errore standard nullo: lo studio ipotetico infinitamente preciso stimerebbe un effetto vicino a zero (punto rosso, con intervallo di confidenza al 95%)."
+#| fig-alt: "Diagramma a imbuto con l'effetto stimato (d di Cohen) sull'asse orizzontale e l'errore standard sull'asse verticale, con gli studi più precisi in alto. Un imbuto tratteggiato è centrato sulla media degli effetti pubblicati, 0,20. In alto a sinistra pochi studi precisi con effetti vicini a zero; in basso a destra molti studi imprecisi con effetti fra 0,4 e 0,7. Una retta rossa attraversa i punti e incontra il bordo superiore, dove l'errore standard è zero, in corrispondenza di un effetto circa nullo, con un intervallo che comprende lo zero."
 #| fig-width: !expr if (stampa) 4.45 else 7
-#| fig-height: !expr if (stampa) 3.6 else 4.4
-set.seed(1)
-k = 1500
-n = round(exp(runif(k, log(10), log(300))))
-se = sqrt(2 / n)
+#| fig-height: !expr if (stampa) 3.7 else 4.6
+set.seed(7)
+k = 400
+se = runif(k, .03, .29)
 d = rnorm(k, 0, se)
-sig = d / se > 1.96
-pub = sig | runif(k) < .06
-s = data.frame(d, se, sig)[pub, ]
+pub = d / se > 1.96 | runif(k) < .03
+s = data.frame(d, se)[pub, ]
+media = mean(s$d)
 pet = lm(d ~ se, data = s, weights = 1 / se^2)
+ic = confint(pet)[1, ]
 retta = data.frame(se = c(0, max(s$se)))
 retta$d = coef(pet)[1] + coef(pet)[2] * retta$se
+imbuto = data.frame(d = c(media - 1.96 * .3, media, media + 1.96 * .3), se = c(.3, 0, .3))
+dim_t = if (stampa) 3 else 4
 ggplot(s, aes(d, se)) +
-  geom_line(data = retta, colour = rosso, linewidth = .9) +
-  geom_vline(xintercept = 0, linetype = 2, colour = "grey50") +
-  geom_point(aes(shape = sig), size = 2, alpha = .75) +
-  scale_shape_manual(values = c(1, 16), labels = c("Non significativo", "Significativo"), name = NULL) +
-  scale_y_reverse(labels = function(x) virgola(x, 1)) +
-  scale_x_continuous(labels = function(x) virgola(x, 1)) +
-  coord_cartesian(ylim = c(max(s$se), 0)) +
-  labs(x = "Effetto stimato (d di Cohen)", y = "Errore standard (più in alto = più preciso)") +
-  tema + theme(legend.position = "top")
+  geom_path(data = imbuto, linetype = 3, colour = "grey45", linewidth = .9) +
+  geom_vline(xintercept = media, colour = "grey45") +
+  geom_line(data = retta, colour = rosso, linewidth = 1) +
+  geom_point(colour = "grey15", size = 2.2) +
+  annotate("errorbarh", y = 0, xmin = ic[1], xmax = ic[2], height = .012, colour = rosso, linewidth = .9) +
+  annotate("point", x = coef(pet)[1], y = 0, colour = rosso, size = 3) +
+  annotate("text", x = coef(pet)[1], y = -.012, label = "studio infinitamente preciso", colour = rosso,
+           vjust = 0, size = dim_t) +
+  annotate("text", x = media + .02, y = .305, label = "media degli effetti\npubblicati", hjust = 0, vjust = 1,
+           size = dim_t, colour = "grey30") +
+  annotate("text", x = -.43, y = .045, label = "studi grandi:\neffetti piccoli", hjust = 0, size = dim_t, colour = "grey30") +
+  annotate("text", x = .62, y = .12, label = "studi piccoli:\neffetti grandi", hjust = 0, size = dim_t, colour = "grey30") +
+  scale_y_reverse(breaks = seq(0, .3, .1), labels = function(x) virgola(x, 1)) +
+  scale_x_continuous(breaks = seq(-.25, .75, .25), labels = function(x) virgola(x, 2)) +
+  coord_cartesian(xlim = c(-.45, .9), ylim = c(.37, -.03)) +
+  labs(x = "Effetto stimato (d di Cohen)", y = "Errore standard\n(più in alto = più preciso)") +
+  tema
 ```
 
-Una volta corretta la pubblicazione selettiva e considerati solo gli studi con
-controlli attivi, il trasferimento lontano di qualsiasi tipo di allenamento
-cognitivo risulta praticamente nullo [@gobet2023cognitive]. Nel 2016 la Federal
-Trade Commission statunitense ha multato una nota azienda di giochi di
+Corretta la pubblicazione selettiva e considerati solo gli studi con controlli
+attivi, il trasferimento lontano di qualsiasi tipo di allenamento cognitivo
+diventa nullo [@gobet2023cognitive]. La @fig-gobet-sala mostra il confronto per
+dieci gruppi di meta-analisi: memoria di lavoro in bambini, adulti e anziani,
+videogiochi, musica, scacchi, esercizi fisici combinati con giochi. Prima della
+correzione gli effetti medi sono piccoli ma tutti positivi, circa 0,12; dopo,
+oscillano attorno a zero.
+
+```{r}
+#| label: fig-gobet-sala
+#| fig-cap: "Trasferimento lontano dei training cognitivi prima e dopo la correzione. Per ogni gruppo di meta-analisi, l'effetto medio (dimensione dell'effetto standardizzata) con tutti gli studi, senza correzione (cerchi grigi), e con i soli studi a controllo attivo, corretto per la pubblicazione selettiva (punti rossi). L'ultima riga è la media complessiva. Elaborazione dalle tabelle 1 e 2 di Gobet e Sala (2023)."
+#| fig-alt: "Grafico a punti con dieci righe, una per tipo di training e popolazione, più una riga per la media complessiva. I cerchi grigi, senza correzione, stanno fra 0,04 e 0,19, con media 0,12. I punti rossi, dopo la correzione, stanno fra −0,03 e 0,02, con media 0,00."
+#| fig-width: !expr if (stampa) 4.45 else 7
+#| fig-height: !expr if (stampa) 3.7 else 4.4
+gs = data.frame(
+  gruppo = c("Memoria di lavoro, bambini tipici", "Memoria di lavoro, bambini con DSA",
+             "Memoria di lavoro, adulti", "Memoria di lavoro, anziani", "Videogiochi d'azione, adulti",
+             "Altri videogiochi, adulti", "Videogiochi, anziani", "Musica, bambini", "Scacchi, bambini",
+             "Exergame, anziani", "Media complessiva"),
+  prima = c(.13, .12, .12, .13, .08, .15, .04, .19, .13, .15, .12),
+  dopo = c(.01, .02, .00, .01, -.01, .00, -.03, -.02, .01, -.02, .00))
+gs$gruppo = factor(gs$gruppo, rev(gs$gruppo))
+ggplot(gs, aes(y = gruppo)) +
+  geom_vline(xintercept = 0, colour = "grey60") +
+  geom_segment(aes(x = prima, xend = dopo, yend = gruppo), colour = "grey70", linewidth = .6) +
+  geom_hline(yintercept = 1.5, colour = "grey80") +
+  geom_point(aes(x = prima, shape = "Senza correzione"), colour = "grey35", size = 2.4, stroke = .9) +
+  geom_point(aes(x = dopo, shape = "Con correzione"), colour = rosso, size = 2.4) +
+  scale_shape_manual(values = c("Senza correzione" = 1, "Con correzione" = 16),
+                     breaks = c("Senza correzione", "Con correzione"), name = NULL) +
+  guides(shape = guide_legend(override.aes = list(colour = c("grey35", rosso)))) +
+  scale_x_continuous(breaks = seq(0, .2, .05), labels = function(x) virgola(x, 2), limits = c(-.04, .2)) +
+  labs(x = "Effetto medio sul trasferimento lontano", y = NULL) +
+  tema + theme(legend.position = "top", panel.grid.major.y = element_blank())
+```
+
+Le promesse commerciali, intanto, hanno avuto conseguenze anche legali. Nel 2016
+la Federal Trade Commission statunitense ha multato una nota azienda di giochi di
 allenamento cerebrale per pubblicità ingannevole: prometteva di migliorare il
 rendimento scolastico e lavorativo e di proteggere dal declino cognitivo, senza
 prove adeguate [@ftc2016lumosity].
@@ -250,54 +370,64 @@ nessuno è in grado di dimostrarla.
 
 ## Perché allenare una parte non migliora il tutto
 
-Il fallimento dei training cognitivi è una delusione, ma era prevedibile.
-Attenzione però a come lo si spiega. Si dice spesso che nel modello gerarchico le
-frecce vanno dal fattore generale alle abilità specifiche, e che quindi
-l'effetto di un allenamento non può risalire [@warne2020know]. L'argomento vale
-solo se si prende il modello alla lettera, come un meccanismo che opera dentro
-ogni persona. Ma *g*, come si è visto, è il riassunto statistico di molte cause
-comuni, non un organo con un'uscita e un'entrata.
-
-L'argomento più solido è un altro. Se le prove correlano perché dipendono dalle
-stesse cause comuni, migliorare una prova senza toccare quelle cause lascia
-intatto tutto il resto. Allenarsi al *dual n-back* rende più bravi nel *dual
-n-back*: cambia strategie e familiarità con un compito, non la biologia o
-l'esperienza accumulata che sostengono anche il vocabolario e le matrici. Ed è
-esattamente ciò che i dati mostrano. Chi ha promesso il contrario ha confuso la
-prestazione in un compito con la capacità che quel compito dovrebbe misurare.
-La @fig-transfer riassume l'argomento.
+Il fallimento dei training cognitivi è una delusione, ma era prevedibile. Russell
+Warne lo fa discendere dal modo in cui le abilità cognitive sono legate fra loro:
+i modelli dell'intelligenza assumono che sia *g* a sostenere la prestazione nei
+compiti cognitivi, non il contrario [@warne2020know]. Nel modello gerarchico le
+frecce vanno dall'alto in basso: dal fattore generale alle abilità ampie, dalle
+abilità ampie alle singole prove (@fig-transfer). A che cosa serve allora
+allenare un'area di funzionamento, come la memoria di lavoro, o un singolo
+compito? L'effetto non può risalire la corrente.
 
 ```{r}
 #| label: fig-transfer
-#| fig-cap: "Perché l'allenamento su un compito non si trasferisce agli altri. Le prove correlano perché dipendono dalle stesse cause comuni; un training agisce sulla prova allenata (strategie, familiarità), non sulle cause comuni, e lascia quindi intatte le altre prove. Schema originale."
-#| fig-alt: "In alto un ovale, cause comuni, con frecce verso quattro prove: vocabolario, matrici, compito allenato, ragionamento aritmetico. In basso un riquadro rosso, training, con una freccia piena verso il compito allenato e frecce tratteggiate barrate verso le altre prove."
+#| fig-cap: "Perché l'allenamento di un'abilità o di un compito non migliora g. Nel modello gerarchico le frecce vanno dall'alto in basso: g sostiene le abilità ampie, che sostengono le singole prove (i riquadri). Un training (in rosso) agisce su un'abilità o su un compito, ma il suo effetto non risale verso g e quindi non si estende alle altre abilità. Elaborazione dall'argomento di Warne (2020)."
+#| fig-alt: "In alto un ovale con la lettera g, con frecce verso sei ovali: intelligenza fluida, intelligenza cristallizzata, abilità visive, memoria di lavoro, velocità di elaborazione e puntini di sospensione. Sotto ogni ovale tre piccole frecce verso una colonna di tre riquadri, le singole prove. In basso tre etichette rosse, training, con frecce rosse: una verso l'ultimo riquadro sotto l'intelligenza fluida, una verso l'ultimo riquadro sotto la memoria di lavoro, una verso l'ovale della memoria di lavoro."
 #| fig-width: !expr 4.45 * scala
-#| fig-height: !expr 2.9 * scala
-tela(c(0, 12), c(0, 10))
-cc = nodo(6, 8.7, "cause comuni\n(biologia, esperienza accumulata)", w = 6.4, h = 2, forma = "ovale", bg = "white", font = 3, cex = .66, lwd = 1.3)
-nomi = c("Vocabolario", "Matrici", "Compito\nallenato", "Ragionam.\naritmetico")
-xp = c(1.4, 4.4, 7.6, 10.6)
-pr = lapply(1:4, function(i) nodo(xp[i], 4.8, nomi[i], w = 2.4, h = 1.6, bg = if (i == 3) "#F2DEDE" else "grey95", cex = .62, border = if (i == 3) rosso else "grey35"))
-for (p in pr) collega(cc, p, col = "grey25")
-tr = nodo(6, 1.1, "training", w = 2.6, h = 1.2, bg = rosso, border = rosso, col = "white", font = 2, cex = .7)
-collega(tr, pr[[3]], col = rosso, lwd = 2, etichetta = "migliora", adj_et = c(-.15, .5), cex_et = .6)
-for (i in c(1, 2, 4)) {
-  collega(tr, pr[[i]], col = "grey55", lty = 2, lwd = .9)
-  m = c((6 + xp[i]) / 2, (1.1 + 4.8) / 2 - .1)
-  text(m[1], m[2], "\u00d7", cex = 1.1, col = "grey30", font = 2)
+#| fig-height: !expr 3.4 * scala
+tela(c(0, 12), c(-.4, 10))
+g = nodo(6, 9, "g", w = 1.6, h = 1.4, forma = "ovale", bg = "white", font = 3, cex = 1.1, lwd = 1.3)
+nomi = c("Intell.\nfluida", "Intell.\ncristall.", "Abilità\nvisive", "Memoria\ndi lavoro", "Velocità\nelab.", "…")
+xa = seq(1, 11, 2)
+ab = lapply(1:6, function(i) nodo(xa[i], 5.8, nomi[i], w = 1.85, h = 1.5, forma = "ovale", bg = "white",
+                                  border = if (i == 4) rosso else "grey35", cex = .72, lwd = if (i == 4) 1.6 else 1))
+for (a in ab) collega(g, a, col = "grey35")
+yb = c(3.5, 2.6, 1.7)
+for (i in 1:6) {
+  for (dx in c(-.3, 0, .3)) freccia(xa[i] + dx, 4.95, xa[i] + dx, 3.9, col = "grey35", lwd = .9)
+  for (j in 1:3) {
+    rosso_box = (i == 1 && j == 3) || (i == 4 && j == 3)
+    nodo(xa[i], yb[j], "…", w = 1.05, h = .6, bg = "white", border = if (rosso_box) rosso else "grey35",
+         lwd = if (rosso_box) 1.6 else 1, cex = .7)
+  }
 }
-text(.1, 2.3, "trasferimento\nlontano: assente", adj = 0, cex = .58, font = 3, col = "grey30")
+text(c(1, 5.9, 8.4), .15, "training", col = rosso, font = 2, cex = .75)
+freccia(1, .45, 1, 1.35, col = rosso, lwd = 1.5)
+freccia(6.1, .45, 6.6, 1.35, col = rosso, lwd = 1.5)
+freccia(8.2, .45, 7.75, 5.1, col = rosso, lwd = 1.5)
 ```
-Gli interventi che spostano davvero i punteggi, come la scuola o l'uscita da
-una deprivazione grave, sono invece cambiamenti ampi, che agiscono su molte
-cause insieme; quanto del guadagno riguardi *g*, e quanto abilità specifiche,
-resta discusso.
+
+Chi propone i training cognitivi, secondo Warne, commette due errori. Non
+considera che *g* va inteso come causa delle prestazioni particolari, e quindi
+non può essere migliorato con esercizi su abilità particolari. E confonde
+l'intelligenza fluida con *g*: migliorare una prova di ragionamento, ammesso che
+accada, non equivale a migliorare il fattore generale.
+
+L'argomento regge anche senza leggere *g* come un'entità che agisce dentro ogni
+persona. Se le prove correlano perché dipendono dalle stesse cause comuni,
+migliorare una prova senza toccare quelle cause lascia intatto tutto il resto.
+Allenarsi al *dual n-back* rende più bravi nel *dual n-back*: cambia strategie e
+familiarità con un compito, non la biologia o l'esperienza accumulata che
+sostengono anche il vocabolario e le matrici. Ed è esattamente ciò che i dati
+mostrano. Chi ha promesso il contrario ha confuso la prestazione in un compito
+con la capacità che quel compito dovrebbe misurare.
 
 I risultati positivi, del resto, raccontano la stessa storia in forma opposta.
 Ciò che aumenta davvero le capacità cognitive sono cambiamenti ampi e duraturi
 dell'ambiente: anni di scuola, uscita da una deprivazione grave, una vita intera
-dedicata a un'attività complessa. Costano molto più di un'applicazione sul
-telefono, e funzionano.
+dedicata a un'attività complessa. Agiscono su molte cause insieme; quanto del
+guadagno riguardi *g*, e quanto abilità specifiche, resta discusso. Costano
+molto più di un'applicazione sul telefono, e funzionano.
 
 ::: {.callout-note icon=false}
 ## In breve
@@ -312,8 +442,9 @@ telefono, e funzionano.
 - Effetto Mozart, training di memoria di lavoro e videogiochi non producono
   trasferimento lontano, una volta corretti controlli passivi e pubblicazione
   selettiva.
-- Allenare un compito specifico non tocca le cause comuni che sostengono tutte
-  le prove: per questo migliora quel compito e poco altro.
+- Nel modello gerarchico le frecce vanno da *g* alle abilità e alle prove, non
+  il contrario: allenare un compito o un'abilità migliora quel compito e poco
+  altro, perché non tocca ciò che sostiene tutte le prove.
 :::
 
 [Riferimenti bibliografici](../../bibliografia.qmd)
