@@ -6,6 +6,8 @@
 # `#| fig-width: !expr 4.45 * scala` e `#| fig-height: !expr 3 * scala`.
 stampa = knitr::is_latex_output()
 scala = if (stampa) 1 else 1.5
+# Nel PDF le figure usano cairo_pdf, che gestisce caratteri come •, –, →, greco
+if (stampa) knitr::opts_chunk$set(dev = "cairo_pdf")
 
 # Area di disegno vuota in coordinate arbitrarie
 tela = function(xlim = c(0, 10), ylim = c(0, 10)) {

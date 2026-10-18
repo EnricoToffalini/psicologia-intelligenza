@@ -43,7 +43,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-1241550482bdeda434bccbd579daa608.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-ffd282cb318059e0bcb130885a47f5dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -401,22 +401,16 @@ ul.task-list li input[type="checkbox"] {
 <p>Questo capitolo descrive come sono costruite le batterie moderne, che cosa significano i loro punteggi e quali sono gli strumenti più diffusi. Non riproduce item di test commerciali: quando servono esempi, sono costruiti ad hoc per illustrare il tipo di prova, non equivalenti a item reali.</p>
 <section id="un-piccolo-glossario" class="level2" data-number="9.1">
 <h2 data-number="9.1" class="anchored" data-anchor-id="un-piccolo-glossario"><span class="header-section-number">9.1</span> Un piccolo glossario</h2>
-<p>Il linguaggio dei test usa alcuni termini con un significato preciso.</p>
-<ul>
-<li><strong>Batteria.</strong> Strumento completo per valutare un’area del funzionamento, come l’intelligenza, articolato in molte componenti. Per tradizione si parla spesso di «scale».</li>
-<li><strong>Item.</strong> Il singolo problema all’interno di una prova. La risposta può essere giusta o sbagliata, oppure valutata su pochi livelli di accuratezza.</li>
-<li><strong>Subtest.</strong> Una prova che misura una particolare abilità, di solito composta da una sequenza di item di difficoltà crescente. Esempi tipici sono un subtest di vocabolario o uno di costruzioni con cubi.</li>
-<li><strong>Indice.</strong> Un punteggio che stima un costrutto latente aggregando più subtest, espresso su una metrica standardizzata. Il QI totale è un indice; lo sono anche gli indici di dominio, come comprensione verbale o memoria di lavoro.</li>
-</ul>
+<p>Il linguaggio dei test usa alcuni termini con un significato preciso (<a href="#fig-glossario-test" class="quarto-xref">Figura&nbsp;<span>9.1</span></a>). Una <strong>batteria</strong> è lo strumento completo; i suoi <strong>indici</strong> sono i punteggi standardizzati che stimano un costrutto, dal QI totale agli indici di dominio; ogni indice aggrega alcuni <strong>subtest</strong>, cioè singole prove; ogni subtest è una sequenza di <strong>item</strong>, i singoli problemi, ordinati per difficoltà.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-livelli" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Diagramma ad albero dentro una cornice che rappresenta la batteria. In alto il QI totale; sotto, cinque indici; dal primo indice partono tre subtest; dal primo subtest partono cinque item numerati da 1 a 5. A sinistra le etichette dei livelli: indice globale, indici, subtest, item.">
+<div id="fig-glossario-test" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Quattro righe. Batteria: strumento completo per valutare un'area del funzionamento psicologico, come l'intelligenza, articolato in componenti, indici e subtest; per tradizione spesso chiamato scala; esempi WISC-V e IDS-2. Indice: indicatore numerico che stima un costrutto latente su una metrica standardizzata, spesso aggregando più subtest; esempi QI totale, indice di comprensione verbale, indice visuo-spaziale. Subtest: singola prova che misura una particolare abilità, composta da item ordinati per difficoltà; esempi vocabolario, disegno con cubi. Item: singolo problema in un subtest, a risposta giusta o sbagliata o con pochi gradi di accuratezza; esempio: che cosa significa una certa parola.">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-livelli-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="batterie-moderne_files/figure-html/fig-livelli-1.png" class="img-fluid figure-img" alt="Diagramma ad albero dentro una cornice che rappresenta la batteria. In alto il QI totale; sotto, cinque indici; dal primo indice partono tre subtest; dal primo subtest partono cinque item numerati da 1 a 5. A sinistra le etichette dei livelli: indice globale, indici, subtest, item." width="640">
+<div aria-describedby="fig-glossario-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="batterie-moderne_files/figure-html/fig-glossario-test-1.png" class="img-fluid figure-img" alt="Quattro righe. Batteria: strumento completo per valutare un'area del funzionamento psicologico, come l'intelligenza, articolato in componenti, indici e subtest; per tradizione spesso chiamato scala; esempi WISC-V e IDS-2. Indice: indicatore numerico che stima un costrutto latente su una metrica standardizzata, spesso aggregando più subtest; esempi QI totale, indice di comprensione verbale, indice visuo-spaziale. Subtest: singola prova che misura una particolare abilità, composta da item ordinati per difficoltà; esempi vocabolario, disegno con cubi. Item: singolo problema in un subtest, a risposta giusta o sbagliata o con pochi gradi di accuratezza; esempio: che cosa significa una certa parola." width="640">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-livelli-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;9.1: I livelli di una batteria di intelligenza. Il QI totale aggrega gli indici, ogni indice aggrega alcuni subtest, ogni subtest è una sequenza di item di difficoltà crescente. Per leggibilità sono sviluppati per esteso solo un indice e un subtest. Schema originale.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-glossario-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;9.1: Mini glossario dei test: batteria, indice, subtest e item, con una definizione ed esempi per ciascun termine.
 </figcaption>
 </figure>
 </div>
@@ -436,13 +430,13 @@ Figura&nbsp;9.1: I livelli di una batteria di intelligenza. Il QI totale aggrega
 <p>Nel tempo la struttura si è articolata. La distinzione fra QI verbale e QI di performance è stata sostituita, nelle edizioni degli anni Duemila, da quattro indici di ispirazione cognitiva e neuropsicologica: comprensione verbale, ragionamento percettivo, memoria di lavoro, velocità di elaborazione. Le quinte edizioni hanno separato il ragionamento percettivo in un indice visuospaziale e uno di ragionamento fluido, con un riferimento più esplicito al modello CHC. La <a href="#fig-edizioni" class="quarto-xref">Figura&nbsp;<span>9.2</span></a> riassume il passaggio.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-edizioni" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Tre alberi uno sotto l'altro. Prime tre edizioni, dagli anni Trenta agli anni Novanta: QI totale diviso in QI verbale e QI di performance. Quarta edizione, anni Duemila: QI totale con quattro indici, comprensione verbale, ragionamento percettivo, memoria di lavoro, velocità di elaborazione. Quinta edizione, dagli anni Dieci: cinque indici, con il ragionamento percettivo diviso in visuospaziale e ragionamento fluido.">
+<div id="fig-edizioni" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Tre alberi. Prime tre edizioni, dagli anni Trenta agli anni Novanta: QI totale diviso in QI verbale e QI di performance, con la frase di Wechsler: misure diverse dell'intelligenza, non misure di tipi diversi di intelligenza. Quarta edizione, anni Duemila: QI totale con quattro indici, comprensione verbale, ragionamento percettivo, memoria di lavoro, velocità di elaborazione; indici di ispirazione cognitiva e neuropsicologica, utili per un profilo più articolato. Quinta edizione, dagli anni Dieci: cinque indici, con il ragionamento percettivo diviso in visuospaziale e ragionamento fluido; rimando più esplicito al modello CHC.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-edizioni-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="batterie-moderne_files/figure-html/fig-edizioni-1.png" class="img-fluid figure-img" alt="Tre alberi uno sotto l'altro. Prime tre edizioni, dagli anni Trenta agli anni Novanta: QI totale diviso in QI verbale e QI di performance. Quarta edizione, anni Duemila: QI totale con quattro indici, comprensione verbale, ragionamento percettivo, memoria di lavoro, velocità di elaborazione. Quinta edizione, dagli anni Dieci: cinque indici, con il ragionamento percettivo diviso in visuospaziale e ragionamento fluido." width="640">
+<img src="batterie-moderne_files/figure-html/fig-edizioni-1.png" class="img-fluid figure-img" alt="Tre alberi. Prime tre edizioni, dagli anni Trenta agli anni Novanta: QI totale diviso in QI verbale e QI di performance, con la frase di Wechsler: misure diverse dell'intelligenza, non misure di tipi diversi di intelligenza. Quarta edizione, anni Duemila: QI totale con quattro indici, comprensione verbale, ragionamento percettivo, memoria di lavoro, velocità di elaborazione; indici di ispirazione cognitiva e neuropsicologica, utili per un profilo più articolato. Quinta edizione, dagli anni Dieci: cinque indici, con il ragionamento percettivo diviso in visuospaziale e ragionamento fluido; rimando più esplicito al modello CHC." width="897">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-edizioni-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;9.2: Come è cambiata la struttura delle scale Wechsler: dal QI verbale e di performance delle prime tre edizioni ai quattro indici della quarta, ai cinque indici primari della quinta, più vicini al modello CHC. Schema originale.
+Figura&nbsp;9.2: Come è cambiata la struttura delle scale Wechsler, con una progressiva aggiunta di indici e articolazioni fattoriali migliori: dal QI verbale e di performance delle prime tre edizioni ai quattro indici della quarta, ai cinque indici primari della quinta, più vicini al modello CHC. Le edizioni intermedie (una terza edizione orientata ai processi, estensioni della quarta) hanno preparato i passaggi.
 </figcaption>
 </figure>
 </div>
@@ -453,19 +447,21 @@ Figura&nbsp;9.2: Come è cambiata la struttura delle scale Wechsler: dal QI verb
 <div id="tbl-indici" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-indici-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabella&nbsp;9.1: Indici primari di una batteria di tipo Wechsler per l’età evolutiva e relativi tipi di prova.
+Tabella&nbsp;9.1: Indici primari della WISC-V, subtest e relativi tipi di prova. I subtest primari, in corsivo, servono a calcolare i cinque indici primari; il QI totale ne usa sette.
 </figcaption>
 <div aria-describedby="tbl-indici-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
 </colgroup>
 <thead>
 <tr class="header">
 <th>Indice</th>
 <th>Che cosa valuta</th>
+<th>Subtest (primari in corsivo)</th>
 <th>Tipo di prova</th>
 </tr>
 </thead>
@@ -473,26 +469,31 @@ Tabella&nbsp;9.1: Indici primari di una batteria di tipo Wechsler per l’età e
 <tr class="odd">
 <td>Comprensione verbale</td>
 <td>Conoscenza delle parole, dei concetti e del mondo</td>
+<td><em>Somiglianze</em>, <em>Vocabolario</em>, Informazione, Comprensione</td>
 <td>Spiegare che cosa hanno in comune due concetti; definire parole</td>
 </tr>
 <tr class="even">
 <td>Visuospaziale</td>
 <td>Analisi di dettagli visivi e relazioni spaziali</td>
+<td><em>Disegno con cubi</em>, <em>Puzzle</em></td>
 <td>Riprodurre un modello con cubi colorati; scegliere i pezzi che compongono una figura</td>
 </tr>
 <tr class="odd">
 <td>Ragionamento fluido</td>
 <td>Ragionamento induttivo e deduttivo, astrazione di regole</td>
+<td><em>Matrici</em>, <em>Confronto di pesi</em>, Concetti illustrati, Ragionamento aritmetico</td>
 <td>Completare matrici di figure; trovare ciò che bilancia una serie di pesi</td>
 </tr>
 <tr class="even">
 <td>Memoria di lavoro</td>
 <td>Mantenere e manipolare informazioni verbali o visive</td>
+<td><em>Memoria di cifre</em>, <em>Memoria di immagini</em>, Riordinamento di lettere e numeri</td>
 <td>Ripetere sequenze di cifre in avanti, all’indietro o riordinate; riconoscere immagini viste</td>
 </tr>
 <tr class="odd">
 <td>Velocità di elaborazione</td>
 <td>Rapidità ed efficienza in compiti semplici</td>
+<td><em>Cifrario</em>, <em>Ricerca di simboli</em>, Cancellazione</td>
 <td>Associare simboli a cifre; cercare simboli bersaglio</td>
 </tr>
 </tbody>

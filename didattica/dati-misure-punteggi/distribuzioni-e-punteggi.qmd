@@ -18,6 +18,7 @@ source("../../assets/diagrammi.R")
 virgola = function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",")
 tema = theme_minimal(base_size = if (stampa) 10 else 13) +
   theme(panel.grid.minor = element_blank(), plot.title = element_text(size = 12))
+cx = if (stampa) 2.7 else 3.5  # dimensione del testo nelle annotazioni ggplot
 ```
 
 Un QI di 130 non indica una quantità di intelligenza. Indica una posizione: due
@@ -26,20 +27,51 @@ raggiunto o superato da circa due persone su cento. Tutta la misura
 psicologica funziona così. Non avendo un metro naturale per le capacità mentali,
 usa come unità la variabilità fra le persone.
 
-Questo capitolo spiega come. Parte dalla curva gaussiana, il modello di
-distribuzione su cui poggia gran parte della psicometria, e arriva alle scale
-che si incontrano nei referti: punti *z*, QI, punteggi ponderati, punti T,
-percentili. Poi mostra dove il modello è una buona approssimazione e dove è una
-scelta teorica che conviene riconoscere come tale.
+In psicologia si lavora con **variabili** perché interessano cose che variano.
+A volte le si manipola sperimentalmente: ascoltare musica veloce o lenta mentre
+si studia cambia l'apprendimento? Un training di memoria di lavoro migliora la
+matematica dei bambini? Altre volte le si osserva correlazionalmente: essere
+musicisti si associa a punteggi più alti nei test cognitivi? Il tempo davanti
+agli schermi si associa a una minore attenzione in età prescolare? In entrambi i
+casi serve un modo per descrivere come si distribuiscono i valori e quanto una
+persona si discosta dalle altre. Questo capitolo parte dalla curva gaussiana, il
+modello di distribuzione su cui poggia gran parte della psicometria, e arriva
+alle scale che si incontrano nei referti: punti *z*, QI, punteggi ponderati,
+punti T, percentili. Poi mostra dove il modello è una buona approssimazione e
+dove è una scelta teorica che conviene riconoscere come tale.
 
 ## Una curva che si trova ovunque
 
-Molte caratteristiche fisiche e biologiche si distribuiscono in modo simile: la
-statura degli adulti, il peso alla nascita, la pressione sanguigna a riposo, le
-dimensioni di foglie e organi, gli errori nelle misure ripetute di una stessa
-grandezza. La maggior parte dei casi si concentra attorno a un valore centrale;
-allontanandosi in entrambe le direzioni i casi diventano sempre più rari. Il
-grafico ha la forma di una campana.
+Moltissimi test e modelli statistici poggiano su un'assunzione di normalità. Il
+motivo è che molte variabili osservate in natura, fisiche e biologiche, si
+distribuiscono davvero in modo simile: la statura degli adulti, il peso alla
+nascita, la pressione sanguigna a riposo, le dimensioni di foglie e organi, la
+durata di vita delle cellule, l'attività di fondo del sistema nervoso, gli errori
+nelle misure ripetute di una stessa grandezza. La maggior parte dei casi si
+concentra attorno a un valore centrale; allontanandosi in entrambe le direzioni
+i casi diventano sempre più rari. Il grafico ha la forma di una campana
+(@fig-statura). Col tempo è diventata un'assunzione generale, a volte un po'
+troppo aprioristica, sulla distribuzione di tutto.
+
+```{r}
+#| label: fig-statura
+#| fig-cap: "Statura simulata di 5.000 uomini adulti, con media μ = 173,5 cm e deviazione standard σ = 4,5 cm, valori vicini a quelli raccolti da Galton nel suo laboratorio antropometrico. La linea indica la media; la freccia, una deviazione standard."
+#| fig-alt: "Istogramma a campana della statura fra 158 e 190 centimetri. Una linea rossa verticale indica la media, 173,5; una freccia orizzontale da 173,5 a 178 indica la deviazione standard, 4,5."
+#| fig-width: !expr if (stampa) 4.45 else 7
+#| fig-height: !expr if (stampa) 2.8 else 3.8
+set.seed(1886)
+d = data.frame(h = rnorm(5000, 173.5, 4.5))
+ymax = max(table(cut(d$h, seq(150, 200, 1))))
+ggplot(d, aes(h)) +
+  geom_histogram(binwidth = 1, boundary = 0, fill = "grey75", colour = "white") +
+  geom_vline(xintercept = 173.5, colour = rosso, linewidth = .9) +
+  annotate("segment", x = 173.5, xend = 178, y = ymax * .62, yend = ymax * .62, colour = rosso, linewidth = .8, arrow = arrow(length = unit(.15, "cm"), ends = "both")) +
+  annotate("text", x = 175.75, y = ymax * .7, label = "σ = 4,5", colour = rosso, size = cx, fontface = "bold") +
+  annotate("text", x = 173.2, y = ymax * 1.06, label = "μ = 173,5", colour = rosso, size = cx, fontface = "bold", hjust = 1) +
+  scale_x_continuous(breaks = seq(160, 190, 5), limits = c(157, 191)) +
+  labs(x = "Statura (cm)", y = "Numero di persone") +
+  tema
+```
 
 Questa forma è la **distribuzione gaussiana**, o normale. Ha tre proprietà
 importanti:
@@ -52,63 +84,10 @@ importanti:
   standard, e proporzione di casi.
 
 Circa il 68% dei casi cade entro una deviazione standard dalla media, circa il
-95% entro due, quasi tutti entro tre. Oltre due deviazioni standard sopra la
-media si trova circa il 2,3% dei casi; lo stesso vale sotto. Queste proporzioni
-valgono per qualunque gaussiana, qualunque siano media e unità di misura.
-
-## Da dove nasce la campana
-
-Perché tante grandezze diverse assumono la stessa forma? La risposta è un
-risultato della teoria della probabilità, il **teorema del limite centrale**:
-la somma di molti fattori indipendenti, ciascuno con un piccolo effetto, tende a
-distribuirsi in modo gaussiano, quasi indipendentemente da come sono distribuiti
-i singoli fattori.
-
-Un'immagine utile è la passeggiata di una persona ubriaca che cerca di seguire
-una linea retta. A ogni passo barcolla un po' a destra o un po' a sinistra, a
-caso. Dopo mille passi dove si troverà? Probabilmente non lontano dalla linea,
-perché molte deviazioni si compensano. Talvolta, per una serie di sbandate
-nella stessa direzione, sarà parecchio distante. Se ripetessimo l'esperimento
-con migliaia di passeggiate, le posizioni finali formerebbero una campana. Lo
-stesso principio è reso visibile dalla tavola di Galton, in cui palline che
-rimbalzano a caso su file di chiodi si accumulano in una distribuzione a
-campana.
-La @fig-somma mostra il fenomeno con una simulazione.
-
-```{r}
-#| label: fig-somma
-#| fig-cap: "Il teorema del limite centrale in una simulazione. Ogni persona riceve un certo numero di fattori indipendenti, ciascuno di effetto asimmetrico (vale 1 con probabilità 0,2, altrimenti 0). Un fattore solo produce una distribuzione per nulla gaussiana; la somma di molti fattori si avvicina alla campana (curva rossa). Dati simulati su 10.000 persone."
-#| fig-alt: "Tre istogrammi. Con un fattore solo due barre, a 0 e a 1. Con 5 fattori una distribuzione asimmetrica concentrata sui valori bassi. Con 100 fattori un istogramma a campana sovrapposto a una curva gaussiana rossa."
-#| fig-width: !expr if (stampa) 4.45 else 9
-#| fig-height: !expr if (stampa) 2.2 else 2.8
-set.seed(1889)
-k = c(1, 5, 100)
-d = do.call(rbind, lapply(k, function(n) data.frame(v = rbinom(1e4, n, .2), n = n)))
-d$n = factor(d$n, levels = k, labels = paste(k, c("fattore", "fattori", "fattori")))
-curva = do.call(rbind, lapply(k[3], function(n) { x = seq(5, 35, .1); data.frame(x, y = 1e4 * dnorm(x, n * .2, sqrt(n * .2 * .8)), n = factor(paste(n, "fattori"), levels = levels(d$n))) }))
-ggplot(d, aes(v)) +
-  geom_bar(fill = "grey60", width = .8) +
-  geom_line(data = curva, aes(x, y), colour = rosso, linewidth = .8) +
-  facet_wrap(~n, scales = "free") +
-  scale_x_continuous(breaks = function(l) { b = pretty(l); b[b == round(b)] }) +
-  labs(x = "Somma dei fattori", y = "Persone") +
-  tema + theme(axis.text.y = element_blank(), panel.grid.major.x = element_blank())
-```
-
-Per l'intelligenza l'ipotesi additiva non è solo un'analogia. Le differenze
-genetiche associate alle abilità cognitive dipendono da migliaia di varianti,
-ciascuna con un effetto minuscolo [@davies2018study; @savage2018genome]. A
-queste si aggiungono innumerevoli influenze ambientali, educative, motivazionali
-e situazionali, compresa un po' di casualità nelle risposte a un test. Le abilità
-cognitive sono quindi **poligeniche**, perché molti geni influiscono sullo
-stesso tratto, e i loro effetti sono in larga parte condivisi tra abilità
-diverse [@kovas2006generalist]. Un risultato di tanti piccoli contributi sommati
-è esattamente il tipo di processo che genera una gaussiana.
-
-Vale la pena notare l'ordine storico. La scelta di modellare le abilità come
-gaussiane è nata molto prima che se ne conoscessero le basi genetiche. Sembrava
-naturale. Le evidenze successive l'hanno resa più plausibile, ma resta in parte
-una scelta teorica, come vedremo.
+95% entro due, quasi tutti entro tre. Oltre due deviazioni standard dalla media
+si trova circa il 4–5% dei casi, divisi fra le due code: circa il 2,3% per lato.
+Queste proporzioni valgono per qualunque gaussiana, qualunque siano media e
+unità di misura.
 
 ## La variabilità come unità di misura
 
@@ -116,11 +95,12 @@ La statura si misura in centimetri, e un centimetro vale lo stesso ovunque. Le
 abilità mentali sono invece **variabili latenti**: non si vedono e non hanno
 un'unità naturale. Dieci risposte corrette in una prova non sono confrontabili
 con dieci risposte corrette in un'altra, perché dipendono dal numero e dalla
-difficoltà degli item.
+difficoltà degli item. Non esistendo una quantità fisica da misurare, si usa
+come metrica la variabilità stessa.
 
-La soluzione è esprimere ogni punteggio come distanza dalla media della
-popolazione di riferimento, usando la deviazione standard come unità. Questa
-trasformazione si chiama **standardizzazione** e produce i **punti *z***:
+Si esprime cioè ogni punteggio come distanza dalla media della popolazione di
+riferimento, usando la deviazione standard come unità. Questa trasformazione si
+chiama **standardizzazione** e produce i **punti *z***:
 
 $$
 z = \frac{x - \mu}{\sigma}
@@ -128,7 +108,8 @@ $$
 
 Un punto *z* di +1 indica un punteggio una deviazione standard sopra la media;
 −2 due deviazioni standard sotto. Lo zero è la media. La metrica non dice più
-«quanto» in senso assoluto, ma «quanto distante dagli altri».
+«quanto» in senso assoluto, ma «quanto distante dagli altri». La distanza dalla
+media è diventata la metrica delle differenze individuali.
 
 Quasi tutti i punteggi usati nei test psicologici sono punti *z* riscalati,
 cioè moltiplicati per una costante e spostati per evitare decimali e numeri
@@ -143,41 +124,49 @@ negativi (@fig-scale):
 
 ```{r}
 #| label: fig-scale
-#| fig-cap: "La curva gaussiana e le principali scale di punteggio. Ogni riga riporta lo stesso punto della distribuzione espresso in una metrica diversa."
-#| fig-alt: "Curva a campana con linee verticali a meno 3, meno 2, meno 1, 0, più 1, più 2 e più 3 deviazioni standard. Sotto, cinque righe di corrispondenze: punti z, QI da 55 a 145, punteggi ponderati da 1 a 19, punti T da 20 a 80, percentili da 0,1 a 99,9."
+#| fig-cap: "La curva gaussiana, le proporzioni di casi fra una deviazione standard e l'altra, e le principali scale di punteggio. Ogni riga riporta lo stesso punto della distribuzione in una metrica diversa; l'ultima indica le etichette descrittive usate di solito per il QI."
+#| fig-alt: "Curva a campana divisa in fasce: 34,1% fra la media e una deviazione standard da ciascun lato, 13,6% fra una e due, 2,1% fra due e tre. Sopra, parentesi indicano 68,2% entro una deviazione standard, 95,4% entro due e 99,7% entro tre. Sotto, sei righe di corrispondenze: punti z da meno 3 a più 3, QI da 55 a 145, punteggi ponderati da 1 a 19, punti T da 20 a 80, percentili da 0,1 a 99,9, ed etichette per il QI: disabilità intellettiva, funzionamento limite, nella norma, fascia superiore, plusdotazione."
 #| fig-width: !expr if (stampa) 4.45 else 8
-#| fig-height: !expr if (stampa) 3.5 else 5.2
+#| fig-height: !expr if (stampa) 4.3 else 6
 z = -3:3
-curva = data.frame(x = seq(-3.6, 3.6, .01))
-curva$y = dnorm(curva$x)
+curva = data.frame(x = seq(-3.6, 3.6, .01)); curva$y = dnorm(curva$x)
+curva$fascia = cut(abs(curva$x), c(-1, 1, 2, 9), labels = c("a", "b", "c"))
 righe = data.frame(
   scala = rep(c("Punti z", "QI e indici", "Ponderati", "Punti T", "Percentili"), each = 7),
   x = rep(z, 5),
-  testo = c(sprintf("%+d", z), 100 + 15 * z, c(1, 4, 7, 10, 13, 16, 19), 50 + 10 * z,
-            c("0,1", "2", "16", "50", "84", "98", "99,9"))
-)
-righe$testo[righe$testo == "+0"] = "0"
-righe$y = -0.07 * match(righe$scala, unique(righe$scala))
-ts = if (stampa) .75 else 1  # testo più piccolo nella pagina A5
+  testo = c(c("−3", "−2", "−1", "0", "+1", "+2", "+3"), 100 + 15 * z, c(1, 4, 7, 10, 13, 16, 19), 50 + 10 * z,
+            c("0,1", "2", "16", "50", "84", "98", "99,9")))
+righe$y = -0.065 * match(righe$scala, unique(righe$scala))
+ts = if (stampa) .72 else 1  # testo più piccolo nella pagina A5
+etich = data.frame(x = c(-2.55, -1.5, 0, 1.5, 2.55), y = -.065 * 6.4,
+                   t = c("disabilità\nintellettiva", "funziona-\nmento limite", "nella norma", "fascia\nsuperiore", "plusdo-\ntazione"))
+parent = data.frame(k = 1:3, y = c(.44, .49, .54), lab = c("68,2%", "95,4%", "99,7%"))
 ggplot() +
-  geom_area(data = curva, aes(x, y), fill = "grey88") +
-  geom_line(data = curva, aes(x, y), linewidth = .8) +
-  geom_segment(data = data.frame(x = z), aes(x = x, xend = x, y = 0, yend = dnorm(x)), colour = rosso, linetype = 2) +
-  geom_text(data = righe, aes(x, y, label = testo), size = 3.8 * ts) +
-  annotate("text", x = -3.6, y = unique(righe$y), label = unique(righe$scala), hjust = 1, size = 3.8 * ts, fontface = "bold") +
-  annotate("text", x = c(-.5, .5), y = .2, label = "34%", size = 3.6 * ts) +
-  annotate("text", x = c(-1.5, 1.5), y = .06, label = "13,6%", size = 3.4 * ts) +
-  coord_cartesian(xlim = c(-4.9, 3.6), clip = "off") +
+  geom_area(data = curva, aes(x, y, fill = fascia, group = interaction(fascia, sign(x))), position = "identity") +
+  geom_line(data = curva, aes(x, y), linewidth = .7) +
+  geom_segment(data = data.frame(x = 0), aes(x = 0, xend = 0, y = 0, yend = dnorm(0)), linetype = 2) +
+  geom_segment(data = parent, aes(x = -k, xend = k, y = y, yend = y), colour = "grey30", linewidth = .4) +
+  geom_segment(data = rbind(transform(parent, x = -k), transform(parent, x = k)), aes(x = x, xend = x, y = y, yend = y - .02), colour = "grey30", linewidth = .4) +
+  geom_text(data = parent, aes(x = 0, y = y + .018, label = lab), size = 3.3 * ts, fontface = "bold", colour = "grey20") +
+  annotate("text", x = c(-.5, .5), y = .13, label = "34,1%", size = 3.2 * ts) +
+  annotate("text", x = c(-1.5, 1.5), y = .04, label = "13,6%", size = 3 * ts) +
+  annotate("text", x = c(-2.6, 2.6), y = .04, label = "2,1%", size = 3 * ts, colour = rosso) +
+  geom_text(data = righe, aes(x, y, label = testo), size = 3.6 * ts) +
+  annotate("text", x = -3.6, y = unique(righe$y), label = unique(righe$scala), hjust = 1, size = 3.6 * ts, fontface = "bold") +
+  geom_text(data = etich, aes(x, y, label = t), size = 3 * ts, fontface = "italic", colour = rosso, lineheight = .85) +
+  annotate("text", x = -3.6, y = -.065 * 6.4, label = "Etichette QI", hjust = 1, size = 3.6 * ts, fontface = "bold") +
+  scale_fill_manual(values = c(a = "grey80", b = "grey90", c = "#D9A3A3"), guide = "none") +
+  coord_cartesian(xlim = c(-4.9, 3.6), ylim = c(-.47, .57), clip = "off") +
   theme_void(base_size = 13)
 ```
 
-I percentili sono molto usati in clinica perché sono intuitivi. Hanno però un
-limite: non sono una scala a intervalli uguali. Al centro della distribuzione
-una piccola differenza di abilità sposta molti percentili; nelle code una grande
-differenza ne sposta pochi. Passare dal 50° all'84° percentile richiede una
-deviazione standard; passare dall'84° al 98° ne richiede un'altra. Per questo
-non ha senso fare la media dei percentili, e nella ricerca si preferiscono i
-punti *z*.
+I percentili sono molto usati in clinica perché sono intuitivi e robusti alle
+violazioni della normalità. Hanno però un limite: non sono una scala a
+intervalli uguali. Al centro della distribuzione una piccola differenza di
+abilità sposta molti percentili; nelle code una grande differenza ne sposta
+pochi. Passare dal 50° all'84° percentile richiede una deviazione standard;
+passare dall'84° al 98° ne richiede un'altra. Per questo non ha senso fare la
+media dei percentili, e nella ricerca si preferiscono i punti *z*.
 
 Questa metrica permette anche di rendere preciso un concetto del capitolo
 precedente. Se la relazione fra due misure è lineare, il valore atteso di una
@@ -195,19 +184,19 @@ sono perfettamente correlate.
 
 ## Essere rari
 
-Definire i punteggi come distanze dalla media ha una conseguenza importante:
+Definire i punteggi come distanze dalla media ha una conseguenza fondamentale:
 la rarità statistica diventa, di per sé, un'informazione potenzialmente
-rilevante.
+rilevante sul piano clinico.
 
 La disabilità intellettiva non è definita da un livello di funzionamento basso
 in assoluto, ma basso rispetto a quello della popolazione, insieme a difficoltà
 nel comportamento adattivo. Una società organizza scuole, lavori e servizi
-attorno a ciò che la maggior parte delle persone riesce a fare. Chi si trova
-molto sotto quella soglia incontra ostacoli concreti. Lo stesso vale per la
-dislessia: la scuola è costruita attorno a un ritmo medio di apprendimento della
-lettura, e chi ne è molto distante resta indietro. E per l'ADHD: livelli di
-attenzione o di impulsività diventano problematici soprattutto quando divergono
-da ciò che il contesto richiede.
+attorno a ciò che la maggior parte delle persone riesce a fare: aspettative e
+requisiti sono tarati sulla media. Lo stesso vale per la dislessia: la scuola è
+costruita attorno a un ritmo medio di apprendimento della lettura, e chi ne è
+molto distante resta indietro. E per l'ADHD: livelli di attenzione o di
+impulsività diventano problematici soprattutto quando divergono da ciò che il
+contesto richiede.
 
 Il ragionamento vale anche all'altro estremo. Un'abilità molto superiore alla
 media è rara, e la rarità può comportare un disallineamento con il contesto: un
@@ -218,45 +207,164 @@ guardare meglio.
 ::: {.callout-tip icon=false}
 ## Punto metodologico: il *d* di Cohen
 
-La stessa logica dei punti *z* serve a misurare la differenza fra due gruppi o
-due condizioni. Il **d di Cohen** è la differenza fra due medie divisa per la
-deviazione standard:
+La stessa logica dei punti *z* serve a misurare quanto è grande la differenza
+fra due gruppi, per esempio clinico e non clinico, o fra due condizioni, per
+esempio prima e dopo un trattamento. Il **d di Cohen** è la differenza fra due
+medie divisa per la deviazione standard, combinando quelle dei due gruppi:
 
 $$
-d = \frac{M_1 - M_2}{DS}
+d = \frac{M_2 - M_1}{\sqrt{(DS_1^2 + DS_2^2)/2}}
 $$
 
-Un *d* di 0,5 indica che le due medie distano mezza deviazione standard. Le
-soglie tradizionali definiscono «piccolo» un *d* di 0,2, «medio» 0,5 e «grande»
-0,8. Sono convenzioni proposte in assenza di dati migliori. Le revisioni degli
-effetti replicati in psicologia suggeriscono che effetti veri attorno a
-0,3–0,4 siano già consistenti e che le soglie andrebbero abbassate
-[@funder2019evaluating]. Come per la correlazione, la grandezza va giudicata nel
-contesto.
+La ragione è la stessa dei punti *z*: in psicologia il punteggio è spesso su una
+metrica arbitraria, e la variabilità fra persone diventa l'unità di misura. Un
+*d* di 0,5 indica che le due medie distano mezza deviazione standard
+(@fig-cohen). Le soglie tradizionali definiscono «piccolo» un *d* di 0,2,
+«medio» 0,5 e «grande» 0,8. Sono convenzioni proposte in assenza di dati
+migliori. Le revisioni degli effetti replicati in psicologia, dove i fenomeni
+sono molto rumorosi, suggeriscono che le soglie andrebbero abbassate: un
+effetto tipico da meta-analisi è attorno a 0,30–0,35 [@funder2019evaluating].
+Come per la correlazione, la grandezza va giudicata nel contesto.
 :::
+
+```{r}
+#| label: fig-cohen
+#| fig-cap: "Due effetti di un trattamento espressi con il d di Cohen. Nel primo studio la media dopo il trattamento è una deviazione standard più alta (d = 1,0); nel secondo solo tre decimi di deviazione standard (d = 0,3), e le due distribuzioni quasi coincidono. Distribuzioni teoriche."
+#| fig-alt: "Due pannelli, ciascuno con due curve a campana sovrapposte, prima del trattamento in grigio e dopo in rosso, con linee tratteggiate sulle medie. Nel primo pannello le medie distano una deviazione standard; nel secondo solo 0,3."
+#| fig-width: !expr if (stampa) 4.45 else 8
+#| fig-height: !expr if (stampa) 2.4 else 3
+x = seq(-4, 5, .02)
+st = c("Studio 1: d = 1,0", "Studio 2: d = 0,3"); dd = c(1, .3)
+d = do.call(rbind, lapply(1:2, function(i) rbind(data.frame(x, y = dnorm(x), g = "pre", s = st[i]), data.frame(x, y = dnorm(x, dd[i]), g = "post", s = st[i]))))
+medie = data.frame(s = rep(st, each = 2), m = c(0, 1, 0, .3), g = rep(c("pre", "post"), 2))
+ggplot(d, aes(x, y, fill = g, colour = g)) +
+  geom_area(position = "identity", alpha = .35, linewidth = .6) +
+  geom_vline(data = medie, aes(xintercept = m, colour = g), linetype = 2) +
+  geom_text(data = data.frame(s = st[1], x = c(-2.4, 3.3), y = .3, g = c("pre", "post"), lab = c("prima", "dopo")),
+            aes(x, y, label = lab, colour = g), inherit.aes = FALSE, size = cx) +
+  scale_fill_manual(values = c(pre = "grey60", post = rosso), guide = "none") +
+  scale_colour_manual(values = c(pre = "grey30", post = rosso), guide = "none") +
+  scale_x_continuous(breaks = -3:4) +
+  facet_wrap(~s) +
+  labs(x = "Abilità (punti z)", y = NULL) +
+  tema + theme(axis.text.y = element_blank(), panel.grid.major.y = element_blank())
+```
+
+## Da dove nasce la campana
+
+Perché tante grandezze diverse assumono la stessa forma? Un'immagine utile è la
+passeggiata di una persona ubriaca che cerca di seguire una linea retta. A ogni
+passo barcolla un po' a destra o un po' a sinistra, a caso. Dopo un chilometro
+dove si troverà? Probabilmente non lontano dalla linea, perché molte deviazioni
+si compensano. Talvolta, per una serie di sbandate nella stessa direzione, sarà
+parecchio distante. Ripetendo l'esperimento con moltissime passeggiate, le
+posizioni finali formano una campana (@fig-passeggiata). Un semplice accumularsi
+di effetti, che si sommano uno dopo l'altro tirando in direzioni diverse, produce
+alla fine una gaussiana. Lo stesso principio è reso visibile dalla tavola di
+Galton, in cui palline che rimbalzano a caso su file di chiodi si accumulano in
+una distribuzione a campana.
+
+```{r}
+#| label: fig-passeggiata
+#| fig-cap: "La passeggiata dell'ubriaco (random walk). A ogni passo ci si sposta a caso di un'unità in su o in giù. Una passeggiata sola ha un percorso imprevedibile; molte passeggiate si allargano a ventaglio; le posizioni finali di moltissime passeggiate (a destra, in rosso) formano una gaussiana. Dati simulati."
+#| fig-alt: "Tre pannelli con l'asse orizzontale dei passi, da 0 a 100, e quello verticale della distanza dalla linea di partenza. Nel primo una sola traiettoria a zig zag; nel secondo dieci traiettorie; nel terzo cinquecento traiettorie a ventaglio, con a destra una curva rossa a campana che descrive le posizioni finali."
+#| fig-width: !expr if (stampa) 4.45 else 9
+#| fig-height: !expr if (stampa) 4.6 else 3.2
+set.seed(42)
+cammina = function(k) do.call(rbind, lapply(1:k, function(j) data.frame(passo = 0:100, pos = c(0, cumsum(sample(c(-1, 1), 100, TRUE))), id = j)))
+pn = c("Una passeggiata", "Dieci passeggiate", "Cinquecento passeggiate")
+d = rbind(cbind(cammina(1), p = pn[1]), cbind(cammina(10), p = pn[2]), cbind(cammina(500), p = pn[3]))
+d$p = factor(d$p, levels = pn)
+fin = d$pos[d$p == pn[3] & d$passo == 100]
+yy = seq(-35, 35, .5)
+campana = data.frame(passo = 100 + 300 * dnorm(yy, mean(fin), sd(fin)), pos = yy, p = factor(pn[3], levels = pn))
+ggplot(d, aes(passo, pos, group = id)) +
+  geom_hline(yintercept = 0, colour = "grey60") +
+  geom_line(colour = "grey25", alpha = .25, linewidth = .3) +
+  geom_line(data = subset(d, p != pn[3]), colour = "grey25", alpha = .8, linewidth = .4) +
+  geom_path(data = campana, aes(group = 1), colour = rosso, linewidth = .9) +
+  facet_wrap(~p, ncol = if (stampa) 1 else 3) +
+  scale_x_continuous(breaks = seq(0, 100, 25)) +
+  labs(x = "Passi", y = "Distanza dalla linea") +
+  tema
+```
+
+Il principio ha un nome: **teorema del limite centrale**. La somma di moltissime
+variabili diverse, ciascuna con un piccolo effetto, tende a distribuirsi in modo
+gaussiano, quasi indipendentemente da come sono distribuite le singole
+variabili (@fig-somma). Ecco perché la gaussiana in psicologia: tratti, abilità e
+stati mentali sono il risultato finale di moltissimi processi additivi. Non
+dipendono da una o poche cause, ma da innumerevoli fattori, piccoli o grandi,
+che si sommano.
+
+```{r}
+#| label: fig-somma
+#| fig-cap: "Il teorema del limite centrale. Fattori distribuiti nei modi più diversi, piatti, asimmetrici, bimodali, discreti, sommati fra loro producono una distribuzione gaussiana: quella di un tratto o di un'abilità."
+#| fig-alt: "In alto sei piccoli istogrammi di forme diverse, collegati da segni più: uno piatto, uno con due picchi, uno asimmetrico verso destra, uno a campana, uno a barre decrescenti e uno a U. Tre frecce scendono verso una grande curva a campana grigia con la scritta tratto, abilità."
+#| fig-width: !expr 4.45 * scala
+#| fig-height: !expr 2.6 * scala
+tela(c(0, 12), c(0, 10))
+forme = list(rep(1, 6), c(1, 3, 1, .4, 3, 1.2), c(4, 3, 2, 1.2, .7, .3), dnorm(seq(-2, 2, length.out = 7)), c(5, 3, 1.8, 1, .6), c(3, 1, .4, .4, 1, 3))
+x0 = seq(.15, 10.25, length.out = 6)
+for (i in 1:6) {
+  h = forme[[i]] / max(forme[[i]]) * 2; n = length(h); w = 1.6 / n
+  rect(x0[i] + (0:(n - 1)) * w, 7.6, x0[i] + (1:n) * w - .03, 7.6 + h, col = "grey70", border = NA)
+  segments(x0[i], 7.6, x0[i] + 1.6, 7.6, col = "grey40", lwd = .6 * scala)
+  if (i < 6) text(x0[i] + 1.8, 8.6, "+", cex = 1.1, font = 2, col = rosso)
+}
+for (k in c(-1, 0, 1)) freccia(6 + k * 3, 7.1, 6 + k * 1.2, 5.3, col = "grey35")
+xb = seq(-3.2, 3.2, .05)
+polygon(c(6 + 1.25 * xb, 6 + 1.25 * 3.2), c(.6 + 11 * dnorm(xb), .6), col = "grey80", border = rosso, lwd = 1.2 * scala)
+segments(1.5, .6, 10.5, .6, col = "grey40", lwd = .6 * scala)
+text(6, 1.6, "TRATTO, ABILITÀ", cex = .62, font = 2)
+text(11.95, 3.4, "somma di\nmoltissime\nvariabili:\ndistribuzione\ngaussiana", adj = c(1, .5), cex = .5, font = 3, col = "grey30")
+```
+
+Per l'intelligenza l'ipotesi additiva non è solo un'analogia. All'inizio era
+soltanto un'assunzione, ma oggi si comincia a vedere che cosa c'è sotto. Gli
+studi genomici stimano che le differenze genetiche associate al fattore generale
+dipendano da migliaia di varianti, ciascuna con un effetto minuscolo, di cui solo
+una piccola parte è stata identificata con certezza
+[@davies2018study; @savage2018genome]. A queste si aggiungono innumerevoli
+influenze ambientali, neurobiologiche, educative, motivazionali e situazionali,
+compresa un po' di casualità nelle risposte a un test. Le abilità e le
+disabilità cognitive sono quindi **poligeniche**, perché molti geni influiscono
+sullo stesso tratto, e per questo variano lungo dimensioni continue; e sono
+**pleiotropiche**, perché gli stessi geni influiscono su molte abilità, e per
+questo le abilità sono correlate fra loro [@kovas2006generalist]. La
+poligenicità è stata perfino proposta come «legge» generale della genetica del
+comportamento: qualunque tratto comportamentale variabile dipende da moltissime
+varianti, ciascuna responsabile di una quota minima delle differenze
+[@chabris2015fourth].
 
 ## Quando i dati non sono gaussiani
 
-Fin qui il modello. I dati osservati, però, spesso non hanno la forma di una
-campana, e non per ragioni profonde. Dipende dallo strumento di misura. Un test
-con pochi item facili produce molti punteggi massimi; uno con item difficili
-produce molti zeri. I tempi di risposta non possono scendere sotto lo zero e
-hanno una lunga coda di risposte lente. Le risposte su scala Likert sono poche
-categorie ordinate. Nei test cognitivi è frequente osservare distribuzioni dei
-punteggi grezzi asimmetriche, con un accumulo vicino al punteggio massimo.
+La scelta di modellare abilità, tratti e stati mentali come gaussiani è nata
+molto prima che se ne conoscessero le basi genetiche o ambientali, perché
+sembrava naturale. Le evidenze successive l'hanno resa più plausibile, ma resta
+essenzialmente una **scelta teorica**. E c'è un colpo di scena: molti dati
+psicologici osservati non hanno affatto la forma di una campana, e non per
+ragioni profonde. Dipende dallo strumento di misura. Un test con pochi item
+facili produce molti punteggi massimi; uno con item difficili produce molti zeri.
+I tempi di risposta non possono scendere sotto lo zero e hanno una lunga coda di
+risposte lente. Le risposte su scala Likert sono poche categorie ordinate. Nei
+test cognitivi è frequente osservare distribuzioni dei punteggi grezzi
+asimmetriche, con un accumulo vicino al punteggio massimo.
 
 Chi analizza i dati ha diverse strade. Può ignorare il problema e assumere
 comunque la normalità, sperando che non faccia danni: è la scelta più frequente,
 spesso per mancanza di alternative conosciute. Può usare test non parametrici,
-che però limitano le analisi possibili. Può usare modelli statistici che
-descrivono correttamente la distribuzione della risposta osservata, come i
-modelli lineari generalizzati. Oppure, quando si costruisce un test, può
-intervenire direttamente sulla scala dei punteggi.
+che però limitano fortemente le analisi possibili, per esempio con interazioni,
+effetti casuali o previsioni. Può usare modelli statistici che descrivono
+correttamente la distribuzione della risposta osservata, come i modelli lineari
+generalizzati. Oppure, se possibile, può raccogliere i dati con strumenti
+validati, standardizzati e normalizzati: è la prassi storica dei test di
+intelligenza.
 
 ```{r}
 #| label: fig-normalizzazione
-#| fig-cap: "Punteggi grezzi simulati di una prova con effetto tetto (primo pannello) e due modi di trasformarli. La trasformazione lineare in punti z conserva l'asimmetria; la normalizzazione rimappa i punteggi sulla gaussiana attraverso i percentili. Per semplicità, i punteggi a pari merito sono qui distribuiti fra percentili adiacenti."
-#| fig-alt: "Tre istogrammi. Il primo mostra punteggi grezzi addensati verso il massimo di 30. Il secondo, in punti z, ha la stessa forma asimmetrica. Il terzo, dopo la normalizzazione, ha forma a campana."
+#| fig-cap: "Punteggi grezzi simulati di una prova con effetto tetto (primo pannello) e due modi di trasformarli. La trasformazione lineare in punti z conserva l'asimmetria: i punteggi estremi bassi sono troppo frequenti e i punteggi alti non vanno oltre poco più di una deviazione standard. La normalizzazione rimappa i punteggi sulla gaussiana attraverso i percentili. Per semplicità, i punteggi a pari merito sono qui distribuiti fra percentili adiacenti."
+#| fig-alt: "Tre istogrammi. Il primo mostra punteggi grezzi addensati verso il massimo di 30. Il secondo, in punti z, ha la stessa forma asimmetrica, con note sui punteggi estremi bassi troppo frequenti e sui punteggi alti non raggiungibili. Il terzo, dopo la normalizzazione, ha forma a campana."
 #| fig-width: !expr if (stampa) 4.45 else 9
 #| fig-height: !expr if (stampa) 4.6 else 3.4
 set.seed(310)
@@ -264,35 +372,63 @@ abil = rnorm(3000)
 grezzo = rbinom(3000, 30, plogis(1.6 + 1.1 * abil))
 zlin = (grezzo - mean(grezzo)) / sd(grezzo)
 znorm = qnorm((rank(grezzo, ties.method = "random") - .5) / length(grezzo))
-dn = rbind(
-  data.frame(v = grezzo, tipo = "Punteggio grezzo (0-30)"),
-  data.frame(v = zlin, tipo = "Punti z lineari"),
-  data.frame(v = znorm, tipo = "Punti z normalizzati")
-)
-dn$tipo = factor(dn$tipo, levels = unique(dn$tipo))
+lv = c("Punteggio grezzo (0-30)", "Punti z lineari", "Punti z normalizzati")
+dn = rbind(data.frame(v = grezzo, tipo = lv[1]), data.frame(v = zlin, tipo = lv[2]), data.frame(v = znorm, tipo = lv[3]))
+dn$tipo = factor(dn$tipo, levels = lv)
+note = data.frame(tipo = factor(lv[2], levels = lv), v = c(min(zlin) + .2, max(zlin)), hj = c(0, 1),
+                  lab = c("punteggi estremi\ntroppo frequenti", "punteggi alti\nnon raggiungibili"))
 ggplot(dn, aes(v)) +
-  geom_histogram(bins = 26, fill = "grey60", colour = "white") +
+  geom_histogram(bins = 26, fill = "grey65", colour = "white") +
+  geom_text(data = note, aes(x = v, y = Inf, label = lab, hjust = hj), vjust = 1.3, size = cx * .85, colour = rosso, lineheight = .85) +
   facet_wrap(~tipo, scales = "free_x", ncol = if (stampa) 1 else 3) +
   labs(x = NULL, y = "Frequenza") +
   tema
 ```
 
-Le procedure sono due (@fig-normalizzazione). La **trasformazione lineare** in
-punti *z* sottrae la media e divide per la deviazione standard. È semplice e
-molto usata, ma conserva la forma originale: se i punteggi grezzi sono
-asimmetrici, lo sono anche i punti *z*, e le corrispondenze fra *z* e percentili
-non valgono più. La **normalizzazione** assegna invece a ogni punteggio grezzo il
-punto *z* corrispondente al suo percentile nella gaussiana. Il risultato è una
-distribuzione a campana per costruzione.
+Le procedure di trasformazione sono due (@fig-normalizzazione). La
+**trasformazione lineare** in punti *z* sottrae la media e divide per la
+deviazione standard. È semplice e molto usata, ma conserva la forma originale:
+se i punteggi grezzi sono asimmetrici, lo sono anche i punti *z*, e le
+corrispondenze fra *z* e percentili non valgono più. Non è l'ideale, ma spesso
+si fa semplicemente così. La **normalizzazione** assegna invece a ogni punteggio
+grezzo il punto *z* corrispondente al suo percentile nella gaussiana. Il
+risultato è una distribuzione a campana per costruzione. È preferibile quando
+possibile, ma richiede competenze più avanzate ed è, di nuovo, una scelta
+teorica.
 
 La normalizzazione è la procedura tipica delle tabelle normative dei test di
 intelligenza. Ogni tabella di conversione da punteggio grezzo a ponderato è, in
-sostanza, una normalizzazione calcolata separatamente per ogni fascia d'età: un
-certo numero di risposte corrette viene tradotto nel ponderato corrispondente
-alla stessa posizione nella distribuzione dei coetanei. In fondo a una tabella
-del genere c'è un'ipotesi esplicita: l'abilità latente è distribuita in modo
-gaussiano, mentre la forma irregolare dei punteggi grezzi riflette le
-caratteristiche dello strumento.
+sostanza, una normalizzazione calcolata separatamente per ogni fascia d'età o
+di scolarità: un certo numero di risposte corrette viene tradotto nel ponderato
+corrispondente alla stessa posizione nella distribuzione dei coetanei. In fondo
+a una tabella del genere c'è un'ipotesi esplicita (@fig-latente): l'abilità
+latente, ciò che interessa davvero, è distribuita in modo gaussiano e causa il
+punteggio osservato, la cui forma irregolare riflette le caratteristiche dello
+strumento, come i limiti inferiore e superiore della scala, o del processo, come
+i tempi che non possono scendere sotto zero.
+
+```{r}
+#| label: fig-latente
+#| fig-cap: "Riferirsi alla gaussiana come distribuzione della vera abilità latente è una scelta teorica. L'abilità, che si assume gaussiana, causa il punteggio osservato, che spesso non lo è; la normalizzazione rimappa il punteggio osservato sulla gaussiana."
+#| fig-alt: "A sinistra una piccola curva a campana, abilità o tratto latente, che si assume distribuito normalmente: ciò che interessa davvero. A destra un piccolo istogramma asimmetrico, punteggio osservato, spesso non gaussiano, che riflette caratteristiche dello strumento o del processo. Una freccia rossa, causa, va da sinistra a destra; una freccia curva grigia, normalizzazione, torna da destra a sinistra."
+#| fig-width: !expr 4.45 * scala
+#| fig-height: !expr 2.3 * scala
+tela(c(0, 12), c(0, 10))
+xb = seq(-3, 3, .05)
+lines(2.4 + .55 * xb, 7 + 6 * dnorm(xb), lwd = 1.3 * scala); segments(.7, 7, 4.1, 7, col = "grey50", lwd = .6 * scala)
+h = c(.1, .15, .2, .3, .45, .6, .85, 1.1, 1.4, 1.7, 2, 2.2, 1.9, 1.1)
+rect(8 + (0:13) * .25, 7, 8 + (1:14) * .25 - .03, 7 + h * 1.1, col = "grey65", border = NA)
+segments(7.9, 7, 11.6, 7, col = "grey50", lwd = .6 * scala)
+text(2.4, 5.3, "abilità o tratto latente:\nsi assume gaussiano", cex = .6, font = 2)
+text(9.75, 5.3, "punteggio osservato:\nspesso non gaussiano", cex = .6, font = 2)
+freccia(4.6, 7.6, 7.5, 7.6, col = rosso, lwd = 2.2); text(6.05, 8.3, "causa", cex = .58, col = rosso, font = 2)
+t = seq(0, pi, length.out = 60)
+lines(6.05 + 1.45 * cos(t), 5.6 - 1.3 * sin(t), col = "grey45", lwd = 1.1 * scala)
+freccia(4.62, 5.66, 4.6, 5.7, col = "grey45", lwd = 1.1)
+text(6.05, 3.7, "normalizzazione:\nrimappatura sulla gaussiana", cex = .5, font = 3, col = "grey30")
+text(2.4, 2.4, "ciò che interessa\ndavvero", cex = .6, font = 3, col = rosso)
+text(9.75, 2.2, "riflette lo strumento (limiti\ndella scala) o il processo\n(tempi mai sotto zero)", cex = .5, font = 3, col = "grey30")
+```
 
 ## Che tipo di scala?
 
@@ -302,8 +438,8 @@ Le scale di misura si distinguono per le operazioni che consentono.
 |---|---|---|
 | Categoriale | Uguale o diverso | Diagnosi sì/no; gruppo sperimentale o di controllo |
 | Ordinale | Maggiore o minore | Risposta a un item Likert |
-| A intervalli | Distanze uguali; zero arbitrario | Temperatura in gradi Celsius; punti *z* ben costruiti |
-| A rapporti | Anche «il doppio» e «la metà»; zero assoluto | Tempi; numero di errori; temperatura in kelvin |
+| A intervalli | Distanze uguali; zero arbitrario; si può sommare e sottrarre | Temperatura in gradi Celsius; punti *z* ben costruiti |
+| A rapporti | Anche «il doppio» e «la metà»; zero assoluto | Tempi; numero di errori; somma di risposte corrette; temperatura in kelvin |
 
 : Scale di misura e operazioni consentite. {#tbl-scale}
 
@@ -317,25 +453,26 @@ scala non corrisponde all'assenza di intelligenza.
 
 ## Oltre la gaussiana
 
-Non tutte le distribuzioni nascono dalla somma di piccoli effetti. Due eccezioni
+La gaussiana deriva dal teorema del limite centrale: moltissime concause che si
+sommano. Alcune distribuzioni, però, nascono da processi diversi. Due eccezioni
 sono rilevanti.
 
 La prima è la **mistura**. Il peso alla nascita è approssimativamente gaussiano,
 ma con un eccesso di neonati sottopeso dovuto a condizioni patologiche che
 agiscono come una popolazione a sé. L'intelligenza nella popolazione generale
 mostra un fenomeno simile: la coda inferiore contiene più casi del previsto,
-perché sindromi genetiche, mutazioni rare e danni neurologici precoci producono
-effetti molto grandi, che non si sommano ai piccoli contributi ordinari ma li
-sovrastano.
+perché sindromi genetiche come quella di Down, mutazioni rare e danni neurologici
+precoci producono effetti molto grandi. In teoria anche questi effetti si
+sommano agli altri, ma sono così forti da formare un gruppo a parte.
 
 La seconda è la distribuzione **log-normale**, prodotta da fattori che si
 moltiplicano anziché sommarsi. Si pensi a un esito sociale come il reddito: se
-istruzione, salute, opportunità e abilità interagiscono in modo moltiplicativo,
-basta che uno manchi quasi del tutto per azzerare il risultato, mentre una
-combinazione favorevole di tutti produce valori estremi. Da qui code molto
-lunghe e la concentrazione di ricchezza osservata in molte società. Questo
-modello è più adatto agli esiti sociali che alle caratteristiche psicologiche di
-base.
+istruzione, salute, opportunità, impegno e abilità interagiscono in modo
+moltiplicativo, basta che uno manchi quasi del tutto per azzerare il risultato,
+mentre una combinazione favorevole di tutti produce valori estremi. Da qui code
+molto lunghe; meccanismi in cui chi vince prende tutto, o le rendite che si
+accumulano, accentuano la concentrazione di ricchezza. Questo modello è più
+adatto agli esiti sociali che alle caratteristiche psicologiche di base.
 
 Come sappiamo che l'intelligenza è il prodotto di effetti additivi e non
 moltiplicativi? In realtà non lo sappiamo con certezza. Le distribuzioni
@@ -343,9 +480,9 @@ approssimativamente simmetriche dei punteggi grezzi sono un indizio debole,
 perché gli item vengono selezionati proprio per ottenere quella simmetria. Per
 alcune abilità, come lettura e matematica, sono stati ipotizzati meccanismi
 cumulativi, in cui chi parte avvantaggiato accumula vantaggi ulteriori. Qualcosa
-di simile è stato proposto anche per l'intelligenza, attraverso il legame con la
-scolarizzazione. La gaussiana resta il modello di riferimento: utile, plausibile,
-ma non un fatto di natura.
+di simile, pur modesto, è stato proposto anche per l'intelligenza, attraverso il
+legame con la scolarizzazione. La gaussiana resta il modello di riferimento:
+utile, plausibile, ma non un fatto di natura.
 
 ::: {.callout-note icon=false}
 ## In breve

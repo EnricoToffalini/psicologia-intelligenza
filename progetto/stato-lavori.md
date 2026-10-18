@@ -42,8 +42,23 @@ stato attuale e i punti aperti; la storia dettagliata è nella cronologia di git
    stesura completa.
 6. Frazier et al. (2004) e Oh et al. (2023): metadati verificati, valori citati
    da confrontare con il testo degli articoli.
+7. `che-cosa-e` (riallineato alle slide, ottobre 2026): verificare che le
+   definizioni di Woodrow e Dearborn compaiano nella prima puntata del simposio
+   del 1921 (pp. 123–147) e non in quelle successive; Cornoldi (2007) e
+   Sternberg (2002) inseriti a mano come libri, da controllare su copia.
+8. Stile delle figure (deciso): architettura delle slide, stile grafico del
+   libro. Avanzamento capitolo per capitolo nella tabella di `AGENTS.md`.
+9. `qualita-della-misura`: le saturazioni WISC-IV delle figure a uno e due
+   fattori vengono dalle slide (analisi dell'autore, N = 2.200); indicare la
+   fonte pubblicata, se esiste, o dichiararle analisi originale.
+10. Nuovo riferimento Cattell (1987) inserito a mano come libro: verificare.
 
 ## Note tecniche
+
+- Il PDF usa `newunicodechar` (in `assets/pdf-layout.tex`) per scrivere
+  lettere greche e ≈ nel testo; il pacchetto è stato installato nella TinyTeX
+  locale dall'archivio congelato di TeX Live 2025, ora repository predefinito di
+  `tlmgr`.
 
 - Se il render PDF chiede pacchetti LaTeX mancanti, la TinyTeX locale (TeX Live
   2025) va puntata all'archivio congelato

@@ -18,6 +18,7 @@ source("../../assets/diagrammi.R")
 virgola = function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",")
 tema = theme_minimal(base_size = if (stampa) 10 else 13) +
   theme(panel.grid.minor = element_blank(), plot.title = element_text(size = 12))
+cx = if (stampa) 2.7 else 3.5  # dimensione del testo nelle annotazioni ggplot
 ```
 
 Chi ha un QI più alto tende a ottenere voti scolastici migliori. Eppure tutti
@@ -31,251 +32,406 @@ correlazioni: fra prove cognitive, fra fratelli, fra un punteggio e un esito
 scolastico o lavorativo. Conviene quindi capire bene che cosa riassume questo
 numero e, soprattutto, che cosa lascia fuori.
 
-## Leggere una nuvola di punti
+## Che cos'è una correlazione
 
-Immaginiamo di avere due misure per ciascuna persona: per esempio un punteggio
-di ragionamento e un voto medio. Ogni persona diventa un punto su un piano, con
-la prima misura sull'asse orizzontale e la seconda su quello verticale. La
-domanda è semplice: se una persona sta sopra la media nella prima misura, tende
-a stare sopra la media anche nella seconda, sotto, oppure non c'è alcuna
-tendenza?
+La correlazione è una misura statistica della **direzione** e dell'**intensità**
+della relazione fra due variabili quantitative. L'idea intuitiva è semplice: se
+una persona sta sopra la media in una variabile, tende a stare sopra la media
+anche nell'altra, sotto, oppure è del tutto indifferente?
 
-Le domande quotidiane hanno la stessa forma. Se oggi fa più caldo del solito, si
+Le domande quotidiane hanno la stessa forma. Se una persona studia più della
+media, tende a prendere un voto più alto? Se oggi fa più caldo del solito, si
 vendono più gelati? Se un genitore ha un QI sopra la media, i figli tendono ad
-averlo sopra la media? Se si studia più della media, il voto tende a essere più
-alto?
+averlo sopra la media? E se oggi si vendono più gelati del solito, ci saranno
+più omicidi in città? L'ultima domanda sembra assurda, e ci torneremo.
 
 Il **coefficiente di correlazione di Pearson**, indicato con *r*, riassume la
-risposta in un numero compreso fra −1 e +1. Il **segno** indica la direzione:
-positivo se le due misure tendono a salire insieme, negativo se all'aumentare
-dell'una l'altra tende a scendere. Il **valore assoluto** indica l'intensità:
-quanto i punti si dispongono vicino a una retta. A +1 o −1 si trovano tutti
-esattamente sulla retta; vicino a zero non c'è alcuna tendenza lineare.
+risposta in un numero compreso fra −1 e +1; lo zero indica l'assenza di
+relazione lineare. Davanti a una correlazione conviene porsi sempre tre domande.
+È plausibile che le due variabili siano associate davvero, cioè che la
+correlazione sia diversa da zero? Se una variabile è sopra la media, l'altra
+tende a stare sopra o sotto? È la **direzione**, data dal segno. Quanto sono
+rare le eccezioni alla regola? È l'**intensità**, data dal valore assoluto:
+quanto i punti si dispongono vicino a una retta.
 
 Il coefficiente non dipende dall'unità di misura. Esprimere i voti in decimi o in
 trentesimi, o il ragionamento in punti grezzi o in punti QI, non cambia *r*.
 Conta solo quanto stretta è la relazione fra le posizioni delle persone nelle
 due distribuzioni.
 
+## Un esempio: QI e voti scolastici
+
+Nelle sintesi della letteratura la correlazione fra QI e risultati scolastici è
+dell'ordine di 0,5 [@roth2015intelligence]. La @fig-qi-voti mostra che aspetto
+ha una correlazione di questa grandezza. Ogni punto è una persona. La tendenza è
+evidente: chi sta a destra della media nel QI sta più spesso sopra la media nei
+voti. Ma è una tendenza statistica, mai deterministica. Ci sono persone con buoni
+voti nonostante un QI modesto e persone con voti scarsi nonostante un QI
+elevato, per i motivi più svariati. Le eccezioni non smentiscono la correlazione:
+sono già incluse nel valore 0,5.
+
 ```{r}
-#| label: fig-nuvole
-#| fig-cap: "Quattro associazioni fra due misure. I primi tre pannelli mostrano dati simulati a scopo illustrativo; il quarto una relazione a U costruita. Il valore di *r* è calcolato sui punti disegnati."
-#| fig-alt: "Quattro diagrammi di dispersione: andamento crescente, decrescente, senza tendenza e a U. Il coefficiente di Pearson è vicino a zero sia nel terzo sia nel quarto pannello, anche se nel quarto i punti seguono chiaramente una curva."
-#| fig-width: !expr if (stampa) 4.45 else 8
-#| fig-height: !expr if (stampa) 4.4 else 7
-set.seed(2026)
-n = 150
-sim = function(rho) MASS::mvrnorm(n, c(0, 0), matrix(c(1, rho, rho, 1), 2))
-p1 = sim(.50); p2 = sim(-.50); p3 = sim(0)
-xu = seq(-2, 2, length.out = n); yu = xu^2 + rnorm(n, 0, .35)
-d = rbind(
-  data.frame(x = p1[, 1], y = p1[, 2], tipo = "Positiva"),
-  data.frame(x = p2[, 1], y = p2[, 2], tipo = "Negativa"),
-  data.frame(x = p3[, 1], y = p3[, 2], tipo = "Assente"),
-  data.frame(x = xu, y = as.numeric(scale(yu)), tipo = "A forma di U")
-)
-d$tipo = factor(d$tipo, levels = c("Positiva", "Negativa", "Assente", "A forma di U"))
-lab = sapply(split(d, d$tipo), function(s) paste0("r = ", virgola(cor(s$x, s$y))))
-levels(d$tipo) = paste0(levels(d$tipo), " (", lab, ")")
-ggplot(d, aes(x, y)) +
-  geom_point(alpha = .55, size = 1.6) +
-  geom_smooth(method = "lm", se = FALSE, colour = rosso, linewidth = .8) +
-  facet_wrap(~tipo, scales = "free") +
-  labs(x = "Misura A", y = "Misura B") +
+#| label: fig-qi-voti
+#| fig-cap: "Una correlazione di 0,50 fra QI e successo scolastico. Ogni punto è una persona; le linee tratteggiate indicano le medie. La tendenza è forte ma non deterministica: sono evidenziati due casi che vanno contro la tendenza. Dati simulati."
+#| fig-alt: "Diagramma di dispersione con il QI sull'asse orizzontale e il successo scolastico su quello verticale, diviso in quattro quadranti dalle linee delle medie. I punti si addensano lungo una freccia crescente. Due punti cerchiati: uno in alto a sinistra, buoni voti nonostante un QI modesto, e uno in basso a destra, voti scarsi nonostante un QI elevato."
+#| fig-width: !expr if (stampa) 4.45 else 7
+#| fig-height: !expr if (stampa) 3.2 else 4.6
+set.seed(5)
+z = MASS::mvrnorm(250, c(0, 0), matrix(c(1, .5, .5, 1), 2), empirical = TRUE)
+d = data.frame(qi = 100 + 15 * z[, 1], voti = z[, 2])
+ecc = d[c(which.max(d$voti - d$qi / 15), which.min(d$voti - d$qi / 15)), ]
+ecc$lab = c("buoni voti\nnonostante\nun QI modesto", "voti scarsi\nnonostante\nun QI elevato")
+ggplot(d, aes(qi, voti)) +
+  geom_hline(yintercept = 0, linetype = 2, colour = "grey45") + geom_vline(xintercept = 100, linetype = 2, colour = "grey45") +
+  geom_point(colour = "grey45", alpha = .6, size = 1.4) +
+  annotate("segment", x = 62, y = -1.9, xend = 140, yend = 1.9, colour = rosso, linewidth = 1, arrow = arrow(length = unit(.2, "cm"))) +
+  geom_point(data = ecc, shape = 21, size = 4.5, colour = rosso, stroke = .9) +
+  geom_text(data = ecc, aes(label = lab), hjust = c(1.25, -.25), size = cx, lineheight = .9, colour = rosso) +
+  scale_x_continuous(breaks = seq(55, 145, 15)) +
+  scale_y_continuous(expand = expansion(mult = .15)) +
+  labs(x = "Quoziente di intelligenza", y = "Successo scolastico") +
+  tema + theme(axis.text.y = element_blank(), panel.grid = element_blank())
+```
+
+Che cosa significa, concretamente, *r* = 0,50? Un errore frequente è leggerlo
+come una percentuale di persone: non vuol dire che metà delle persone segue la
+regola e metà no. Il modo più semplice di intuirlo passa per le deviazioni
+standard. Se una persona è una deviazione standard sopra la media nel QI, cioè a
+115, ci si aspetta che sia in media mezza deviazione standard sopra la media nei
+risultati scolastici (@fig-mezza-ds). La correlazione dice di quanto, in media,
+la posizione in una variabile si trasferisce all'altra. Vale per il coefficiente
+classico di Pearson, e il capitolo sulle distribuzioni darà a questa idea la
+forma precisa dei punti *z*.
+
+```{r}
+#| label: fig-mezza-ds
+#| fig-cap: "Che cosa significa r = +0,50: chi è una deviazione standard sopra la media nel QI (115) è in media mezza deviazione standard sopra la media nel successo scolastico (z = +0,50). La retta indica il valore atteso. Dati simulati."
+#| fig-alt: "Diagramma di dispersione con il QI da 70 a 130 sull'asse orizzontale e il successo scolastico in punti z sull'asse verticale, con una retta crescente. Linee tratteggiate rosse mostrano che a QI 100 corrisponde in media z uguale a 0 e a QI 115 corrisponde in media z uguale a più 0,50."
+#| fig-width: !expr if (stampa) 4.45 else 7
+#| fig-height: !expr if (stampa) 3 else 4.2
+set.seed(7)
+z = MASS::mvrnorm(800, c(0, 0), matrix(c(1, .5, .5, 1), 2), empirical = TRUE)
+d = data.frame(qi = 100 + 15 * z[, 1], voti = z[, 2])
+ggplot(d, aes(qi, voti)) +
+  geom_point(colour = "grey55", alpha = .45, size = 1) +
+  geom_abline(intercept = -100 / 30, slope = 1 / 30, colour = "grey15", linewidth = .9) +
+  annotate("segment", x = c(100, 115), xend = c(100, 115), y = -Inf, yend = c(0, .5), linetype = 2, colour = rosso, linewidth = .7) +
+  annotate("segment", x = -Inf, xend = c(100, 115), y = c(0, .5), yend = c(0, .5), linetype = 2, colour = rosso, linewidth = .7) +
+  annotate("text", x = 128, y = 2.6, label = "r = +0,50", colour = rosso, size = cx * 1.3, fontface = "bold") +
+  coord_cartesian(xlim = c(68, 132), ylim = c(-2.7, 2.7)) +
+  scale_x_continuous(breaks = seq(70, 130, 15)) +
+  scale_y_continuous(breaks = seq(-2, 2, .5), labels = function(x) virgola(x, 1)) +
+  labs(x = "Quoziente di intelligenza", y = "Successo scolastico (punti z)") +
   tema
 ```
 
-## Quanto dice un numero
+## Quanto è grande una correlazione
 
-Nelle sintesi della letteratura la correlazione fra QI e risultati scolastici è
-dell'ordine di 0,5 [@roth2015intelligence]. Che cosa significa? Che la tendenza
-è netta, ma lontana dal determinismo. Molte persone con un punteggio cognitivo
-sopra la media hanno risultati scolastici nella media o sotto, e viceversa. Le
-eccezioni non smentiscono la correlazione: sono già incluse nel valore 0,5.
+Esistono etichette di comodo per la grandezza di *r* (@fig-intensita). Una
+correlazione nulla descrive due cose che non c'entrano niente l'una con l'altra.
+Attorno a 0,20 si trova il caso più tipico di effetto vero in psicologia: una
+rassegna di centinaia di meta-analisi sulle differenze individuali ha trovato
+proprio un valore tipico di questo ordine [@gignac2016effect]. Una correlazione
+di 0,50, come quella fra QI e voti, è forte: variabili evidentemente molto
+legate. Una correlazione di 0,80, in psicologia, indica spesso la stessa cosa
+misurata in due modi diversi, anche se non basta da sola a stabilire che due
+prove misurino lo stesso costrutto.
 
-Un errore frequente è leggere *r* come una percentuale di persone. Un *r* di 0,5
-non vuol dire che metà delle persone segue la regola e metà no. Descrive invece
-quanto, in media, la posizione in una misura si allinea alla posizione
-nell'altra. Il capitolo sulle distribuzioni darà a questa idea una forma
-precisa, attraverso i punti *z*.
+```{r}
+#| label: fig-intensita
+#| fig-cap: "Correlazioni di grandezza crescente, con le etichette di comodo usate nel testo. Le variabili sono in punti z; le linee tratteggiate indicano le medie. Dati simulati con correlazione esatta."
+#| fig-alt: "Quattro diagrammi di dispersione. Con r uguale a 0 la nuvola è rotonda; con 0,20 appena inclinata; con 0,50 chiaramente allungata in diagonale; con 0,80 stretta lungo la diagonale."
+#| fig-width: !expr if (stampa) 4.45 else 8
+#| fig-height: !expr if (stampa) 4.2 else 6.4
+set.seed(8)
+rr = c(0, .2, .5, .8); etich = c("nulla", "debole-moderata", "forte", "fortissima")
+d = do.call(rbind, lapply(1:4, function(i) {
+  z = MASS::mvrnorm(200, c(0, 0), matrix(c(1, rr[i], rr[i], 1), 2), empirical = TRUE)
+  data.frame(a = z[, 1], b = z[, 2], p = paste0(etich[i], ": r = ", virgola(rr[i])))
+}))
+d$p = factor(d$p, levels = unique(d$p))
+ggplot(d, aes(a, b)) +
+  geom_hline(yintercept = 0, linetype = 2, colour = "grey45") + geom_vline(xintercept = 0, linetype = 2, colour = "grey45") +
+  geom_point(colour = "grey35", alpha = .55, size = 1.1) +
+  facet_wrap(~p) +
+  labs(x = "A (punti z)", y = "B (punti z)") +
+  tema + theme(strip.text = element_text(face = "bold", colour = rosso))
+```
 
-Esistono etichette di comodo: correlazione debole, moderata, forte. Vanno usate
-con prudenza, perché la grandezza di un effetto dipende dal contesto. In
-psicologia le correlazioni pubblicate hanno di solito valori modesti: una
-rassegna di centinaia di meta-analisi sulle differenze individuali ha trovato un
-valore tipico attorno a 0,20 [@gignac2016effect]. In questo panorama 0,5 è
-un'associazione notevole. Un valore di 0,8 fra due prove è eccezionale e indica
-spesso che stanno misurando cose molto simili, anche se non basta da solo a
-stabilire che misurino lo stesso costrutto.
-
-Anche un *r* piccolo può contare. Un fattore che sposta di poco la probabilità di
-un esito, applicato a milioni di persone o cumulato per anni, può avere
-conseguenze consistenti [@funder2019evaluating]. Il giudizio sulla grandezza va
-quindi legato alla domanda: spiegare un meccanismo, prevedere un singolo caso o
-stimare un effetto su una popolazione sono obiettivi diversi.
+Le etichette vanno usate con prudenza, perché la grandezza di un effetto dipende
+dal contesto. Anche un *r* piccolo può contare: un fattore che sposta di poco la
+probabilità di un esito, applicato a milioni di persone o cumulato per anni, può
+avere conseguenze consistenti [@funder2019evaluating]. Il giudizio sulla
+grandezza va quindi legato alla domanda: spiegare un meccanismo, prevedere un
+singolo caso o stimare un effetto su una popolazione sono obiettivi diversi.
 
 ::: {.callout-tip icon=false}
 ## Punto metodologico: la «varianza spiegata»
 
-Nei modelli di regressione si parla spesso di percentuale di varianza spiegata,
-indicata con *R*². In una regressione lineare semplice, con un solo predittore,
-*R*² coincide con il quadrato di *r*. Con *r* = 0,5 si ottiene *R*² = 0,25: si
-dice allora che il QI «spiega» il 25% della varianza dei voti. «Spiegare» ha qui
-un significato statistico: indica quanto la retta riduce l'errore di previsione,
-non quale parte delle cause dei voti sia stata individuata. Con più predittori,
-*R*² è il quadrato della correlazione fra il criterio e la loro migliore
-combinazione lineare.
+Nei modelli di regressione lineare e nell'ANOVA si parla spesso di percentuale di
+varianza spiegata, indicata con *R*² o con indici equivalenti come η², come
+dimensione dell'effetto. *R*² è di fatto una correlazione al quadrato: con un
+solo predittore coincide con il quadrato di *r*; con più predittori è il
+quadrato della correlazione fra il criterio e la loro migliore combinazione
+lineare. Con *r* = 0,50 si ottiene *R*² = 0,25: si dice allora che il QI
+«spiega» il 25% della varianza dei voti. «Spiegare» ha qui un significato
+statistico: indica quanto la retta riduce l'errore di previsione, non quale parte
+delle cause dei voti sia stata individuata.
 :::
 
-## Guardare anche la forma
+## Casi estremi e relazioni non lineari
 
-Il coefficiente di Pearson misura l'associazione **lineare**. Se la relazione ha
-un'altra forma, *r* può essere ingannevole. Il caso estremo è la relazione a U
-del quarto pannello della @fig-nuvole: i punti seguono una curva evidente, ma
-*r* è vicino a zero. Il fenomeno non dipende dal caso. Con i valori
-*x* = −2, −1, 0, 1, 2 e *y* = *x*², la covarianza è esattamente zero, e quindi
-anche *r*, benché *y* sia determinato del tutto da *x*. Un *r* nullo dice
-«nessuna tendenza lineare», non «nessuna relazione».
+Il coefficiente di Pearson ha due punti deboli che conviene conoscere.
 
-Relazioni non lineari sono comuni quando si studia lo sviluppo. Molte abilità
-crescono rapidamente nell'infanzia, rallentano nell'adolescenza, restano stabili
-e poi declinano. Una retta descrive male questa traiettoria. Curve più flessibili
-la descrivono meglio, al prezzo di essere meno facili da riassumere in un solo
-numero.
-
-Il secondo problema sono i **casi estremi**. Un singolo punto molto lontano dagli
-altri può spostare *r* in modo sensibile, perché Pearson pesa le distanze dalla
-media. Un'alternativa è il coefficiente di **Spearman**, che lavora sui ranghi:
-ogni valore è sostituito dalla sua posizione nell'ordinamento. Il caso estremo
-diventa così semplicemente il primo della classifica, senza più far pesare
-quanto è lontano dagli altri. Spearman descrive un'associazione monotona, cioè
-sempre crescente o sempre decrescente, anche se non lineare. Non è però una
-scorciatoia automatica: un valore estremo può essere un errore di inserimento da
-correggere oppure il dato più interessante del campione. Prima di scegliere il
-coefficiente, bisogna guardare i dati [@schober2018correlation].
-
-## Dal campione alla popolazione
-
-Una correlazione calcolata su un campione è una stima. Se lo stesso studio fosse
-ripetuto su altre persone della stessa popolazione, il valore cambierebbe. Quanto
-cambierebbe dipende soprattutto dalla numerosità.
+Il primo sono i **casi estremi**. Pearson pesa le distanze dalla media, e un
+singolo punto molto lontano dagli altri può spostare *r* in modo sensibile. Nella
+@fig-outlier una nuvola senza alcuna relazione diventa una correlazione di
+`r virgola(cor(rbind(MASS::mvrnorm(150, c(0, 0), diag(2), empirical = TRUE), c(6.5, 6.5)))[1, 2])`
+per colpa di un solo caso. Un rimedio è il coefficiente **rho di Spearman**, che
+lavora sui ranghi: ogni valore è sostituito dalla sua posizione nel campione.
+Il caso estremo diventa così semplicemente il primo della classifica, non un
+punto fuori dalla distribuzione, e la correlazione torna vicina a zero. Non è
+però una scorciatoia automatica: un valore estremo può essere un errore di
+inserimento da correggere oppure il dato più interessante del campione. Prima di
+scegliere il coefficiente, bisogna guardare i dati [@schober2018correlation].
 
 ```{r}
-#| label: fig-campioni
-#| fig-cap: "Distribuzione delle correlazioni ottenute in 5.000 campioni simulati estratti da una popolazione in cui la correlazione vera è 0,20 (linea verticale). Con 30 persone le stime spaziano da valori negativi a valori molto alti; con 200 si concentrano attorno al valore vero."
-#| fig-alt: "Due istogrammi. Con campioni di 30 persone le correlazioni stimate vanno circa da meno 0,2 a più 0,6; con campioni di 200 persone vanno circa da 0,05 a 0,35."
-#| fig-width: !expr if (stampa) 4.45 else 8
-#| fig-height: !expr if (stampa) 2.7 else 3.6
-set.seed(1904)
-stima = function(n) replicate(5000, cor(MASS::mvrnorm(n, c(0, 0), matrix(c(1, .2, .2, 1), 2)))[1, 2])
-dc = rbind(data.frame(r = stima(30), N = "N = 30"), data.frame(r = stima(200), N = "N = 200"))
-dc$N = factor(dc$N, levels = c("N = 30", "N = 200"))
-ggplot(dc, aes(r)) +
-  geom_histogram(binwidth = .025, fill = "grey60", colour = "white") +
-  geom_vline(xintercept = .2, colour = rosso, linewidth = .9) +
-  facet_wrap(~N) +
-  scale_x_continuous(breaks = seq(-.4, .8, if (stampa) .4 else .2), labels = function(x) virgola(x, 1)) +
-  labs(x = "Correlazione stimata nel campione", y = "Numero di campioni") +
+#| label: fig-outlier
+#| fig-cap: "Un singolo caso estremo, in alto a destra, fa salire la correlazione di Pearson da zero a circa 0,20; la rho di Spearman, calcolata sui ranghi, resta vicina a zero. Dati simulati."
+#| fig-alt: "Diagramma di dispersione di 150 punti raccolti attorno all'origine, senza tendenza, e un punto isolato in alto a destra, a circa 6,5 deviazioni standard su entrambe le variabili. Nel grafico sono indicati i due coefficienti: Pearson circa 0,22, Spearman circa 0,03."
+#| fig-width: !expr if (stampa) 4.45 else 6.5
+#| fig-height: !expr if (stampa) 3 else 4.2
+set.seed(10)
+d = as.data.frame(rbind(MASS::mvrnorm(150, c(0, 0), diag(2), empirical = TRUE), c(6.5, 6.5)))
+names(d) = c("a", "b")
+ggplot(d, aes(a, b)) +
+  geom_hline(yintercept = 0, linetype = 2, colour = "grey45") + geom_vline(xintercept = 0, linetype = 2, colour = "grey45") +
+  geom_point(colour = "grey35", alpha = .6, size = 1.4) +
+  geom_point(data = d[151, ], colour = rosso, size = 2.6) +
+  annotate("text", x = 3.2, y = c(-1.6, -2.3), hjust = 0, size = cx,
+           label = c(paste0("Pearson: r = ", virgola(cor(d)[1, 2])), paste0("Spearman: rho = ", virgola(cor(d, method = "spearman")[1, 2]))),
+           colour = c(rosso, "grey20")) +
+  scale_x_continuous(breaks = -2:7) + scale_y_continuous(breaks = -2:7) +
+  labs(x = "A (punti z)", y = "B (punti z)") +
   tema
 ```
 
-La @fig-campioni mostra il punto con una simulazione. Nella popolazione la
-correlazione vera è 0,20. Con 30 persone si possono ottenere valori vicini a
-zero, negativi, oppure doppi del valore vero. Con 200 persone la stima è molto
-più stabile. Un piccolo studio che trova *r* = 0,45 non ha quindi scoperto un
-effetto grande: ha ottenuto una stima molto imprecisa.
+Il secondo punto debole è la **forma** della relazione. Pearson misura
+l'associazione **lineare**. Relazioni non lineari sono comuni quando si studia lo
+sviluppo: molte abilità crescono rapidamente nell'infanzia, rallentano
+nell'adolescenza, restano stabili e poi declinano. La @fig-non-lineare mostra
+punteggi simulati in una prova di ragionamento con un massimo di 60 punti.
+Fra 6 e 18 anni una retta descrive abbastanza bene la crescita, anche se una
+curva flessibile fa meglio. Sull'intero arco di vita, invece, la correlazione
+lineare è praticamente nulla, benché il punteggio dipenda chiaramente dall'età.
+Un *r* nullo dice «nessuna tendenza lineare», non «nessuna relazione». Curve
+flessibili, come le interpolazioni locali, descrivono meglio queste traiettorie,
+al prezzo di essere meno facili da riassumere in un numero. Una parabola, cioè
+una relazione quadratica, è un compromesso spesso deludente: prevede
+discretamente in media e sbaglia di molto proprio dove la curva cambia forma.
 
-Il **test di significatività** chiede se il valore osservato sia compatibile con
-una popolazione in cui la correlazione è zero. Il valore *p* misura questa
+```{r}
+#| label: fig-non-lineare
+#| fig-cap: "Punteggi simulati in una prova di ragionamento in funzione dell'età. Nel primo pannello, fra 6 e 18 anni, la retta (tratteggiata) descrive abbastanza bene la crescita; nel secondo, sull'intero arco di vita, la correlazione lineare è quasi nulla, mentre una curva flessibile (interpolazione locale, in rosso) coglie la relazione."
+#| fig-alt: "Due diagrammi di dispersione del punteggio, da 0 a 60, contro l'età. Nel primo, da 6 a 18 anni, i punti crescono e una retta e una curva quasi coincidono. Nel secondo, da 6 a 80 anni, i punti salgono rapidamente fino ai 20 anni, restano stabili e scendono dopo i 50: la retta è quasi orizzontale, la curva rossa segue l'andamento. Nei pannelli sono riportati r e R quadro."
+#| fig-width: !expr if (stampa) 4.45 else 8
+#| fig-height: !expr if (stampa) 4.6 else 3.6
+set.seed(2026)
+eta = runif(2500, 6, 80)
+m = 52 - 34 * exp(-(eta - 6) / 4) - .011 * pmax(eta - 45, 0)^2
+d0 = data.frame(eta, y = pmin(60, pmax(0, round(m + rnorm(2500, 0, 5.5)))))
+r2 = function(f, y) 1 - sum(resid(f)^2) / sum((y - mean(y))^2)
+pannelli = list(subset(d0, eta <= 18), d0); tit = c("Da 6 a 18 anni", "Da 6 a 80 anni")
+d = do.call(rbind, lapply(1:2, function(i) cbind(pannelli[[i]], p = tit[i])))
+stat = do.call(rbind, lapply(1:2, function(i) {
+  k = pannelli[[i]]
+  data.frame(p = tit[i], x = max(k$eta), lab = paste0("retta: r = ", virgola(cor(k$eta, k$y)), ", R² = ", virgola(r2(lm(y ~ eta, k), k$y)),
+                                                      "\ncurva: R² = ", virgola(r2(loess(y ~ eta, k), k$y))))
+}))
+ggplot(d, aes(eta, y)) +
+  geom_jitter(colour = "grey50", alpha = .25, size = .5, height = .3) +
+  geom_smooth(method = "lm", se = FALSE, colour = "grey15", linetype = 2, linewidth = .8) +
+  geom_smooth(method = "loess", se = FALSE, colour = rosso, linewidth = 1) +
+  geom_text(data = stat, aes(x = x, y = 3, label = lab), hjust = 1, size = cx * .9, lineheight = .9) +
+  facet_wrap(~p, scales = "free_x", ncol = if (stampa) 1 else 2) +
+  scale_y_continuous(limits = c(0, 62), breaks = seq(0, 60, 10)) +
+  labs(x = "Età (anni)", y = "Punteggio (massimo 60)") +
+  tema
+```
+
+## Correlano davvero?
+
+Se le cose correlano davvero, non lo fanno «e basta»: c'è un motivo. Ed è sulle
+correlazioni che si regge una parte enorme della ricerca non sperimentale. Prima
+di cercare il motivo, però, bisogna accertare che la correlazione osservata nel
+campione sia attendibile, cioè presumibilmente diversa da zero nella popolazione
+da cui il campione proviene.
+
+```{r}
+#| label: campioni-dati
+# Popolazione simulata con correlazione vera 0,20 e due campioni estratti a caso
+set.seed(4)
+pop = MASS::mvrnorm(1000, c(0, 0), matrix(c(1, .2, .2, 1), 2), empirical = TRUE)
+pop = data.frame(a = pop[, 1], b = pop[, 2])
+i30 = sample(1000, 30); i200 = sample(1000, 200)
+t30 = cor.test(pop$a[i30], pop$b[i30]); t200 = cor.test(pop$a[i200], pop$b[i200])
+r30 = t30$estimate; r200 = t200$estimate
+```
+
+Una correlazione calcolata su un campione è una stima. Se lo stesso studio fosse
+ripetuto su altre persone, il valore cambierebbe, e quanto cambierebbe dipende
+soprattutto dalla numerosità. Nella @fig-campioni la popolazione, in grigio, ha
+una correlazione vera di 0,20. Un campione di 30 persone, estratto a caso, dà
+`r virgola(r30)`; uno di 200 dà `r virgola(r200)`. Con 30 persone si possono
+ottenere valori vicini a zero, negativi, oppure doppi del valore vero; con 200 la
+stima è molto più stabile. Un piccolo studio che trova *r* = 0,45 non ha quindi
+scoperto un effetto grande: ha ottenuto una stima molto imprecisa.
+
+```{r}
+#| label: fig-campioni
+#| fig-cap: "Lo stesso effetto visto con due campioni. In grigio una popolazione simulata in cui la correlazione vera è 0,20; in rosso le persone estratte a caso in un campione piccolo e in uno medio, con la retta stimata su di esse. Il campione piccolo non permette di distinguere l'effetto da zero; quello medio sì."
+#| fig-alt: "Due pannelli con la stessa nuvola grigia di mille punti. Nel primo sono evidenziati in rosso 30 punti, con una retta quasi piatta e i valori di r e p, non significativo. Nel secondo sono evidenziati 200 punti, con una retta leggermente crescente e un valore di p inferiore a 0,01."
+#| fig-width: !expr if (stampa) 4.45 else 8
+#| fig-height: !expr if (stampa) 4.6 else 3.6
+pv = function(p) if (p < .01) "p < 0,01" else paste("p =", virgola(p))
+tit = c(paste0("Campione piccolo (N = 30): r = ", virgola(r30), ", ", pv(t30$p.value)),
+        paste0("Campione medio (N = 200): r = ", virgola(r200), ", ", pv(t200$p.value)))
+camp = rbind(cbind(pop[i30, ], p = tit[1]), cbind(pop[i200, ], p = tit[2]))
+camp$p = factor(camp$p, levels = tit)
+popd = rbind(cbind(pop, p = tit[1]), cbind(pop, p = tit[2]))
+popd$p = factor(popd$p, levels = tit)
+ggplot(camp, aes(a, b)) +
+  geom_point(data = popd, colour = "grey80", size = .8) +
+  geom_point(colour = rosso, size = 1.2, alpha = .8) +
+  geom_smooth(method = "lm", se = FALSE, colour = rosso, linewidth = 1) +
+  facet_wrap(~p, ncol = if (stampa) 1 else 2) +
+  labs(x = "A (punti z)", y = "B (punti z)") +
+  tema + theme(strip.text = element_text(size = if (stampa) 8 else 11))
+```
+
+Un metodo fondamentale, anche se non l'unico, per decidere è il **test di
+significatività**: chiede se il valore osservato sia compatibile con una
+popolazione in cui la correlazione è zero. Il valore *p* misura questa
 compatibilità. Non misura la grandezza dell'effetto né la probabilità che
 l'ipotesi sia vera [@wasserstein2016pvalues]. Una correlazione di 0,20 può essere
 «non significativa» con 30 persone e «significativa» con 200: è cambiata la
 precisione, non l'effetto. Per questo conviene riportare sempre anche un
 intervallo di confidenza, che mostra l'ampiezza dell'incertezza.
 
-## Dall'associazione alle spiegazioni
+## Spiegare perché correlano
 
-Se due variabili correlano davvero, deve esserci un motivo. Il motivo, però, non
-è necessariamente che una causi l'altra. Le possibilità principali sono quattro:
-A causa B; B causa A; le due si influenzano a vicenda; oppure una terza
-variabile influenza entrambe.
+Se due variabili correlano davvero, le possibilità principali sono quattro: A
+causa B; B causa A; le due si influenzano a vicenda, magari rafforzandosi nel
+tempo; oppure esistono cause comuni.
 
-L'esempio classico è quello dei gelati. Nei giorni in cui si vendono più gelati
-avvengono anche più annegamenti. Nessuno pensa che i gelati facciano annegare: il
-caldo spinge le persone sia a comprare gelati sia a fare il bagno. La
-temperatura è una **causa comune**. In rete si trovano raccolte di correlazioni
-assurde, ottenute confrontando serie temporali che crescono o calano per motivi
-indipendenti. Fanno sorridere, ma ricordano un fatto serio: una correlazione da
-sola non indica la direzione causale né esclude terze variabili
-[@rohrer2018thinking].
-
-Un caso meno ovvio riguarda proprio l'intelligenza. QI e anni di istruzione
-correlano. L'intelligenza favorisce la prosecuzione degli studi? L'istruzione
-aumenta le abilità cognitive? Entrambe le cose? Oppure condizioni familiari
-come lo status socioeconomico influenzano sia l'una sia l'altra? Le evidenze
-disponibili suggeriscono che più di un meccanismo sia all'opera, compreso un
-effetto causale dell'istruzione sui punteggi [@ritchie2018education]. Per
-arrivarci non è bastata la correlazione: sono serviti disegni longitudinali ed
-esperimenti naturali, come i cambiamenti di legge sull'obbligo scolastico.
-
-Anche la sequenza temporale aiuta, ma non risolve tutto. Se A precede B, B non
-può aver causato A; resta però possibile che una terza variabile abbia
-preceduto entrambe.
+Un caso che riguarda proprio l'intelligenza è la correlazione fra QI e
+istruzione (@fig-spiegazioni). L'intelligenza favorisce la prosecuzione degli
+studi? L'istruzione aumenta le abilità cognitive? Le due cose si alimentano a
+vicenda nel tempo? Oppure condizioni familiari come lo status socioeconomico
+influenzano entrambe? Per rispondere non basta la correlazione. Servono studi
+longitudinali, che mostrino se una variazione individuale nell'una anticipa una
+variazione nell'altra, e analisi che verifichino se la correlazione si riduce
+confrontando persone con condizioni ambientali simili. La risposta che emerge
+da diversi studi è che sono all'opera sia una causalità reciproca, compreso un
+effetto causale dell'istruzione sui punteggi, sia cause comuni come lo status
+socioeconomico della famiglia [@ritchie2018education]. Anche gli esperimenti
+naturali, come i cambiamenti di legge sull'obbligo scolastico, sono stati
+decisivi.
 
 ```{r}
-#| label: fig-schemi
-#| fig-cap: "Tre schemi causali ipotetici. Le frecce rappresentano ipotesi, non conclusioni ricavabili dalle sole correlazioni."
-#| fig-alt: "Nel primo schema una variabile C influenza sia A sia B. Nel secondo il percorso da A a B passa attraverso M. Nel terzo una variabile W modifica la freccia che va da A a B."
-#| fig-width: !expr if (stampa) 4.45 else 9
-#| fig-height: !expr if (stampa) 1.9 else 2.6
-par(mfrow = c(1, 3), mar = c(1, 1, 2.5, 1))
-if (stampa) par(cex = .6, mar = c(.5, .5, 2, .5))
-nodo = function(x, y, t) { symbols(x, y, circles = .13, inches = FALSE, add = TRUE, bg = "white", fg = "grey30"); text(x, y, t, font = 2, cex = if (stampa) 1.1 else 1.4) }
-freccia = function(x0, y0, x1, y1) arrows(x0, y0, x1, y1, length = .1, lwd = 2, col = rosso)
-vuoto = function(titolo) { plot(0, 0, type = "n", xlim = c(0, 2), ylim = c(-.2, 1.1), axes = FALSE, xlab = "", ylab = ""); title(titolo, cex.main = 1.4, font.main = 1) }
-vuoto("Causa comune"); freccia(.88, .85, .28, .17); freccia(1.12, .85, 1.72, .17)
-nodo(1, .95, "C"); nodo(.2, .05, "A"); nodo(1.8, .05, "B")
-vuoto("Mediazione"); freccia(.33, .13, .87, .85); freccia(1.13, .85, 1.67, .13)
-nodo(.2, .05, "A"); nodo(1, .95, "M"); nodo(1.8, .05, "B")
-vuoto("Moderazione"); freccia(.35, .05, 1.65, .05); freccia(1, .82, 1, .12)
-nodo(.2, .05, "A"); nodo(1.8, .05, "B"); nodo(1, .95, "W")
+#| label: fig-spiegazioni
+#| fig-cap: "Quattro spiegazioni possibili della correlazione fra intelligenza e istruzione. Le frecce rappresentano ipotesi causali; le evidenze disponibili sostengono in parte sia la causalità reciproca sia le cause comuni."
+#| fig-alt: "Quattro piccoli schemi. Nel primo una freccia va da intelligenza a istruzione; nel secondo da istruzione a intelligenza; nel terzo frecce in entrambe le direzioni, ripetute nel tempo; nel quarto lo status socioeconomico manda una freccia sia all'intelligenza sia all'istruzione."
+#| fig-width: !expr 4.45 * scala
+#| fig-height: !expr 3.4 * scala
+par(mfrow = c(2, 2))
+schema = function(titolo) {
+  tela(c(0, 10), c(0, 10))
+  text(5, 9.3, titolo, cex = .62, font = 3, col = "grey30")
+}
+nI = function(y = 2.4) nodo(2.2, y, "Intelligenza", w = 3.6, h = 1.8, forma = "ovale", bg = "grey95", cex = .6)
+nS = function(y = 2.4) nodo(7.8, y, "Istruzione", w = 3.6, h = 1.8, forma = "ovale", bg = "grey95", cex = .6)
+schema("l'intelligenza causa\nl'istruzione"); collega(nI(5), nS(5), col = rosso, lwd = 1.3)
+schema("l'istruzione causa\nl'intelligenza"); collega(nS(5), nI(5), col = rosso, lwd = 1.3)
+schema("causalità reciproca\nche si rafforza nel tempo")
+a = nI(6.3); b = nS(6.3); a2 = nI(2.2); b2 = nS(2.2)
+collega(a, b2, col = rosso, lwd = 1.1); collega(b, a2, col = rosso, lwd = 1.1)
+collega(a, a2, col = "grey55"); collega(b, b2, col = "grey55")
+schema("cause comuni")
+ses = nodo(5, 6.4, "Status\nsocioeconomico", w = 4, h = 2, forma = "ovale", bg = "white", border = rosso, cex = .58)
+collega(ses, nI(2.2), col = rosso, lwd = 1.1); collega(ses, nS(2.2), col = rosso, lwd = 1.1)
 ```
 
-Due concetti aiutano a precisare le ipotesi causali (@fig-schemi). Si parla di
-**mediazione** quando si ipotizza che A influenzi B attraverso una variabile
-intermedia M. Per esempio, un consumo elevato di alcol potrebbe peggiorare il
-rendimento agli esami riducendo la qualità del sonno o il tempo dedicato allo
-studio. Un modello di mediazione può prevedere anche un percorso diretto da A a
-B. Va però ricordato che una mediazione stimata con dati raccolti in un unico
-momento non dimostra il processo nel tempo [@maxwell2007bias].
+L'esempio dei gelati è più netto. Nei giorni in cui si vendono più gelati
+avvengono anche più omicidi e più annegamenti. Nessuno pensa che i gelati
+rendano violenti o facciano annegare: il caldo porta le persone fuori casa, in
+spiaggia e in strada. La temperatura è una **causa comune**. In rete si trovano
+intere raccolte di correlazioni assurde, come quella fra numero di pirati e
+riscaldamento globale, ottenute confrontando serie temporali che crescono o
+calano per motivi indipendenti. Fanno sorridere, ma ricordano un fatto serio:
+una correlazione da sola non indica la direzione causale né esclude terze
+variabili [@rohrer2018thinking]. Correlazione non significa causalità, anche se
+spesso, dietro, qualche causalità c'è. E la sequenza temporale aiuta senza
+risolvere tutto: se A precede B, B non può aver causato A, ma resta possibile che
+una terza variabile abbia preceduto entrambe.
 
-Si parla di **moderazione** quando la relazione fra A e B cambia in funzione di
-una terza variabile W [@baron1986moderator]. La presenza di un pubblico tende a
-migliorare la prestazione in compiti già automatizzati e a peggiorarla in compiti
-nuovi [@zajonc1965social]: il tipo di compito modera l'effetto del pubblico
-(@fig-moderazione). Nel
-campo dell'intelligenza un esempio discusso riguarda lo status socioeconomico,
-che in alcuni studi statunitensi sembra modificare quanto le differenze genetiche
-si traducono in differenze di punteggio [@turkheimer2003socioeconomic]. Ne
+## Mediazione e moderazione
+
+Due concetti aiutano a precisare le ipotesi causali. Si parla di **mediazione**,
+o causazione indiretta, quando A influenza B attraverso una o più variabili
+intermedie. Un consumo elevato di alcol peggiora il rendimento agli esami? Se sì,
+probabilmente non in modo diretto, ma attraverso più percorsi: effetti sul sonno
+e sulla memoria, e situazioni sociali che sottraggono tempo allo studio
+(@fig-mediazione). Una mediazione stimata con dati raccolti in un unico momento,
+però, non dimostra il processo nel tempo [@maxwell2007bias].
+
+```{r}
+#| label: fig-mediazione
+#| fig-cap: "Mediazione: il consumo di alcol potrebbe influire sul rendimento agli esami attraverso più percorsi indiretti, cioè gli effetti su sonno e memoria e le situazioni sociali che riducono il tempo di studio. Schema ipotetico."
+#| fig-alt: "Schema a riquadri. Dal consumo di alcol, a sinistra, partono frecce verso situazioni sociali, effetto sulla memoria ed effetto sul sonno. Le situazioni sociali puntano al tempo passato a studiare, il sonno punta anche alla memoria, e tempo di studio, memoria e sonno puntano al rendimento agli esami, a destra."
+#| fig-width: !expr 4.45 * scala
+#| fig-height: !expr 2.3 * scala
+tela(c(0, 12), c(0, 10))
+alc = nodo(1.4, 4.2, "Consumo\ndi alcol", w = 2.3, h = 1.8, bg = "white", border = rosso, cex = .62, font = 2)
+soc = nodo(4.1, 8.6, "Situazioni\nsociali", w = 2.3, h = 1.6, bg = "grey95", cex = .6)
+stu = nodo(7.6, 8.2, "Tempo passato\na studiare", w = 2.8, h = 1.6, bg = "grey95", cex = .6)
+mem = nodo(6.2, 4.9, "Effetto sulla\nmemoria", w = 2.6, h = 1.6, bg = "grey95", cex = .6)
+son = nodo(5.4, 1.3, "Effetto sul\nsonno", w = 2.4, h = 1.6, bg = "grey95", cex = .6)
+ren = nodo(10.6, 4.2, "Rendimento\nagli esami", w = 2.5, h = 1.8, bg = "white", border = rosso, cex = .62, font = 2)
+collega(alc, soc); collega(soc, stu); collega(stu, ren)
+collega(alc, mem); collega(alc, son); collega(son, mem); collega(mem, ren); collega(son, ren)
+```
+
+Si parla di **moderazione**, o causazione modificata, quando la relazione fra A
+e B cambia in funzione di una terza variabile [@baron1986moderator]. La presenza
+di osservatori tende a migliorare la prestazione in compiti già automatizzati e a
+peggiorarla in compiti nuovi [@zajonc1965social]: il tipo di compito modera
+l'effetto del pubblico. Nel campo dell'intelligenza un esempio discusso riguarda
+lo status socioeconomico, che in alcuni studi statunitensi sembra modificare
+quanto le differenze genetiche si traducono in differenze di punteggio
+[@turkheimer2003socioeconomic]. Entrambi i casi sono nella @fig-moderazione. Ne
 riparleremo nel capitolo sull'ereditabilità, insieme ai limiti di questo
 risultato.
 
 ```{r}
 #| label: fig-moderazione
-#| fig-cap: "Un esempio di moderazione. Al crescere del numero di osservatori la prestazione migliora in un compito già automatizzato e peggiora in un compito nuovo: la relazione fra pubblico e prestazione dipende dal tipo di compito. Valori illustrativi."
-#| fig-alt: "Due rette in un grafico con il numero di osservatori sull'asse orizzontale e la prestazione su quello verticale. La retta del compito automatizzato sale da 72 a 80; quella del compito nuovo scende da 58 a 46."
-#| fig-width: !expr if (stampa) 4.45 else 7
-#| fig-height: !expr if (stampa) 2.7 else 3.4
-d = data.frame(oss = rep(seq(0, 8, 2), 2), prest = c(72, 74, 76, 78, 80, 58, 55, 52, 49, 46),
-               compito = rep(c("Compito automatizzato", "Compito nuovo"), each = 5))
-ggplot(d, aes(oss, prest, colour = compito)) +
-  geom_line(linewidth = 1.1) + geom_point(size = 2.2) +
-  annotate("text", x = 8.2, y = c(80, 46), label = c("automatizzato", "nuovo"), hjust = 0,
-           colour = c("grey25", rosso), size = if (stampa) 3 else 3.6) +
-  scale_colour_manual(values = c("grey25", rosso), guide = "none") +
-  scale_x_continuous(breaks = seq(0, 8, 2), expand = expansion(add = c(.3, 2.4))) +
-  scale_y_continuous(limits = c(40, 85), breaks = seq(40, 80, 10)) +
-  labs(x = "Numero di osservatori", y = "Prestazione") +
+#| fig-cap: "Due esempi di moderazione. Nel primo pannello, al crescere del numero di osservatori la prestazione migliora in un compito già automatizzato e peggiora in un compito nuovo. Nel secondo, il legame fra punteggio poligenico e QI è più forte in condizioni socioeconomiche elevate che in condizioni svantaggiate. Valori illustrativi."
+#| fig-alt: "Due grafici a linee. Nel primo, con il numero di osservatori da 0 a 8 sull'asse orizzontale, la prestazione nel compito automatizzato sale da 72 a 80 e quella nel compito nuovo scende da 58 a 46. Nel secondo, con il punteggio poligenico da meno 2 a più 2, il QI sale da 89 a 109 con status socioeconomico elevato e solo da 88 a 92 con status basso."
+#| fig-width: !expr if (stampa) 4.45 else 8
+#| fig-height: !expr if (stampa) 4.6 else 3.4
+p1 = "Presenza di osservatori e prestazione"; p2 = "Punteggio poligenico (z) e QI"
+d = rbind(data.frame(p = p1, x = rep(seq(0, 8, 2), 2), y = c(72, 74, 76, 78, 80, 58, 55, 52, 49, 46), g = rep(c("compito\nautomatizzato", "compito\nnuovo"), each = 5)),
+          data.frame(p = p2, x = rep(-2:2, 2), y = c(89, 94, 99, 104, 109, 88, 89, 90, 91, 92), g = rep(c("status\nelevato", "status\nbasso"), each = 5)))
+d$p = factor(d$p, levels = c(p1, p2)); d$focale = d$g %in% c("compito\nnuovo", "status\nelevato")
+fine = do.call(rbind, lapply(split(d, list(d$p, d$g), drop = TRUE), function(k) k[which.max(k$x), ]))
+ggplot(d, aes(x, y, group = g, colour = focale)) +
+  geom_line(linewidth = 1.1) + geom_point(size = 2) +
+  geom_text(data = fine, aes(label = g), hjust = -.15, size = cx, lineheight = .85) +
+  scale_colour_manual(values = c("grey30", rosso), guide = "none") +
+  scale_x_continuous(expand = expansion(mult = c(.05, .45))) +
+  scale_y_continuous(expand = expansion(mult = .12)) +
+  facet_wrap(~p, scales = "free", ncol = if (stampa) 1 else 2) +
+  labs(x = NULL, y = NULL) +
   tema
 ```
 
@@ -294,14 +450,16 @@ i titoli di giornale peggiori.
 
 - La correlazione di Pearson riassume direzione e intensità dell'associazione
   lineare fra due misure, da −1 a +1, indipendentemente dalle unità di misura.
-- Non indica una percentuale di persone che segue una regola; in psicologia
-  valori attorno a 0,2 sono tipici e 0,5 è un'associazione notevole.
-- Un *r* nullo esclude solo una tendenza lineare: forme curve e casi estremi
-  vanno cercati guardando i dati.
+- *r* = 0,50 significa che chi è una deviazione standard sopra la media in una
+  variabile è, in media, mezza deviazione standard sopra la media nell'altra; in
+  psicologia valori attorno a 0,20 sono tipici e 0,50 è un'associazione forte.
+- Casi estremi e relazioni non lineari possono rendere *r* fuorviante: i dati
+  vanno sempre guardati.
 - Con campioni piccoli la stima è molto imprecisa; il valore *p* non misura né la
   grandezza dell'effetto né la probabilità che un'ipotesi sia vera.
-- Correlazione non significa causalità: cause comuni, direzione inversa e
-  influenze reciproche vanno valutate con disegni adeguati.
+- Correlazione non significa causalità: direzione inversa, causalità reciproca e
+  cause comuni vanno valutate con disegni adeguati; mediazione e moderazione
+  precisano come una causa agisce.
 :::
 
 [Riferimenti bibliografici](../../bibliografia.qmd)

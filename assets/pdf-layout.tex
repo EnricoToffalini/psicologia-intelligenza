@@ -1,5 +1,17 @@
 % Impaginazione comune al PDF. Nessun ridimensionamento globale delle tabelle.
 \usepackage{needspace}
+% Il carattere del testo non ha le lettere greche né ≈: le si prende dalla
+% matematica, così si possono scrivere direttamente nel testo e nelle didascalie.
+\usepackage{newunicodechar}
+\newunicodechar{α}{\ensuremath{\alpha}}
+\newunicodechar{β}{\ensuremath{\beta}}
+\newunicodechar{ε}{\ensuremath{\varepsilon}}
+\newunicodechar{η}{\ensuremath{\eta}}
+\newunicodechar{μ}{\ensuremath{\mu}}
+\newunicodechar{ρ}{\ensuremath{\rho}}
+\newunicodechar{σ}{\ensuremath{\sigma}}
+\newunicodechar{ω}{\ensuremath{\omega}}
+\newunicodechar{≈}{\ensuremath{\approx}}
 \usepackage{xurl}
 \raggedbottom
 \setlength{\emergencystretch}{2em}

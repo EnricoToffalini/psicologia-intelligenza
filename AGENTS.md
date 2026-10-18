@@ -72,6 +72,76 @@ vanno fatte sui capitoli esistenti, senza riscriverli da zero e senza cambiare
 slug o struttura delle parti salvo richiesta dell'utente. Stato dettagliato e
 punti aperti in `progetto/stato-lavori.md`.
 
+## Revisione in corso: allineamento alle slide
+
+Richiesta dell'utente (ottobre 2026): chi legge un capitolo deve trovarvi un
+**supporto discorsivo alle slide**, con la stessa concatenazione di concetti
+(arricchita dalle fonti originali citate) e, come agganci visivi, **gli stessi
+diagrammi e grafici delle slide**, ridisegnati in R in modo il più possibile
+fedele. Tutto ciò che nelle slide è fatto con box, frecce, testo e forme di
+PowerPoint è dell'autore e si riproduce liberamente; le immagini raster
+(grafici di articoli, fotografie, item di test, schermate) seguono le regole
+della sezione «Figure, test e copyright».
+
+Metodo, un capitolo per volta (non tutto insieme):
+
+1. Estrarre il testo del mazzo (`pdftotext -layout`) e guardare le pagine con
+   diagrammi (PyMuPDF: le pagine con molti oggetti vettoriali e poche immagini
+   sono i diagrammi dell'autore).
+2. Confrontare la scaletta del capitolo con la sequenza delle slide e riordinare
+   le sezioni perché la seguano; tenere del capitolo esistente ciò che è buono e
+   compatibile, togliere esempi inventati che non hanno aggancio nelle slide se
+   allungano il testo.
+3. Ridisegnare i diagrammi conservando l'**architettura** della slide (quali
+   elementi, dove, collegati da quali frecce, in che ordine di lettura), ma
+   nello **stile grafico del libro** (decisione dell'utente, ottobre 2026):
+   testo nero o `grey30` per il secondario, frecce `grey35`, il concetto o la
+   relazione focale in `rosso`, scatole `grey95`/bianche solo dove la slide ha
+   scatole; grafici con `tema` (minimale), barre e aree grigie e accenti in
+   rosso. Colori, spessori e font della slide non vanno copiati. Il PDF usa
+   `cairo_pdf` per tutte le figure (impostato in `assets/diagrammi.R`), quindi
+   greco, frecce Unicode e diacritici funzionano. In `text()` di base R non
+   usare `lineheight` (vale solo in ggplot2).
+4. Aggiornare il registro delle figure («adattamento dalla slide
+   dell'autore»), verificare le fonti nuove, eseguire il render e controllare le
+   figure nel PDF.
+
+Strumenti di lavoro (nella cartella temporanea, non nel progetto): uno script R
+che esegue i chunk di un capitolo e salva ogni figura in PNG nei due formati
+(forzando `knitr::is_latex_output()`), per controllarle senza il render
+completo. Attenzione: nei comandi shell le sequenze `\\n` dentro heredoc
+possono diventare a capo reali nelle stringhe R; modificare il codice R con
+l'editor, non con script incollati nella shell.
+
+Avanzamento (ottobre 2026). «Fatto» = sequenza del testo riallineata alle slide
+e diagrammi dell'autore riprodotti; «parziale» = solo alcune figure o tabelle.
+
+| Capitolo | Mazzo | Stato e cose rimaste |
+|---|---|---|
+| `che-cosa-e` | 1. Cosa è intelligenza | **fatto** (pp. 7, 14, 17, 21) |
+| `perche-studiarla` | 0. Perché studiare | **fatto** (pp. 7, 10, 11) |
+| `correlazione` | La Correlazione spiegata facile | **fatto** (pp. 5-19; grafici simulati al posto di quelli con emoji) |
+| `distribuzioni-e-punteggi` | La Gaussiana e i punti z | **fatto** (pp. 3-25); restano fuori la tabella grezzo-ponderato (p. 26) e le foto della tavola di Galton |
+| `qualita-della-misura` | I Criteri psicometrici | **fatto** (pp. 8-17); da fare l'esempio IDS-2 (p. 18), saturazioni non nelle slide |
+| `fattore-g` | 2. Unitaria, multipla, gerarchica | **fatto** (pp. 6, 7, 8); la vecchia `fig-manifold` è rimasta |
+| `modelli-gerarchici` | 2. Unitaria, multipla, gerarchica | **fatto** (pp. 33, 39, 40, 42, 47, 48, 50-51, 54); manca il problema X+Y (p. 34) come figura |
+| `origini-dei-test` | 3. Storia dei Test | **parziale**: tabella delle fasce Army (p. 24); linea del tempo già presente |
+| `batterie-moderne` | 3. Storia dei Test | **fatto** (pp. 2, 31, 32 come tabella) |
+| `geni-ambiente-ereditabilita` | 4. Basi genetiche | **parziale**: tabelle di p. 10 e p. 15; da fare formula h² (p. 6) e Falconer (p. 12) come schema |
+| `genetica-molecolare` | 4. Basi genetiche | da fare: schema Turkheimer (p. 33) da avvicinare alla slide; correlazione genetica (p. 39) |
+| `effetto-flynn` | 5. Effetto Flynn | **parziale**: g contro s (p. 17), tabella delle ipotesi (p. 11); cause (p. 19) già fedele |
+| `cervello-e-intelligenza` | 6. Basi neurobiologiche | da fare (quasi solo raster di articoli: valutare) |
+| `potenziamento-cognitivo` | 7. Potenziamento | da fare: fadeout (p. 8), controllo attivo (p. 23), schema di Warne su g (p. 30) |
+| `scuola-e-condizioni-sociali` | 8. Scuola, salute, lavoro | da fare: QI↔scolarità (p. 8), mediazione SES (p. 10), Davies (p. 11) |
+| `salute-e-longevita` | 8. Scuola, salute, lavoro | da fare: tre percorsi a frecce (p. 19) |
+| `intelligenza-e-lavoro` | 8. Scuola, salute, lavoro | da fare: ASVAB/AFQT (p. 23), attendibilità (p. 27), tabella Cucina/Nye/Sackett (p. 32), «oltre g» (p. 34) |
+| `neurosviluppo-dimensionale` | Neurosviluppo: cosa sono | da fare: comorbilità con frecce e percentuali (p. 35) solo dopo aver aggiunto le fonti (Mutluer 2022, Rong 2021, Snowling 2019, Turk 2009, van Bergen 2025) |
+| `valutazione-nel-neurosviluppo` | Neurosviluppo: valutazione | da fare: neurodivergenza/disturbo (p. 2), profili sindromici (p. 8); cono e specificità già vicini |
+| `alternative-a-g`, `intelligenza-emotiva-e-costrutti` | Oltre g | da fare (pp. 3, 8, 10, 12, 13, 14) |
+
+Molte figure già presenti nei capitoli «da fare» sono ridisegni liberi: vanno
+riportate all'architettura della slide corrispondente.
+
 ## Convenzioni tecniche dei capitoli
 
 - File in `didattica/<parte>/<slug>.qmd`, aggiunto all'elenco dei capitoli sia in

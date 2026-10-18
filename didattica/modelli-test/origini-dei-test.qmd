@@ -217,11 +217,24 @@ carta e matita [@yerkes1921psychological]. Nacquero così due strumenti:
   e prove non verbali: labirinti, completamento di figure, cifrari, sequenze di
   simboli.
 
-I punteggi venivano convertiti in fasce, dalla A, «molto superiore», alla E,
-corrispondenti grosso modo a percentuali fisse della distribuzione. Le fasce
-orientavano l'assegnazione: ufficiali dalle prime, ruoli semplici o esonero
-dalle ultime. Era un sistema rudimentale di punteggi basati sulla posizione
-relativa, il primo passo verso i punteggi di deviazione.
+I punteggi grezzi, fino a 212 punti per l'Alpha e 118 per il Beta, venivano
+convertiti in fasce, dalla A, «molto superiore», alla E, corrispondenti grosso
+modo a percentuali fisse della distribuzione (@tbl-army). Le fasce orientavano
+l'assegnazione: ufficiali dalle prime, ruoli semplici o esonero dalle ultime.
+Era un sistema rudimentale di punteggi basati sulla posizione relativa, il primo
+passo verso i punteggi di deviazione.
+
+| Fascia | Etichetta | Quota approssimativa | Impiego suggerito |
+|:-:|---|:-:|---|
+| A | molto superiore | 4–5% | ufficiali con elevate responsabilità |
+| B | superiore | 8–10% | ufficiali con minori responsabilità, sottufficiali |
+| C+ | media alta | 15–18% | sottufficiali, alcuni ruoli di guida |
+| C | nella media | 25% | soldati semplici con piccole responsabilità |
+| C− | media bassa | 25% | soldati semplici, compiti autonomi ma ripetitivi |
+| D | inferiore | 15% | soldati semplici, compiti semplici sotto supervisione |
+| D−, E | molto inferiore | pochi | ai limiti del servizio regolare; ruoli di supporto o esonero |
+
+: Le fasce di punteggio dei test dell'esercito statunitense nella Prima guerra mondiale. Elaborazione da Yerkes (1921). {#tbl-army}
 
 Le innovazioni furono notevoli: somministrazione collettiva, risposte a scelta
 multipla, scoring rapido, standardizzazione su numeri enormi, una prova non

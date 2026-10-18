@@ -31,39 +31,33 @@ hoc per illustrare il tipo di prova, non equivalenti a item reali.
 
 ## Un piccolo glossario
 
-Il linguaggio dei test usa alcuni termini con un significato preciso.
-
-- **Batteria.** Strumento completo per valutare un'area del funzionamento, come
-  l'intelligenza, articolato in molte componenti. Per tradizione si parla spesso
-  di «scale».
-- **Item.** Il singolo problema all'interno di una prova. La risposta può
-  essere giusta o sbagliata, oppure valutata su pochi livelli di accuratezza.
-- **Subtest.** Una prova che misura una particolare abilità, di solito composta
-  da una sequenza di item di difficoltà crescente. Esempi tipici sono un
-  subtest di vocabolario o uno di costruzioni con cubi.
-- **Indice.** Un punteggio che stima un costrutto latente aggregando più
-  subtest, espresso su una metrica standardizzata. Il QI totale è un indice;
-  lo sono anche gli indici di dominio, come comprensione verbale o memoria di
-  lavoro.
+Il linguaggio dei test usa alcuni termini con un significato preciso
+(@fig-glossario-test). Una **batteria** è lo strumento completo; i suoi
+**indici** sono i punteggi standardizzati che stimano un costrutto, dal QI
+totale agli indici di dominio; ogni indice aggrega alcuni **subtest**, cioè
+singole prove; ogni subtest è una sequenza di **item**, i singoli problemi,
+ordinati per difficoltà.
 
 ```{r}
-#| label: fig-livelli
-#| fig-cap: "I livelli di una batteria di intelligenza. Il QI totale aggrega gli indici, ogni indice aggrega alcuni subtest, ogni subtest è una sequenza di item di difficoltà crescente. Per leggibilità sono sviluppati per esteso solo un indice e un subtest. Schema originale."
-#| fig-alt: "Diagramma ad albero dentro una cornice che rappresenta la batteria. In alto il QI totale; sotto, cinque indici; dal primo indice partono tre subtest; dal primo subtest partono cinque item numerati da 1 a 5. A sinistra le etichette dei livelli: indice globale, indici, subtest, item."
+#| label: fig-glossario-test
+#| fig-cap: "Mini glossario dei test: batteria, indice, subtest e item, con una definizione ed esempi per ciascun termine."
+#| fig-alt: "Quattro righe. Batteria: strumento completo per valutare un'area del funzionamento psicologico, come l'intelligenza, articolato in componenti, indici e subtest; per tradizione spesso chiamato scala; esempi WISC-V e IDS-2. Indice: indicatore numerico che stima un costrutto latente su una metrica standardizzata, spesso aggregando più subtest; esempi QI totale, indice di comprensione verbale, indice visuo-spaziale. Subtest: singola prova che misura una particolare abilità, composta da item ordinati per difficoltà; esempi vocabolario, disegno con cubi. Item: singolo problema in un subtest, a risposta giusta o sbagliata o con pochi gradi di accuratezza; esempio: che cosa significa una certa parola."
 #| fig-width: !expr 4.45 * scala
 #| fig-height: !expr 2.9 * scala
 tela(c(0, 12), c(0, 10))
-rect(.05, .05, 11.95, 9.95, border = "grey60", lty = 2, lwd = scala)
-text(11.8, 9.5, "batteria", adj = 1, cex = .62, font = 3, col = "grey40")
-text(.3, c(8.6, 6.1, 3.6, 1.1), c("indice globale", "indici", "subtest", "item"), adj = 0, cex = .62, font = 2, col = "grey35")
-qit = nodo(7, 8.6, "QI totale", w = 2.6, h = 1.1, bg = "grey85", font = 2, cex = .7)
-ind = lapply(1:5, function(i) nodo(c(3.2, 5.1, 7, 8.9, 10.8)[i], 6.1, c("I1", "I2", "I3", "I4", "I5")[i], w = 1.5, h = 1, bg = "grey93", cex = .66))
-for (i in ind) collega(qit, i)
-sub = lapply(1:3, function(i) nodo(c(4, 5.9, 7.8)[i], 3.6, c("S1", "S2", "S3")[i], w = 1.5, h = 1, bg = "white", cex = .66))
-for (x in sub) collega(ind[[1]], x)
-for (i in 1:5) collega(sub[[1]], nodo(c(1.6, 2.8, 4, 5.2, 6.4)[i], 1.1, i, w = .9, h = .9, bg = "white", cex = .6), col = "grey45")
-text(7.3, 1.1, "difficoltà crescente", adj = 0, cex = .58, font = 3, col = "grey40")
-freccia(7.3, .5, 9.9, .5, col = "grey50")
+termini = c("BATTERIA", "INDICE", "SUBTEST", "ITEM")
+defin = c("Strumento completo per la valutazione di un'area del funzionamento psicologico (es. intelligenza), articolato in componenti, indici e subtest; per tradizione spesso chiamato «scala»",
+          "Indicatore numerico che stima un costrutto latente (es. abilità mentale generale) su una metrica standardizzata, come punteggio di deviazione dalla media; spesso aggrega più subtest",
+          "Singola prova che misura una particolare abilità o componente del costrutto, di solito una sequenza di item ordinati per difficoltà",
+          "Singolo problema all'interno di un subtest, a risposta giusta o sbagliata o valutato su pochi gradi di accuratezza")
+esempi = c("es. WISC-V; IDS-2", "es. QI totale; indice di comprensione verbale; indice visuo-spaziale", "es. vocabolario; disegno con cubi", "es. «che cosa significa questa parola?»")
+y = c(8.7, 6.2, 3.7, 1.2)
+for (i in 1:4) {
+  text(.1, y[i], termini[i], adj = 0, font = 4, cex = .72, col = rosso)
+  freccia(2.35, y[i], 3.05, y[i], col = "grey35")
+  text(3.2, y[i], paste(strwrap(defin[i], 50), collapse = "\n"), adj = 0, cex = .47)
+  text(9.4, y[i], paste(strwrap(esempi[i], 22), collapse = "\n"), adj = 0, cex = .47, font = 3, col = "grey35")
+}
 ```
 
 ## Wechsler e il QI di deviazione
@@ -118,24 +112,49 @@ La @fig-edizioni riassume il passaggio.
 
 ```{r}
 #| label: fig-edizioni
-#| fig-cap: "Come è cambiata la struttura delle scale Wechsler: dal QI verbale e di performance delle prime tre edizioni ai quattro indici della quarta, ai cinque indici primari della quinta, più vicini al modello CHC. Schema originale."
-#| fig-alt: "Tre alberi uno sotto l'altro. Prime tre edizioni, dagli anni Trenta agli anni Novanta: QI totale diviso in QI verbale e QI di performance. Quarta edizione, anni Duemila: QI totale con quattro indici, comprensione verbale, ragionamento percettivo, memoria di lavoro, velocità di elaborazione. Quinta edizione, dagli anni Dieci: cinque indici, con il ragionamento percettivo diviso in visuospaziale e ragionamento fluido."
-#| fig-width: !expr 4.45 * scala
-#| fig-height: !expr 3.9 * scala
-tela(c(0, 12), c(1, 15))
-albero = function(y, titolo, sotto, foglie) {
-  text(0, y - .2, titolo, adj = c(0, 0), cex = .68, font = 2)
-  text(0, y - .4, sotto, adj = c(0, 1), cex = .58, col = "grey40")
-  r = nodo(7.3, y, "QI totale", w = 2.3, h = .9, bg = "grey85", font = 2, cex = .64)
-  xs = if (length(foglie) == 2) c(5, 9.6) else seq(3.3, 10.95, length.out = length(foglie))
-  w = min(2.2, 9.6 / length(foglie))
-  for (i in seq_along(foglie)) collega(r, nodo(xs[i], y - 2.5, foglie[i], w = w * .86, h = 1.5, bg = "grey95", cex = .56))
+#| fig-cap: "Come è cambiata la struttura delle scale Wechsler, con una progressiva aggiunta di indici e articolazioni fattoriali migliori: dal QI verbale e di performance delle prime tre edizioni ai quattro indici della quarta, ai cinque indici primari della quinta, più vicini al modello CHC. Le edizioni intermedie (una terza edizione orientata ai processi, estensioni della quarta) hanno preparato i passaggi."
+#| fig-alt: "Tre alberi. Prime tre edizioni, dagli anni Trenta agli anni Novanta: QI totale diviso in QI verbale e QI di performance, con la frase di Wechsler: misure diverse dell'intelligenza, non misure di tipi diversi di intelligenza. Quarta edizione, anni Duemila: QI totale con quattro indici, comprensione verbale, ragionamento percettivo, memoria di lavoro, velocità di elaborazione; indici di ispirazione cognitiva e neuropsicologica, utili per un profilo più articolato. Quinta edizione, dagli anni Dieci: cinque indici, con il ragionamento percettivo diviso in visuospaziale e ragionamento fluido; rimando più esplicito al modello CHC."
+#| fig-width: !expr if (stampa) 4.45 else 4.45 * 2.1
+#| fig-height: !expr if (stampa) 4.6 else 2.6 * 1.6
+fo = c("QI verbale", "QI di\nperformance")
+qu = c("Compren-\nsione\nverbale", "Ragiona-\nmento\npercettivo", "Memoria\ndi lavoro", "Velocità\ndi elabo-\nrazione")
+ci = c("Compren-\nsione\nverbale", "Visuo-\nspaziale", "Ragiona-\nmento\nfluido", "Memoria\ndi lavoro", "Velocità\ndi elabo-\nrazione")
+note = c("Wechsler: «misure diverse dell'intelligenza,\nnon misure di tipi diversi di intelligenza»",
+         "indici di ispirazione cognitiva e\nneuropsicologica: profilo più articolato,\ndiscrepanze interne",
+         "rimando esplicito al CHC (ragionamento\nfluido); memoria di lavoro verbale\ne visiva; alcuni subtest spostati")
+if (stampa) {
+  tela(c(0, 12), c(-.6, 15))
+  albero = function(y, titolo, sotto, foglie, nota) {
+    text(0, y - .2, titolo, adj = c(0, 0), cex = .68, font = 2)
+    text(0, y - .4, sotto, adj = c(0, 1), cex = .58, col = "grey40")
+    r = nodo(7.3, y, "QI totale", w = 2.3, h = .9, bg = "white", border = rosso, col = rosso, font = 2, cex = .64)
+    xs = if (length(foglie) == 2) c(5, 9.6) else seq(3.3, 10.95, length.out = length(foglie))
+    w = min(2.2, 9.6 / length(foglie))
+    for (i in seq_along(foglie)) collega(r, nodo(xs[i], y - 2.3, foglie[i], w = w * .86, h = 1.5, bg = "grey95", cex = .52), col = "grey35")
+    text(0, y - 3.35, gsub("\n", " ", nota), adj = c(0, 1), cex = .45, font = 3, col = rosso)
+  }
+  albero(14.6, "1ª-3ª edizione", "anni '30-'90", fo, note[1])
+  segments(0, 10.55, 12, 10.55, col = "grey80", lwd = scala)
+  albero(9.6, "4ª edizione", "anni 2000", qu, note[2])
+  segments(0, 5.55, 12, 5.55, col = "grey80", lwd = scala)
+  albero(4.6, "5ª edizione", "dagli anni 2010", ci, note[3])
+} else {
+  # Nel sito le tre edizioni sono affiancate, come nella slide
+  tela(c(0, 25.2), c(0, 10.5))
+  colonna = function(x0, titolo, sotto, foglie, nota) {
+    text(x0 + 3.9, 9.6, titolo, cex = .7, font = 2); text(x0 + 3.9, 9.05, sotto, cex = .5, col = "grey40")
+    r = nodo(x0 + 3.9, 7.8, "QI totale", w = 2.6, h = .9, bg = "white", border = rosso, col = rosso, font = 2, cex = .6)
+    xs = if (length(foglie) == 2) x0 + c(2.3, 5.5) else seq(x0 + .8, x0 + 7, length.out = length(foglie))
+    for (i in seq_along(foglie)) collega(r, nodo(xs[i], 5, foglie[i], w = min(2.6, 7.4 / length(foglie) * .92), h = 1.9, bg = "grey95", cex = .44), col = "grey35")
+    text(x0 + 3.9, 2.2, nota, cex = .46, font = 3, col = rosso)
+  }
+  colonna(0, "1ª-3ª edizione", "anni '30-'90", fo, note[1])
+  colonna(8.6, "4ª edizione", "anni 2000", qu, note[2])
+  colonna(17.2, "5ª edizione", "anni 2010+", ci, note[3])
+  for (x in c(8.3, 16.9)) freccia(x, 9.7, x, 1, col = "grey55")
+  text(c(8.3, 16.9), 10.2, c("«3ª PI»", "«estensioni 4ª»"), cex = .42, font = 3, col = "grey40")
+  segments(0, .4, 25.2, .4, col = "grey80", lwd = scala)
 }
-albero(14.3, "1ª-3ª edizione", "anni '30-'90", c("QI verbale", "QI di\nperformance"))
-segments(0, 10.3, 12, 10.3, col = "grey80", lwd = scala)
-albero(9.4, "4ª edizione", "anni 2000", c("Comprensione\nverbale", "Ragionamento\npercettivo", "Memoria\ndi lavoro", "Velocità di\nelaborazione"))
-segments(0, 5.3, 12, 5.3, col = "grey80", lwd = scala)
-albero(4.4, "5ª edizione", "dagli anni 2010", c("Compren-\nsione\nverbale", "Visuo-\nspaziale", "Ragiona-\nmento\nfluido", "Memoria\ndi lavoro", "Velocità\ndi elabo-\nrazione"))
 ```
 
 Le convenzioni metriche sono ormai universali: i subtest hanno punteggi
@@ -146,15 +165,15 @@ La struttura di una batteria come la WISC-V è dunque gerarchica: un QI totale,
 cinque indici primari, una decina di subtest principali e altri subtest
 supplementari. I principali tipi di prova sono questi.
 
-| Indice | Che cosa valuta | Tipo di prova |
-|---|---|---|
-| Comprensione verbale | Conoscenza delle parole, dei concetti e del mondo | Spiegare che cosa hanno in comune due concetti; definire parole |
-| Visuospaziale | Analisi di dettagli visivi e relazioni spaziali | Riprodurre un modello con cubi colorati; scegliere i pezzi che compongono una figura |
-| Ragionamento fluido | Ragionamento induttivo e deduttivo, astrazione di regole | Completare matrici di figure; trovare ciò che bilancia una serie di pesi |
-| Memoria di lavoro | Mantenere e manipolare informazioni verbali o visive | Ripetere sequenze di cifre in avanti, all'indietro o riordinate; riconoscere immagini viste |
-| Velocità di elaborazione | Rapidità ed efficienza in compiti semplici | Associare simboli a cifre; cercare simboli bersaglio |
+| Indice | Che cosa valuta | Subtest (primari in corsivo) | Tipo di prova |
+|---|---|---|---|
+| Comprensione verbale | Conoscenza delle parole, dei concetti e del mondo | *Somiglianze*, *Vocabolario*, Informazione, Comprensione | Spiegare che cosa hanno in comune due concetti; definire parole |
+| Visuospaziale | Analisi di dettagli visivi e relazioni spaziali | *Disegno con cubi*, *Puzzle* | Riprodurre un modello con cubi colorati; scegliere i pezzi che compongono una figura |
+| Ragionamento fluido | Ragionamento induttivo e deduttivo, astrazione di regole | *Matrici*, *Confronto di pesi*, Concetti illustrati, Ragionamento aritmetico | Completare matrici di figure; trovare ciò che bilancia una serie di pesi |
+| Memoria di lavoro | Mantenere e manipolare informazioni verbali o visive | *Memoria di cifre*, *Memoria di immagini*, Riordinamento di lettere e numeri | Ripetere sequenze di cifre in avanti, all'indietro o riordinate; riconoscere immagini viste |
+| Velocità di elaborazione | Rapidità ed efficienza in compiti semplici | *Cifrario*, *Ricerca di simboli*, Cancellazione | Associare simboli a cifre; cercare simboli bersaglio |
 
-: Indici primari di una batteria di tipo Wechsler per l'età evolutiva e relativi tipi di prova. {#tbl-indici}
+: Indici primari della WISC-V, subtest e relativi tipi di prova. I subtest primari, in corsivo, servono a calcolare i cinque indici primari; il QI totale ne usa sette. {#tbl-indici}
 
 Un esempio originale chiarisce il tipo di richiesta senza riprodurre item reali.
 In una prova di somiglianze si potrebbe chiedere in che cosa si assomigliano una

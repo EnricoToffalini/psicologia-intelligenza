@@ -104,6 +104,38 @@ l'oggetto da studiare. Galton raccoglie misure fisiche e sensoriali su migliaia
 di visitatori del suo laboratorio antropometrico. Karl Pearson formalizza la
 correlazione. Spearman propone l'analisi fattoriale.
 
+Che cosa significa studiare le differenze individuali si capisce partendo da
+quelle che notiamo a colpo d'occhio: statura, peso, colore degli occhi e dei
+capelli, modo di vestire, tono di voce, modo di camminare. Viene subito da
+chiedersi da che cosa dipendano, e le risposte sono diverse (@fig-colpo-docchio).
+La statura dipende da basi genetiche, alimentazione e condizioni mediche, e a sua
+volta influisce sul peso. Il colore degli occhi e dei capelli dipende quasi solo
+da basi genetiche, in parte comuni. Il modo di vestire dipende da abitudini e
+apprendimento. Alcune caratteristiche sono stabili, altre cambiano in fretta. Le
+stesse domande valgono in psicologia: lungo quali dimensioni le persone
+differiscono, da che cosa dipendono quelle differenze, quanto sono stabili.
+
+```{r}
+#| label: fig-colpo-docchio
+#| fig-cap: "Differenze individuali visibili a colpo d'occhio e alcune delle loro cause. Cause diverse producono differenze diverse; alcune differenze ne influenzano altre; alcune cambiano nel tempo, altre sono stabili."
+#| fig-alt: "Tre gruppi. Nel primo, basi genetiche, alimentazione e condizioni mediche causano la statura, che a sua volta influisce sul peso. Nel secondo, le basi genetiche causano colore degli occhi e colore dei capelli. Nel terzo, abitudini e apprendimento causano il modo di vestire. In basso la domanda: cambiano o sono stabili, quanto rapidamente cambiano?"
+#| fig-width: !expr 4.45 * scala
+#| fig-height: !expr 2 * scala
+tela(c(0, 12), c(0, 10))
+c1 = nodo(2.1, 8.4, "basi genetiche, alimentazione,\ncondizioni mediche", w = 4, h = 2, forma = "ovale", bg = "white", border = "grey50", cex = .5, font = 3, col = rosso)
+c2 = nodo(6.3, 8.4, "basi genetiche", w = 2.6, h = 1.5, forma = "ovale", bg = "white", border = "grey50", cex = .5, font = 3, col = rosso)
+c3 = nodo(10.1, 8.4, "abitudini,\napprendimento", w = 2.8, h = 1.8, forma = "ovale", bg = "white", border = "grey50", cex = .5, font = 3, col = rosso)
+st = nodo(1.2, 5.2, "statura", w = 1.7, h = 1.1, bg = "grey93", cex = .58)
+pe = nodo(3.2, 3.6, "peso", w = 1.5, h = 1.1, bg = "grey93", cex = .58)
+for (x in c(1.3, 2.1, 2.9)) freccia(x, 7.35, .8 + (x - 1.3) * .5, 5.8, col = "grey35", lwd = .8)
+collega(st, pe, col = "grey35")
+collega(c2, nodo(5.2, 4.8, "colore occhi", w = 2, h = 1.1, bg = "grey93", cex = .58), col = "grey35")
+collega(c2, nodo(7.5, 4.8, "colore capelli", w = 2.2, h = 1.1, bg = "grey93", cex = .58), col = "grey35")
+mv = nodo(10.1, 4.8, "modo di vestire", w = 2.5, h = 1.1, bg = "grey93", cex = .58)
+for (x in c(9.5, 10.1, 10.7)) freccia(x, 7.5, x, 5.4, col = "grey35", lwd = .8)
+text(6, 1.4, "Cambiano o sono stabili? Quanto rapidamente cambiano?", cex = .62, font = 3, col = "grey30")
+```
+
 Nasce così una distinzione che Cronbach, molti decenni dopo, descrisse come
 quella fra «due discipline» della psicologia scientifica [@cronbach1957two]:
 
@@ -155,41 +187,67 @@ con più dati. Per questo funziona bene come porta d'ingresso.
 
 ```{r}
 #| label: fig-foresta
-#| fig-cap: "Le tre grandi aree delle differenze individuali hanno un'architettura simile: molti tratti specifici, raggruppati in dimensioni più ampie e correlate. Per le abilità cognitive al vertice c'è il fattore g; per la psicopatologia un fattore generale p è stato ipotizzato (bordo tratteggiato); per la personalità le dimensioni ampie sono i cinque grandi fattori. Schema originale."
-#| fig-alt: "Tre gerarchie affiancate: abilità cognitive, con g sopra abilità ampie come Gf, Gc e Gv; personalità, con i cinque grandi fattori; psicopatologia, con un fattore p ipotizzato sopra le dimensioni internalizzante ed esternalizzante. Sotto ogni gerarchia una fila di tratti specifici. Frecce doppie collegano le aree; una fascia comune in basso indica genetica, neurobiologia, sviluppo ed esperienza."
+#| fig-cap: "La «foresta» delle differenze individuali. Abilità cognitive, psicopatologia e personalità sono tre chiome di tratti specifici correlati; per le prime al tronco c'è il fattore g, per la psicopatologia è stato ipotizzato un fattore generale p. Le tre aree sono collegate fra loro, attraversate dalla neurodivergenza, e poggiano su basi comuni."
+#| fig-alt: "Tre chiome affiancate. La prima, intelligenza e abilità cognitive, contiene funzioni esecutive, memoria a lungo termine, memoria di lavoro, abilità scolastiche, velocità di elaborazione, abilità verbali, abilità visuo-spaziali, intelligenza fluida e cristallizzata, con alla base il fattore g. La seconda, psicopatologia dimensionale, contiene depressione, dipendenze, burnout, comportamento antisociale, evitamento, impulsività, ansia, sintomi psicotici, dimensioni internalizzante ed esternalizzante, con alla base il fattore p. La terza, personalità, contiene i cinque grandi fattori, soft skills e punti di forza del carattere come curiosità, leadership, creatività e coraggio. Fra le prime due chiome una scritta verticale: neurodivergenza, per esempio dislessia, ADHD, autismo. Frecce doppie collegano le aree; una fascia in basso indica basi comuni: pleiotropia, poligenicità, basi neurobiologiche, traiettorie di sviluppo, esperienza."
 #| fig-width: !expr 4.45 * scala
-#| fig-height: !expr 3.1 * scala
+#| fig-height: !expr 3.6 * scala
 tela(c(0, 12), c(0, 10))
-gerarchia = function(cx, titolo, alto, medi, tratteggio = FALSE) {
-  text(cx, 9.55, titolo, font = 2, cex = .72)
-  w = 3.4 / length(medi)
-  xm = cx + (seq_along(medi) - (length(medi) + 1) / 2) * w
-  xb = cx + seq(-1.6, 1.6, length.out = 6)
-  m = lapply(seq_along(medi), function(i) nodo(xm[i], 5.6, medi[i], w = w * .82, h = 1.1, forma = "ovale", bg = "grey93", cex = .62))
-  b = lapply(xb, function(x) nodo(x, 3, "", w = .42, h = .5, bg = "white"))
-  for (i in seq_along(m)) for (j in seq_along(b))
-    if (abs(xb[j] - xm[i]) < 1.05) collega(m[[i]], b[[j]], col = "grey55", lwd = .7, gap = .03)
-  if (!is.null(alto)) {
-    a = nodo(cx, 8.1, alto, w = 1.3, h = 1.2, forma = "ovale", bg = "white", font = 4, cex = .8, lwd = if (tratteggio) .8 else 1.2)
-    if (tratteggio) { t = seq(0, 2 * pi, length.out = 120); lines(cx + .65 * cos(t), 8.1 + .6 * sin(t), col = "white", lwd = 2 * scala); lines(cx + .65 * cos(t), 8.1 + .6 * sin(t), col = "grey20", lty = 2, lwd = scala) }
-    for (x in m) collega(a, x, col = rosso, lwd = 1, lty = if (tratteggio) 2 else 1)
-  }
-  text(cx, 2.25, "tratti specifici", cex = .58, col = "grey35")
+albero = function(cx, voci, base, area, esempio) {
+  t = seq(0, 2 * pi, length.out = 120)
+  segments(cx, 3.95, cx, 3.0, col = "grey60", lwd = 3 * scala)
+  polygon(cx + 1.9 * cos(t), 6.6 + 2.7 * sin(t), col = "grey96", border = "grey80")
+  yr = seq(8.4, 5.2, length.out = 5)
+  for (k in seq_along(voci)) text(cx + c(-.85, .85)[(k - 1) %% 2 + 1], yr[(k - 1) %/% 2 + 1], voci[k], cex = .47, col = "grey20")
+  f = grepl("fattore", base); text(cx, 4.4, base, cex = if (f) .62 else .47, font = if (f) 2 else 3, col = if (f) rosso else "grey40")
+  text(cx, 2.45, area, cex = .55, font = 2, col = rosso)
+  text(cx, 1.75, esempio, cex = .45, font = 3, col = "grey40")
 }
-gerarchia(2, "Abilità cognitive", "g", c("Gf", "Gc", "Gv", "..."))
-gerarchia(6, "Personalità", NULL, c("E", "C", "N", "A", "O"))
-gerarchia(10, "Psicopatologia", "p", c("Int.", "Est.", "..."), tratteggio = TRUE)
-freccia(3.75, 5.6, 4.25, 5.6, code = 3, col = "grey40")
-freccia(7.75, 5.6, 8.25, 5.6, code = 3, col = "grey40")
-rect(.2, .25, 11.8, 1.45, col = "grey88", border = NA)
-text(6, .85, "Basi comuni: genetica, neurobiologia, sviluppo, esperienza", cex = .62, font = 3)
-for (x in c(2, 6, 10)) freccia(x, 1.5, x, 2.0, col = "grey40")
+albero(2.05, c("Funzioni\nesecutive", "Memoria a\nlungo termine", "Memoria\ndi lavoro", "Abilità\nscolastiche", "Velocità di\nelaborazione",
+               "Abilità\nverbali", "Abilità visuo-\nspaziali", "Intelligenza\nfluida", "Intelligenza\ncristallizzata", "..."),
+       "fattore g", "Intelligenza /\nabilità cognitive", "es. CHC")
+albero(6.15, c("Depressione", "Dipendenze", "Burnout", "Antisociale", "Evitamento", "Impulsività", "Ansia", "Psicotico",
+               "Internaliz-\nzante", "Esternaliz-\nzante"),
+       "fattore p", "Psicopatologia\ndimensionale", "es. HiTOP")
+albero(10.05, c("Estroversione", "Coscienziosità", "Nevroticismo", "Apertura", "Amicalità", "Curiosità", "Leadership", "Creatività", "Coraggio", "..."),
+       "big five, soft skills,\ncharacter strengths", "Personalità / stili e\ncompetenze personali", "")
+text(4.1, 6.6, "neurodivergenza (dislessia, ADHD, autismo, ...)", srt = 90, cex = .45, font = 3, col = "grey30")
+freccia(3.35, 2.45, 4.85, 2.45, code = 3, col = "grey40"); freccia(7.45, 2.45, 8.75, 2.45, code = 3, col = "grey40")
+rect(.1, .1, 11.9, 1.3, col = "grey88", border = NA)
+text(6, .7, "Basi comuni: pleiotropia, poligenicità, basi neurobiologiche,\ntraiettorie di sviluppo, esperienza e interazioni con l'ambiente", cex = .5, font = 3)
 ```
 
-Nella @fig-foresta Gf e Gc indicano l'intelligenza fluida e cristallizzata, Gv
-l'elaborazione visiva; le lettere della personalità indicano estroversione,
-coscienziosità, nevroticismo, amicalità e apertura mentale; Int. ed Est. le
-dimensioni internalizzante ed esternalizzante.
+Fra le chiome delle abilità cognitive e della psicopatologia corre la
+neurodivergenza: dislessia, ADHD e autismo hanno a che fare con entrambe, e se
+ne parlerà nella parte sul neurosviluppo.
+
+L'intelligenza, del resto, sta a un crocevia (@fig-crocevia). Ha dato alla
+psicometria i suoi strumenti di base: test, punteggi, modelli statistici. Riceve
+dalla genetica del comportamento, con gli studi sui gemelli e le analisi
+genomiche, la prova che le sue differenze hanno basi ereditabili distribuite su
+migliaia di varianti. Scambia domande e risposte con le neuroscienze cognitive,
+che cercano le basi cerebrali delle differenze individuali. E alimenta lo
+studio dello sviluppo e dell'arco di vita, oltre a una lunga serie di
+applicazioni cliniche, scolastiche e organizzative.
+
+```{r}
+#| label: fig-crocevia
+#| fig-cap: "L'intelligenza, intesa come studio delle differenze individuali nelle abilità cognitive, al crocevia fra discipline: fornisce strumenti alla psicometria, riceve dati dalla genetica del comportamento, scambia domande con le neuroscienze cognitive, alimenta lo studio dello sviluppo e le applicazioni."
+#| fig-alt: "Al centro la parola intelligenza, studio delle differenze individuali nelle abilità cognitive. Una freccia va verso psicometria, in alto a sinistra: sviluppo di test, misure, punteggi, modelli statistici. Una freccia arriva dalla genetica del comportamento, in alto a destra: studi sui gemelli e GWAS. Una doppia freccia la collega alle neuroscienze cognitive, in basso a sinistra: basi neurobiologiche delle differenze individuali. Frecce vanno verso le applicazioni cliniche, sociali e nelle organizzazioni, in basso al centro, e verso neurosviluppo e arco di vita, in basso a destra."
+#| fig-width: !expr 4.45 * scala
+#| fig-height: !expr 2.8 * scala
+tela(c(0, 12), c(0, 10))
+text(6, 5.6, "INTELLIGENZA", font = 2, cex = 1.05, col = rosso)
+text(6, 4.6, "studio delle differenze individuali\nnelle abilità cognitive", cex = .52, font = 3)
+titolo = function(x, y, t, s) { text(x, y, t, font = 2, cex = .62); text(x, y - 1.05, s, cex = .47, col = "grey30") }
+titolo(2, 9.1, "PSICOMETRIA", "sviluppo di test, misure,\npunteggi, modelli statistici")
+titolo(10, 9.1, "GENETICA DEL\nCOMPORTAMENTO", "studi sui gemelli, GWAS")
+titolo(1.9, 2.6, "NEUROSCIENZE\nCOGNITIVE", "basi neurobiologiche delle\ndifferenze individuali")
+titolo(6, 2.1, "APPLICAZIONI CLINICHE,\nSOCIALI, ORGANIZZATIVE", "")
+titolo(10.1, 2.6, "NEUROSVILUPPO,\nARCO DI VITA", "neurodiversità, discrepanze,\ncrescita e declino delle abilità")
+freccia(4.4, 6.2, 2.9, 7.4, col = "grey35"); freccia(9.4, 7.5, 7.7, 6.2, col = "grey35")
+freccia(4.3, 4.3, 3.0, 3.3, col = "grey35", code = 3); freccia(6, 3.85, 6, 2.9, col = "grey35")
+freccia(7.8, 4.3, 9.2, 3.3, col = "grey35")
+```
 
 ## Perché sembra più difficile di quanto sia
 

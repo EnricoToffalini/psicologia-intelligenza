@@ -122,9 +122,25 @@ perché la crescita sia iniziata prima della sua diffusione di massa, né perch�
 si osservi anche in contesti rurali poco tecnologici. La familiarità con i test
 non spiega perché i guadagni siano cominciati prima che i test si diffondessero.
 L'alimentazione e la salute prevederebbero guadagni maggiori nei bambini, mentre
-spesso sono maggiori negli adulti [@pietschnig2015flynn]. Il quadro più
-plausibile è quello di molti fattori che agiscono insieme e si rinforzano a
+spesso sono maggiori negli adulti [@pietschnig2015flynn]. La @tbl-ipotesi-flynn
+riassume le principali ipotesi e la difficoltà maggiore di ciascuna. Il quadro
+più plausibile è quello di molti fattori che agiscono insieme e si rinforzano a
 vicenda, con pesi diversi in epoche e paesi diversi.
+
+| Fattore ipotizzato | Difficoltà principale |
+|---|---|
+| Più istruzione | non spiega perché i guadagni siano maggiori nell'intelligenza fluida che in quella cristallizzata |
+| Esposizione alla tecnologia | gli aumenti iniziano prima della sua diffusione di massa e si osservano anche in contesti poco tecnologici |
+| Famiglie meno numerose | non spiega l'appiattimento recente né guadagni maggiori negli adulti |
+| Familiarità e pratica con i test | gli aumenti iniziano prima della diffusione di massa dei test |
+| Mescolanza genetica fra popolazioni | può spiegare solo una quota piccola, pochi punti in cinquant'anni |
+| Meno piombo nel sangue | gli aumenti iniziano prima degli anni Settanta, quando il piombo è stato eliminato |
+| Alimentazione migliore | prevede guadagni maggiori nei bambini, non è ciò che si osserva |
+| Meno patogeni | come per l'alimentazione |
+| Amplificazione sociale (circoli virtuosi di piccoli guadagni) | spiega l'amplificazione, non l'effetto iniziale; plausibile, ma manca una prova empirica forte |
+| Sviluppo cognitivo più lento e più lungo | promettente, ma è più una cornice teorica che una prova empirica |
+
+: Ipotesi sulle cause dell'effetto Flynn e loro limiti principali. Elaborazione dalla sintesi di Pietschnig e Voracek (2015). {#tbl-ipotesi-flynn}
 
 ::: {.callout-warning icon=false}
 ## Attenzione clinica: le norme invecchiano
@@ -170,26 +186,28 @@ soprattutto abilità specifiche, più che *g* [@tenijenhuis2013flynn].
 
 ```{r}
 #| label: fig-flynn-g-s
-#| fig-cap: "Due letture dell'effetto Flynn. Nel primo pannello l'ambiente agisce sul fattore generale, e i guadagni si trasmettono a tutte le prove in proporzione al loro legame con g. Nel secondo l'ambiente agisce sulle componenti specifiche s, con intensità diversa da prova a prova (frecce di spessore diverso). Schema originale."
-#| fig-alt: "Due modelli affiancati con g in alto, quattro prove in basso (matrici, vocabolario, ragionamento aritmetico, cifrario) e un piccolo cerchio s sotto ciascuna prova. Nel primo una freccia rossa, effetto Flynn, punta su g. Nel secondo frecce rosse di spessore diverso puntano sulle singole componenti s."
+#| fig-cap: "Che cosa è davvero aumentato: l'abilità mentale generale o solo abilità specifiche? Nel primo pannello l'effetto Flynn agisce su g, e i guadagni si trasmettono a tutte le prove in proporzione al loro legame con g. Nel secondo agisce sulle componenti specifiche s, con intensità diversa da prova a prova (frecce di spessore diverso). Una lettura rigidamente psicometrica fa propendere per il secondo scenario."
+#| fig-alt: "Due modelli affiancati con g in alto, cinque riquadri in basso (matrici, vocabolario, ragionamento aritmetico, cifrario e puntini) e un piccolo cerchio s sopra ciascun riquadro. Nel primo una freccia rossa, effetto Flynn, punta su g. Nel secondo frecce rosse di spessore diverso partono dalla scritta effetto Flynn e puntano sulle singole componenti s."
 #| fig-width: !expr 4.45 * scala
-#| fig-height: !expr 2.8 * scala
-tela(c(0, 12), c(-1, 10))
+#| fig-height: !expr 2.6 * scala
+tela(c(0, 12), c(0, 10))
 modello = function(x0, sui_s) {
-  xs = x0 + c(.9, 2.25, 3.6, 4.95)
-  g = nodo(x0 + 2.9, 8.2, "g", w = 1.4, h = 1.3, forma = "ovale", bg = "white", font = 4, cex = .85, lwd = 1.3)
-  prove = c("Matrici", "Vocab.", "Rag.\naritm.", "Cifrario")
-  for (i in 1:4) {
-    p = nodo(xs[i], 4.4, prove[i], w = 1.25, h = 1.3, bg = "grey95", cex = .56)
-    sn = nodo(xs[i], 1.6, "s", w = .7, h = .8, forma = "ovale", bg = "grey88", font = 3, cex = .58)
-    collega(g, p, col = "grey25"); collega(sn, p, col = "grey40")
-    if (sui_s) freccia(xs[i] - .65, .25, xs[i] - .33, 1.2, col = rosso, lwd = c(2.6, .8, .5, 2)[i])
+  xs = x0 + seq(.6, 5.2, length.out = 5)
+  prove = c("Matrici", "Vocab.", "Rag.\naritm.", "Cifrario", "...")
+  for (i in 1:5) {
+    nodo(xs[i], 1.1, prove[i], w = 1, h = 1.3, bg = "grey95", cex = .5)
+    lato = if (xs[i] < x0 + 2.9) -1 else 1  # s dal lato opposto alla freccia da g
+    freccia(x0 + 2.9 + (xs[i] - x0 - 2.9) * .3, 6.75, xs[i] - lato * .2, 1.8, col = "grey25", lwd = c(1.6, 1.2, 1.4, .8, .8)[i])
+    nodo(xs[i] + lato * .25, 2.6, "s", w = .55, h = .7, forma = "ovale", bg = "grey88", font = 3, cex = .52)
+    freccia(xs[i] + lato * .25, 2.23, xs[i] + lato * .25, 1.8, col = "grey45", lwd = .8)
+    if (sui_s) freccia(x0 + .8, 7.7, xs[i] + lato * .25, 3.0, col = rosso, lwd = c(2.4, .7, .5, 2, 1.2)[i])
   }
-  if (!sui_s) freccia(x0 + .9, 9.3, x0 + 2.2, 8.5, col = rosso, lwd = 2.2)
-  text(x0 + if (sui_s) 2.9 else .1, if (sui_s) -.65 else 9.7, "effetto Flynn", adj = if (sui_s) c(.5, .5) else c(0, .5), cex = .6, col = rosso, font = 2)
+  nodo(x0 + 2.9, 7.5, "g", w = 1.6, h = 1.4, forma = "ovale", bg = "white", border = "grey25", font = 4, cex = .9, lwd = 1.2)
+  text(x0 + .1, 8.9, "effetto\nFlynn", adj = 0, cex = .58, col = rosso, font = 2)
+  if (!sui_s) freccia(x0 + 1.15, 8.7, x0 + 2.05, 7.75, col = rosso, lwd = 2.2)
 }
 modello(0, FALSE)
-segments(6.05, -.8, 6.05, 9.8, col = "grey40", lwd = 1.5 * scala)
+segments(6.05, .2, 6.05, 9.8, col = "grey40", lwd = 1.5 * scala)
 modello(6.2, TRUE)
 ```
 

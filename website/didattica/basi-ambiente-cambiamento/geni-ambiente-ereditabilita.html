@@ -43,7 +43,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-1241550482bdeda434bccbd579daa608.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-ffd282cb318059e0bcb130885a47f5dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -441,20 +441,87 @@ h^2 = \frac{\text{varianza dovuta a differenze genetiche}}{\text{varianza totale
 <section id="come-si-stima-famiglie-adozioni-gemelli" class="level2" data-number="10.2">
 <h2 data-number="10.2" class="anchored" data-anchor-id="come-si-stima-famiglie-adozioni-gemelli"><span class="header-section-number">10.2</span> Come si stima: famiglie, adozioni, gemelli</h2>
 <p>Il fatto che figli di genitori intelligenti tendano a essere intelligenti non basta a stimare l’ereditabilità. Genitori e figli condividono metà della variabilità genetica, ma anche la casa, il reddito, i libri, la lingua, la scuola. La somiglianza potrebbe dipendere da entrambi.</p>
-<p>Per separare le due fonti bisogna confrontare coppie di persone che condividono l’ambiente in misura simile ma la genetica in misura diversa, o viceversa. È la logica degli studi su famiglie, adozioni e soprattutto gemelli (<a href="#fig-famiglie" class="quarto-xref">Figura&nbsp;<span>10.1</span></a>). Le correlazioni fra i QI seguono con regolarità il grado di somiglianza genetica. I gemelli monozigoti cresciuti insieme correlano attorno a 0,86, i dizigoti attorno a 0,60, i fratelli non gemelli attorno a 0,47. I gemelli monozigoti cresciuti separati restano molto simili, mentre i figli adottivi somigliano poco ai genitori adottivi <span class="citation" data-cites="plomin2001behavioral">(Plomin et al., 2001)</span>.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-famiglie" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Grafico a punti con nove tipi di coppie ordinate per correlazione. I gemelli monozigoti cresciuti insieme hanno la correlazione più alta, 0,86; seguono i monozigoti cresciuti separati e i dizigoti. Genitori e figli adottivi hanno la correlazione più bassa, 0,19.">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-famiglie-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="geni-ambiente-ereditabilita_files/figure-html/fig-famiglie-1.png" class="img-fluid figure-img" alt="Grafico a punti con nove tipi di coppie ordinate per correlazione. I gemelli monozigoti cresciuti insieme hanno la correlazione più alta, 0,86; seguono i monozigoti cresciuti separati e i dizigoti. Genitori e figli adottivi hanno la correlazione più bassa, 0,19." width="768">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-famiglie-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;10.1: Correlazioni del QI fra persone con diversi gradi di parentela e di ambiente condiviso. Valori medi da sintesi della letteratura su famiglie, adozioni e gemelli; elaborazione da Plomin et al.&nbsp;(2001).
+<p>Per separare le due fonti bisogna confrontare coppie di persone che condividono l’ambiente in misura simile ma la genetica in misura diversa, o viceversa. È la logica degli studi su famiglie, adozioni e soprattutto gemelli (<a href="#tbl-famiglie" class="quarto-xref">Tabella&nbsp;<span>10.1</span></a>). Le correlazioni fra i QI seguono con regolarità il grado di somiglianza genetica. I gemelli monozigoti cresciuti insieme correlano attorno a 0,86, i dizigoti attorno a 0,60, i fratelli non gemelli attorno a 0,47. I gemelli monozigoti cresciuti separati restano molto simili, mentre i figli adottivi somigliano poco ai genitori adottivi <span class="citation" data-cites="plomin2001behavioral">(Plomin et al., 2001)</span>.</p>
+<div id="tbl-famiglie" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-famiglie-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabella&nbsp;10.1: Correlazioni del QI fra persone con diversi gradi di parentela e di ambiente condiviso; <em>n</em> indica il numero di coppie. Elaborazione da Plomin et al.&nbsp;(2001).
 </figcaption>
+<div aria-describedby="tbl-famiglie-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Coppia di persone</th>
+<th style="text-align: center;">Ambiente condiviso?</th>
+<th style="text-align: center;">Variabilità genetica condivisa</th>
+<th style="text-align: center;">Correlazione del QI</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Gemelli monozigoti (n = 4.672)</td>
+<td style="text-align: center;">sì</td>
+<td style="text-align: center;">100%</td>
+<td style="text-align: center;">0,86</td>
+</tr>
+<tr class="even">
+<td>Gemelli monozigoti separati alla nascita (n = 93)</td>
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">100%</td>
+<td style="text-align: center;">0,78</td>
+</tr>
+<tr class="odd">
+<td>Gemelli dizigoti (n = 5.533)</td>
+<td style="text-align: center;">sì</td>
+<td style="text-align: center;">50%</td>
+<td style="text-align: center;">0,60</td>
+</tr>
+<tr class="even">
+<td>Genitori e figli cresciuti in famiglia (n = 8.433)</td>
+<td style="text-align: center;">sì</td>
+<td style="text-align: center;">50%</td>
+<td style="text-align: center;">0,42</td>
+</tr>
+<tr class="odd">
+<td>Genitori e figli non cresciuti in famiglia (n = 720)</td>
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">50%</td>
+<td style="text-align: center;">0,24</td>
+</tr>
+<tr class="even">
+<td>Genitori e figli adottivi (n = 1.491)</td>
+<td style="text-align: center;">sì</td>
+<td style="text-align: center;">0%</td>
+<td style="text-align: center;">0,19</td>
+</tr>
+<tr class="odd">
+<td>Fratelli con gli stessi genitori (n = 26.473)</td>
+<td style="text-align: center;">sì</td>
+<td style="text-align: center;">50%</td>
+<td style="text-align: center;">0,47</td>
+</tr>
+<tr class="even">
+<td>Fratelli con gli stessi genitori cresciuti separati (n = 203)</td>
+<td style="text-align: center;">no</td>
+<td style="text-align: center;">50%</td>
+<td style="text-align: center;">0,24</td>
+</tr>
+<tr class="odd">
+<td>Fratelli adottivi (n = 714)</td>
+<td style="text-align: center;">sì</td>
+<td style="text-align: center;">0%</td>
+<td style="text-align: center;">0,32</td>
+</tr>
+</tbody>
+</table>
+</div>
 </figure>
-</div>
-</div>
 </div>
 <p>Una precisazione sulle percentuali. Dire che i gemelli dizigoti condividono il 50% non significa che condividano metà del genoma: tutti gli esseri umani ne condividono quasi la totalità. Significa che condividono, in media, metà delle varianti che differiscono nella popolazione.</p>
 <p>Il confronto più informativo è quello fra gemelli monozigoti e dizigoti cresciuti insieme. Hanno la stessa età, crescono nella stessa famiglia, ma condividono rispettivamente tutta e metà della variabilità genetica. Se i monozigoti si somigliano più dei dizigoti, la differenza va attribuita ai geni. Oggi si usano modelli di equazioni strutturali, ma la logica è riassunta dalle formule di Falconer:</p>
@@ -476,7 +543,7 @@ Figura&nbsp;10.1: Correlazioni del QI fra persone con diversi gradi di parentela
 <img src="geni-ambiente-ereditabilita_files/figure-html/fig-eta-1.png" class="img-fluid figure-img" alt="Grafico a punti dell'ereditabilità per fase della vita: 0,41 nell'infanzia, 0,55 nella prima adolescenza, 0,66 nella tarda adolescenza e un intervallo da 0,70 a 0,80 nell'età adulta." width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eta-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;10.2: Ereditabilità del QI a età diverse. Valori da Haworth et al.&nbsp;(2010) per infanzia e adolescenza; per l’età adulta l’intervallo indica le stime tipiche riportate da Plomin e Deary (2015).
+Figura&nbsp;10.1: Ereditabilità del QI a età diverse. Valori da Haworth et al.&nbsp;(2010) per infanzia e adolescenza; per l’età adulta l’intervallo indica le stime tipiche riportate da Plomin e Deary (2015).
 </figcaption>
 </figure>
 </div>
@@ -489,20 +556,56 @@ Figura&nbsp;10.2: Ereditabilità del QI a età diverse. Valori da Haworth et al.
 <li><strong>Riduzione dell’ambiente condiviso.</strong> Crescendo si condivide sempre meno con la famiglia d’origine.</li>
 <li><strong>Stabilizzazione del QI.</strong> Nell’infanzia i punteggi oscillano di più, per i diversi ritmi di maturazione cerebrale; poi si stabilizzano.</li>
 </ul>
-<p>Un esempio chiarisce il meccanismo della correlazione gene-ambiente. Due bambini partono quasi uguali: uno esattamente nella media, l’altro un po’ sopra. Il secondo ottiene voti leggermente migliori e preferisce attività un po’ più impegnative. Nell’adolescenza sceglie una scuola più esigente, riceve più attenzione da qualche insegnante, frequenta amici con interessi simili. Da adulto sceglie un’università selettiva e un lavoro intellettualmente stimolante. Il primo fa scelte tipiche e arriva dove era partito. Il secondo, partito un po’ sopra la media, arriva molto sopra. L’effetto genetico iniziale è stato amplificato dall’ambiente, e l’analisi lo attribuirà ai geni. La <a href="#fig-amplificazione" class="quarto-xref">Figura&nbsp;<span>10.3</span></a> rappresenta l’esempio.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div id="fig-amplificazione" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Due traiettorie dall'infanzia all'età adulta. La persona A parte nella media e resta nella media. La persona B parte poco sopra la media e sale progressivamente: attività più impegnative nell'infanzia, una scuola più esigente e amici con interessi simili nell'adolescenza, università selettiva e lavoro stimolante da adulta.">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-amplificazione-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="geni-ambiente-ereditabilita_files/figure-html/fig-amplificazione-1.png" class="img-fluid figure-img" alt="Due traiettorie dall'infanzia all'età adulta. La persona A parte nella media e resta nella media. La persona B parte poco sopra la media e sale progressivamente: attività più impegnative nell'infanzia, una scuola più esigente e amici con interessi simili nell'adolescenza, università selettiva e lavoro stimolante da adulta." width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-amplificazione-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;10.3: Un esempio di correlazione gene-ambiente. Una piccola differenza iniziale orienta scelte e ambienti che a loro volta la amplificano: alla fine la differenza è grande, e l’analisi la attribuisce in buona parte ai geni. Andamento puramente illustrativo. Schema originale.
+<p>Un esempio chiarisce il meccanismo della correlazione gene-ambiente. Due bambini partono quasi uguali: uno esattamente nella media, l’altro un po’ sopra. Il secondo ottiene voti leggermente migliori e preferisce attività un po’ più impegnative. Nell’adolescenza sceglie una scuola più esigente, riceve più attenzione da qualche insegnante, frequenta amici con interessi simili. Da adulto sceglie un’università selettiva e un lavoro intellettualmente stimolante. Il primo fa scelte tipiche e arriva dove era partito. Il secondo, partito un po’ sopra la media, arriva molto sopra. L’effetto genetico iniziale è stato amplificato dall’ambiente, e l’analisi lo attribuirà ai geni. La <a href="#tbl-amplificazione" class="quarto-xref">Tabella&nbsp;<span>10.2</span></a> riassume l’esempio.</p>
+<div id="tbl-amplificazione" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-amplificazione-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabella&nbsp;10.2: Un esempio di correlazione gene-ambiente: l’effetto genetico iniziale viene amplificato dall’ambiente.
 </figcaption>
+<div aria-describedby="tbl-amplificazione-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 42%">
+<col style="width: 42%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Persona A: abilità generale esattamente nella media</th>
+<th>Persona B: abilità generale un po’ sopra la media</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Infanzia</td>
+<td>contesto scolastico tipico; voti medi; attività extrascolastiche tipiche</td>
+<td>contesto scolastico tipico; voti buoni; attività extrascolastiche un po’ più stimolanti</td>
+</tr>
+<tr class="even">
+<td>Adolescenza</td>
+<td>scuola superiore e attività tipiche</td>
+<td>a volte classi più stimolanti; scuola superiore più impegnativa; più attenzione dagli insegnanti; amici selezionati; attività complesse</td>
+</tr>
+<tr class="odd">
+<td>Giovinezza</td>
+<td>scelte di vita tipiche</td>
+<td>università selettiva; contesti sociali e tempo libero sempre più stimolanti</td>
+</tr>
+<tr class="even">
+<td>Età adulta</td>
+<td>scelte di vita tipiche</td>
+<td>lavoro intellettualmente stimolante</td>
+</tr>
+<tr class="odd">
+<td>Esito</td>
+<td>parte nella media, arriva nella media</td>
+<td>parte un po’ sopra la media, arriva molto sopra, accumulando vantaggi</td>
+</tr>
+</tbody>
+</table>
+</div>
 </figure>
-</div>
-</div>
 </div>
 </section>
 <section id="che-cosa-lereditabilità-non-dice" class="level2" data-number="10.4">

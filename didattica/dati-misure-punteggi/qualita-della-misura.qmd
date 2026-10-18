@@ -18,6 +18,15 @@ source("../../assets/diagrammi.R")
 virgola = function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",")
 tema = theme_minimal(base_size = if (stampa) 10 else 13) +
   theme(panel.grid.minor = element_blank(), plot.title = element_text(size = 12))
+cx = if (stampa) 2.7 else 3.5  # dimensione del testo nelle annotazioni ggplot
+# Tela e riquadri dei dieci subtest principali della WISC-IV, comuni ai due modelli
+xw = seq(.6, 11.4, length.out = 10)
+wisc_base = function(ylim = c(0, 10)) {
+  tela(c(0, 12), ylim)
+  sub10 = c("Somi-\nglianze", "Vocabo-\nlario", "Compren-\nsione", "Disegno\ncubi", "Concetti\nillustrati", "Matrici",
+            "Memoria\ncifre", "Lettere e\nnumeri", "Cifrario", "Ricerca\nsimboli")
+  for (i in 1:10) nodo(xw[i], 1.25, sub10[i], w = 1.1, h = 1.5, bg = "grey95", cex = .42)
+}
 ```
 
 Una bilancia da cucina che sbaglia di quindici grammi è inutile per dosare il
@@ -120,18 +129,21 @@ in un caso su venti supera i venti.
 
 ```{r}
 #| label: fig-retest
-#| fig-cap: "Punteggi di QI simulati in due somministrazioni dello stesso test, con stabilità test-retest di 0,96 e di 0,70. La linea diagonale indica punteggi identici; la fascia grigia comprende le differenze entro ±10 punti."
-#| fig-alt: "Due diagrammi di dispersione. Con stabilità 0,96 i punti sono molto vicini alla diagonale; con stabilità 0,70 sono molto dispersi e molti cadono fuori dalla fascia di dieci punti."
+#| fig-cap: "Punteggi di QI simulati in due somministrazioni dello stesso test, con stabilità test-retest di 0,96, come per il QI totale ripetuto dopo poche settimane, e di 0,70, come su intervalli di anni in età evolutiva. La linea diagonale indica punteggi identici; la fascia grigia comprende le differenze entro ±10 punti. La barra rossa mostra dove cade il 95% dei punteggi alla seconda somministrazione per chi aveva 100 alla prima."
+#| fig-alt: "Due diagrammi di dispersione. Con stabilità 0,96 i punti sono molto vicini alla diagonale e la barra rossa a QI 100 va da circa 92 a 108; con stabilità 0,70 sono molto dispersi, molti cadono fuori dalla fascia di dieci punti e la barra rossa va da circa 79 a 121."
 #| fig-width: !expr if (stampa) 4.45 else 8
 #| fig-height: !expr if (stampa) 2.7 else 4
 set.seed(1932)
 rt = function(r) { m = MASS::mvrnorm(400, c(0, 0), matrix(c(1, r, r, 1), 2)); data.frame(t1 = 100 + 15 * m[, 1], t2 = 100 + 15 * m[, 2]) }
 d = rbind(cbind(rt(.96), stab = "Stabilità 0,96"), cbind(rt(.70), stab = "Stabilità 0,70"))
 d$stab = factor(d$stab, levels = c("Stabilità 0,96", "Stabilità 0,70"))
+forc = data.frame(stab = factor(levels(d$stab), levels = levels(d$stab)), r = c(.96, .70))
+forc$lo = 100 - 1.96 * 15 * sqrt(1 - forc$r^2); forc$hi = 100 + 1.96 * 15 * sqrt(1 - forc$r^2)
 ggplot(d, aes(t1, t2)) +
   geom_ribbon(data = data.frame(t1 = c(50, 150)), aes(x = t1, ymin = t1 - 10, ymax = t1 + 10), inherit.aes = FALSE, fill = "grey88") +
-  geom_abline(slope = 1, intercept = 0, colour = rosso) +
+  geom_abline(slope = 1, intercept = 0, colour = "grey40") +
   geom_point(alpha = .45, size = 1.3) +
+  geom_errorbar(data = forc, aes(x = 100, ymin = lo, ymax = hi), inherit.aes = FALSE, colour = rosso, width = 4, linewidth = 1) +
   facet_wrap(~stab) +
   coord_equal(xlim = c(55, 145), ylim = c(55, 145)) +
   labs(x = "QI alla prima somministrazione", y = "QI alla seconda") +
@@ -167,6 +179,8 @@ $$
 X = T + E
 $$
 
+Nel caso dell'intelligenza il punteggio vero è il fattore generale, e l'errore
+comprende sia l'errore casuale sia le componenti specifiche *s* di ogni prova.
 L'attendibilità è la quota della varianza di *X* dovuta a *T*. Come si stima, se
 *T* non si vede? Sotto certe assunzioni, la si ricava dalla forza delle
 correlazioni fra gli elementi e dal loro numero. Correlazioni medie più alte
@@ -174,17 +188,78 @@ indicano che ogni elemento contiene meno errore; più elementi permettono agli
 errori casuali di compensarsi. Un punteggio molto attendibile si ottiene quindi
 con elementi fortemente correlati, oppure con molti elementi.
 
-L'indice più noto è l'**alfa di Cronbach** (α). Assume che tutti gli elementi
-rappresentino il costrutto nella stessa misura, un'ipotesi spesso irrealistica.
-Oggi si preferiscono indici basati su un modello fattoriale, come l'**omega di
+L'indice più noto è l'**alfa di Cronbach** (α), che lega proprio queste due
+grandezze, la correlazione media fra gli elementi $\bar r$ e il loro numero *k*:
+
+$$
+\alpha = \frac{k \cdot \bar r}{1 + (k - 1) \cdot \bar r}
+$$
+
+L'alfa assume che tutti gli elementi rappresentino il costrutto nella stessa
+misura e con la stessa metrica, un'ipotesi spesso irrealistica. Oggi si
+preferiscono indici basati su un modello fattoriale, come l'**omega di
 McDonald** (ω) [@mcneish2018thanks]. Anche qui si cita spesso una soglia minima
-di 0,70.
+di 0,70. La @fig-scenari mostra come cambia l'alfa al variare di $\bar r$ e di
+*k*.
+
+```{r}
+#| label: fig-scenari
+#| fig-cap: "Quattro scenari di consistenza interna. Ogni pannello mostra la matrice di correlazioni fra gli elementi di una scala: con correlazione media 0,30 o 0,50 e con 5 o 8 elementi. L'alfa di Cronbach cresce sia con la correlazione media sia con il numero di elementi. Dati simulati."
+#| fig-alt: "Quattro matrici di correlazione colorate. Scenario 1: 5 elementi con correlazioni attorno a 0,30, alfa circa 0,68. Scenario 2: 8 elementi con correlazioni attorno a 0,30, alfa circa 0,77. Scenario 3: 5 elementi con correlazioni attorno a 0,50, alfa circa 0,83. Scenario 4: 8 elementi con correlazioni attorno a 0,50, alfa circa 0,89."
+#| fig-width: !expr if (stampa) 4.45 else 7
+#| fig-height: !expr if (stampa) 4.45 else 6.2
+set.seed(14)
+alfa = function(R) { k = ncol(R); rb = mean(R[upper.tri(R)]); k * rb / (1 + (k - 1) * rb) }
+sc = expand.grid(k = c(5, 8), r = c(.3, .5))
+d = do.call(rbind, lapply(1:4, function(i) {
+  k = sc$k[i]; R = matrix(sc$r[i], k, k); diag(R) = 1
+  R = cor(MASS::mvrnorm(2000, rep(0, k), R))
+  data.frame(expand.grid(a = 1:k, b = 1:k), v = as.vector(R),
+             p = sprintf("Scenario %d: k = %d, r medio = %s\nα = %s", i, k, virgola(mean(R[upper.tri(R)])), virgola(alfa(R))))
+}))
+d$p = factor(d$p, levels = unique(d$p))
+ggplot(d, aes(a, b, fill = v)) +
+  geom_tile(colour = "white") +
+  geom_text(aes(label = sub("0,", ",", virgola(v))), size = if (stampa) 1.6 else 2.4, colour = ifelse(d$v > .7, "white", "grey15")) +
+  scale_fill_gradient(low = "white", high = rosso, limits = c(0, 1), guide = "none") +
+  scale_y_reverse() +
+  facet_wrap(~p, scales = "free") +
+  labs(x = NULL, y = NULL) +
+  tema + theme(axis.text = element_blank(), panel.grid = element_blank(), strip.text = element_text(size = if (stampa) 7.5 else 10))
+```
 
 Che cosa significa un'attendibilità di 0,70? Che il punteggio osservato condivide
-il 70% della varianza con il punteggio vero. La correlazione fra i due è quindi
-la radice quadrata: circa 0,84. Le batterie di intelligenza raggiungono per il
-QI totale valori superiori a 0,95. Per gli indici di dominio si scende di solito
-fra 0,80 e 0,90, per i singoli subtest a volte sotto.
+il 70% della varianza con il punteggio vero del costrutto latente. Vale per la
+somma semplice dei punteggi, nel caso dell'alfa, e per il punteggio fattoriale
+calcolato dal modello, nel caso dell'omega. La correlazione fra punteggio
+osservato e punteggio vero è quindi la radice quadrata: circa 0,84
+(@fig-ctt). Le batterie di intelligenza raggiungono per il QI totale valori
+superiori a 0,95. Per gli indici di dominio si scende di solito fra 0,80 e 0,90,
+per i singoli subtest a volte sotto; nel complesso, gli indici di intelligenza
+si collocano fra circa 0,70 e 0,98, valori comunque eccellenti nel panorama dei
+test psicologici.
+
+```{r}
+#| label: fig-ctt
+#| fig-cap: "La relazione fra il vero costrutto latente (T, in punti z) e il punteggio totale osservato (X) in una scala di dieci item con α di circa 0,70: la correlazione fra i due è vicina a √0,70 ≈ 0,84. Dati simulati."
+#| fig-alt: "Diagramma di dispersione con il vero costrutto latente sull'asse orizzontale, da meno 3 a più 3, e il punteggio totale osservato su quello verticale. I punti salgono lungo una retta con dispersione moderata; è indicata la correlazione, circa 0,84."
+#| fig-width: !expr if (stampa) 4.45 else 6.5
+#| fig-height: !expr if (stampa) 2.8 else 3.8
+set.seed(13)
+n = 500; k = 10; lam = sqrt(.3)  # dieci item dicotomici: alfa circa 0,70
+T = rnorm(n); item = sapply(1:k, function(j) lam * T + sqrt(1 - lam^2) * rnorm(n))
+X = rowSums(item > -.3)  # item dicotomici, risposta corretta o errata
+d = data.frame(T, X)
+psych_alfa = function(B) { R = cor(B * 1); rb = mean(R[upper.tri(R)]); ncol(B) * rb / (1 + (ncol(B) - 1) * rb) }
+ggplot(d, aes(T, X)) +
+  geom_jitter(width = 0, height = .15, alpha = .35, size = 1.2, colour = "grey30") +
+  geom_smooth(method = "lm", se = FALSE, colour = rosso, linewidth = 1) +
+  annotate("text", x = -3, y = k, hjust = 0, vjust = 1, size = cx, colour = rosso,
+           label = paste0("α = ", virgola(psych_alfa(item > -.3)), "\nr(X, T) = ", virgola(cor(d$X, d$T)))) +
+  scale_x_continuous(breaks = -3:3) + scale_y_continuous(breaks = seq(0, k, 2)) +
+  labs(x = "Vero costrutto latente T (punti z)", y = "Punteggio totale osservato X") +
+  tema
+```
 
 Dall'attendibilità si ricava l'**errore standard di misura**, cioè la
 deviazione standard degli errori attorno al punteggio vero. Sulla scala del QI
@@ -205,6 +280,31 @@ Ma un indice di memoria di lavoro riflette in buona parte il fattore generale,
 perché tutte le abilità cognitive sono correlate. La domanda giusta è un'altra:
 quanta parte del punteggio di un indice è specifica di quel dominio, al netto
 del fattore generale? E questa parte è attendibile?
+
+Un esempio sui dati normativi italiani della WISC-IV, 2.200 bambini e ragazzi,
+rende il problema concreto. Se si applica ai dieci subtest principali un modello
+a un solo fattore, tutti risultano legati a *g*, con saturazioni da 0,28 a
+0,75, e la consistenza interna del totale è buona: ω = 0,80, α = 0,82
+(@fig-unifattoriale). Ma questo non è il modello giusto, perché l'intelligenza
+non è strettamente unitaria: prove dello stesso dominio correlano fra loro più
+di quanto *g* da solo spieghi.
+
+```{r}
+#| label: fig-unifattoriale
+#| fig-cap: "Un modello a un solo fattore per i dieci subtest principali della WISC-IV, con le saturazioni di ciascun subtest su g e gli indici di consistenza interna del totale. Saturazioni e coefficienti dall'analisi dell'autore sui dati normativi italiani (N = 2.200)."
+#| fig-alt: "Un ovale g in alto manda frecce rosse a dieci riquadri: somiglianze 0,75, vocabolario 0,75, comprensione 0,64, disegno con cubi 0,53, concetti illustrati 0,59, matrici 0,59, memoria di cifre 0,48, riordinamento di lettere e numeri 0,54, cifrario 0,28, ricerca di simboli 0,40. Accanto a g: omega 0,80 e alfa 0,82."
+#| fig-width: !expr 4.45 * scala
+#| fig-height: !expr 2.4 * scala
+wisc_base(c(0, 10))
+lg = c(.75, .75, .64, .53, .59, .59, .48, .54, .28, .40)
+for (i in 1:10) {
+  x0 = 6 + (xw[i] - 6) * .12; y0 = 8.45; x1 = xw[i]; y1 = 2.05
+  freccia(x0, y0, x1, y1, col = rosso, lwd = .5 + 2 * lg[i])
+  text(x0 + .72 * (x1 - x0), y0 + .72 * (y1 - y0), sub("0,", ",", virgola(lg[i])), cex = .45, col = rosso, adj = c(-.2, .5))
+}
+nodo(6, 9.1, "g", w = 1.5, h = 1.3, forma = "ovale", bg = "white", border = rosso, col = rosso, font = 4, cex = .9, lwd = 1.4)
+text(c(4.1, 7.9), 9.2, c("ω = 0,80", "α = 0,82"), cex = .6, col = rosso, font = 2)
+```
 
 Per rispondere si usano modelli gerarchici o **bifattoriali**, che separano la
 varianza comune a tutte le prove da quella propria di ciascun dominio. Da essi
@@ -229,23 +329,30 @@ abbastanza da essere letti da soli.
 
 ```{r}
 #| label: fig-bifattoriale
-#| fig-cap: "Un modello bifattoriale per una batteria con quattro domini. Ogni subtest dipende dal fattore generale g (frecce rosse) e da un fattore di dominio (frecce grigie); i fattori di dominio catturano solo ciò che resta al netto di g. Con i dati delle batterie reali l'omega gerarchico di g è alto, quello dei domini di solito basso. Schema originale."
-#| fig-alt: "Un ovale g in alto con frecce rosse verso otto subtest disposti in una fila: somiglianze, vocabolario, disegno con cubi, matrici, memoria di cifre, lettere e numeri, cifrario, ricerca di simboli. Sotto la fila, quattro ovali di dominio, verbale, percettivo, memoria di lavoro e velocità, ciascuno con frecce grigie verso i due subtest corrispondenti."
+#| fig-cap: "Lo stesso esempio con un modello bifattoriale: ogni subtest dipende dal fattore generale g (frecce rosse) e da un fattore di dominio (frecce grigie), che cattura solo ciò che resta al netto di g. L'omega gerarchico (ωh) di g resta alto; quello dei domini è basso. Saturazioni e coefficienti dall'analisi dell'autore sui dati normativi italiani della WISC-IV (N = 2.200)."
+#| fig-alt: "Un ovale g in alto, con omega gerarchico 0,75, manda frecce rosse a dieci subtest con saturazioni fra 0,28 e 0,65. Quattro ovali di dominio a metà altezza mandano frecce grigie ai rispettivi subtest: verbale, omega gerarchico 0,29, con saturazioni 0,45 e 0,46; percettivo, 0,06, con saturazioni 0,19; memoria di lavoro, 0,21, con saturazioni 0,39; velocità, 0,47, con saturazioni 0,59."
 #| fig-width: !expr 4.45 * scala
-#| fig-height: !expr 2.8 * scala
-tela(c(0, 12), c(-.6, 10))
-g = nodo(6, 8.9, "g", w = 1.5, h = 1.4, forma = "ovale", bg = "white", font = 4, cex = .9, lwd = 1.4)
-text(7, 9.5, "omega gerarchico alto", adj = 0, cex = .58, font = 3, col = rosso)
-sub = c("Somi-\nglianze", "Vocabo-\nlario", "Cubi", "Matrici", "Memoria\ncifre", "Lettere e\nnumeri", "Cifrario", "Ricerca\nsimboli")
-xs = seq(.75, 11.25, length.out = 8)
-sb = lapply(1:8, function(i) nodo(xs[i], 5, sub[i], w = 1.3, h = 1.4, bg = "grey95", cex = .56))
-for (b in sb) collega(g, b, col = rosso, lwd = 1.3)
-dom = c("Verbale", "Percettivo", "Memoria\ndi lavoro", "Velocità")
-for (k in 1:4) {
-  d = nodo(mean(xs[2 * k - 1:0]), 1.4, dom[k], w = 2.3, h = 1.5, forma = "ovale", bg = "grey90", cex = .58)
-  for (b in sb[2 * k - 1:0]) collega(d, b, col = "grey45", lwd = .9)
+#| fig-height: !expr 3 * scala
+wisc_base()
+lg = c(.64, .65, .52, .56, .61, .64, .48, .56, .28, .42)
+dom = list(list("Verb.", 1:3, c(.45, .46, .46), .29), list("Perc.", 4:6, c(.19, .19, .19), .06),
+           list("ML", 7:8, c(.39, .39), .21), list("Vel.", 9:10, c(.59, .59), .47))
+for (i in 1:10) {
+  x0 = 6 + (xw[i] - 6) * .12; y0 = 8.45; x1 = xw[i] + .22; y1 = 2.75
+  freccia(x0, y0, x1, y1, col = rosso, lwd = .5 + 2 * lg[i])
+  text(xw[i] + .26, 2.35, sub("0,", ",", virgola(lg[i])), cex = .42, col = rosso)
 }
-text(6, -.1, "fattori di dominio: omega gerarchico di solito basso", cex = .58, font = 3, col = "grey35")
+for (dm in dom) {
+  xd = mean(xw[dm[[2]]]); nd = nodo(xd, 5.4, dm[[1]], w = 1.35, h = 1.05, forma = "ovale", bg = "grey95", border = "grey35", cex = .5, font = 3)
+  text(xd, 6.2, paste0("ωh = ", virgola(dm[[4]])), cex = .42, col = "grey30")
+  for (j in seq_along(dm[[2]])) {
+    i = dm[[2]][j]; x1 = xw[i] - .22
+    freccia(xd + (x1 - xd) * .18, 4.88, x1, 2.75, col = "grey40", lwd = .5 + 2 * dm[[3]][j])
+    text(xw[i] - .26, 2.35, sub("0,", ",", virgola(dm[[3]][j])), cex = .42, col = "grey30")
+  }
+}
+nodo(6, 9.1, "g", w = 1.5, h = 1.3, forma = "ovale", bg = "white", border = rosso, col = rosso, font = 4, cex = .9, lwd = 1.4)
+text(7, 9.6, "ωh = 0,75", adj = 0, cex = .55, col = rosso, font = 2)
 ```
 
 Le conclusioni tratte da questi dati sono di due tipi. Alcuni ricercatori

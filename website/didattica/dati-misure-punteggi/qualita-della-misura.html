@@ -43,7 +43,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-1241550482bdeda434bccbd579daa608.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-ffd282cb318059e0bcb130885a47f5dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -455,13 +455,13 @@ window.Quarto = {
 <p>Nei manuali tecnici delle batterie per adulti il QI totale, risomministrato dopo poche settimane, ha correlazioni test-retest attorno a 0,95. Sembra quasi perfetto. Ma che cosa significa per un singolo caso? La <a href="#fig-retest" class="quarto-xref">Figura&nbsp;<span>5.1</span></a> lo mostra con una simulazione. Anche con una stabilità di 0,96 la differenza tipica fra due somministrazioni è di circa quattro punti, e in un caso su venti supera gli otto. Con una stabilità di 0,70 la differenza tipica sale a circa dodici punti e in un caso su venti supera i venti.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-retest" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Due diagrammi di dispersione. Con stabilità 0,96 i punti sono molto vicini alla diagonale; con stabilità 0,70 sono molto dispersi e molti cadono fuori dalla fascia di dieci punti.">
+<div id="fig-retest" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Due diagrammi di dispersione. Con stabilità 0,96 i punti sono molto vicini alla diagonale e la barra rossa a QI 100 va da circa 92 a 108; con stabilità 0,70 sono molto dispersi, molti cadono fuori dalla fascia di dieci punti e la barra rossa va da circa 79 a 121.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-retest-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="qualita-della-misura_files/figure-html/fig-retest-1.png" class="img-fluid figure-img" alt="Due diagrammi di dispersione. Con stabilità 0,96 i punti sono molto vicini alla diagonale; con stabilità 0,70 sono molto dispersi e molti cadono fuori dalla fascia di dieci punti." width="768">
+<img src="qualita-della-misura_files/figure-html/fig-retest-1.png" class="img-fluid figure-img" alt="Due diagrammi di dispersione. Con stabilità 0,96 i punti sono molto vicini alla diagonale e la barra rossa a QI 100 va da circa 92 a 108; con stabilità 0,70 sono molto dispersi, molti cadono fuori dalla fascia di dieci punti e la barra rossa va da circa 79 a 121." width="768">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-retest-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.1: Punteggi di QI simulati in due somministrazioni dello stesso test, con stabilità test-retest di 0,96 e di 0,70. La linea diagonale indica punteggi identici; la fascia grigia comprende le differenze entro ±10 punti.
+Figura&nbsp;5.1: Punteggi di QI simulati in due somministrazioni dello stesso test, con stabilità test-retest di 0,96, come per il QI totale ripetuto dopo poche settimane, e di 0,70, come su intervalli di anni in età evolutiva. La linea diagonale indica punteggi identici; la fascia grigia comprende le differenze entro ±10 punti. La barra rossa mostra dove cade il 95% dei punteggi alla seconda somministrazione per chi aveva 100 alla prima.
 </figcaption>
 </figure>
 </div>
@@ -477,25 +477,72 @@ Figura&nbsp;5.1: Punteggi di QI simulati in due somministrazioni dello stesso te
 <p><span class="math display">\[
 X = T + E
 \]</span></p>
-<p>L’attendibilità è la quota della varianza di <em>X</em> dovuta a <em>T</em>. Come si stima, se <em>T</em> non si vede? Sotto certe assunzioni, la si ricava dalla forza delle correlazioni fra gli elementi e dal loro numero. Correlazioni medie più alte indicano che ogni elemento contiene meno errore; più elementi permettono agli errori casuali di compensarsi. Un punteggio molto attendibile si ottiene quindi con elementi fortemente correlati, oppure con molti elementi.</p>
-<p>L’indice più noto è l’<strong>alfa di Cronbach</strong> (α). Assume che tutti gli elementi rappresentino il costrutto nella stessa misura, un’ipotesi spesso irrealistica. Oggi si preferiscono indici basati su un modello fattoriale, come l’<strong>omega di McDonald</strong> (ω) <span class="citation" data-cites="mcneish2018thanks">(McNeish, 2018)</span>. Anche qui si cita spesso una soglia minima di 0,70.</p>
-<p>Che cosa significa un’attendibilità di 0,70? Che il punteggio osservato condivide il 70% della varianza con il punteggio vero. La correlazione fra i due è quindi la radice quadrata: circa 0,84. Le batterie di intelligenza raggiungono per il QI totale valori superiori a 0,95. Per gli indici di dominio si scende di solito fra 0,80 e 0,90, per i singoli subtest a volte sotto.</p>
+<p>Nel caso dell’intelligenza il punteggio vero è il fattore generale, e l’errore comprende sia l’errore casuale sia le componenti specifiche <em>s</em> di ogni prova. L’attendibilità è la quota della varianza di <em>X</em> dovuta a <em>T</em>. Come si stima, se <em>T</em> non si vede? Sotto certe assunzioni, la si ricava dalla forza delle correlazioni fra gli elementi e dal loro numero. Correlazioni medie più alte indicano che ogni elemento contiene meno errore; più elementi permettono agli errori casuali di compensarsi. Un punteggio molto attendibile si ottiene quindi con elementi fortemente correlati, oppure con molti elementi.</p>
+<p>L’indice più noto è l’<strong>alfa di Cronbach</strong> (α), che lega proprio queste due grandezze, la correlazione media fra gli elementi <span class="math inline">\(\bar r\)</span> e il loro numero <em>k</em>:</p>
+<p><span class="math display">\[
+\alpha = \frac{k \cdot \bar r}{1 + (k - 1) \cdot \bar r}
+\]</span></p>
+<p>L’alfa assume che tutti gli elementi rappresentino il costrutto nella stessa misura e con la stessa metrica, un’ipotesi spesso irrealistica. Oggi si preferiscono indici basati su un modello fattoriale, come l’<strong>omega di McDonald</strong> (ω) <span class="citation" data-cites="mcneish2018thanks">(McNeish, 2018)</span>. Anche qui si cita spesso una soglia minima di 0,70. La <a href="#fig-scenari" class="quarto-xref">Figura&nbsp;<span>5.2</span></a> mostra come cambia l’alfa al variare di <span class="math inline">\(\bar r\)</span> e di <em>k</em>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-scenari" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Quattro matrici di correlazione colorate. Scenario 1: 5 elementi con correlazioni attorno a 0,30, alfa circa 0,68. Scenario 2: 8 elementi con correlazioni attorno a 0,30, alfa circa 0,77. Scenario 3: 5 elementi con correlazioni attorno a 0,50, alfa circa 0,83. Scenario 4: 8 elementi con correlazioni attorno a 0,50, alfa circa 0,89.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-scenari-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="qualita-della-misura_files/figure-html/fig-scenari-1.png" class="img-fluid figure-img" alt="Quattro matrici di correlazione colorate. Scenario 1: 5 elementi con correlazioni attorno a 0,30, alfa circa 0,68. Scenario 2: 8 elementi con correlazioni attorno a 0,30, alfa circa 0,77. Scenario 3: 5 elementi con correlazioni attorno a 0,50, alfa circa 0,83. Scenario 4: 8 elementi con correlazioni attorno a 0,50, alfa circa 0,89." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scenari-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.2: Quattro scenari di consistenza interna. Ogni pannello mostra la matrice di correlazioni fra gli elementi di una scala: con correlazione media 0,30 o 0,50 e con 5 o 8 elementi. L’alfa di Cronbach cresce sia con la correlazione media sia con il numero di elementi. Dati simulati.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Che cosa significa un’attendibilità di 0,70? Che il punteggio osservato condivide il 70% della varianza con il punteggio vero del costrutto latente. Vale per la somma semplice dei punteggi, nel caso dell’alfa, e per il punteggio fattoriale calcolato dal modello, nel caso dell’omega. La correlazione fra punteggio osservato e punteggio vero è quindi la radice quadrata: circa 0,84 (<a href="#fig-ctt" class="quarto-xref">Figura&nbsp;<span>5.3</span></a>). Le batterie di intelligenza raggiungono per il QI totale valori superiori a 0,95. Per gli indici di dominio si scende di solito fra 0,80 e 0,90, per i singoli subtest a volte sotto; nel complesso, gli indici di intelligenza si collocano fra circa 0,70 e 0,98, valori comunque eccellenti nel panorama dei test psicologici.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-ctt" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Diagramma di dispersione con il vero costrutto latente sull'asse orizzontale, da meno 3 a più 3, e il punteggio totale osservato su quello verticale. I punti salgono lungo una retta con dispersione moderata; è indicata la correlazione, circa 0,84.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ctt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="qualita-della-misura_files/figure-html/fig-ctt-1.png" class="img-fluid figure-img" alt="Diagramma di dispersione con il vero costrutto latente sull'asse orizzontale, da meno 3 a più 3, e il punteggio totale osservato su quello verticale. I punti salgono lungo una retta con dispersione moderata; è indicata la correlazione, circa 0,84." width="624">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ctt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.3: La relazione fra il vero costrutto latente (T, in punti z) e il punteggio totale osservato (X) in una scala di dieci item con α di circa 0,70: la correlazione fra i due è vicina a √0,70 ≈ 0,84. Dati simulati.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <p>Dall’attendibilità si ricava l’<strong>errore standard di misura</strong>, cioè la deviazione standard degli errori attorno al punteggio vero. Sulla scala del QI vale 15 × √(1 − attendibilità). Con un’attendibilità di 0,97 è di circa 2,6 punti; con 0,85 sale a quasi 6. Per questo un referto serio riporta il punteggio con un intervallo di confidenza, non come un numero esatto.</p>
 </section>
 <section id="il-problema-degli-indici" class="level2" data-number="5.5">
 <h2 data-number="5.5" class="anchored" data-anchor-id="il-problema-degli-indici"><span class="header-section-number">5.5</span> Il problema degli indici</h2>
 <p>Fin qui il quadro è rassicurante. Il problema nasce quando dal QI totale si passa agli indici: comprensione verbale, ragionamento visuo-percettivo, memoria di lavoro, velocità di elaborazione e così via. Nella pratica clinica si interpretano spesso profili e discrepanze fra indici. Sono abbastanza attendibili per farlo?</p>
 <p>L’attendibilità di un indice, calcolata come se fosse una scala a sé, è buona. Ma un indice di memoria di lavoro riflette in buona parte il fattore generale, perché tutte le abilità cognitive sono correlate. La domanda giusta è un’altra: quanta parte del punteggio di un indice è specifica di quel dominio, al netto del fattore generale? E questa parte è attendibile?</p>
-<p>Per rispondere si usano modelli gerarchici o <strong>bifattoriali</strong>, che separano la varianza comune a tutte le prove da quella propria di ciascun dominio. Da essi si ricava l’<strong>omega gerarchico</strong> (ω<sub>h</sub>), che stima quanta varianza del punteggio è dovuta a un solo fattore <span class="citation" data-cites="rodriguez2016evaluating">(Rodriguez et al., 2016)</span> (<a href="#fig-bifattoriale" class="quarto-xref">Figura&nbsp;<span>5.2</span></a>). I risultati sui campioni normativi delle principali batterie sono convergenti. Il fattore generale ha un omega gerarchico elevato, attorno a 0,75–0,80. I domini specifici, al netto di <em>g</em>, scendono spesso sotto 0,30 e talvolta vicino a zero <span class="citation" data-cites="watkins2006orthogonal gignac2017evaluating">(Gignac &amp; Kretzschmar, 2017; Watkins, 2006)</span>. Le rianalisi delle edizioni più recenti, come la WISC-V, mostrano lo stesso schema <span class="citation" data-cites="canivez2017structural">(Canivez et al., 2017)</span>, e così i dati normativi italiani. Nel campione di taratura italiano della WISC-IV i fattori di dominio contribuiscono in misura trascurabile, al netto del fattore generale <span class="citation" data-cites="kush2019construct">(Kush &amp; Canivez, 2019)</span>; lo stesso modello è stato applicato anche al confronto con ampi campioni di bambini con disturbi dell’apprendimento <span class="citation" data-cites="giofre2019lumpers">(Giofrè et al., 2019)</span>. Nel campione di taratura italiano dell’IDS-2, su 1.281 bambini e ragazzi, il fattore generale ha un omega gerarchico di 0,77, mentre quello dei fattori specifici varia fra 0,08 e 0,51 <span class="citation" data-cites="toffalini2026ids2">(Toffalini &amp; Cornoldi, 2026)</span>. In tutti questi casi il fattore generale risulta attendibile e interpretabile, i fattori di dominio quasi mai abbastanza da essere letti da soli.</p>
+<p>Un esempio sui dati normativi italiani della WISC-IV, 2.200 bambini e ragazzi, rende il problema concreto. Se si applica ai dieci subtest principali un modello a un solo fattore, tutti risultano legati a <em>g</em>, con saturazioni da 0,28 a 0,75, e la consistenza interna del totale è buona: ω = 0,80, α = 0,82 (<a href="#fig-unifattoriale" class="quarto-xref">Figura&nbsp;<span>5.4</span></a>). Ma questo non è il modello giusto, perché l’intelligenza non è strettamente unitaria: prove dello stesso dominio correlano fra loro più di quanto <em>g</em> da solo spieghi.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-bifattoriale" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Un ovale g in alto con frecce rosse verso otto subtest disposti in una fila: somiglianze, vocabolario, disegno con cubi, matrici, memoria di cifre, lettere e numeri, cifrario, ricerca di simboli. Sotto la fila, quattro ovali di dominio, verbale, percettivo, memoria di lavoro e velocità, ciascuno con frecce grigie verso i due subtest corrispondenti.">
+<div id="fig-unifattoriale" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Un ovale g in alto manda frecce rosse a dieci riquadri: somiglianze 0,75, vocabolario 0,75, comprensione 0,64, disegno con cubi 0,53, concetti illustrati 0,59, matrici 0,59, memoria di cifre 0,48, riordinamento di lettere e numeri 0,54, cifrario 0,28, ricerca di simboli 0,40. Accanto a g: omega 0,80 e alfa 0,82.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-unifattoriale-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="qualita-della-misura_files/figure-html/fig-unifattoriale-1.png" class="img-fluid figure-img" alt="Un ovale g in alto manda frecce rosse a dieci riquadri: somiglianze 0,75, vocabolario 0,75, comprensione 0,64, disegno con cubi 0,53, concetti illustrati 0,59, matrici 0,59, memoria di cifre 0,48, riordinamento di lettere e numeri 0,54, cifrario 0,28, ricerca di simboli 0,40. Accanto a g: omega 0,80 e alfa 0,82." width="640">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-unifattoriale-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;5.4: Un modello a un solo fattore per i dieci subtest principali della WISC-IV, con le saturazioni di ciascun subtest su g e gli indici di consistenza interna del totale. Saturazioni e coefficienti dall’analisi dell’autore sui dati normativi italiani (N = 2.200).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Per rispondere si usano modelli gerarchici o <strong>bifattoriali</strong>, che separano la varianza comune a tutte le prove da quella propria di ciascun dominio. Da essi si ricava l’<strong>omega gerarchico</strong> (ω<sub>h</sub>), che stima quanta varianza del punteggio è dovuta a un solo fattore <span class="citation" data-cites="rodriguez2016evaluating">(Rodriguez et al., 2016)</span> (<a href="#fig-bifattoriale" class="quarto-xref">Figura&nbsp;<span>5.5</span></a>). I risultati sui campioni normativi delle principali batterie sono convergenti. Il fattore generale ha un omega gerarchico elevato, attorno a 0,75–0,80. I domini specifici, al netto di <em>g</em>, scendono spesso sotto 0,30 e talvolta vicino a zero <span class="citation" data-cites="watkins2006orthogonal gignac2017evaluating">(Gignac &amp; Kretzschmar, 2017; Watkins, 2006)</span>. Le rianalisi delle edizioni più recenti, come la WISC-V, mostrano lo stesso schema <span class="citation" data-cites="canivez2017structural">(Canivez et al., 2017)</span>, e così i dati normativi italiani. Nel campione di taratura italiano della WISC-IV i fattori di dominio contribuiscono in misura trascurabile, al netto del fattore generale <span class="citation" data-cites="kush2019construct">(Kush &amp; Canivez, 2019)</span>; lo stesso modello è stato applicato anche al confronto con ampi campioni di bambini con disturbi dell’apprendimento <span class="citation" data-cites="giofre2019lumpers">(Giofrè et al., 2019)</span>. Nel campione di taratura italiano dell’IDS-2, su 1.281 bambini e ragazzi, il fattore generale ha un omega gerarchico di 0,77, mentre quello dei fattori specifici varia fra 0,08 e 0,51 <span class="citation" data-cites="toffalini2026ids2">(Toffalini &amp; Cornoldi, 2026)</span>. In tutti questi casi il fattore generale risulta attendibile e interpretabile, i fattori di dominio quasi mai abbastanza da essere letti da soli.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-bifattoriale" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Un ovale g in alto, con omega gerarchico 0,75, manda frecce rosse a dieci subtest con saturazioni fra 0,28 e 0,65. Quattro ovali di dominio a metà altezza mandano frecce grigie ai rispettivi subtest: verbale, omega gerarchico 0,29, con saturazioni 0,45 e 0,46; percettivo, 0,06, con saturazioni 0,19; memoria di lavoro, 0,21, con saturazioni 0,39; velocità, 0,47, con saturazioni 0,59.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bifattoriale-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="qualita-della-misura_files/figure-html/fig-bifattoriale-1.png" class="img-fluid figure-img" alt="Un ovale g in alto con frecce rosse verso otto subtest disposti in una fila: somiglianze, vocabolario, disegno con cubi, matrici, memoria di cifre, lettere e numeri, cifrario, ricerca di simboli. Sotto la fila, quattro ovali di dominio, verbale, percettivo, memoria di lavoro e velocità, ciascuno con frecce grigie verso i due subtest corrispondenti." width="640">
+<img src="qualita-della-misura_files/figure-html/fig-bifattoriale-1.png" class="img-fluid figure-img" alt="Un ovale g in alto, con omega gerarchico 0,75, manda frecce rosse a dieci subtest con saturazioni fra 0,28 e 0,65. Quattro ovali di dominio a metà altezza mandano frecce grigie ai rispettivi subtest: verbale, omega gerarchico 0,29, con saturazioni 0,45 e 0,46; percettivo, 0,06, con saturazioni 0,19; memoria di lavoro, 0,21, con saturazioni 0,39; velocità, 0,47, con saturazioni 0,59." width="640">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-bifattoriale-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;5.2: Un modello bifattoriale per una batteria con quattro domini. Ogni subtest dipende dal fattore generale g (frecce rosse) e da un fattore di dominio (frecce grigie); i fattori di dominio catturano solo ciò che resta al netto di g. Con i dati delle batterie reali l’omega gerarchico di g è alto, quello dei domini di solito basso. Schema originale.
+Figura&nbsp;5.5: Lo stesso esempio con un modello bifattoriale: ogni subtest dipende dal fattore generale g (frecce rosse) e da un fattore di dominio (frecce grigie), che cattura solo ciò che resta al netto di g. L’omega gerarchico (ωh) di g resta alto; quello dei domini è basso. Saturazioni e coefficienti dall’analisi dell’autore sui dati normativi italiani della WISC-IV (N = 2.200).
 </figcaption>
 </figure>
 </div>

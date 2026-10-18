@@ -18,6 +18,25 @@ source("../../assets/diagrammi.R")
 virgola = function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",")
 tema = theme_minimal(base_size = if (stampa) 10 else 13) +
   theme(panel.grid.minor = element_blank())
+# Modello a un fattore come nelle slide: fattore in alto, prove in basso,
+# componente specifica (s o errore) sopra ciascuna prova
+modello1 = function(fat, prove, pesi = NULL, res = "s", wf = 4.4, cexf = .75, fontf = 2, cexp = .55, hp = 2.4) {
+  tela(c(0, 12), c(0, 10))
+  f = nodo(6, 8.6, fat, w = wf, h = 1.9, forma = "ovale", bg = "white", border = rosso, col = rosso, font = fontf, cex = cexf, lwd = 1.4)
+  n = length(prove); x = seq(1, 11, length.out = n); wp = 10 / (n - 1) * .9
+  for (i in 1:n) {
+    nodo(x[i], hp / 2 + .1, prove[i], w = wp, h = hp, bg = "grey95", cex = cexp)
+    # le frecce partono da punti diversi del bordo inferiore del fattore
+    x0 = 6 + (x[i] - 6) * .7 * (wf / 2) / 5; y0 = 8.6 - .95 * sqrt(1 - ((x0 - 6) / (wf / 2))^2)
+    lato = if (x[i] < 6) -1 else 1  # s dal lato opposto alla freccia del fattore
+    x1 = x[i] - lato * .3; y1 = hp + .2
+    p = if (is.null(pesi)) NA else pesi[i]
+    freccia(x0, y0, x1, y1, col = rosso, lwd = if (is.na(p)) .9 else .5 + 2.4 * (abs(p) - .35))
+    if (!is.na(p)) text(x0 + .55 * (x1 - x0), y0 + .55 * (y1 - y0), virgola(p), adj = c(-.3, .5), cex = .55, col = rosso)
+    nodo(x[i] + lato * .5, hp + 1, res, w = .75, h = .85, forma = "ovale", bg = "grey88", font = 3, cex = .6)
+    freccia(x[i] + lato * .5, hp + .57, x[i] + lato * .5, hp + .2, col = "grey40", lwd = .9)
+  }
+}
 ```
 
 Chi va bene in un test cognitivo tende ad andare bene anche negli altri. Non in
@@ -62,6 +81,18 @@ Simon avrebbero costruito le prime batterie di prove cognitive simili a quelle
 moderne. Ma l'idea era già completa: le prestazioni osservate sono indizi di una
 capacità comune che non si osserva direttamente.
 
+```{r}
+#| label: fig-spearman
+#| fig-cap: "Il modello di Spearman: un fattore generale g, comune a tutte le misure, e una componente specifica s per ciascuna. Le misure indicate sono del tipo usato da Spearman, ancora molto rudimentali. Elaborazione da Spearman (1904)."
+#| fig-alt: "Un ovale con la lettera g in alto, da cui partono frecce verso cinque riquadri: voti scolastici, test psicofisici o sensoriali, velocità di risposta a stimoli, memoria immediata di parole e puntini di sospensione. Sopra ciascun riquadro un piccolo cerchio s con una freccia verso il riquadro."
+#| fig-width: !expr 4.45 * scala
+#| fig-height: !expr 2.5 * scala
+modello1("g", c("Voti\nscolastici", "Test\npsicofisici /\nsensoriali", "Velocità di\nrisposta a\nstimoli", "Memoria\nimmediata\ndi parole", "..."),
+         wf = 2.2, cexf = 1.2, fontf = 4, cexp = .6)
+text(7.3, 8.6, "fattore generale\n(in termini moderni:\nfattore latente)", adj = 0, cex = .55, font = 3, col = "grey30")
+text(0, 4.4, "componenti specifiche «s»", adj = 0, cex = .55, font = 3, col = "grey30")
+```
+
 ## Un fattore latente, spiegato con lo sport
 
 L'idea di fattore latente è più intuitiva di quanto sembri. Prendiamo un esempio
@@ -79,31 +110,41 @@ l'allenamento in quella disciplina o la statura per il basket. Un modello con un
 fattore generale e tanti fattori specifici spiega le correlazioni in modo
 parsimonioso. Fra atleti olimpici, molto selezionati e specializzati, le
 correlazioni potrebbero quasi sparire; nella popolazione generale sono forti.
-La @fig-atleticita traduce l'esempio in un modello.
+La @fig-atleticita traduce l'esempio in un modello, e la @fig-spearman mostra
+che è lo stesso schema proposto da Spearman.
 
 ```{r}
 #| label: fig-atleticita
-#| fig-cap: "Un fattore latente fuori dalla psicologia. L'atleticità, causa comune non osservata, spiega perché prestazioni sportive diverse sono correlate; ogni prova dipende anche da una componente specifica s (allenamento nella disciplina, statura, tecnica). I pesi sono inventati a scopo illustrativo. Schema originale."
-#| fig-alt: "Un ovale in alto, atleticità, con frecce verso cinque prove sportive: nuoto, bicicletta, basket, calcetto, salto in lungo, con pesi fra 0,40 e 0,67. Su ciascuna prova arriva anche una freccia da un piccolo cerchio s che rappresenta la componente specifica."
+#| fig-cap: "Un fattore latente fuori dalla psicologia. Cause comuni generali, riassumibili come «atleticità», spiegano perché prestazioni sportive diverse sono correlate; ogni prova dipende anche da componenti specifiche s, come l'allenamento nella disciplina o la statura. Il numero di prove non ha un limite definito. I pesi sono inventati a scopo illustrativo."
+#| fig-alt: "Un ovale in alto, cause comuni generali, atleticità, con frecce verso sei riquadri: nuoto, bicicletta, basket, calcetto, salto in lungo e puntini di sospensione, con pesi fra 0,40 e 0,67. Sopra ciascun riquadro un piccolo cerchio s con una freccia verso il riquadro."
 #| fig-width: !expr 4.45 * scala
-#| fig-height: !expr 2.7 * scala
-tela(c(0, 12), c(0, 10))
-a = nodo(6, 8.6, "atleticità\n(causa comune)", w = 4.2, h = 2.2, forma = "ovale", bg = "white", font = 3, cex = .75, lwd = 1.4)
-prove = c("Nuoto\n(tempo)", "Bicicletta\n(tempo)", "Basket\n(canestri)", "Calcetto\n(rendimento)", "Salto in\nlungo (m)")
-pesi = c(.61, .51, .40, .52, .67)
-x = seq(1.25, 10.75, length.out = 5)
-for (i in 1:5) {
-  p = nodo(x[i], 2.9, prove[i], w = 2.1, h = 1.9, bg = "grey95", cex = .62)
-  collega(a, p, col = rosso, lwd = .6 + 2.5 * (pesi[i] - .35), etichetta = virgola(pesi[i]), pos_et = .55, cex_et = .6, adj_et = c(if (i < 3) 1.25 else if (i > 3) -.25 else -.25, .5))
-  collega(nodo(x[i], .6, "s", w = .75, h = .9, forma = "ovale", bg = "grey88", font = 3, cex = .62), p, col = "grey40")
-}
+#| fig-height: !expr 2.6 * scala
+modello1("cause comuni generali\n(«atleticità»?)", c("Nuoto\n(tempo per\nvasca)", "Bicicletta\n(tempo sui\n10 km)", "Basket\n(tiri liberi)",
+         "Calcetto\n(rendimento\nnel ruolo)", "Salto in\nlungo\n(metri)", "..."), pesi = c(.61, .51, .40, .52, .67, NA))
 ```
 
 Lo stesso schema vale per la personalità. Le risposte ad affermazioni come «mi
 piace conoscere persone nuove», «mi riesce facile iniziare una conversazione con
-uno sconosciuto», «mi piace essere al centro dell'attenzione» sono correlate.
-Il fattore comune si chiama estroversione. Nessuno lo osserva direttamente; lo si
-inferisce dalle correlazioni e lo si usa perché spiega e prevede.
+uno sconosciuto», «mi piace essere al centro dell'attenzione» sono correlate, ed
+è su questa correlazione che si costruiscono i questionari di personalità. Il
+fattore comune si chiama estroversione (@fig-estroversione). Dietro c'è
+probabilmente un intreccio di livelli diversi: la sensibilità dei sistemi di
+ricompensa agli stimoli sociali, la ricerca di sensazioni, migliaia di varianti
+genetiche, poche delle quali identificate. Nessuno osserva direttamente il
+fattore; lo si inferisce dalle correlazioni e lo si usa perché spiega e prevede.
+Un item formulato al contrario, come «mi sento a disagio fra molta gente», ha un
+peso negativo: chi è più estroverso tende a dare punteggi più bassi.
+
+```{r}
+#| label: fig-estroversione
+#| fig-cap: "Lo stesso modello applicato a un questionario di personalità. L'estroversione spiega le correlazioni fra le risposte agli item; ε indica la parte di ogni risposta legata alla situazione specifica e non condivisa con le altre. L'item formulato al contrario ha peso negativo. Item e pesi sono inventati a scopo illustrativo."
+#| fig-alt: "Un ovale in alto, estroversione, con frecce verso sei riquadri con affermazioni: mi piace conoscere persone nuove, inizio facilmente una conversazione con uno sconosciuto, mi piace essere al centro dell'attenzione, prendo l'iniziativa nelle situazioni sociali, mi sento a disagio fra molta gente, e puntini di sospensione. I pesi vanno da 0,50 a 0,78, tranne l'ultimo item, con peso meno 0,70. Sopra ciascun riquadro un piccolo cerchio epsilon."
+#| fig-width: !expr 4.45 * scala
+#| fig-height: !expr 2.7 * scala
+modello1("estroversione", c("«Mi piace\nconoscere\npersone\nnuove»", "«Inizio\nfacilmente\nuna conver-\nsazione con\nsconosciuti»",
+         "«Mi piace\nessere al\ncentro\ndell'atten-\nzione»", "«Prendo\nl'iniziativa\nnelle\nsituazioni\nsociali»", "«Mi sento\na disagio\nfra molta\ngente»", "..."),
+         pesi = c(.63, .78, .50, .60, -.70, NA), res = "ε", cexp = .5, hp = 2.9)
+```
 
 ```{r}
 #| label: fig-manifold

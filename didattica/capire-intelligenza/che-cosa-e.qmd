@@ -1,6 +1,6 @@
 ---
 title: "Che cosa chiamiamo intelligenza"
-description: "Dalle capacità mentali alle prestazioni osservate: che cosa indica il QI e come si mette alla prova una misura dell'intelligenza."
+description: "Dal senso comune alle definizioni degli esperti, dall'abilità mentale generale al QI: che cosa si misura, perché conta e che cosa si può obiettare ai test."
 suppress-bibliography: true
 execute:
   echo: false
@@ -16,210 +16,339 @@ virgola = function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark =
 source("../../assets/diagrammi.R")
 tema = theme_minimal(base_size = if (stampa) 10 else 13) +
   theme(panel.grid.minor = element_blank())
+# Scrive in fila pezzi di testo con stili diversi, a partire da x
+fila = function(x, y, pezzi, font, cex = .7, col = "black") {
+  col = rep(col, length.out = length(pezzi))
+  for (i in seq_along(pezzi)) {
+    text(x, y, pezzi[i], adj = c(0, .5), font = font[i], cex = cex, col = col[i])
+    x = x + strwidth(pezzi[i], font = font[i], cex = cex)
+  }
+}
 ```
 
-Una persona capisce al volo un problema difficile e poi prende una decisione
-disastrosa. È intelligente o no? La domanda sembra imbarazzante solo perché
-alla parola «intelligenza» chiediamo troppo: la rapidità del ragionamento, la
-saggezza delle scelte, talvolta perfino il carattere. Nessun concetto regge un
-incarico così ampio.
+Possiamo dire che gli esseri umani sono intelligenti? Siamo l'unica specie che
+si è data da sola il nome di *sapiens*. Siamo anche una specie che altera il
+proprio ambiente, sa di farlo e non riesce a smettere. Il paradosso è antico, e
+Sternberg ha dedicato un intero volume a una sua versione in piccolo: perché
+persone intelligenti fanno a volte cose tanto stupide
+[@sternberg2002smart].
 
-Per studiarla bisogna restringere il campo. Questo capitolo lo fa in tre
-passaggi: che cosa intendiamo per intelligenza, come si passa da una capacità
-che non si vede a prestazioni che si osservano, e che cosa indica, e non indica,
-il numero chiamato QI. Saltare questi passaggi non rende il numero più preciso.
-Lo rende più misterioso.
+La domanda sembra imbarazzante solo perché alla parola «intelligenza» chiediamo
+troppo: la rapidità del ragionamento, la saggezza delle scelte, talvolta perfino
+il carattere. Nessun concetto regge un incarico così ampio. Questo capitolo
+restringe il campo partendo da dove parte chiunque, il senso comune, e arriva a
+una definizione di lavoro, a un numero, il QI, e alle obiezioni che quel numero
+si porta dietro.
 
-## Una parola con troppi compiti
+## Gli indizi di tutti i giorni
 
-Nel linguaggio comune chiamiamo intelligente chi capisce una spiegazione, chi
-trova una soluzione ingegnosa, chi sa molte cose, chi evita una scelta
-avventata. Sono giudizi spesso sensati, ma non descrivono la stessa capacità.
-Possedere una conoscenza, acquisirla in fretta e sapere quando usarla sono tre
-operazioni diverse.
+A dieci anni, come si riconosceva un compagno di classe molto intelligente?
+Prendeva voti alti, parlava quasi come un adulto, capiva subito le regole di un
+gioco nuovo, finiva il compito per primo, era bravo in matematica. Quando
+spiegava qualcosa agli altri, rendeva semplici cose difficili.
 
-Si pensi a due colleghi alle prese con un nuovo gestionale. Il primo ne intuisce
-subito la logica e trova anche le funzioni che nessuno gli ha mostrato. Il
-secondo ricorda alla perfezione le procedure imparate, ma si blocca quando un
-aggiornamento cambia i menu. Possiamo descrivere la differenza senza decidere
-chi dei due sia, in assoluto, «quello intelligente». Vediamo indizi su
-apprendimento, memoria e capacità di ricavare una regola. Non una biografia.
+Altri indizi sono più interessanti. Non è che non sbagliasse mai: sapeva trovare
+gli errori e correggerli. Non è che non si mettesse mai nei guai: sapeva come
+uscirne. Non era necessariamente il più obbediente. E se copiava, lo faceva in
+modo efficace.
 
-Anche la buona condotta va tenuta fuori. Capire le conseguenze di un'azione non
-obbliga a scegliere quelle migliori per tutti, e si può ragionare in modo
-eccellente al servizio di uno scopo pessimo. Il giudizio sulla capacità e quello
-sullo scopo restano separati.
+Questi indizi non sono sbagliati. Hanno però un difetto: mescolano cose diverse.
+Possedere una conoscenza, acquisirla in fretta e sapere quando usarla sono
+operazioni distinte; l'attenzione e l'obbedienza sono altro ancora. Anche la
+buona condotta va tenuta fuori: capire le conseguenze di un'azione non obbliga a
+scegliere quelle migliori per tutti, e si può ragionare in modo eccellente al
+servizio di uno scopo pessimo.
 
 Non è pedanteria. Se la definizione includesse ogni qualità desiderabile, una
 buona decisione sarebbe intelligente per definizione e una cattiva sarebbe
-stupida per definizione. Avremmo un'etichetta con cui commentare i risultati, e
+stupida per definizione. Avremmo un'etichetta per commentare i risultati e
 nessuna possibilità di spiegare come si producono.
 
-## Una definizione di lavoro
+## Che cosa dicono le parole
 
-Chiameremo **intelligenza** un'abilità mentale generale che interviene nel
-comprendere, ragionare, apprendere e risolvere problemi. Una formulazione molto
-citata, firmata da Gottfredson e sottoscritta da decine di ricercatori, aggiunge
-la pianificazione, il pensiero astratto, la comprensione di idee complesse e
-l'apprendimento rapido dall'esperienza. Il suo pregio è collegare attività
-diverse senza ridurre l'intelligenza alla cultura scolastica
+L'etimologia offre un primo aiuto. *Intelligentia* viene dal latino *inter* e
+*legĕre*: leggere fra le cose, cogliere ciò che non si vede subito. Altre lingue
+hanno percorsi analoghi, in cui conoscere si intreccia con vedere, percepire e
+capire (@fig-etimologia).
+
+```{r}
+#| label: fig-etimologia
+#| fig-cap: "Le radici di alcune parole legate all'intelligenza: in lingue diverse conoscere si intreccia con vedere, percepire e capire."
+#| fig-alt: "Schema testuale con frecce. Latino: inter più legere dà intelligentia, la capacità di leggere tra le cose. Germanico: wisaz, conoscenza, dà wit o witful, arguzia, vision, visione, e wisdom, saggezza. Greco antico: nous, conoscere ma anche vedere, percepire, intuire, a cui si collega il sanscrito jña. Sanscrito: buddhi, notare, conoscere, essere consapevoli, capire."
+#| fig-width: !expr 4.45 * scala
+#| fig-height: !expr 2.9 * scala
+tela(c(0, 12), c(0, 10))
+fila(0, 9.4, c("latino: ", "inter", " + ", "legĕre", " → ", "intelligentia", ", capacità di «leggere tra» le cose:"), c(1, 4, 1, 4, 1, 4, 1), col = c(1, rosso, 1, rosso, 1, rosso, 1))
+text(0, 8.6, "comprendere anche ciò che non si vede immediatamente", adj = c(0, .5), cex = .7, col = "grey30")
+text(0, 6.6, "germanico", adj = c(0, .5), cex = .7)
+fila(2.5, 6.0, c("wīsaz", " (conoscenza)"), c(4, 1), col = c(rosso, 1))
+for (yy in c(7.1, 6.0, 4.9)) freccia(5.55, 6.0, 6.7, yy * .9 + 6.0 * .1, col = "grey35", lwd = .9)
+fila(6.8, 7.1, c("wit / witful", " (arguzia)"), c(4, 3), col = c(1, "grey30"))
+fila(6.8, 6.0, c("vision", " (visione)"), c(4, 3), col = c(1, "grey30"))
+fila(6.8, 4.9, c("wisdom", " (saggezza)"), c(4, 3), col = c(1, "grey30"))
+text(0, 3.3, "greco antico", adj = c(0, .5), cex = .7)
+fila(2.5, 2.7, c("νοῦς", " (nous)"), c(4, 4), col = rosso)
+freccia(4.7, 2.7, 5.2, 2.7, col = "grey35", lwd = .9)
+text(5.35, 2.7, "conoscere, ma anche vedere,\npercepire, intuire", adj = c(0, .5), cex = .7)
+text(0, 1.3, "sanscrito", adj = c(0, .5), cex = .7)
+text(2.5, 1.5, "jñā", adj = c(0, .5), font = 4, cex = .7, col = rosso)
+freccia(3.3, 1.65, 4.3, 2.2, col = "grey35", lwd = .9)
+text(2.5, .45, "buddhi", adj = c(0, .5), font = 4, cex = .7, col = rosso)
+freccia(4.0, .45, 5.2, .45, col = "grey35", lwd = .9)
+text(5.35, .45, "notare, conoscere, essere consapevoli, capire", adj = c(0, .5), cex = .7)
+```
+
+Le parole, però, portano con sé anche sfumature morali, caratteriali e sociali.
+Warne ne raccoglie alcuni esempi [@warne2020know]. Nella cultura cinese
+l'intelligenza include l'uso etico della conoscenza, vicino alla saggezza. In
+Africa orientale, in India e altrove la tenacia nel portare avanti un compito è
+considerata una capacità cognitiva. I Cree del Canada vi includono riflessività,
+pazienza e perseveranza; in Zimbabwe vi rientrano competenze sociali come
+prendersi cura di amici e sconosciuti.
+
+Conviene allora ancorarsi al significato comune? La biologia e la medicina hanno
+risposto di no da tempo: si sono date un gergo tecnico, spesso latino e greco,
+che nessuno confonde con il linguaggio di tutti i giorni. Nessun medico discute
+se un'epatite sia «davvero» un'infiammazione nel senso del bar. La psicologia
+scientifica avrebbe potuto fare lo stesso con più decisione. Non l'ha fatto, e
+paga il prezzo di usare una parola che tutti credono di capire.
+
+## Le definizioni degli esperti
+
+Se il senso comune non basta, si può chiedere agli esperti. Il guaio è che
+ciascuno ha la sua definizione. Nel 1921 il *Journal of Educational Psychology*
+interpellò diversi studiosi [@jep1921symposium]. Per Pintner l'intelligenza era
+la capacità di adattarsi a situazioni relativamente nuove; per Woodrow, quella di
+acquisire abilità; per Dearborn, quella di trarre profitto dall'esperienza; per
+Terman, quella di condurre un ragionamento astratto. Settantasette anni dopo,
+un dibattito italiano fra studiosi di discipline diverse, dalla psicologia
+all'informatica, produsse una varietà simile, dal comportamento che massimizza il
+beneficio dell'organismo alla capacità di costruirsi rappresentazioni interne del
+mondo [@cornoldi2007intelligenza].
+
+Sotto la varietà, però, c'è una traiettoria. Da sempre le definizioni insistono
+su **adattamento** e **apprendimento**: rispondere a richieste nuove quando le
+abitudini non bastano, e migliorare con l'esperienza. Dagli anni Cinquanta la
+rivoluzione cognitiva ha aggiunto le **rappresentazioni mentali**, le operazioni
+interne, la soluzione di problemi attraverso l'elaborazione di informazione.
+Chi si rappresenta la logica di un problema può confrontare possibilità e
+scartare un'ipotesi prima di provarla.
+
+Sono concetti utili, perché danno finalmente una base teorica. Ma non sono mai
+stati strettamente necessari per studiare e misurare bene l'intelligenza. I test
+funzionavano prima della rivoluzione cognitiva, e funzionerebbero anche se le
+sue teorie venissero sostituite domani.
+
+La formulazione oggi più citata è di Gottfredson, firmata da decine di
+ricercatori: l'intelligenza è una capacità mentale generale che, tra le altre
+cose, implica ragionare, pianificare, risolvere problemi, pensare in termini
+astratti, comprendere idee complesse, apprendere rapidamente e apprendere
+dall'esperienza (@fig-definizione). Non è l'apprendimento dai libri né l'abilità
+nel sostenere test; riflette una capacità più ampia di afferrare ciò che ci
+circonda, di dare senso alle cose e capire che cosa fare
 [@gottfredson1997mainstream, p. 13].
 
 ```{r}
 #| label: fig-definizione
-#| fig-cap: "Una capacità mentale generale e alcune delle attività in cui interviene, secondo la definizione di lavoro adottata in questo libro. Elaborazione da Gottfredson (1997)."
-#| fig-alt: "Un ovale al centro con la scritta capacità mentale generale, da cui partono frecce verso otto attività: ragionare, pianificare, risolvere problemi, pensare in termini astratti, comprendere idee complesse, apprendere rapidamente, apprendere dall'esperienza e altro."
+#| fig-cap: "Una capacità mentale generale e alcune delle attività in cui interviene, «tra le altre cose». Elaborazione da Gottfredson (1997)."
+#| fig-alt: "In alto la scritta una capacità mentale generale, da cui partono a ventaglio frecce verso otto attività: ragionare, pianificare, risolvere problemi, pensare in termini astratti, comprendere idee complesse, apprendere rapidamente, apprendere dall'esperienza e puntini di sospensione, con la nota tra le altre cose."
 #| fig-width: !expr 4.45 * scala
-#| fig-height: !expr 2.6 * scala
-tela(c(0, 12), c(0, 10))
-g = nodo(6, 5, "una capacità\nmentale generale", w = 3.9, h = 3, forma = "ovale", bg = "white", font = 4, cex = .8, lwd = 1.4)
-att = c("ragionare", "pianificare", "risolvere\nproblemi", "pensare in\ntermini astratti",
-        "comprendere\nidee complesse", "apprendere\nrapidamente", "apprendere\ndall'esperienza", "...")
-x = rep(c(1.45, 10.55), each = 4); y = rep(c(8.9, 6.3, 3.7, 1.1), 2)
-for (i in 1:8) collega(g, nodo(x[i], y[i], att[i], w = 2.8, h = 1.9, bg = "grey95", cex = .66), col = rosso, lwd = .9)
+#| fig-height: !expr 2.4 * scala
+tela(c(0, 12), c(1, 10))
+fila(2.2, 9.1, c("una ", "capacità mentale generale"), c(3, 2), cex = 1, col = c("grey30", rosso))
+att = c("ragionare", "pianificare", "risolvere\nproblemi", "pensare\nin termini\nastratti", "comprendere\nidee\ncomplesse",
+        "apprendere\nrapidamente", "apprendere\ndall'esperienza", "...")
+xa = c(.75, 1.85, 3.2, 4.75, 6.4, 8.15, 10.0, 11.5); ya = c(6.3, 4.7, 3.2, 2.7, 2.7, 2.9, 2.6, 3.9)
+xp = seq(3.0, 9.6, length.out = 8)
+for (i in 1:8) {
+  text(xa[i], ya[i], att[i], font = 3, cex = if (stampa) .58 else .64, adj = c(.5, 1))
+  freccia(xp[i], 8.2, xa[i] + c(.6, .35, .2, .1, 0, -.1, -.25, -.2)[i], ya[i] + .35, col = "grey35", lwd = .9)
+}
+text(11.1, 6.6, "«tra le\naltre cose»", font = 3, cex = .45, col = "grey40")
 ```
 
 «Generale» indica l'ampiezza del campo di applicazione, non l'uniformità dei
-risultati. Una persona può usare la stessa capacità in compiti diversi e
-riuscire meglio in alcuni che in altri. Il resto del libro mostrerà che questa
-non è una sottigliezza: è il cuore del dibattito fra modelli unitari e modelli
-multipli.
+risultati. La stessa capacità interviene in compiti diversi, e una persona può
+riuscire meglio in alcuni che in altri. Se l'intelligenza sia una cosa sola o
+molte è la domanda del capitolo sul [fattore *g*](../modelli-test/fattore-g.qmd).
 
-Due idee reggono la definizione. La prima è l'**adattamento**: rispondere alle
-richieste di una situazione quando le abitudini disponibili non bastano. Il
-secondo collega del gestionale è bravissimo finché il mondo resta fermo.
-L'intelligenza si vede soprattutto quando la risposta non è già pronta.
+## Un'onesta definizione operazionalista
 
-La seconda è la **rappresentazione mentale**: una descrizione interna degli
-elementi di un problema e delle loro relazioni. Chi si rappresenta la logica di
-un programma può prevedere dove si troverà una funzione mai vista, confrontare
-possibilità, scartare un'ipotesi prima di provarla. La rappresentazione non deve
-essere un'immagine: può essere verbale, spaziale o del tutto astratta.
+Nel 1923 Boring propose una via d'uscita più spiccia: l'intelligenza è ciò che
+misurano i test di intelligenza [@boring1923intelligence]. Sembra una battuta, ed
+è stata spesso citata come tale. In realtà è un'ammissione onesta. Storicamente
+l'interesse a *misurare* l'intelligenza è sempre stato molto più forte
+dell'interesse a *definirla*, e per ragioni pratiche solide: scuole, eserciti e
+cliniche avevano bisogno di decidere prima che i teorici si mettessero d'accordo.
 
-Una definizione di lavoro non è una teoria. Già il rapporto dell'American
-Psychological Association coordinato da Neisser notava che i ricercatori
-riconoscono lo stesso insieme di fenomeni anche senza condividere una
-definizione universale [@neisser1996intelligence, p. 77]. Sapere che cosa
-vogliamo spiegare è un inizio. Spiegarlo è un altro mestiere.
+Il rischio, naturalmente, è la circolarità: un test misura l'intelligenza perché
+l'intelligenza è ciò che il test misura. Se ne esce solo mettendo alla prova le
+misure con dati indipendenti, come si vedrà nel capitolo sulla
+[qualità della misura](../dati-misure-punteggi/qualita-della-misura.qmd).
 
-## Dalla capacità alla prestazione
+La stessa diffidenza verso la parola spiega i nomi alternativi. In genetica del
+comportamento, psicologia del lavoro, psicometria applicata ed economia si
+preferisce spesso parlare di **abilità mentale generale** (*GMA*, molto
+frequente), abilità cognitiva generale, abilità generale o semplicemente **_g_**.
+Quest'ultima sigla è classica nella letteratura psicometrica e ha un significato
+tecnico più ristretto: il fattore comune ricavato dalle correlazioni fra prove
+diverse. Per il resto del libro basta un glossario minimo (@fig-glossario).
 
-Una capacità non si osserva. Si osservano risposte giuste e sbagliate, tempi,
-strategie, esitazioni. Da queste prestazioni cerchiamo di inferire qualcosa che
-valga oltre il singolo episodio. Il problema della misura comincia qui.
+```{r}
+#| label: fig-glossario
+#| fig-cap: "Glossario minimo: la capacità che si vuole misurare e l'indicatore numerico con cui la si stima."
+#| fig-alt: "Dalla scritta glossario minimo partono due frecce. La prima porta ad abilità mentale o cognitiva generale, GMA o g: la cosa che si vuole misurare. La seconda porta a QI: l'indicatore numerico."
+#| fig-width: !expr 4.45 * scala
+#| fig-height: !expr 1.4 * scala
+tela(c(0, 12), c(0, 10))
+segments(0, c(9.6, .4), 12, c(9.6, .4), lwd = .8 * scala, col = "grey70")
+text(.2, 5, "glossario minimo", adj = c(0, .5), cex = .85, font = 2)
+freccia(3.5, 5.3, 5.0, 7.2, col = "grey35", lwd = .9); freccia(3.5, 4.7, 5.0, 2.4, col = "grey35", lwd = .9)
+text(5.15, 8.1, "«abilità mentale / cognitiva generale»", adj = c(0, .5), font = 3, cex = .68, col = rosso)
+fila(5.15, 6.5, c("«GMA» o «", "g", "»", "  →  la cosa che si vuole misurare"), c(3, 3, 3, 1), cex = .68, col = c(rosso, rosso, rosso, 1))
+fila(5.15, 2.4, c("«QI»", "  →  l'indicatore numerico"), c(2, 1), cex = .68)
+```
 
-Una singola prestazione è ambigua. Il collega che trova subito la funzione
-nascosta potrebbe aver capito la logica del programma, oppure aver usato per
-anni un software quasi identico. Un errore può rivelare una difficoltà di
-ragionamento o una consegna fraintesa. Una risposta isolata lascia aperte troppe
-spiegazioni; molte risposte diverse cominciano a chiuderne qualcuna.
+Operativamente, comunque, il termine resta quasi universale per l'indicatore: il
+**quoziente di intelligenza**, o **QI**. È un indicatore di differenze
+individuali: esprime quanto bene una persona se la cava, rispetto ad altre della
+stessa età, su una scala standardizzata. Il QI non è *g*: *g* appartiene a un
+modello delle relazioni fra misure, il QI è il risultato concreto di uno
+strumento. Sono strettamente legati, ma non coincidono
+[@neisser1996intelligence, p. 78].
 
-Per questo le batterie di intelligenza combinano prove di natura diversa:
-ragionamento su relazioni, conoscenze verbali, memoria, elaborazione di
-informazioni visive. Variare i compiti impedisce che l'intera valutazione
-dipenda da una sola richiesta e dai suoi difetti particolari.
+## Perché un numero conta tanto
 
-Moltiplicare le prove, però, non basta. Se le istruzioni sono ambigue in tutte,
-l'ambiguità si moltiplica con loro. Servono regole precise su che cosa si
-chiede, quali aiuti sono ammessi, quando si interrompe una prova e come si
-assegna il punteggio. La comparabilità fra persone va costruita, non presunta.
+A questo punto l'obiezione è legittima. Perché una cosa che non sappiamo bene
+che cosa sia, che non sappiamo nemmeno come chiamare e che forse non è neppure
+«una cosa» dovrebbe essere così importante?
 
-Resta l'obiezione dell'impegno: forse chi ottiene punteggi bassi semplicemente
-non ci ha provato. In una serie di studi su adulti sani, Bates e Gignac hanno
-offerto incentivi economici per le risposte corrette e hanno osservato
-miglioramenti medi piccoli [@bates2022effort]. La motivazione conta, e in una
-valutazione individuale va sempre osservata; ma non è la bacchetta magica che
-cancella le differenze di punteggio. Il risultato riguarda volontari sani e non
-copre ogni contesto, ma è difficile conciliarlo con l'idea che il QI misuri
-soprattutto la voglia di fare il test.
+La ragione, prima ancora che teorica, è operazionalista. In un'ora o poco più, con
+i test, si ottiene una stima robusta, affidabile e stabile di un indicatore che è
+fra i più potenti predittori di esiti a lungo termine disponibili in psicologia
+delle differenze individuali [@deary2012intelligence; @warne2020know]:
 
-La distinzione da tenere ferma è questa: la prestazione è l'evidenza, l'abilità
-è l'inferenza.
+- **successo scolastico**: voti, completamento degli studi, anni di istruzione,
+  con correlazioni dell'ordine di 0,40–0,60 [@roth2015intelligence]; in parte è
+  ovvio, perché i primi test furono costruiti proprio per questo scopo;
+- **prestazione lavorativa**: rapidità di apprendimento e produttività,
+  soprattutto nei lavori di complessità medio-alta, con correlazioni fra circa
+  0,20 e 0,50 [@schmidt2004general];
+- **posizione sociale raggiunta**: reddito e status socioeconomico, anche al netto
+  del punto di partenza familiare [@strenze2007intelligence];
+- **salute e longevità**: meno psicopatologia, minore mortalità, migliore salute
+  fisica; le associazioni sono più piccole, ma una deviazione standard in più di
+  QI in età giovanile si accompagna a un rischio di morte inferiore di circa un
+  quarto [@calvin2011intelligence].
 
-## Che cosa indica il QI
+Ognuno di questi legami ha un capitolo dedicato nella parte su scuola, salute e
+lavoro, con i suoi limiti. Qui conta un punto solo: prevedere bene un esito è una
+prova importante a favore di una misura, ma non spiega perché la previsione
+funziona. Qualità della misura e spiegazione causale sono domande diverse.
 
-Il **quoziente di intelligenza**, o **QI**, è un punteggio. Nelle batterie
-moderne combina i risultati di più prove ed esprime la posizione di una persona
-rispetto a una popolazione di riferimento della stessa età.
+## Come si arriva al QI
 
-Il percorso parte dal **punteggio grezzo**, per esempio il numero di risposte
-corrette. Da solo dice poco: dodici punti sono tanti in una prova difficile e
-pochi in una facile, e la stessa prestazione significa cose diverse a sette e a
-quindici anni. Il punteggio acquista senso solo nel confronto con le **norme**,
-cioè con i dati del campione su cui il test è stato tarato. «Norma» qui è un
-termine statistico: indica come si distribuiscono le persone, non come
-dovrebbero essere. Ed è un confronto legittimo solo se quella popolazione è
-pertinente alla persona valutata [@aera2014standards, standard 5.8].
+Proprio perché la capacità da misurare è generale, nessun test particolare è
+ideale da solo. Si preferisce comporre prove di natura diversa: completare una
+figura scegliendo il pezzo mancante, rispondere a domande di cultura generale,
+riconoscere quali figure sono uguali a un modello dopo una rotazione, costruire
+un disegno con dei blocchi, associare simboli a cifre il più in fretta possibile.
+Ogni prova ha i suoi difetti particolari; mettendone insieme molte, i difetti
+pesano meno.
 
-Il risultato finale viene espresso su una scala con media 100 e, di solito,
-deviazione standard 15 [@neisser1996intelligence, p. 78]. Il capitolo sulle
-distribuzioni spiega come funziona. Qui basta una conseguenza: quella scala non
-ha uno zero naturale né un'unità di intelligenza. Un QI di 120 non significa
-aver risolto il 120% dei problemi, né avere il 20% di intelligenza in più di chi
-ha 100.
+Il punteggio di ciascuna prova viene **standardizzato**, cioè confrontato con
+quello di un campione di riferimento della stessa età; i punteggi standardizzati
+vengono sommati e il totale viene riportato sulla scala del QI. Su quella scala
+la media è 100 e la deviazione standard, di solito, 15. La maggior parte delle
+persone si concentra intorno alla media, e i livelli prestativi molto bassi o
+molto alti sono rari (@fig-gaussiana).
 
-Il QI non va confuso neppure con *g*, il fattore generale ricavato dalle
-correlazioni fra prove diverse. *g* appartiene a un modello delle relazioni fra
-misure; il QI è il risultato concreto di uno strumento. Sono strettamente
-legati, ma non sono la stessa cosa [@neisser1996intelligence, p. 78].
+```{r}
+#| label: fig-gaussiana
+#| fig-cap: "Il QI totale si distribuisce come una curva gaussiana: molte persone intorno a 100, poche agli estremi. Distribuzione teorica con media 100 e deviazione standard 15."
+#| fig-alt: "Istogramma a barre grigie con forma a campana fra QI 40 e 160, massimo a 100. Al centro la scritta molte persone; nelle code poche persone. Due frecce partono dal centro: verso sinistra bassi livelli prestativi generali, verso destra alti livelli prestativi generali."
+#| fig-width: !expr if (stampa) 4.45 else 7
+#| fig-height: !expr if (stampa) 3 else 4.2
+d = data.frame(qi = 41:159); d$n = dnorm(d$qi, 100, 15)
+cx = if (stampa) 2.6 else 3.6
+ggplot(d, aes(qi, n)) +
+  geom_col(width = 1, fill = "grey78", colour = "white", linewidth = .1) +
+  scale_x_continuous(breaks = seq(40, 160, 15), limits = c(38, 162), expand = c(0, 0)) +
+  scale_y_continuous(breaks = NULL, expand = expansion(c(0, .06))) +
+  annotate("text", x = 100, y = max(d$n) * 1.03, label = "curva gaussiana", vjust = 0, size = cx * .8, fontface = "italic") +
+  annotate("text", x = c(62, 138), y = .022, label = c("bassi livelli\nprestativi generali", "alti livelli\nprestativi generali"), size = cx, lineheight = .9) +
+  annotate("segment", x = c(85, 115), xend = c(45, 155), y = .0175, yend = .0175, arrow = arrow(length = unit(.15, "cm")), linewidth = .5, colour = rosso) +
+  annotate("text", x = c(52, 148), y = .007, label = "poche\npersone", size = cx, lineheight = .9) +
+  annotate("text", x = 100, y = .011, label = "molte\npersone", size = cx, lineheight = .9) +
+  labs(x = "Quoziente di Intelligenza (QI) totale", y = "Numero di persone") +
+  tema + theme(panel.grid = element_blank())
+```
 
-Infine, ogni riassunto perde dettagli. Due persone con lo stesso QI possono
-arrivarci per strade diverse. Chiedere a un totale di descrivere una persona
-intera significa chiedergli un lavoro per cui non è stato costruito.
+Due conseguenze vanno fissate subito. La prima: il QI è una posizione relativa.
+Ha senso solo nel confronto con le **norme**, cioè con il campione su cui il test
+è stato tarato, e il confronto è legittimo solo se quella popolazione è
+pertinente alla persona valutata [@aera2014standards, standard 5.8]. La seconda:
+la scala non ha uno zero naturale né un'unità di intelligenza. Un QI di 120 non
+significa aver risolto il 120% dei problemi, né avere il 20% di intelligenza in
+più di chi ha 100. Il capitolo sulle
+[distribuzioni](../dati-misure-punteggi/distribuzioni-e-punteggi.qmd) spiega il
+meccanismo in dettaglio.
 
-## Perché compiti così artificiali?
+## Obiezioni ai test
 
-L'obiezione più comune è ragionevole. Nella vita reale i problemi sono
-articolati, si cercano informazioni, si chiede aiuto, spesso c'è tempo. Perché
-stimare una capacità generale con compiti brevi, astratti e un po' strani?
+Chi vede per la prima volta un test di intelligenza di solito protesta. Perché
+queste banalità dovrebbero rappresentare la mia intelligenza? Perché non
+proporre problemi davvero complessi e articolati? Perché non valutare che cosa
+una persona sa fare e produrre nella realtà? E perché affidarsi a vecchi test
+comportamentali, invece di sfruttare le neuroscienze?
 
-Perché un compito circoscritto permette di controllare che cosa la persona sa
-già e che cosa le viene chiesto. Nel caso del gestionale, il successo dipende
-dal ragionamento, ma anche dall'esperienza con software simili, dalle abitudini
-d'ufficio e dalla disponibilità di un collega paziente. Una prova delimitata
-separa una parte di questi ingredienti e la rende leggibile.
+La prima risposta è che nessuna delle prove viste sopra *è* l'intelligenza.
+L'intelligenza si riflette in tutte, e in molte altre cose. Una singola prova è
+un campione piccolo e imperfetto; molte prove diverse sono un campione migliore.
 
-Il prezzo è la distanza dalla vita quotidiana, e va riconosciuto. Ma la
-somiglianza esteriore non decide nulla. Una simulazione molto realistica può
-misurare soprattutto esperienze specifiche; una prova astratta può prevedere
-bene l'apprendimento in situazioni nuove. «Sembra artificiale» e «sembra
-realistico» sono impressioni. La qualità di una misura si giudica dai dati.
+La seconda riguarda il formato. Si preferiscono compiti standardizzabili, con
+risposte giuste ben identificate, somministrabili a molte persone in tempi
+ridotti. Un problema molto articolato fornisce un solo risultato dove servirebbero
+decine di osservazioni: poca granularità, poca attendibilità, e la difficoltà di
+valutare processi e risultati in modo uguale per tutti.
 
-## Una misura va messa alla prova
+La terza spiega perché molti compiti sembrano strani. L'obiettivo è vedere la
+potenza del motore, non quanta strada abbia già fatto l'automobile. Un compito
+che misura soprattutto ciò che una persona ha già avuto occasione di imparare
+dice molto sulla sua storia e poco sulla sua capacità di affrontare il nuovo.
+L'eccezione importante è la competenza verbale: il vocabolario è appreso, eppure
+si rivela un buon indicatore della capacità generale. Una spiegazione plausibile
+è che la maggior parte delle parole non viene insegnata: se ne ricava il
+significato dai contesti, e farlo è già un piccolo problema da risolvere.
 
-Chiamare un test «test di intelligenza» non certifica che cosa misura.
-Altrimenti il ragionamento sarebbe circolare: è un buon test perché misura
-l'intelligenza, e misura l'intelligenza perché lo dice il nome sulla copertina.
+C'è infine la filosofia operazionalista: l'importante è che i test funzionino.
+È una posizione difendibile solo se il funzionamento viene dimostrato, con dati,
+per ogni uso che se ne fa. «Sembra artificiale» e «sembra realistico» sono
+impressioni; la qualità di una misura si giudica dalle evidenze.
 
-L'interpretazione di un punteggio deve poter essere smentita. Se una prova
-presentata come misura del ragionamento dipendesse soprattutto dalla conoscenza
-di poche parole rare, il problema andrebbe indagato, non nascosto. Gli Standards
-per i test psicologici chiamano **validità** proprio questo: il grado in cui
-evidenze e teoria sostengono una certa interpretazione dei punteggi per un certo
-uso [@aera2014standards, pp. 11–17]. Il capitolo sulla qualità della misura
-mostra quali evidenze servono e come se la cavano i test di intelligenza.
-
-Una cosa va detta subito. Prevedere bene un esito, come il rendimento
-scolastico, è una prova importante a favore di un test, ma non spiega perché la
-previsione funziona. La qualità di una misura e la spiegazione causale sono due
-domande diverse, e confonderle è uno degli errori più frequenti in questo campo.
-
-L'intelligenza si può studiare anche senza una definizione che metta tutti
-d'accordo. Servono concetti abbastanza precisi da orientare le osservazioni e
-misure abbastanza controllate da poterli smentire. Il QI ha significato dentro
-questo rapporto fra teoria ed evidenza.
+Quanto alle neuroscienze e alla genetica, il loro contributo concettuale è
+eccellente: hanno mostrato, per esempio, che *g* ha correlati biologici reali. La
+loro capacità predittiva, però, resta modesta. Il miglior indicatore cerebrale
+singolo è ancora un dato quasi banale come il volume complessivo del cervello,
+che correla con il QI intorno a 0,24 [@pietschnig2015meta]. E il criterio con
+cui si giudicano queste misure resta comunque il comportamento: un indice
+cerebrale interessa perché predice la prestazione, non il contrario. Il capitolo
+su [cervello e intelligenza](../basi-ambiente-cambiamento/cervello-e-intelligenza.qmd)
+riprende la questione.
 
 ::: {.callout-note icon=false}
 ## In breve
 
-- L'intelligenza è una capacità generale di comprendere, ragionare, apprendere e
-  risolvere problemi; non coincide con ogni qualità desiderabile.
-- Le prestazioni sono l'evidenza osservabile; l'abilità è ciò che se ne inferisce,
-  e servono molte prove diverse e regole precise per farlo.
-- Il QI esprime una posizione rispetto a una popolazione di riferimento. Non è
-  una percentuale di intelligenza e non è sinonimo del fattore *g*.
-- La validità riguarda un'interpretazione dei punteggi per un uso; il nome del
-  test non basta, e prevedere non equivale a spiegare.
+- «Intelligenza» si può definire come abilità mentale generale (GMA): una
+  capacità che sostiene molte capacità cognitive diverse e non coincide con ogni
+  qualità desiderabile.
+- Il termine è poco tecnico; è lecito sostituirlo con alternative come GMA o *g*,
+  tenendo distinti la capacità da misurare e il QI, che ne è l'indicatore.
+- La misura interessa perché riassume una dimensione principale delle differenze
+  individuali e predice molti esiti diversi; prevedere, però, non equivale a
+  spiegare.
+- Il QI si ottiene aggregando molte prove di natura diversa, standardizzate e
+  riportate su una scala con media 100 e deviazione standard 15.
 :::
 
 [Riferimenti bibliografici](../../bibliografia.qmd)
