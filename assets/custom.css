@@ -1,108 +1,219 @@
+/* Rosso e tipografia coordinati con homepage e slide. Font locali, SIL OFL. */
+@font-face {
+  font-family: Inter;
+  src: url("fonts/inter-latin.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Noto Serif";
+  src: url("fonts/noto-serif-latin.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+:root {
+  --libro-rosso: #9a0000;
+  --libro-rosso-scuro: #75000f;
+  --libro-inchiostro: #252321;
+  --libro-secondario: #6a655f;
+  --libro-linea: #ebe6e0;
+  --libro-carta: #faf8f5;
+  --libro-tinta: #f4f0eb;
+  --libro-rosa: #f8eded;
+  --libro-raggio: 10px;
+  --libro-sans: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --libro-serif: "Noto Serif", Georgia, serif;
+  --bs-body-font-family: var(--libro-sans);
+  --bs-body-color: var(--libro-inchiostro);
+  --bs-link-color: var(--libro-rosso);
+  --bs-link-hover-color: var(--libro-rosso-scuro);
+}
+body {
+  font-family: var(--libro-sans);
+  color: var(--libro-inchiostro);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--libro-rosso); text-decoration-thickness: 1px; text-underline-offset: .2em; }
+a:hover { color: var(--libro-rosso-scuro); }
+::selection { background: var(--libro-rosa); color: var(--libro-rosso-scuro); }
+:focus-visible { outline: 2px solid var(--libro-rosso); outline-offset: 3px; border-radius: 4px; }
 
-/* GENERAL TEXT AND SETTINGS*/
-@media (min-width: 900px) {
-  body {
-    margin-left: 2rem;
-    margin-right: 3rem;
-  }
-}
-p {
-  font-size: 18px !important;
-}
-a {
-  color: #9A0000;
-}
-a:hover {
-  color: #555555;
-}
-::selection {
-  background-color: #9A0000;
-  color: #ffffff;
-}
-::-moz-selection {
-  background-color: #9A0000;
-  color: #ffffff;
-}
-.sidebar .active,
-.sidebar a.active,
-.sidebar .nav-link.active {
-  color: #9A0000 !important;
-}
-
-/* CALLOUTS */
-.callout {
-  border-color: #aaa !important;
-  border-left: 4px solid #9A0000 !important;
-  border-left-color: #9A0000 !important;
-  background-color: #fff;
-  border-radius: 8px;
-  border-width: 2px !important;
-  border-left-width: 6px !important;
-  padding: 1rem 1.25rem; 
-  margin: 1em 0;
-  font-size: 0.95rem;
-  line-height: 1.4; 
-}
-.callout .callout-header {
-  background-color: #fff !important;
-  color: #9A0000;
+/* Colonna di lettura e gerarchia dei titoli: spazio bianco al posto delle linee. */
+main.content { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+main.content p, main.content li { font-size: 1.04rem; }
+main.content p { margin-bottom: 1.15rem; }
+main.content li { margin-bottom: .3rem; }
+main.content h1, main.content h2 {
+  font-family: var(--libro-serif);
   font-weight: 600;
-  font-size: 17px !important;
-  display: flex;
-  align-items: center;  
-  gap: 0.4em;
-  padding: 0.25rem 0; 
+  line-height: 1.25;
+  letter-spacing: -.01em;
+  text-wrap: pretty;
 }
-.callout:hover {
-  background-color: #fff;
-  transition: background-color 0.2s ease-in-out;
+main.content h1 { font-size: clamp(1.9rem, 3.2vw, 2.55rem); }
+main.content h1.title { margin-bottom: 1.6rem; }
+main.content h2 {
+  font-size: 1.55rem;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0;
+  border-bottom: 0;
 }
-.callout-icon::before {
-  color: #9A0000 !important;
+main.content h3 {
+  font-family: var(--libro-sans);
+  font-size: 1.12rem;
+  font-weight: 650;
+  margin-top: 2rem;
 }
-.callout:focus-within,
-.callout:active {
-  outline: none;
-  border-left-color: #9A0000 !important;
+main.content .header-section-number { color: var(--libro-rosso); margin-right: .15em; }
+#title-block-header { margin-bottom: 2.4rem; }
+#title-block-header::before {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 3px;
+  margin-bottom: 1.1rem;
+  border-radius: 3px;
+  background: var(--libro-rosso);
 }
+#title-block-header .title { margin-top: 0; }
+#title-block-header .subtitle { color: var(--libro-secondario); font-size: 1.12rem; margin-top: .65rem; }
+.quarto-title-meta-heading { color: var(--libro-secondario); font-size: .68rem; letter-spacing: .08em; }
+#title-block-header .quarto-title-meta-contents p { font-size: .86rem; }
+main.content blockquote { color: var(--libro-secondario); border-left: 2px solid var(--libro-rosso); padding-left: 1.2rem; font-style: italic; }
 
-/* Detail Boxes */
-details{
- padding: 10px;
- border-radius: 4px;
+/* Indice: titolo tipografico invece di un blocco pieno, voci arrotondate. */
+#quarto-sidebar {
+  background: var(--libro-carta);
+  border-right: 0;
+  box-shadow: inset -1px 0 var(--libro-linea);
+  padding: 1.6rem 1.1rem;
 }
-details > summary{
- padding: 3px;
- border-radius: 4px;
+#quarto-sidebar .sidebar-header { margin-top: 0 !important; padding-top: 0 !important; }
+#quarto-sidebar .sidebar-title {
+  padding: 0 .45rem !important;
+  margin-bottom: 1.1rem !important;
+  font-family: var(--libro-serif);
+  font-size: 1.32rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -.01em;
 }
-details > summary > p{
- font-size: 130% !important;
+#quarto-sidebar .sidebar-title::after {
+  content: "";
+  display: block;
+  width: 2rem;
+  height: 3px;
+  margin-top: .8rem;
+  border-radius: 3px;
+  background: var(--libro-rosso);
 }
-details[open]{
-  background-color: #f4f4f4;
+#quarto-sidebar .sidebar-title a { color: var(--libro-inchiostro); text-decoration: none; }
+#quarto-sidebar .sidebar-title a:hover { color: var(--libro-rosso); }
+#quarto-sidebar .sidebar-tools-main { margin-top: .4rem; }
+#quarto-sidebar .quarto-navigation-tool { opacity: .7; }
+#quarto-sidebar .quarto-navigation-tool:hover { opacity: 1; color: var(--libro-rosso); }
+#quarto-sidebar .sidebar-search { padding: 0 .2rem; margin-bottom: .6rem; }
+#quarto-sidebar .aa-Autocomplete .aa-Form { background: #fff; border-color: var(--libro-linea); border-radius: 999px; }
+#quarto-sidebar .aa-Autocomplete .aa-Form:focus-within { border-color: var(--libro-rosso); box-shadow: 0 0 0 3px var(--libro-rosa); }
+#quarto-sidebar .sidebar-item-container { margin-top: 0; }
+#quarto-sidebar .sidebar-item-text { font-size: .8rem; line-height: 1.4; padding: .38rem .55rem; color: #4a4540; }
+#quarto-sidebar .sidebar-item-section > .sidebar-item-container { margin-top: 1.1rem; }
+#quarto-sidebar .sidebar-item-section > .sidebar-item-container > .sidebar-item-text {
+  font-size: .7rem;
+  font-weight: 650;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--libro-secondario);
 }
-details[open] > summary{
-  color: #333333;
-}
+#quarto-sidebar .sidebar-section { border-left: 0; padding-left: 0; }
+#quarto-sidebar .sidebar-link { border-radius: 8px; transition: background-color .15s, color .15s; }
+#quarto-sidebar .sidebar-link:hover { color: var(--libro-rosso); background: var(--libro-tinta); }
+#quarto-sidebar .sidebar-link.active { background: var(--libro-rosa); color: var(--libro-rosso); font-weight: 600; }
+#quarto-sidebar .chapter-number { color: #a39d96; margin-right: .1em; }
+#quarto-sidebar .sidebar-link.active .chapter-number { color: var(--libro-rosso); }
+#quarto-header nav.quarto-secondary-nav { background: var(--libro-carta); color: var(--libro-inchiostro); border-bottom: 1px solid var(--libro-linea); box-shadow: none; }
+#quarto-header .quarto-secondary-nav a, #quarto-header .quarto-secondary-nav .btn,
+#quarto-header .quarto-secondary-nav .breadcrumb-item { color: var(--libro-inchiostro); }
+#quarto-header .quarto-secondary-nav .breadcrumb-item + .breadcrumb-item::before { color: #b5aea7; }
+#quarto-header .quarto-secondary-nav .quarto-btn-toggle { color: var(--libro-rosso); }
 
+/* Apertura editoriale: titolo grande su bianco, nessun riquadro. */
+.book-home #title-block-header { padding: .5rem 0 0; margin-bottom: 1.2rem; }
+.book-home #title-block-header::before { width: 3rem; }
+.book-home #title-block-header .title { font-size: clamp(2.2rem, 4.4vw, 3.1rem); }
+.book-home #title-block-header .quarto-title-meta { margin-top: 1.2rem; }
+.book-home #introduzione > h1 { font-size: 1.55rem; margin-top: 2.6rem; }
+.book-actions { display: flex; flex-wrap: wrap; gap: .7rem; margin: 1.2rem 0 .7rem; }
+.book-actions p { display: contents; }
+.book-actions .btn {
+  border: 1px solid var(--libro-rosso);
+  border-radius: 999px;
+  padding: .6rem 1.25rem;
+  font-size: .85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color .15s, color .15s, box-shadow .15s;
+}
+.book-actions .btn-primary { background: var(--libro-rosso); color: #fff; }
+.book-actions .btn-primary:hover { background: var(--libro-rosso-scuro); border-color: var(--libro-rosso-scuro); box-shadow: 0 4px 14px rgba(154, 0, 0, .18); }
+.book-actions .btn-outline-primary { color: var(--libro-rosso); background: #fff; }
+.book-actions .btn-outline-primary:hover { background: var(--libro-rosa); color: var(--libro-rosso-scuro); }
+.book-status p { color: var(--libro-secondario); font-size: .76rem !important; }
 
-/* CUSTOM STYLE TYPES */
-.abstract {
-    font-style: italic;
-    font-size: 0.85em;
-    color: #666666;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 40px;     
-    margin-right: 40px; 
-    text-align: justify;
+/* Riquadri: fondo tenue e angoli morbidi, senza cornice. */
+div.callout {
+  border: 0 !important;
+  border-left: 0 !important;
+  background: var(--libro-tinta);
+  border-radius: var(--libro-raggio);
+  box-shadow: inset 3px 0 var(--libro-rosso);
+  padding: 1rem 1.3rem;
+  margin: 2rem 0;
 }
-.comment {
-    font-style: italic;
-    font-size: 0.85em;
-    color: #9A0000;
-    text-align: justify;
+div.callout.callout-style-default > .callout-header { background: transparent !important; color: var(--libro-rosso); font-weight: 650; font-size: .82rem; letter-spacing: .05em; text-transform: uppercase; padding: 0 0 .5rem; }
+div.callout.callout-style-default .callout-body { font-size: .97rem; padding: 0; }
+div.callout .callout-body p, div.callout .callout-body li { font-size: inherit; }
+div.callout .callout-body > :last-child { margin-bottom: .2rem; }
+details:not(.callout) { border: 1px solid var(--libro-linea); border-radius: var(--libro-raggio); padding: .8rem 1.1rem; margin: 1.4rem 0; }
+details:not(.callout)[open] { background: var(--libro-carta); }
+details > summary { cursor: pointer; font-weight: 600; }
+details > summary::marker { color: var(--libro-rosso); }
+
+/* Figure su bianco, didascalie secondarie e tabelle con sole righe orizzontali. */
+main.content figure { margin: 2.2rem 0; }
+main.content figcaption, .panel-caption, .table-caption { color: var(--libro-secondario); font-size: .84rem; line-height: 1.55; text-align: left; margin-top: .6rem; }
+main.content table { font-size: .9rem; font-variant-numeric: tabular-nums; border-color: var(--libro-linea); }
+main.content table > thead { border-bottom: 1.5px solid var(--libro-inchiostro); }
+main.content table > thead > tr > th { background: transparent; font-weight: 650; }
+main.content table > tbody > tr:last-child > * { border-bottom-color: var(--libro-inchiostro); }
+main.content table > :not(caption) > * > * { padding: .6rem .65rem; }
+.footnotes { color: var(--libro-secondario); font-size: .85rem; }
+.nav-page { border-top: 0; padding-top: 1rem; }
+.nav-page .nav-page-text { font-size: .82rem; line-height: 1.4; }
+.nav-page a { color: var(--libro-rosso); border-radius: var(--libro-raggio); padding: .6rem .8rem; transition: background-color .15s; }
+.nav-page a:hover { background: var(--libro-tinta); text-decoration: none; }
+.nav-footer { border-top: 1px solid var(--libro-linea); background: transparent; }
+.nav-footer, .nav-footer a { color: var(--libro-secondario); font-size: .75rem; }
+
+/* Classi già presenti nei contenuti. */
+.abstract { color: var(--libro-secondario); font-style: italic; margin: 1.3rem 1.5rem; }
+.comment { color: var(--libro-rosso); font-style: italic; }
+
+@media (max-width: 991.98px) {
+  main.content { padding-top: 1.5rem; }
+  .quarto-secondary-nav .quarto-page-breadcrumbs { font-size: .8rem; }
 }
-.sidebar-item-container {
-    margin-top: 20px;
+@media (max-width: 575.98px) {
+  main.content h1 { font-size: 1.8rem; }
+  main.content h2 { font-size: 1.35rem; margin-top: 2.4rem; }
+  main.content p, main.content li { font-size: 1rem; }
+  div.callout { padding: .85rem 1rem; }
+  .abstract { margin-inline: .5rem; }
+}
+@media print {
+  .book-actions, .book-status, .nav-footer { display: none; }
 }

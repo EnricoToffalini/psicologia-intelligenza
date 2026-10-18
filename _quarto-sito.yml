@@ -1,11 +1,20 @@
 # Profilo "sito" (predefinito): versione HTML con tutte le sezioni.
 # Le impostazioni comuni sono in _quarto.yml.
+project:
+  resources:
+    - assets/fonts/*-ofl.txt
+
 format:
   html:
     number-sections: true
     toc: false
     css: assets/custom.css
-    page-layout: full
+    page-layout: article
+    grid:
+      sidebar-width: 285px
+      body-width: 780px
+      margin-width: 100px
+      gutter-width: 2rem
     include-in-header:
        text: |
          <script data-goatcounter="https://intelligenza.goatcounter.com/count"
@@ -14,6 +23,9 @@ format:
 book:
   title: "Psicologia dell'Intelligenza"
   downloads: [pdf]
+  page-footer:
+    left: "[Enrico Toffalini](https://enricotoffalini.github.io) · Università di Padova"
+    right: "Psicologia dell'Intelligenza"
   chapters:
     - file: index.qmd
       text: "Introduzione"

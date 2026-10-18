@@ -3,13 +3,21 @@ unnumbered: true
 format:
   html:
     number-sections: false
+    body-classes: book-home
+    subtitle: "Teorie, misure e differenze individuali"
 ---
 
-# Introduzione {.unnumbered}
-
 ::: {.content-visible when-format="html"}
-**SITO IN COSTRUZIONE**
+::: {.book-actions}
+[Inizia a leggere →](didattica/capire-intelligenza/perche-studiarla.qmd){.btn .btn-primary}
+[Scarica il libro PDF](Psicologia-dell-Intelligenza.pdf){.btn .btn-outline-primary}
 :::
+::: {.book-status}
+Edizione in costruzione
+:::
+:::
+
+# Introduzione {.unnumbered}
 
 Lo studio scientifico dell’intelligenza in Italia non gode della stessa attenzione e maturità teorica che ha raggiunto in altri paesi. Eppure, psicologhe e psicologi si trovano quotidianamente a valutare il funzionamento intellettivo di bambini, adulti, pazienti, in ogni genere di contesto, utilizzando strumenti complessi come le scale di QI e altri test cognitivi. Farlo senza un'adeguata consapevolezza dei modelli teorici, della storia, dei limiti e dei punti di forza della misurazione rischia di ridurre la valutazione a un gesto tecnico, anziché renderla un atto scientifico e interpretativo. 
 

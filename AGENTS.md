@@ -100,8 +100,9 @@ Metodo, un capitolo per volta (non tutto insieme):
    scatole; grafici con `tema` (minimale), barre e aree grigie e accenti in
    rosso. Colori, spessori e font della slide non vanno copiati. Il PDF usa
    `cairo_pdf` per tutte le figure (impostato in `assets/diagrammi.R`), quindi
-   greco, frecce Unicode e diacritici funzionano. In `text()` di base R non
-   usare `lineheight` (vale solo in ggplot2).
+   greco, frecce Unicode e diacritici funzionano, purché si rispettino le
+   regole della sezione «Codifiche e caratteri speciali». In `text()` di base R
+   non usare `lineheight` (vale solo in ggplot2).
 4. Aggiornare il registro delle figure («adattamento dalla slide
    dell'autore»), verificare le fonti nuove, eseguire il render e controllare le
    figure nel PDF.
@@ -141,6 +142,47 @@ e diagrammi dell'autore riprodotti; «parziale» = solo alcune figure o tabelle.
 
 Molte figure già presenti nei capitoli «da fare» sono ridisegni liberi: vanno
 riportate all'architettura della slide corrispondente.
+
+## Codifiche e caratteri speciali
+
+Testi e figure sono pieni di accenti, «», →, ², ≈ e lettere greche. Un errore di
+codifica non blocca il render: produce in silenzio figure con `<U+00E0>` al
+posto di «à», o testo con caratteri mancanti. È già successo (ottobre 2026) e
+ha rovinato tutte le figure del libro e del sito. Regole:
+
+- **Tutti i sorgenti sono UTF-8 senza BOM** (`.qmd`, `.yml`, `.bib`, `.R`,
+  `.tex`, `.css`, `.lua`, `AGENTS.md`). Scrivere e modificare i file con gli
+  strumenti di modifica dell'editor (Edit/Write), non con comandi della shell.
+  In particolare, in Windows PowerShell 5.1 `Set-Content`/`Add-Content`
+  scrivono nella codifica ANSI del sistema e `Out-File`/`>` aggiungono il BOM:
+  non usarli sui sorgenti. Gli heredoc della shell possono alterare `\n` e
+  caratteri non ASCII nelle stringhe R.
+- **Nel codice R scrivere i caratteri direttamente** («», à, →, σ), come nel
+  resto dei capitoli; non convertirli in `à` né in sequenze `<U+...>`. Se
+  in una figura o in un output compare `<U+` qualcosa, la causa è la codifica
+  della sessione R, non il carattere: non «correggerlo» togliendo l'accento.
+- **R deve girare in UTF-8.** `assets/diagrammi.R` forza la codifica UTF-8 e,
+  se non ci riesce, ferma il render con un errore: non togliere quel blocco,
+  non spostarlo dopo altro codice e non aggirarlo. Ogni nuovo capitolo con
+  chunk R deve caricare `assets/diagrammi.R` nel chunk `setup` prima di
+  disegnare qualsiasi figura. Non impostare `LC_ALL=C` o `LANG=C` per il render.
+- **Le figure del PDF usano `cairo_pdf`** (impostato in `assets/diagrammi.R`):
+  non cambiare `dev` nei singoli chunk.
+- **Il testo del PDF è in TeX Gyre Pagella** (`_quarto-libro.yml`), che copre
+  tutti i caratteri attuali, greco e ≈ compresi. Non reintrodurre ripieghi come
+  `\newunicodechar` verso la matematica. Prima di usare nel testo un simbolo
+  nuovo e insolito, controllare che il carattere lo contenga (per esempio con
+  `fontTools` sul file restituito da `kpsewhich texgyrepagella-regular.otf`);
+  se cambia il carattere del PDF, ripetere il controllo su tutti i sorgenti e
+  su `references.bib`.
+- **Dopo ogni render, controllare**:
+  `pdftotext website/Psicologia-dell-Intelligenza.pdf - | grep -c "U+"` deve
+  dare 0, e l'output del render non deve contenere avvisi «Missing character».
+  Per il sito, aprire almeno una figura PNG con accenti o «» e guardarla. Le
+  figure in PNG non si possono controllare con `grep`.
+- Se `render.bat`, lanciato dall'ambiente di un agente, si ferma con errori di
+  R su nomi di file o codifica (per esempio «file name conversion problem»),
+  usare `sh render.sh` da bash invece di cambiare impostazioni del progetto.
 
 ## Convenzioni tecniche dei capitoli
 

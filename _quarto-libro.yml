@@ -10,7 +10,12 @@ format:
   pdf:
     documentclass: scrbook
     pdf-engine: xelatex
+    # TeX Gyre Pagella (Palatino) copre tutti i caratteri del testo, greco e
+    # simboli compresi: non servono ripieghi sulla matematica.
+    mainfont: TeX Gyre Pagella
+    sansfont: TeX Gyre Heros
     fontsize: 10pt
+    linestretch: 1.05
     # Formato A5 (148 x 210 mm). Il margine interno è più ampio per la rilegatura.
     geometry:
       - paperwidth=148mm
@@ -32,7 +37,7 @@ format:
     number-sections: true
     colorlinks: true
     linkcolor: black
-    urlcolor: blue
+    urlcolor: libroRosso
     citecolor: black
     fig-width: 4.4
     fig-height: 3
@@ -44,6 +49,7 @@ format:
 
 book:
   title: "Psicologia dell'Intelligenza Umana"
+  subtitle: "Teorie, misure e differenze individuali"
   chapters:
     - file: index.qmd
       text: "Introduzione"

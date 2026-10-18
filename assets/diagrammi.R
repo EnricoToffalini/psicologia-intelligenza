@@ -4,6 +4,13 @@
 # più grande del fattore `scala`, e testo, linee e punte delle frecce crescono
 # di conseguenza. Le misure della figura vanno quindi scritte come
 # `#| fig-width: !expr 4.45 * scala` e `#| fig-height: !expr 3 * scala`.
+# Le figure contengono accenti, «», →, greco: se R parte con una codifica non
+# UTF-8 (per esempio LC_ALL=C nell'ambiente) li scriverebbe come <U+00E0>.
+# Si forza quindi la codifica UTF-8 e, se non è possibile, il render si ferma.
+if (!l10n_info()$`UTF-8`)
+  for (loc in c(".UTF-8", "C.UTF-8", "en_US.UTF-8", "it_IT.UTF-8"))
+    if (suppressWarnings(Sys.setlocale("LC_CTYPE", loc)) != "" && l10n_info()$`UTF-8`) break
+if (!l10n_info()$`UTF-8`) stop("R non usa la codifica UTF-8: accenti e simboli delle figure sarebbero illeggibili")
 stampa = knitr::is_latex_output()
 scala = if (stampa) 1 else 1.5
 # Nel PDF le figure usano cairo_pdf, che gestisce caratteri come •, –, →, greco
