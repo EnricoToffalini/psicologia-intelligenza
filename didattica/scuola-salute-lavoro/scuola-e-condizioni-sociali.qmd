@@ -95,7 +95,7 @@ spiegazioni possibili sono le solite tre.
 più rinforzi positivi, sviluppa più fiducia nelle proprie capacità, sperimenta
 meno fallimenti, viene incoraggiato a proseguire. Nelle coorti britanniche nate
 nel Novecento, un QI di una deviazione standard più alto a 10–11 anni si
-associava a una probabilità circa tre volte maggiore di ottenere una laurea
+associava a odds quasi triplicate di ottenere una laurea entro i 26 anni
 [@schoon2010childhood]. È un esempio di **effetto Matteo**, dal versetto
 evangelico secondo cui a chi ha sarà dato ancora: piccoli vantaggi iniziali si
 accumulano e si amplificano [@stanovich1986matthew].
@@ -103,8 +103,8 @@ accumulano e si amplificano [@stanovich1986matthew].
 **L'istruzione aumenta l'intelligenza.** Come si è visto nel capitolo sul
 potenziamento, la scuola produce stimoli cognitivi, abitua all'astrazione,
 fornisce conoscenze e familiarità con le situazioni di valutazione. Le stime
-causali vanno da uno a cinque punti di QI per anno di istruzione
-[@ritchie2018education].
+causali vanno da uno a cinque punti di QI per anno di istruzione, a seconda del
+disegno di studio [@ritchie2018education].
 
 **Cause comuni.** Lo status socioeconomico della famiglia influenza sia lo
 sviluppo cognitivo sia le opportunità di studio. È certamente un fattore
@@ -114,24 +114,46 @@ relativamente universali, tenerne conto riduce le stime, ma non le stravolge.
 Le tre spiegazioni non si escludono. Le evidenze indicano che sono tutte e tre
 all'opera, e che si rinforzano a vicenda nel tempo.
 
+La @fig-matteo mette a confronto le due direzioni causali con le stime
+principali. Nelle coorti britanniche la correlazione fra QI a 10–11 anni ed età
+di uscita dagli studi si riduce, ma resta sostanziale, quando si tiene conto
+dello status socioeconomico della famiglia [@schoon2010childhood]: è il motivo
+per cui le cause comuni pesano, ma non spiegano tutto.
+
 ```{r}
 #| label: fig-matteo
-#| fig-cap: "Le tre spiegazioni della correlazione fra intelligenza e istruzione non si escludono: intelligenza e istruzione si rinforzano a vicenda nel tempo (effetto Matteo), e lo status socioeconomico della famiglia agisce su entrambe come causa comune. Schema originale."
-#| fig-alt: "Due ovali, intelligenza a sinistra e istruzione a destra, collegati da una freccia in ciascun senso: l'intelligenza favorisce l'istruzione, l'istruzione aumenta l'intelligenza. Sopra, un riquadro status socioeconomico familiare con frecce tratteggiate verso entrambi."
+#| fig-cap: "QI e livello di scolarità si influenzano nei due sensi e si rinforzano a vicenda nel tempo (effetto Matteo). Prima colonna: il QI nell'infanzia prevede la laurea e la durata degli studi, anche a parità di status socioeconomico (Schoon, 2010). Seconda colonna: stime dell'effetto causale di un anno di scuola sul QI, secondo il tipo di studio (Ritchie e Tucker-Drob, 2018). Adattamento da una slide dell'autore."
+#| fig-alt: "In alto, due titoli: «QI causa scolarità» e «scolarità causa QI», collegati da due frecce curve opposte con la scritta effetto Matteo. Sotto il primo titolo: più una deviazione standard di QI a 10-11 anni moltiplica per 2,91 le odds di laurea a 26 anni; correlazioni fra QI ed età di uscita dagli studi 0,54, 0,47 e 0,36 nelle coorti 1946, 1958 e 1970, che diventano 0,41, 0,41 e 0,27 a parità di status socioeconomico. Sotto il secondo titolo: un anno di scuola in più causa fino a 1 punto di QI negli studi che controllano il QI di partenza, 2 punti negli studi sull'allungamento dell'obbligo, 5 punti negli studi sulla data di nascita, stima più incerta."
 #| fig-width: !expr 4.45 * scala
-#| fig-height: !expr 2.3 * scala
-tela(c(0, 12), c(0, 10))
-qi = nodo(2.2, 3.2, "Intelligenza", w = 3.6, h = 2.4, forma = "ovale", bg = "grey93", font = 2, cex = .72)
-is = nodo(9.8, 3.2, "Istruzione", w = 3.6, h = 2.4, forma = "ovale", bg = "grey93", font = 2, cex = .72)
-ses = nodo(6, 8.6, "status socioeconomico familiare", w = 6, h = 1.4, bg = "white", font = 3, cex = .64)
-xspline(c(4.1, 6, 7.9), c(4.1, 5.3, 4.1), shape = c(0, 1, 0), border = rosso, lwd = 1.6 * scala)
-freccia(7.75, 4.25, 7.95, 4.05, col = rosso, lwd = 1.6)
-xspline(c(7.9, 6, 4.1), c(2.3, 1.1, 2.3), shape = c(0, 1, 0), border = rosso, lwd = 1.6 * scala)
-freccia(4.25, 2.15, 4.05, 2.35, col = rosso, lwd = 1.6)
-text(6, 5.75, "favorisce", cex = .6, col = rosso, font = 3)
-text(6, .45, "aumenta", cex = .6, col = rosso, font = 3)
-text(6, 3.2, "effetto\nMatteo", cex = .66, font = 2, col = rosso)
-collega(ses, qi, col = "grey40", lty = 2); collega(ses, is, col = "grey40", lty = 2)
+#| fig-height: !expr 3.3 * scala
+tela(c(0, 12), c(0, 12.4))
+text(c(2.6, 9.4), 11.2, c("QI causa\nscolarità", "Scolarità\ncausa QI"), cex = 1, font = 2)
+xspline(c(4.6, 6, 7.4), c(11.5, 12.3, 11.5), shape = c(0, 1, 0), border = rosso, lwd = 1.6 * scala)
+freccia(7.2, 11.7, 7.45, 11.45, col = rosso)
+xspline(c(7.4, 6, 4.6), c(10.9, 10.1, 10.9), shape = c(0, 1, 0), border = rosso, lwd = 1.6 * scala)
+freccia(4.8, 10.7, 4.55, 10.95, col = rosso)
+text(6, 11.2, "effetto\nMatteo", cex = .7, font = 2, col = rosso)
+segments(6.05, 0, 6.05, 9.9, col = "grey75", lwd = scala)
+# Colonna di sinistra: Schoon (2010)
+text(.1, 9.4, "Schoon (2010)", adj = 0, cex = .72, font = 3, col = "grey30")
+text(.1, 8.1, "+1 DS di QI a 10-11 anni:\nodds di laurea a 26 anni × 2,91", adj = 0, cex = .72)
+text(.1, 6.3, "QI ed età di uscita dagli studi", adj = 0, cex = .72)
+text(c(.1, 2.6, 4.7), 5.2, c("coorte", "r", "a parità\ndi SES"), adj = c(0, .5), cex = .68, col = "grey30", font = 3)
+for (i in 1:3) {
+  y = 4 - 1.15 * (i - 1)
+  text(c(.1, 2.6, 4.7), y, c(c("1946", "1958", "1970")[i], c("0,54", "0,47", "0,36")[i], c("0,41", "0,41", "0,27")[i]),
+       adj = 0, cex = .72, col = c("black", "black", rosso))
+}
+# Colonna di destra: Ritchie e Tucker-Drob (2018)
+text(6.5, 9.4, "Ritchie e Tucker-Drob (2018)", adj = 0, cex = .72, font = 3, col = "grey30")
+text(6.5, 8.1, "+1 anno di scuola\npotrebbe causare fino a:", adj = 0, cex = .72)
+punti = c("+1 punto", "+2 punti", "+5 punti")
+spieg = c("studi che controllano\nil QI di partenza", "studi sull'allungamento\ndell'obbligo scolastico", "studi sulla data di nascita\n(stima più incerta)")
+for (i in 1:3) {
+  y = 6.1 - 2.1 * (i - 1)
+  text(6.5, y + .45, punti[i], adj = 0, cex = .78, font = 2, col = rosso)
+  text(6.5, y - .55, spieg[i], adj = 0, cex = .68, col = "grey30")
+}
 ```
 
 ## Dall'istruzione allo status sociale
@@ -146,36 +168,72 @@ scuola.
 
 Il mediatore principale è l'istruzione. Nei paesi industrializzati ogni anno di
 istruzione in più si associa in media a un reddito più alto di circa il 10%
-[@psacharopoulos2018returns]. Il percorso tipico è quindi: intelligenza,
-rendimento scolastico, livello di istruzione, posizione lavorativa, reddito.
-L'intelligenza ha anche un effetto diretto, a parità di istruzione, ma più
-piccolo. Il suo ruolo principale è creare le condizioni perché gli altri
-passaggi avvengano.
+[@psacharopoulos2018returns]. Il percorso tipico è quindi quello della
+@fig-percorso: l'intelligenza favorisce il successo scolastico, che porta a un
+livello di istruzione più alto, che a sua volta apre posizioni lavorative
+migliori e quindi un reddito maggiore. L'istruzione, come si è visto, retroagisce
+anche sull'intelligenza. L'effetto diretto dell'intelligenza sullo status e sul
+reddito, a parità di istruzione, esiste ma è più piccolo.
 
 ```{r}
 #| label: fig-percorso
-#| fig-cap: "Dall'intelligenza al reddito. Il percorso principale passa per rendimento scolastico, livello di istruzione e posizione lavorativa; l'effetto diretto dell'intelligenza, a parità di istruzione, è più piccolo (frecce sottili). Le correlazioni longitudinali con istruzione, prestigio professionale e reddito sono circa 0,56, 0,43 e 0,20 (Strenze, 2007). Schema originale."
-#| fig-alt: "Una catena di ovali da sinistra a destra: g, successo scolastico, livello di istruzione, status lavorativo, reddito, collegati da frecce spesse. Frecce sottili grigie vanno direttamente da g a status lavorativo e a reddito. Sotto ciascun esito è indicata la correlazione con l'intelligenza: 0,56 per l'istruzione, 0,43 per lo status lavorativo, 0,20 per il reddito."
+#| fig-cap: "L'istruzione come mediatore fra livello intellettivo generale e reddito. Le frecce spesse indicano il percorso principale, che passa per successo scolastico, livello di istruzione e status lavorativo; l'istruzione a sua volta aumenta g. Le frecce sottili indicano gli effetti diretti di g su status lavorativo e reddito, a parità di istruzione, più piccoli. Adattamento da una slide dell'autore."
+#| fig-alt: "Cinque ovali. A sinistra g. In alto successo scolastico, poi in basso al centro livello di istruzione, evidenziato; in alto a destra status lavorativo, in basso a destra reddito. Frecce spesse: da g a successo scolastico, da successo scolastico a livello di istruzione, da livello di istruzione di nuovo a g, da livello di istruzione a status lavorativo, da status lavorativo a reddito. Due frecce sottili grigie partono da g, passano sotto il diagramma e arrivano a status lavorativo e a reddito."
 #| fig-width: !expr 4.45 * scala
-#| fig-height: !expr 1.75 * scala
-tela(c(0, 12), c(.8, 9.6))
-x = c(.8, 3.3, 5.8, 8.3, 10.8); y = 6.2
-nomi = c("g", "successo\nscolastico", "livello di\nistruzione", "status\nlavorativo", "reddito")
-n = lapply(1:5, function(i) nodo(x[i], y, nomi[i], w = if (i == 1) 1.4 else 2.2, h = 2.4, forma = "ovale",
-                                 bg = if (i == 3) "#F2DEDE" else if (i == 1) "white" else "grey93", font = if (i == 1) 4 else 1, cex = if (i == 1) .9 else .6))
-for (i in 1:4) collega(n[[i]], n[[i + 1]], col = "grey20", lwd = 1.8)
-for (k in 4:5) {
-  xspline(c(1, (1 + x[k]) / 2, x[k]), c(4.95, if (k == 4) 2.9 else 1.2, 4.95), shape = c(0, 1, 0), border = "grey60", lwd = scala)
-  freccia(x[k] - .02, 4.85, x[k], 5.0, col = "grey60")
-}
-text(x[3:5], 8.9, paste("r =", c("0,56", "0,43", "0,20")), cex = .6, col = rosso, font = 2)
-text(4.6, 1.75, "effetto diretto, più piccolo", cex = .56, font = 3, col = "grey40")
+#| fig-height: !expr 2.4 * scala
+tela(c(0, 12), c(.2, 8.6))
+g = nodo(1.1, 4, "g", w = 2, h = 2.4, forma = "ovale", bg = "white", font = 4, cex = 1.3)
+ss = nodo(3.6, 7, "successo\nscolastico", w = 2.9, h = 2.1, forma = "ovale", bg = "white", cex = .76)
+li = nodo(5.8, 4, "livello di\nistruzione", w = 2.9, h = 2.1, forma = "ovale", bg = "grey95", cex = .8, font = 2, col = rosso, border = rosso)
+st = nodo(8.4, 7, "status\nlavorativo", w = 2.9, h = 2.1, forma = "ovale", bg = "white", cex = .76)
+re = nodo(10.6, 4, "reddito", w = 2.6, h = 1.7, forma = "ovale", bg = "white", cex = .76)
+for (p in list(list(g, ss), list(ss, li), list(li, g), list(li, st), list(st, re))) collega(p[[1]], p[[2]], col = "grey20", lwd = 2)
+xspline(c(1.6, 5.2, 7.3, 8.1), c(2.9, 1.9, 3.2, 5.95), shape = c(0, 1, 1, 0), border = "grey50", lwd = scala)
+freccia(8.0, 5.75, 8.12, 5.98, col = "grey50", lwd = 1)
+xspline(c(1.2, 6, 9.4), c(2.8, .9, 3.3), shape = c(0, 1, 0), border = "grey50", lwd = scala)
+freccia(9.2, 3.2, 9.45, 3.33, col = "grey50", lwd = 1)
+text(9.9, 1.4, "effetti diretti,\npiù piccoli", cex = .68, font = 3, col = "grey30")
+```
+
+Uno studio sui partecipanti della UK Biobank permette di vedere la differenza
+fra effetto totale ed effetto diretto (@fig-davies). Usando varianti genetiche
+come strumento per stimare effetti causali, una deviazione standard di
+intelligenza in più aumentava di circa 11–12 punti percentuali la probabilità di
+avere un reddito familiare sopra le soglie considerate; a parità di livello di
+istruzione, l'aumento si riduceva a circa 5 punti [@davies2019multivariable]. Le
+stime di questo tipo poggiano su assunzioni forti, ma il messaggio è coerente con
+gli studi longitudinali: l'intelligenza crea soprattutto le condizioni perché il
+reddito sia maggiore, e la condizione più importante è l'istruzione.
+
+```{r}
+#| label: fig-davies
+#| fig-cap: "Aumento della probabilità di superare due soglie di reddito familiare per una deviazione standard di intelligenza in più: effetto totale ed effetto che resta a parità di livello di istruzione. Stime di randomizzazione mendeliana nella UK Biobank. Elaborazione da Davies et al. (2019)."
+#| fig-alt: "Grafico a barre orizzontali con due soglie di reddito familiare. Per la soglia di 18.000 sterline l'aumento di probabilità è 11,4 punti percentuali come effetto totale e 5,2 a parità di istruzione; per la soglia di 52.000 sterline è 11,9 e 4,7."
+#| fig-width: !expr if (stampa) 4.45 else 7
+#| fig-height: !expr if (stampa) 2.2 else 2.8
+d = data.frame(soglia = rep(c("Reddito familiare\noltre £18.000", "Reddito familiare\noltre £52.000"), 2),
+               tipo = rep(c("Effetto totale", "A parità di istruzione"), each = 2),
+               pp = c(11.4, 11.9, 5.2, 4.7))
+d$tipo = factor(d$tipo, levels = c("A parità di istruzione", "Effetto totale"))
+d$soglia = factor(d$soglia, levels = rev(unique(d$soglia)))
+ggplot(d, aes(pp, soglia, fill = tipo)) +
+  geom_col(position = position_dodge(.75), width = .7) +
+  geom_text(aes(label = paste0("+", virgola(pp, 1))), position = position_dodge(.75), hjust = -.15,
+            size = if (stampa) 3 else 3.9) +
+  scale_fill_manual(values = c("Effetto totale" = "grey65", "A parità di istruzione" = rosso), name = NULL,
+                    breaks = c("Effetto totale", "A parità di istruzione")) +
+  scale_x_continuous(limits = c(0, 14.5), breaks = seq(0, 12, 4), expand = c(0, 0)) +
+  labs(x = "Aumento di probabilità (punti percentuali)", y = NULL) +
+  tema + theme(legend.position = "top", panel.grid.major.y = element_blank())
 ```
 
 La forza di questi legami non è fissa. Nelle coorti britanniche più recenti la
 correlazione fra QI nell'infanzia e durata degli studi si è ridotta: con
 l'espansione dell'istruzione, proseguire gli studi è diventato meno selettivo
-[@schoon2010childhood]. È un cambiamento che solleva domande scomode: quando un
+[@schoon2010childhood]. In Norvegia, nei maschi nati fra il 1950 e il 1991, la
+correlazione fra il punteggio al test della leva e gli anni di istruzione a 30
+anni è scesa da circa 0,6 a meno di 0,5, e quella con il valore economico medio
+del titolo raggiunto è calata ancora di più [@vanhootegem2023correlation]. È un cambiamento che solleva domande scomode: quando un
 titolo di studio diventa la norma, smette di distinguere, e la selezione si
 sposta altrove, per esempio sul tipo di scuola o di università frequentata.
 

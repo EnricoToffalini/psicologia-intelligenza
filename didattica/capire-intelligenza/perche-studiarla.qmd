@@ -120,20 +120,20 @@ differiscono, da che cosa dipendono quelle differenze, quanto sono stabili.
 #| fig-cap: "Differenze individuali visibili a colpo d'occhio e alcune delle loro cause. Cause diverse producono differenze diverse; alcune differenze ne influenzano altre; alcune cambiano nel tempo, altre sono stabili."
 #| fig-alt: "Tre gruppi. Nel primo, basi genetiche, alimentazione e condizioni mediche causano la statura, che a sua volta influisce sul peso. Nel secondo, le basi genetiche causano colore degli occhi e colore dei capelli. Nel terzo, abitudini e apprendimento causano il modo di vestire. In basso la domanda: cambiano o sono stabili, quanto rapidamente cambiano?"
 #| fig-width: !expr 4.45 * scala
-#| fig-height: !expr 2 * scala
+#| fig-height: !expr 1.75 * scala
 tela(c(0, 12), c(0, 10))
-c1 = nodo(2.1, 8.4, "basi genetiche, alimentazione,\ncondizioni mediche", w = 4, h = 2, forma = "ovale", bg = "white", border = "grey50", cex = .5, font = 3, col = rosso)
-c2 = nodo(6.3, 8.4, "basi genetiche", w = 2.6, h = 1.5, forma = "ovale", bg = "white", border = "grey50", cex = .5, font = 3, col = rosso)
-c3 = nodo(10.1, 8.4, "abitudini,\napprendimento", w = 2.8, h = 1.8, forma = "ovale", bg = "white", border = "grey50", cex = .5, font = 3, col = rosso)
-st = nodo(1.2, 5.2, "statura", w = 1.7, h = 1.1, bg = "grey93", cex = .58)
-pe = nodo(3.2, 3.6, "peso", w = 1.5, h = 1.1, bg = "grey93", cex = .58)
-for (x in c(1.3, 2.1, 2.9)) freccia(x, 7.35, .8 + (x - 1.3) * .5, 5.8, col = "grey35", lwd = .8)
-collega(st, pe, col = "grey35")
-collega(c2, nodo(5.2, 4.8, "colore occhi", w = 2, h = 1.1, bg = "grey93", cex = .58), col = "grey35")
-collega(c2, nodo(7.5, 4.8, "colore capelli", w = 2.2, h = 1.1, bg = "grey93", cex = .58), col = "grey35")
-mv = nodo(10.1, 4.8, "modo di vestire", w = 2.5, h = 1.1, bg = "grey93", cex = .58)
-for (x in c(9.5, 10.1, 10.7)) freccia(x, 7.5, x, 5.4, col = "grey35", lwd = .8)
-text(6, 1.4, "Cambiano o sono stabili? Quanto rapidamente cambiano?", cex = .62, font = 3, col = "grey30")
+c1 = nodo(2.2, 8.5, "basi genetiche, alimentazione,\ncondizioni mediche", w = 4.3, h = 2.4, forma = "ovale", bg = "white", border = "grey50", cex = .62, font = 3)
+c2 = nodo(6.2, 8.5, "basi genetiche", w = 2.9, h = 1.7, forma = "ovale", bg = "white", border = "grey50", cex = .62, font = 3)
+c3 = nodo(10.5, 8.5, "abitudini,\napprendimento", w = 3, h = 2.4, forma = "ovale", bg = "white", border = "grey50", cex = .62, font = 3)
+st = nodo(1.2, 5.3, "statura", w = 2, h = 1.4, bg = "grey93", cex = .72)
+pe = nodo(3.5, 3.5, "peso", w = 1.6, h = 1.4, bg = "grey93", cex = .72)
+for (x in c(.7, 1.2, 1.7)) freccia(x + .8, 7.25, x, 6.05, col = "grey35", lwd = 1.2)
+collega(st, pe, col = "grey35", lwd = 1.2)
+collega(c2, nodo(4.95, 5.3, "colore occhi", w = 2.3, h = 1.4, bg = "grey93", cex = .72), col = "grey35", lwd = 1.2)
+collega(c2, nodo(7.5, 5.3, "colore capelli", w = 2.5, h = 1.4, bg = "grey93", cex = .72), col = "grey35", lwd = 1.2)
+mv = nodo(10.5, 5.3, "modo di vestire", w = 2.7, h = 1.4, bg = "grey93", cex = .72)
+for (x in c(9.9, 10.5, 11.1)) freccia(x, 7.25, x, 6.15, col = "grey35", lwd = 1.2)
+text(6, 1.2, "Cambiano o sono stabili? Quanto rapidamente cambiano?", cex = .72, font = 3, col = "grey30")
 ```
 
 Nasce così una distinzione che Cronbach, molti decenni dopo, descrisse come
@@ -187,33 +187,53 @@ con più dati. Per questo funziona bene come porta d'ingresso.
 
 ```{r}
 #| label: fig-foresta
-#| fig-cap: "La «foresta» delle differenze individuali. Abilità cognitive, psicopatologia e personalità sono tre chiome di tratti specifici correlati; per le prime al tronco c'è il fattore g, per la psicopatologia è stato ipotizzato un fattore generale p. Le tre aree sono collegate fra loro, attraversate dalla neurodivergenza, e poggiano su basi comuni."
-#| fig-alt: "Tre chiome affiancate. La prima, intelligenza e abilità cognitive, contiene funzioni esecutive, memoria a lungo termine, memoria di lavoro, abilità scolastiche, velocità di elaborazione, abilità verbali, abilità visuo-spaziali, intelligenza fluida e cristallizzata, con alla base il fattore g. La seconda, psicopatologia dimensionale, contiene depressione, dipendenze, burnout, comportamento antisociale, evitamento, impulsività, ansia, sintomi psicotici, dimensioni internalizzante ed esternalizzante, con alla base il fattore p. La terza, personalità, contiene i cinque grandi fattori, soft skills e punti di forza del carattere come curiosità, leadership, creatività e coraggio. Fra le prime due chiome una scritta verticale: neurodivergenza, per esempio dislessia, ADHD, autismo. Frecce doppie collegano le aree; una fascia in basso indica basi comuni: pleiotropia, poligenicità, basi neurobiologiche, traiettorie di sviluppo, esperienza."
+#| fig-cap: "La «foresta» delle differenze individuali. Abilità cognitive, psicopatologia e personalità sono tre chiome di tratti specifici correlati; per le prime al tronco c'è il fattore g, per la psicopatologia è stato ipotizzato un fattore generale p. Le tre aree sono collegate fra loro, attraversate dalla neurodivergenza, e poggiano su basi comuni. Illustrazioni dell'autore."
+#| fig-alt: "Tre piante disegnate affiancate: un albero a foglie larghe, un pino e un cespuglio, con fra i primi due un tronco avvolto da un rampicante. Il primo albero, intelligenza e abilità cognitive, porta sulla chioma funzioni esecutive, memoria a lungo termine, memoria di lavoro, abilità scolastiche, velocità di elaborazione, abilità verbali, abilità visuo-spaziali, intelligenza fluida e cristallizzata, con alla base il fattore g. Il pino, psicopatologia dimensionale, porta depressione, dipendenze, burnout, comportamento antisociale, evitamento, impulsività, ansia, sintomi psicotici, dimensioni internalizzante ed esternalizzante, con alla base il fattore p. Il cespuglio, personalità, porta i cinque grandi fattori, soft skills e punti di forza del carattere come curiosità, leadership, creatività e coraggio. Sul rampicante una scritta verticale: neurodivergenza, per esempio dislessia, ADHD, autismo. Frecce doppie collegano le aree; una fascia in basso indica basi comuni: pleiotropia, poligenicità, basi neurobiologiche, traiettorie di sviluppo, esperienza, epigenetica."
 #| fig-width: !expr 4.45 * scala
-#| fig-height: !expr 3.6 * scala
-tela(c(0, 12), c(0, 10))
-albero = function(cx, voci, base, area, esempio) {
-  t = seq(0, 2 * pi, length.out = 120)
-  segments(cx, 3.95, cx, 3.0, col = "grey60", lwd = 3 * scala)
-  polygon(cx + 1.9 * cos(t), 6.6 + 2.7 * sin(t), col = "grey96", border = "grey80")
-  yr = seq(8.4, 5.2, length.out = 5)
-  for (k in seq_along(voci)) text(cx + c(-.85, .85)[(k - 1) %% 2 + 1], yr[(k - 1) %/% 2 + 1], voci[k], cex = .47, col = "grey20")
-  f = grepl("fattore", base); text(cx, 4.4, base, cex = if (f) .62 else .47, font = if (f) 2 else 3, col = if (f) rosso else "grey40")
-  text(cx, 2.45, area, cex = .55, font = 2, col = rosso)
-  text(cx, 1.75, esempio, cex = .45, font = 3, col = "grey40")
+#| fig-height: !expr 3.7 * scala
+# Illustrazioni dell'autore (immagini/), con le etichette sovrapposte in R.
+# Coordinate in pollici della figura stampata.
+tela(c(0, 4.45), c(0, 3.7))
+immagine = function(file, x0, y0, h) {
+  img = jpeg::readJPEG(file.path("immagini", file))
+  # Il fondo bianco diventa trasparente: le illustrazioni possono accostarsi
+  img = array(c(img, ifelse(apply(img, 1:2, min) > .94, 0, 1)), c(dim(img)[1:2], 4))
+  w = h * ncol(img) / nrow(img)
+  rasterImage(img, x0, y0, x0 + w, y0 + h)
 }
-albero(2.05, c("Funzioni\nesecutive", "Memoria a\nlungo termine", "Memoria\ndi lavoro", "Abilità\nscolastiche", "Velocità di\nelaborazione",
-               "Abilità\nverbali", "Abilità visuo-\nspaziali", "Intelligenza\nfluida", "Intelligenza\ncristallizzata", "..."),
-       "fattore g", "Intelligenza /\nabilità cognitive", "es. CHC")
-albero(6.15, c("Depressione", "Dipendenze", "Burnout", "Antisociale", "Evitamento", "Impulsività", "Ansia", "Psicotico",
-               "Internaliz-\nzante", "Esternaliz-\nzante"),
-       "fattore p", "Psicopatologia\ndimensionale", "es. HiTOP")
-albero(10.05, c("Estroversione", "Coscienziosità", "Nevroticismo", "Apertura", "Amicalità", "Curiosità", "Leadership", "Creatività", "Coraggio", "..."),
-       "big five, soft skills,\ncharacter strengths", "Personalità / stili e\ncompetenze personali", "")
-text(4.1, 6.6, "neurodivergenza (dislessia, ADHD, autismo, ...)", srt = 90, cex = .45, font = 3, col = "grey30")
-freccia(3.35, 2.45, 4.85, 2.45, code = 3, col = "grey40"); freccia(7.45, 2.45, 8.75, 2.45, code = 3, col = "grey40")
-rect(.1, .1, 11.9, 1.3, col = "grey88", border = NA)
-text(6, .7, "Basi comuni: pleiotropia, poligenicità, basi neurobiologiche,\ntraiettorie di sviluppo, esperienza e interazioni con l'ambiente", cex = .5, font = 3)
+# Testo con un alone bianco, leggibile sopra le chiome
+etichetta = function(x, y, t, cex = .56, font = 2, col = "black", srt = 0) {
+  for (a in seq(0, 2 * pi, length.out = 13)) text(x + .012 * cos(a), y + .012 * sin(a), t, cex = cex, font = font, col = "white", srt = srt)
+  text(x, y, t, cex = cex, font = font, col = col, srt = srt)
+}
+immagine("albero-abilita.jpg", .1, 1.15, 2.2)
+immagine("rampicante-neurodivergenza.jpg", 1.5, 1.1, 2.4)
+immagine("albero-psicopatologia.jpg", 2.1, 1.15, 2.0)
+immagine("cespuglio-personalita.jpg", 3.15, 1.15, 1.45)
+voci = rbind(c(.62, 3.3, "Funzioni\nesecutive"), c(.98, 3.42, "..."), c(1.2, 3.18, "Memoria a\nlungo termine"),
+             c(.38, 3.0, "Memoria\ndi lavoro"), c(.4, 2.7, "Velocità di\nelaborazione"), c(1.2, 2.85, "Abilità\nscolastiche"),
+             c(.42, 2.38, "Abilità visuo-\nspaziali"), c(1.25, 2.5, "Abilità\nverbali"),
+             c(.44, 2.03, "Intelligenza\nfluida"), c(1.14, 2.08, "Intelligenza\ncristallizzata"),
+             c(2.7, 3.3, "..."), c(2.45, 2.88, "Depressione"), c(2.95, 3.12, "Dipendenze"), c(2.95, 2.75, "Antisociale"),
+             c(2.36, 2.6, "Burnout"), c(2.95, 2.45, "Impulsività"), c(2.42, 2.27, "Evitamento"), c(2.33, 1.97, "Ansia"),
+             c(2.86, 2.1, "Psicotico"), c(2.38, 1.66, "Esternaliz-\nzante"), c(2.98, 1.66, "Internaliz-\nzante"))
+for (i in 1:nrow(voci)) etichetta(as.numeric(voci[i, 1]), as.numeric(voci[i, 2]), voci[i, 3])
+personalita = rbind(c(3.6, 2.75, "Estroversione"), c(3.6, 2.5, "Coscienziosità"), c(3.6, 2.25, "Nevroticismo"),
+                    c(3.6, 2.0, "Apertura"), c(3.6, 1.75, "Amicalità"), c(4.17, 2.87, "Curiosità"), c(4.17, 2.62, "Leadership"),
+                    c(4.17, 2.37, "Creatività"), c(4.17, 2.12, "Coraggio"), c(4.17, 1.82, "Character\nstrengths"))
+for (i in 1:nrow(personalita)) etichetta(as.numeric(personalita[i, 1]), as.numeric(personalita[i, 2]), personalita[i, 3], cex = .52)
+etichetta(3.6, 3.0, "Big five", cex = .66); etichetta(4.17, 3.12, "Soft skills", cex = .66); etichetta(3.9, 3.38, "...")
+etichetta(.8, 1.6, "fattore g", cex = .95); etichetta(2.7, 1.3, "fattore p", cex = .95)
+etichetta(1.81, 2.3, "Neurodivergenza (dislessia, ADHD, autismo, ...)", cex = .54, font = 3, srt = 90)
+text(.8, .88, "Intelligenza /\nabilità cognitive", font = 2, cex = .66, col = rosso)
+text(.8, .6, "es. CHC", font = 3, cex = .56, col = "grey30")
+text(2.7, .88, "Psicopatologia\ndimensionale", font = 2, cex = .66, col = rosso)
+text(2.7, .6, "es. HiTOP", font = 3, cex = .56, col = "grey30")
+text(4.0, .88, "Personalità /\nstili e competenze", font = 2, cex = .66, col = rosso)
+freccia(1.47, .88, 1.97, .88, code = 3, col = "grey35", lwd = 1.3)
+freccia(3.18, .88, 3.5, .88, code = 3, col = "grey35", lwd = 1.3)
+rect(0, 0, 4.45, .42, col = "grey90", border = NA)
+text(2.225, .21, "Basi comuni: pleiotropia, poligenicità, basi neurobiologiche, traiettorie\ndi sviluppo, esperienza, interazioni con l'ambiente, epigenetica", cex = .56, font = 3)
 ```
 
 Fra le chiome delle abilità cognitive e della psicopatologia corre la
@@ -232,21 +252,35 @@ applicazioni cliniche, scolastiche e organizzative.
 ```{r}
 #| label: fig-crocevia
 #| fig-cap: "L'intelligenza, intesa come studio delle differenze individuali nelle abilità cognitive, al crocevia fra discipline: fornisce strumenti alla psicometria, riceve dati dalla genetica del comportamento, scambia domande con le neuroscienze cognitive, alimenta lo studio dello sviluppo e le applicazioni."
-#| fig-alt: "Al centro la parola intelligenza, studio delle differenze individuali nelle abilità cognitive. Una freccia va verso psicometria, in alto a sinistra: sviluppo di test, misure, punteggi, modelli statistici. Una freccia arriva dalla genetica del comportamento, in alto a destra: studi sui gemelli e GWAS. Una doppia freccia la collega alle neuroscienze cognitive, in basso a sinistra: basi neurobiologiche delle differenze individuali. Frecce vanno verso le applicazioni cliniche, sociali e nelle organizzazioni, in basso al centro, e verso neurosviluppo e arco di vita, in basso a destra."
+#| fig-alt: "Al centro la parola intelligenza, studio delle differenze individuali nelle abilità cognitive. Una freccia va verso psicometria, in alto a sinistra: sviluppo di test, misure, punteggi, modelli statistici. Una freccia arriva dalla genetica del comportamento, in alto a destra: studi sui gemelli e GWAS, con la nota migliaia di varianti genetiche additive, molto pleiotropiche. Due frecce in direzioni opposte la collegano alle neuroscienze cognitive, in basso a sinistra: basi neurobiologiche delle differenze individuali, con la domanda perché un cervello esprime più intelligenza di un altro, in tutte le abilità insieme. Frecce vanno verso le applicazioni cliniche, sociali e nelle organizzazioni, in basso al centro, e verso neurosviluppo e arco di vita, in basso a destra."
 #| fig-width: !expr 4.45 * scala
-#| fig-height: !expr 2.8 * scala
+#| fig-height: !expr 3.1 * scala
 tela(c(0, 12), c(0, 10))
-text(6, 5.6, "INTELLIGENZA", font = 2, cex = 1.05, col = rosso)
-text(6, 4.6, "studio delle differenze individuali\nnelle abilità cognitive", cex = .52, font = 3)
-titolo = function(x, y, t, s) { text(x, y, t, font = 2, cex = .62); text(x, y - 1.05, s, cex = .47, col = "grey30") }
-titolo(2, 9.1, "PSICOMETRIA", "sviluppo di test, misure,\npunteggi, modelli statistici")
-titolo(10, 9.1, "GENETICA DEL\nCOMPORTAMENTO", "studi sui gemelli, GWAS")
-titolo(1.9, 2.6, "NEUROSCIENZE\nCOGNITIVE", "basi neurobiologiche delle\ndifferenze individuali")
-titolo(6, 2.1, "APPLICAZIONI CLINICHE,\nSOCIALI, ORGANIZZATIVE", "")
-titolo(10.1, 2.6, "NEUROSVILUPPO,\nARCO DI VITA", "neurodiversità, discrepanze,\ncrescita e declino delle abilità")
-freccia(4.4, 6.2, 2.9, 7.4, col = "grey35"); freccia(9.4, 7.5, 7.7, 6.2, col = "grey35")
-freccia(4.3, 4.3, 3.0, 3.3, col = "grey35", code = 3); freccia(6, 3.85, 6, 2.9, col = "grey35")
-freccia(7.8, 4.3, 9.2, 3.3, col = "grey35")
+# Freccia curva (arco di parabola) con punta piena
+curva = function(x0, y0, x1, y1, piega = .25, code = 2, col = "grey35") {
+  t = seq(0, 1, length.out = 40)
+  mx = (x0 + x1) / 2 - piega * (y1 - y0); my = (y0 + y1) / 2 + piega * (x1 - x0)
+  x = (1 - t)^2 * x0 + 2 * t * (1 - t) * mx + t^2 * x1
+  y = (1 - t)^2 * y0 + 2 * t * (1 - t) * my + t^2 * y1
+  n = length(t); lines(x[3:(n - 2)], y[3:(n - 2)], col = col, lwd = 1.4 * scala)
+  if (code %in% c(2, 3)) punta(x[n - 3], y[n - 3], x[n], y[n], col = col)
+  if (code %in% c(1, 3)) punta(x[4], y[4], x[1], y[1], col = col)
+}
+text(6, 5.5, "INTELLIGENZA", font = 2, cex = 1.15, col = rosso)
+text(6, 4.6, "studio delle differenze individuali nelle abilità cognitive", cex = .62, font = 2)
+titolo = function(x, y, t, s, cex_s = .6) { text(x, y, t, font = 2, cex = .74); text(x, y - .95, s, cex = cex_s, col = "grey30", adj = c(.5, 1)) }
+titolo(2.2, 9.3, "PSICOMETRIA", "sviluppo di test, misure,\npunteggi, modelli statistici")
+titolo(9.8, 9.1, "GENETICA DEL\nCOMPORTAMENTO", "studi sui gemelli, GWAS")
+text(10.3, 6.6, "migliaia di varianti\ngenetiche additive,\nmolto pleiotropiche", cex = .56, font = 3, col = "grey30")
+titolo(2.1, 2.3, "NEUROSCIENZE\nCOGNITIVE", "basi neurobiologiche delle\ndifferenze individuali")
+text(1.75, 5.9, "perché un cervello esprime\npiù intelligenza di un altro,\nin tutte le abilità insieme?", cex = .56, font = 3, col = "grey30")
+titolo(6, 2.4, "APPLICAZIONI CLINICHE,\nSOCIALI, NELLE\nORGANIZZAZIONI", "")
+titolo(10.1, 2.3, "NEUROSVILUPPO,\nARCO DI VITA", "neurodiversità, discrepanze,\ncrescita e declino delle\nabilità, traiettorie")
+curva(4.9, 6.3, 4.4, 8.9, piega = .3)
+curva(8.0, 8.4, 7.0, 6.3, piega = .3)
+curva(3.6, 4.1, 2.8, 3.1, piega = -.4); curva(3.3, 3.0, 4.1, 4.0, piega = -.4)
+curva(6.7, 4.1, 6.2, 3.3, piega = .3)
+curva(8.4, 4.1, 9.6, 3.3, piega = -.3)
 ```
 
 ## Perché sembra più difficile di quanto sia

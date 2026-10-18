@@ -137,9 +137,9 @@ righe = data.frame(
   testo = c(c("−3", "−2", "−1", "0", "+1", "+2", "+3"), 100 + 15 * z, c(1, 4, 7, 10, 13, 16, 19), 50 + 10 * z,
             c("0,1", "2", "16", "50", "84", "98", "99,9")))
 righe$y = -0.065 * match(righe$scala, unique(righe$scala))
-ts = if (stampa) .72 else 1  # testo più piccolo nella pagina A5
-etich = data.frame(x = c(-2.55, -1.5, 0, 1.5, 2.55), y = -.065 * 6.4,
-                   t = c("disabilità\nintellettiva", "funziona-\nmento limite", "nella norma", "fascia\nsuperiore", "plusdo-\ntazione"))
+ts = if (stampa) .86 else 1  # testo più piccolo nella pagina A5
+etich = data.frame(x = c(-2.6, -1.45, 0, 1.5, 2.55), y = -.065 * 6.5,
+                   t = c("disabilità\nintellet-\ntiva", "funziona-\nmento\nlimite", "nella norma", "fascia\nsuperiore", "plusdo-\ntazione"))
 parent = data.frame(k = 1:3, y = c(.44, .49, .54), lab = c("68,2%", "95,4%", "99,7%"))
 ggplot() +
   geom_area(data = curva, aes(x, y, fill = fascia, group = interaction(fascia, sign(x))), position = "identity") +
@@ -153,10 +153,10 @@ ggplot() +
   annotate("text", x = c(-2.6, 2.6), y = .04, label = "2,1%", size = 3 * ts, colour = rosso) +
   geom_text(data = righe, aes(x, y, label = testo), size = 3.6 * ts) +
   annotate("text", x = -3.6, y = unique(righe$y), label = unique(righe$scala), hjust = 1, size = 3.6 * ts, fontface = "bold") +
-  geom_text(data = etich, aes(x, y, label = t), size = 3 * ts, fontface = "italic", colour = rosso, lineheight = .85) +
+  geom_text(data = etich, aes(x, y, label = t), size = 3.2 * ts, fontface = "italic", colour = rosso, lineheight = .85) +
   annotate("text", x = -3.6, y = -.065 * 6.4, label = "Etichette QI", hjust = 1, size = 3.6 * ts, fontface = "bold") +
   scale_fill_manual(values = c(a = "grey80", b = "grey90", c = "#D9A3A3"), guide = "none") +
-  coord_cartesian(xlim = c(-4.9, 3.6), ylim = c(-.47, .57), clip = "off") +
+  coord_cartesian(xlim = c(-4.9, 3.6), ylim = c(-.5, .57), clip = "off") +
   theme_void(base_size = 13)
 ```
 
@@ -299,11 +299,12 @@ che si sommano.
 
 ```{r}
 #| label: fig-somma
-#| fig-cap: "Il teorema del limite centrale. Fattori distribuiti nei modi più diversi, piatti, asimmetrici, bimodali, discreti, sommati fra loro producono una distribuzione gaussiana: quella di un tratto o di un'abilità."
-#| fig-alt: "In alto sei piccoli istogrammi di forme diverse, collegati da segni più: uno piatto, uno con due picchi, uno asimmetrico verso destra, uno a campana, uno a barre decrescenti e uno a U. Tre frecce scendono verso una grande curva a campana grigia con la scritta tratto, abilità."
+#| fig-cap: "Il teorema del limite centrale. Fattori indipendenti (genetici, ambientali, di esperienza) distribuiti nei modi più diversi, piatti, asimmetrici, bimodali, discreti, sommati fra loro producono una distribuzione gaussiana: quella di un tratto o di un'abilità."
+#| fig-alt: "In alto la scritta diversi fattori indipendenti, genetici, ambientali, esperienza, che causano il funzionamento; sotto, sei piccoli istogrammi di forme diverse, collegati da segni più: uno piatto, uno con due picchi, uno asimmetrico verso destra, uno a campana, uno a barre decrescenti e uno a U. Tre frecce scendono verso una grande curva a campana grigia con la scritta tratto, abilità."
 #| fig-width: !expr 4.45 * scala
-#| fig-height: !expr 2.6 * scala
-tela(c(0, 12), c(0, 10))
+#| fig-height: !expr 3 * scala
+tela(c(0, 12), c(0, 11.6))
+text(6, 10.95, "diversi fattori indipendenti (genetici, ambientali, esperienza, ecc.)\nche causano il funzionamento", cex = .7, font = 3, col = "grey20")
 forme = list(rep(1, 6), c(1, 3, 1, .4, 3, 1.2), c(4, 3, 2, 1.2, .7, .3), dnorm(seq(-2, 2, length.out = 7)), c(5, 3, 1.8, 1, .6), c(3, 1, .4, .4, 1, 3))
 x0 = seq(.15, 10.25, length.out = 6)
 for (i in 1:6) {
@@ -316,8 +317,8 @@ for (k in c(-1, 0, 1)) freccia(6 + k * 3, 7.1, 6 + k * 1.2, 5.3, col = "grey35")
 xb = seq(-3.2, 3.2, .05)
 polygon(c(6 + 1.25 * xb, 6 + 1.25 * 3.2), c(.6 + 11 * dnorm(xb), .6), col = "grey80", border = rosso, lwd = 1.2 * scala)
 segments(1.5, .6, 10.5, .6, col = "grey40", lwd = .6 * scala)
-text(6, 1.6, "TRATTO, ABILITÀ", cex = .62, font = 2)
-text(11.95, 3.4, "somma di\nmoltissime\nvariabili:\ndistribuzione\ngaussiana", adj = c(1, .5), cex = .5, font = 3, col = "grey30")
+text(6, 1.6, "TRATTO, ABILITÀ", cex = .74, font = 2)
+text(11.95, 3.4, "somma di\nmoltissime\nvariabili:\ndistribuzione\ngaussiana", adj = c(1, .5), cex = .64, font = 3, col = "grey30")
 ```
 
 Per l'intelligenza l'ipotesi additiva non è solo un'analogia. All'inizio era
@@ -363,25 +364,32 @@ intelligenza.
 
 ```{r}
 #| label: fig-normalizzazione
-#| fig-cap: "Punteggi grezzi simulati di una prova con effetto tetto (primo pannello) e due modi di trasformarli. La trasformazione lineare in punti z conserva l'asimmetria: i punteggi estremi bassi sono troppo frequenti e i punteggi alti non vanno oltre poco più di una deviazione standard. La normalizzazione rimappa i punteggi sulla gaussiana attraverso i percentili. Per semplicità, i punteggi a pari merito sono qui distribuiti fra percentili adiacenti."
-#| fig-alt: "Tre istogrammi. Il primo mostra punteggi grezzi addensati verso il massimo di 30. Il secondo, in punti z, ha la stessa forma asimmetrica, con note sui punteggi estremi bassi troppo frequenti e sui punteggi alti non raggiungibili. Il terzo, dopo la normalizzazione, ha forma a campana."
+#| fig-cap: "Punteggi grezzi simulati di una prova con effetto tetto (primo pannello) e due modi di trasformarli. Ogni barra è un punteggio grezzo possibile. La trasformazione lineare in punti z sposta e riscala, ma conserva forma e spaziatura: i punteggi estremi bassi sono troppo frequenti e quelli alti non vanno oltre poco più di una deviazione standard. La normalizzazione assegna a ogni punteggio grezzo il punto z che occupa lo stesso percentile nella gaussiana: le barre non sono più equidistanti, si addensano dove i punteggi grezzi sono rari e si allontanano vicino al tetto, dove pochi punteggi molto frequenti devono coprire tutta la coda destra."
+#| fig-alt: "Tre grafici a barre sottili. Il primo mostra le frequenze dei punteggi grezzi da 0 a 30, addensate verso il massimo. Il secondo, in punti z lineari, ha la stessa forma asimmetrica e barre equidistanti fra circa meno 4 e più 1, con note sui punteggi estremi bassi troppo frequenti e sui punteggi alti non raggiungibili. Il terzo, in punti z normalizzati, ha barre fitte e basse a sinistra che salgono verso lo zero, poi poche barre alte e sempre più distanziate a destra: l'ultimo punteggio grezzo, il massimo, finisce oltre più 1,5."
 #| fig-width: !expr if (stampa) 4.45 else 9
-#| fig-height: !expr if (stampa) 4.6 else 3.4
+#| fig-height: !expr if (stampa) 4.8 else 3.4
 set.seed(310)
 abil = rnorm(3000)
 grezzo = rbinom(3000, 30, plogis(1.6 + 1.1 * abil))
-zlin = (grezzo - mean(grezzo)) / sd(grezzo)
-znorm = qnorm((rank(grezzo, ties.method = "random") - .5) / length(grezzo))
+# Frequenza di ogni punteggio grezzo e sue trasformazioni
+f = as.data.frame(table(grezzo)); f$grezzo = as.numeric(as.character(f$grezzo))
+f$prop = f$Freq / sum(f$Freq)
+f$zlin = (f$grezzo - mean(grezzo)) / sd(grezzo)
+f$znorm = qnorm(cumsum(f$prop) - f$prop / 2)  # percentile al centro di ogni punteggio
 lv = c("Punteggio grezzo (0-30)", "Punti z lineari", "Punti z normalizzati")
-dn = rbind(data.frame(v = grezzo, tipo = lv[1]), data.frame(v = zlin, tipo = lv[2]), data.frame(v = znorm, tipo = lv[3]))
+dn = rbind(data.frame(v = f$grezzo, prop = f$prop, tipo = lv[1]), data.frame(v = f$zlin, prop = f$prop, tipo = lv[2]),
+           data.frame(v = f$znorm, prop = f$prop, tipo = lv[3]))
 dn$tipo = factor(dn$tipo, levels = lv)
-note = data.frame(tipo = factor(lv[2], levels = lv), v = c(min(zlin) + .2, max(zlin)), hj = c(0, 1),
-                  lab = c("punteggi estremi\ntroppo frequenti", "punteggi alti\nnon raggiungibili"))
-ggplot(dn, aes(v)) +
-  geom_histogram(bins = 26, fill = "grey65", colour = "white") +
-  geom_text(data = note, aes(x = v, y = Inf, label = lab, hjust = hj), vjust = 1.3, size = cx * .85, colour = rosso, lineheight = .85) +
+note = data.frame(tipo = factor(lv[c(2, 2, 3, 3)], levels = lv), v = c(min(f$zlin), max(f$zlin), -3.6, max(f$znorm)),
+                  y = c(.06, .135, .1, .13), hj = c(0, 1, 0, 1),
+                  lab = c("punteggi estremi\ntroppo frequenti", "punteggi alti\nnon raggiungibili",
+                          "barre fitte e basse:\npunteggi rari", "barre distanziate:\npochi punteggi\nmolto frequenti"))
+ggplot(dn, aes(v, prop)) +
+  geom_segment(aes(xend = v, yend = 0), linewidth = if (stampa) 1.1 else 1.2, colour = "grey45") +
+  geom_text(data = note, aes(x = v, y = y, label = lab, hjust = hj), size = cx * .85, colour = rosso, lineheight = .85) +
   facet_wrap(~tipo, scales = "free_x", ncol = if (stampa) 1 else 3) +
-  labs(x = NULL, y = "Frequenza") +
+  scale_y_continuous(breaks = seq(0, .15, .05), labels = function(x) virgola(x), limits = c(0, .16), expand = c(0, 0)) +
+  labs(x = NULL, y = "Proporzione di persone") +
   tema
 ```
 
@@ -392,9 +400,15 @@ se i punteggi grezzi sono asimmetrici, lo sono anche i punti *z*, e le
 corrispondenze fra *z* e percentili non valgono più. Non è l'ideale, ma spesso
 si fa semplicemente così. La **normalizzazione** assegna invece a ogni punteggio
 grezzo il punto *z* corrispondente al suo percentile nella gaussiana. Il
-risultato è una distribuzione a campana per costruzione. È preferibile quando
-possibile, ma richiede competenze più avanzate ed è, di nuovo, una scelta
-teorica.
+risultato si avvicina alla campana, ma non la riproduce: i punteggi grezzi
+restano pochi valori discreti, e vicino al tetto ciascuno raccoglie molte
+persone. Dove i punteggi sono rari, i punti *z* normalizzati si addensano; dove
+pochi punteggi molto frequenti devono coprire tutta la coda destra, si
+distanziano, e il massimo della prova può valere appena una o due deviazioni
+standard sopra la media. Una prova con effetto tetto, normalizzata, resta poco
+capace di distinguere fra le persone più abili. La normalizzazione è
+preferibile quando possibile, ma richiede competenze più avanzate ed è, di
+nuovo, una scelta teorica.
 
 La normalizzazione è la procedura tipica delle tabelle normative dei test di
 intelligenza. Ogni tabella di conversione da punteggio grezzo a ponderato è, in
@@ -412,22 +426,22 @@ i tempi che non possono scendere sotto zero.
 #| fig-cap: "Riferirsi alla gaussiana come distribuzione della vera abilità latente è una scelta teorica. L'abilità, che si assume gaussiana, causa il punteggio osservato, che spesso non lo è; la normalizzazione rimappa il punteggio osservato sulla gaussiana."
 #| fig-alt: "A sinistra una piccola curva a campana, abilità o tratto latente, che si assume distribuito normalmente: ciò che interessa davvero. A destra un piccolo istogramma asimmetrico, punteggio osservato, spesso non gaussiano, che riflette caratteristiche dello strumento o del processo. Una freccia rossa, causa, va da sinistra a destra; una freccia curva grigia, normalizzazione, torna da destra a sinistra."
 #| fig-width: !expr 4.45 * scala
-#| fig-height: !expr 2.3 * scala
+#| fig-height: !expr 2.6 * scala
 tela(c(0, 12), c(0, 10))
 xb = seq(-3, 3, .05)
 lines(2.4 + .55 * xb, 7 + 6 * dnorm(xb), lwd = 1.3 * scala); segments(.7, 7, 4.1, 7, col = "grey50", lwd = .6 * scala)
 h = c(.1, .15, .2, .3, .45, .6, .85, 1.1, 1.4, 1.7, 2, 2.2, 1.9, 1.1)
 rect(8 + (0:13) * .25, 7, 8 + (1:14) * .25 - .03, 7 + h * 1.1, col = "grey65", border = NA)
 segments(7.9, 7, 11.6, 7, col = "grey50", lwd = .6 * scala)
-text(2.4, 5.3, "abilità o tratto latente:\nsi assume gaussiano", cex = .6, font = 2)
-text(9.75, 5.3, "punteggio osservato:\nspesso non gaussiano", cex = .6, font = 2)
-freccia(4.6, 7.6, 7.5, 7.6, col = rosso, lwd = 2.2); text(6.05, 8.3, "causa", cex = .58, col = rosso, font = 2)
+text(2.4, 5.3, "abilità o tratto latente:\nsi assume gaussiano", cex = .72, font = 2)
+text(9.75, 5.3, "punteggio osservato:\nspesso non gaussiano", cex = .72, font = 2)
+freccia(4.6, 7.6, 7.5, 7.6, col = rosso, lwd = 2.2); text(6.05, 8.4, "causa", cex = .72, col = rosso, font = 2)
 t = seq(0, pi, length.out = 60)
 lines(6.05 + 1.45 * cos(t), 5.6 - 1.3 * sin(t), col = "grey45", lwd = 1.1 * scala)
 freccia(4.62, 5.66, 4.6, 5.7, col = "grey45", lwd = 1.1)
-text(6.05, 3.7, "normalizzazione:\nrimappatura sulla gaussiana", cex = .5, font = 3, col = "grey30")
-text(2.4, 2.4, "ciò che interessa\ndavvero", cex = .6, font = 3, col = rosso)
-text(9.75, 2.2, "riflette lo strumento (limiti\ndella scala) o il processo\n(tempi mai sotto zero)", cex = .5, font = 3, col = "grey30")
+text(6.05, 3.3, "normalizzazione:\nrimappatura\nsulla gaussiana", cex = .64, font = 3, col = "grey30")
+text(2.4, 2.4, "ciò che interessa\ndavvero", cex = .7, font = 3, col = rosso)
+text(9.75, 2.0, "riflette lo strumento (limiti\ndella scala) o il processo\n(tempi mai sotto zero)", cex = .62, font = 3, col = "grey30")
 ```
 
 ## Che tipo di scala?

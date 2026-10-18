@@ -18,24 +18,37 @@ source("../../assets/diagrammi.R")
 virgola = function(x, d = 2) formatC(x, format = "f", digits = d, decimal.mark = ",")
 tema = theme_minimal(base_size = if (stampa) 10 else 13) +
   theme(panel.grid.minor = element_blank())
-# Modello a un fattore come nelle slide: fattore in alto, prove in basso,
-# componente specifica (s o errore) sopra ciascuna prova
-modello1 = function(fat, prove, pesi = NULL, res = "s", wf = 4.4, cexf = .75, fontf = 2, cexp = .55, hp = 2.4) {
+# Modello a un fattore come nelle slide: fattore in alto, prove in basso, una
+# componente specifica (s o errore) per ciascuna prova. Le componenti specifiche
+# stanno sotto i riquadri, così le frecce del fattore non le attraversano.
+#  fat: nome del fattore; prove: testi dei riquadri (l'ultimo, "…", è stretto);
+#  pesi: saturazioni da scrivere accanto alle frecce; nota_sx, nota_dx: commenti
+#  ai lati del fattore
+modello1 = function(fat, prove, pesi = NULL, res = "s", wf = 4.2, cexf = .85, fontf = 2,
+                    cexp = .7, hp = 2.6, nota_sx = NULL, nota_dx = NULL) {
   tela(c(0, 12), c(0, 10))
-  f = nodo(6, 8.6, fat, w = wf, h = 1.9, forma = "ovale", bg = "white", border = rosso, col = rosso, font = fontf, cex = cexf, lwd = 1.4)
-  n = length(prove); x = seq(1, 11, length.out = n); wp = 10 / (n - 1) * .9
+  yf = 8.6; hf = 2.5
+  nodo(6, yf, fat, w = wf, h = hf, forma = "ovale", bg = "white", border = rosso, col = rosso, font = fontf, cex = cexf, lwd = 1.4)
+  n = length(prove); wu = .9; gap = .22
+  wp = (11.9 - wu - .1 - gap * (n - 1)) / (n - 1)
+  x = c(.1 + wp / 2 + (0:(n - 2)) * (wp + gap), 11.9 - wu / 2)
+  ys = .55; yb = 1.65  # centro degli ovali s e base dei riquadri
   for (i in 1:n) {
-    nodo(x[i], hp / 2 + .1, prove[i], w = wp, h = hp, bg = "grey95", cex = cexp)
-    # le frecce partono da punti diversi del bordo inferiore del fattore
-    x0 = 6 + (x[i] - 6) * .7 * (wf / 2) / 5; y0 = 8.6 - .95 * sqrt(1 - ((x0 - 6) / (wf / 2))^2)
-    lato = if (x[i] < 6) -1 else 1  # s dal lato opposto alla freccia del fattore
-    x1 = x[i] - lato * .3; y1 = hp + .2
+    nodo(x[i], yb + hp / 2, prove[i], w = if (i == n) wu else wp, h = hp, bg = "grey95", cex = cexp)
+    # la freccia del fattore parte dal bordo inferiore dell'ovale
+    x0 = 6 + max(-.8 * wf / 2, min(.8 * wf / 2, (x[i] - 6) * .3)); y0 = yf - hf / 2 * sqrt(1 - ((x0 - 6) / (wf / 2))^2)
+    x1 = x[i]; y1 = yb + hp + .08
+    freccia(x0, y0, x1, y1, col = rosso, lwd = 1.2)
     p = if (is.null(pesi)) NA else pesi[i]
-    freccia(x0, y0, x1, y1, col = rosso, lwd = if (is.na(p)) .9 else .5 + 2.4 * (abs(p) - .35))
-    if (!is.na(p)) text(x0 + .55 * (x1 - x0), y0 + .55 * (y1 - y0), virgola(p), adj = c(-.3, .5), cex = .55, col = rosso)
-    nodo(x[i] + lato * .5, hp + 1, res, w = .75, h = .85, forma = "ovale", bg = "grey88", font = 3, cex = .6)
-    freccia(x[i] + lato * .5, hp + .57, x[i] + lato * .5, hp + .2, col = "grey40", lwd = .9)
+    if (!is.na(p)) {
+      t = .45; xp = x0 + t * (x1 - x0); yp = y0 + t * (y1 - y0)
+      text(xp, yp, virgola(p), adj = c(if (x[i] < 6) 1.25 else -.25, .5), cex = .72, col = rosso, font = 2)
+    }
+    nodo(x[i], ys, res, w = .85, h = 1, forma = "ovale", bg = "white", border = "grey35", font = 3, cex = .75)
+    freccia(x[i], ys + .5, x[i], yb - .06, col = "grey35", lwd = 1)
   }
+  if (!is.null(nota_sx)) text(.05, 9.9, nota_sx, adj = c(0, 1), cex = .68, font = 3, col = "grey30")
+  if (!is.null(nota_dx)) text(11.92, 9.9, nota_dx, adj = c(1, 1), cex = .68, font = 3, col = "grey30")
 }
 ```
 
@@ -84,13 +97,13 @@ capacità comune che non si osserva direttamente.
 ```{r}
 #| label: fig-spearman
 #| fig-cap: "Il modello di Spearman: un fattore generale g, comune a tutte le misure, e una componente specifica s per ciascuna. Le misure indicate sono del tipo usato da Spearman, ancora molto rudimentali. Elaborazione da Spearman (1904)."
-#| fig-alt: "Un ovale con la lettera g in alto, da cui partono frecce verso cinque riquadri: voti scolastici, test psicofisici o sensoriali, velocità di risposta a stimoli, memoria immediata di parole e puntini di sospensione. Sopra ciascun riquadro un piccolo cerchio s con una freccia verso il riquadro."
+#| fig-alt: "Un ovale con la lettera g in alto, da cui partono frecce verso cinque riquadri: voti scolastici, test psicofisici o sensoriali, velocità di risposta a stimoli, memoria immediata di parole e puntini di sospensione. Sotto ciascun riquadro un piccolo ovale s con una freccia verso il riquadro. Due note: g è il vero nucleo dell'intelligenza, in termini moderni un fattore latente; le componenti s sono specifiche e senza vera dignità teorica."
 #| fig-width: !expr 4.45 * scala
-#| fig-height: !expr 2.5 * scala
-modello1("g", c("Voti\nscolastici", "Test\npsicofisici /\nsensoriali", "Velocità di\nrisposta a\nstimoli", "Memoria\nimmediata\ndi parole", "..."),
-         wf = 2.2, cexf = 1.2, fontf = 4, cexp = .6)
-text(7.3, 8.6, "fattore generale\n(in termini moderni:\nfattore latente)", adj = 0, cex = .55, font = 3, col = "grey30")
-text(0, 4.4, "componenti specifiche «s»", adj = 0, cex = .55, font = 3, col = "grey30")
+#| fig-height: !expr 2.3 * scala
+modello1("g", c("Voti\nscolastici", "Test\npsicofisici /\nsensoriali", "Velocità di\nrisposta a\nstimoli", "Memoria\nimmediata\ndi parole", "…"),
+         wf = 2.4, cexf = 1.4, fontf = 4,
+         nota_sx = "in basso, le componenti\n«s» specifiche, senza\nvera dignità teorica",
+         nota_dx = "«g»: il vero nucleo\ndell'intelligenza;\noggi diremmo:\nfattore latente")
 ```
 
 ## Un fattore latente, spiegato con lo sport
@@ -116,11 +129,14 @@ che è lo stesso schema proposto da Spearman.
 ```{r}
 #| label: fig-atleticita
 #| fig-cap: "Un fattore latente fuori dalla psicologia. Cause comuni generali, riassumibili come «atleticità», spiegano perché prestazioni sportive diverse sono correlate; ogni prova dipende anche da componenti specifiche s, come l'allenamento nella disciplina o la statura. Il numero di prove non ha un limite definito. I pesi sono inventati a scopo illustrativo."
-#| fig-alt: "Un ovale in alto, cause comuni generali, atleticità, con frecce verso sei riquadri: nuoto, bicicletta, basket, calcetto, salto in lungo e puntini di sospensione, con pesi fra 0,40 e 0,67. Sopra ciascun riquadro un piccolo cerchio s con una freccia verso il riquadro."
+#| fig-alt: "Un ovale in alto, cause comuni generali, atleticità, con frecce verso sei riquadri: nuoto, bicicletta, basket, calcetto, salto in lungo e puntini di sospensione, con pesi fra 0,40 e 0,67. Sotto ciascun riquadro un piccolo ovale s con una freccia verso il riquadro. Due note: le componenti s sono l'allenamento specifico, la familiarità con la disciplina, la statura; le cause comuni sono forza, coordinazione, composizione corporea, flessibilità, età."
 #| fig-width: !expr 4.45 * scala
-#| fig-height: !expr 2.6 * scala
-modello1("cause comuni generali\n(«atleticità»?)", c("Nuoto\n(tempo per\nvasca)", "Bicicletta\n(tempo sui\n10 km)", "Basket\n(tiri liberi)",
-         "Calcetto\n(rendimento\nnel ruolo)", "Salto in\nlungo\n(metri)", "..."), pesi = c(.61, .51, .40, .52, .67, NA))
+#| fig-height: !expr 2.5 * scala
+modello1("cause comuni\ngenerali\n(«atleticità»?)", c("Nuoto\n(tempo\nper vasca)", "Bicicletta\n(tempo sui\n10 km)", "Basket\n(tiri liberi)",
+         "Calcetto\n(rendimento\nnel ruolo)", "Salto in\nlungo\n(metri)", "…"), pesi = c(.61, .51, .40, .52, .67, NA),
+         wf = 3.6, cexf = .78,
+         nota_sx = "in basso, le componenti\n«s»: allenamento\nspecifico, familiarità\ncon la disciplina,\nstatura…",
+         nota_dx = "cause comuni: forza,\ncoordinazione,\ncomposizione corporea,\nflessibilità, età…")
 ```
 
 Lo stesso schema vale per la personalità. Le risposte ad affermazioni come «mi
@@ -138,48 +154,14 @@ peso negativo: chi è più estroverso tende a dare punteggi più bassi.
 ```{r}
 #| label: fig-estroversione
 #| fig-cap: "Lo stesso modello applicato a un questionario di personalità. L'estroversione spiega le correlazioni fra le risposte agli item; ε indica la parte di ogni risposta legata alla situazione specifica e non condivisa con le altre. L'item formulato al contrario ha peso negativo. Item e pesi sono inventati a scopo illustrativo."
-#| fig-alt: "Un ovale in alto, estroversione, con frecce verso sei riquadri con affermazioni: mi piace conoscere persone nuove, inizio facilmente una conversazione con uno sconosciuto, mi piace essere al centro dell'attenzione, prendo l'iniziativa nelle situazioni sociali, mi sento a disagio fra molta gente, e puntini di sospensione. I pesi vanno da 0,50 a 0,78, tranne l'ultimo item, con peso meno 0,70. Sopra ciascun riquadro un piccolo cerchio epsilon."
+#| fig-alt: "Un ovale in alto, estroversione, con frecce verso sei riquadri con affermazioni: mi piace conoscere persone nuove, inizio facilmente una conversazione con uno sconosciuto, mi piace essere al centro dell'attenzione, prendo l'iniziativa nelle situazioni sociali, mi sento a disagio fra molta gente, e puntini di sospensione. Sotto ogni affermazione la scala di risposta, da 1 a 5, invertita (da 5 a 1) per l'ultima. I pesi vanno da 0,50 a 0,78, tranne l'ultimo item, con peso meno 0,70. Sotto ciascun riquadro un piccolo ovale epsilon. Due note: epsilon indica le tendenze proprie della singola situazione; dietro l'estroversione ci sono sistemi di ricompensa, ricerca di sensazioni e migliaia di varianti genetiche."
 #| fig-width: !expr 4.45 * scala
-#| fig-height: !expr 2.7 * scala
-modello1("estroversione", c("«Mi piace\nconoscere\npersone\nnuove»", "«Inizio\nfacilmente\nuna conver-\nsazione con\nsconosciuti»",
-         "«Mi piace\nessere al\ncentro\ndell'atten-\nzione»", "«Prendo\nl'iniziativa\nnelle\nsituazioni\nsociali»", "«Mi sento\na disagio\nfra molta\ngente»", "..."),
-         pesi = c(.63, .78, .50, .60, -.70, NA), res = "ε", cexp = .5, hp = 2.9)
-```
-
-```{r}
-#| label: fig-manifold
-#| fig-cap: "Un modello a un fattore. Nel primo pannello, il fattore g e i pesi fattoriali di sei prove ipotetiche, indicati accanto a ciascuna prova. Nel secondo, le correlazioni fra le prove implicate dal modello, pari al prodotto dei rispettivi pesi: tutte positive, più alte fra le prove più legate a g. I valori sono illustrativi."
-#| fig-alt: "Nel primo pannello un cerchio con la lettera g collegato da frecce a sei rettangoli che rappresentano prove cognitive, con pesi da 0,50 a 0,80. Nel secondo una matrice di correlazioni con tutte le celle positive, comprese fra 0,25 e 0,64."
-#| fig-width: !expr if (stampa) 4.45 else 9
-#| fig-height: !expr if (stampa) 5.6 else 4.2
-prove = c("Vocabolario", "Analogie", "Matrici", "Rotazione", "Memoria cifre", "Simboli")
-lam = c(.75, .80, .80, .65, .60, .50)
-R = lam %o% lam; diag(R) = 1
-# Nel PDF i due pannelli sono uno sopra l'altro, sul web affiancati.
-par(mfrow = if (stampa) c(2, 1) else c(1, 2), mar = c(1, 1, 1, 1))
-cx = if (stampa) .85 else 1
-plot(0, 0, type = "n", xlim = c(0, 10), ylim = c(0, 10), axes = FALSE, xlab = "", ylab = "")
-y = seq(9, 1, length.out = 6)
-for (i in 1:6) {
-  arrows(2.2, 5, 5.6, y[i], length = .08, lwd = 1.5 + 3 * (lam[i] - .5), col = rosso)
-  rect(5.7, y[i] - .55, 9.9, y[i] + .55, col = "grey95", border = "grey40")
-  text(5.95, y[i], prove[i], cex = .9 * cx, adj = 0)
-  text(9.7, y[i], virgola(lam[i]), cex = .85 * cx, adj = 1, col = rosso, font = 2)
-}
-symbols(1.2, 5, circles = 1, inches = FALSE, add = TRUE, bg = "white", fg = "grey20", lwd = 2)
-text(1.2, 5, "g", font = 4, cex = 2)
-d = expand.grid(a = factor(prove, levels = prove), b = factor(prove, levels = rev(prove)))
-d$r = R[cbind(as.integer(d$a), 7 - as.integer(d$b))]
-d$lab = ifelse(d$r == 1, "", virgola(d$r))
-d$r[d$r == 1] = NA
-vp = if (stampa) grid::viewport(x = .5, y = .26, width = .8, height = .52) else grid::viewport(x = .75, y = .5, width = .5, height = 1)
-print(ggplot(d, aes(a, b, fill = r)) +
-  geom_tile(colour = "white") +
-  geom_text(aes(label = lab), size = 3) +
-  scale_fill_gradient(low = "white", high = rosso, limits = c(0, 1), na.value = "grey90", guide = "none") +
-  labs(x = NULL, y = NULL) +
-  theme_minimal(base_size = 10) +
-  theme(axis.text.x = element_text(angle = 40, hjust = 1), panel.grid = element_blank()), vp = vp)
+#| fig-height: !expr 2.8 * scala
+modello1("estroversione", c("«Mi piace\nconoscere\npersone\nnuove»\n1 … 5", "«Inizio\nfacilmente\nuna conver-\nsazione con\nsconosciuti»\n1 … 5",
+         "«Mi piace\nessere al\ncentro\ndell'atten-\nzione»\n1 … 5", "«Prendo\nl'iniziativa\nnelle\nsituazioni\nsociali»\n1 … 5", "«Mi sento\na disagio\nfra molta\ngente»\n5 … 1", "…"),
+         pesi = c(.63, .78, .50, .60, -.70, NA), res = "ε", cexp = .66, hp = 3.6, wf = 3.6,
+         nota_sx = "in basso, ε: tendenze\nproprie della singola\nsituazione, non comuni\nalle altre",
+         nota_dx = "dietro: sistemi di\nricompensa, ricerca di\nsensazioni, migliaia di\nvarianti genetiche")
 ```
 
 ## Che cos'è, e che cosa non è, *g*

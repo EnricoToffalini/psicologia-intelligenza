@@ -54,15 +54,20 @@ pigmenti nelle piume. Un gabbiano può mangiare gli stessi crostacei e non
 diventerà mai rosa. Geni e ambiente non si sommano come ingredienti separati:
 agiscono insieme.
 
-L'ereditabilità, indicata con *h*², è una proporzione di varianza:
+L'ereditabilità, indicata con *h*², è una proporzione di varianza: al
+numeratore la variabilità del fenotipo che dipende da differenze genetiche fra
+individui, al denominatore la variabilità totale del fenotipo, attribuita a
+qualsiasi causa.
 
 $$
-h^2 = \frac{\text{varianza dovuta a differenze genetiche}}{\text{varianza totale del tratto}}
+h^2 = \frac{\overbrace{\mathrm{Var}(G)}^{\text{solo genetica}}}{\underbrace{\mathrm{Var}(P_{\text{totale}})}_{\text{genetica + ambiente}}}
 $$
 
-L'ambiente compare nella formula, al denominatore. Se in una popolazione le
-condizioni ambientali sono molto diverse da persona a persona, la varianza
-totale cresce e l'ereditabilità scende. Se sono simili, l'ereditabilità sale.
+L'ambiente, quindi, è perfino nella formula: sta al denominatore. Per uno
+stesso tratto, se molta variabilità proviene dall'ambiente l'ereditabilità è
+bassa; se ne proviene poca, l'ereditabilità è alta. In una popolazione in cui le
+condizioni di vita sono molto diverse da persona a persona la varianza totale
+cresce e l'ereditabilità scende; dove sono simili, l'ereditabilità sale.
 L'ereditabilità non è una proprietà del tratto in assoluto, ma del tratto in
 una popolazione con una certa distribuzione di geni e di ambienti.
 
@@ -96,6 +101,38 @@ adottivi somigliano poco ai genitori adottivi [@plomin2001behavioral].
 
 : Correlazioni del QI fra persone con diversi gradi di parentela e di ambiente condiviso; *n* indica il numero di coppie. Elaborazione da Plomin et al. (2001). {#tbl-famiglie}
 
+Che cosa significhino concretamente questi numeri lo mostra la @fig-coppie: con
+una correlazione di 0,86 i QI dei due gemelli monozigoti si dispongono attorno
+alla diagonale, con 0,42–0,60 la nuvola si allarga molto. Anche fra fratelli o
+fra gemelli dizigoti, cioè, i punteggi possono differire di parecchio.
+
+```{r}
+#| label: fig-coppie
+#| fig-cap: "Che aspetto hanno le correlazioni della tabella: QI simulati di 600 coppie per quattro tipi di parentela, con le correlazioni riportate da Plomin et al. (2001). Ogni punto è una coppia; la linea rossa è la retta di regressione. Adattamento da una slide dell'autore."
+#| fig-alt: "Quattro grafici a dispersione con il QI di una persona sull'asse orizzontale e quello dell'altra persona della coppia sull'asse verticale, entrambi da circa 55 a 145. Gemelli monozigoti cresciuti insieme, r 0,86: nuvola stretta lungo la diagonale. Gemelli dizigoti cresciuti insieme, r 0,60: nuvola più larga. Genitori e figli biologici, r 0,42, e fratelli cresciuti insieme, r 0,47: nuvole larghe, con una tendenza crescente ancora visibile."
+#| fig-width: !expr if (stampa) 4.45 else 8
+#| fig-height: !expr if (stampa) 4.6 else 7.4
+set.seed(4)
+coppie = list(c("Gemelli monozigoti\ncresciuti insieme", "gemello MZ 1", "gemello MZ 2", .86),
+              c("Gemelli dizigoti\ncresciuti insieme", "gemello DZ 1", "gemello DZ 2", .60),
+              c("Genitori e\nfigli biologici", "genitore", "figlio o figlia", .42),
+              c("Fratelli\ncresciuti insieme", "fratello o sorella 1", "fratello o sorella 2", .47))
+grafici = lapply(coppie, function(cp) {
+  r = as.numeric(cp[4])
+  d = as.data.frame(MASS::mvrnorm(600, c(100, 100), 225 * matrix(c(1, r, r, 1), 2), empirical = TRUE))
+  ggplot(d, aes(V1, V2)) +
+    geom_hline(yintercept = 100, linetype = 2, colour = "grey60") +
+    geom_vline(xintercept = 100, linetype = 2, colour = "grey60") +
+    geom_point(colour = "grey35", alpha = .35, size = if (stampa) .5 else .9) +
+    geom_smooth(method = "lm", formula = y ~ x, se = FALSE, colour = rosso, linewidth = .8) +
+    coord_cartesian(xlim = c(55, 145), ylim = c(55, 145)) +
+    scale_x_continuous(breaks = seq(60, 140, 20)) + scale_y_continuous(breaks = seq(60, 140, 20)) +
+    labs(title = paste0(cp[1], ", r = ", virgola(r)), x = paste("QI", cp[2]), y = paste("QI", cp[3])) +
+    tema + theme(plot.title = element_text(size = if (stampa) 8.5 else 12), axis.title = element_text(size = if (stampa) 8.5 else 12))
+})
+patchwork::wrap_plots(grafici, ncol = 2)
+```
+
 Una precisazione sulle percentuali. Dire che i gemelli dizigoti condividono il
 50% non significa che condividano metà del genoma: tutti gli esseri umani ne
 condividono quasi la totalità. Significa che condividono, in media, metà delle
@@ -105,12 +142,23 @@ Il confronto più informativo è quello fra gemelli monozigoti e dizigoti
 cresciuti insieme. Hanno la stessa età, crescono nella stessa famiglia, ma
 condividono rispettivamente tutta e metà della variabilità genetica. Se i
 monozigoti si somigliano più dei dizigoti, la differenza va attribuita ai geni.
-Oggi si usano modelli di equazioni strutturali, ma la logica è riassunta dalle
-formule di Falconer:
+Oggi si usano modelli di equazioni strutturali più sofisticati, ma la logica del
+calcolo è ben riassunta dalle formule di Falconer (@tbl-falconer), che usano solo
+le due correlazioni: *r*~MZ~ = 0,86 e *r*~DZ~ = 0,60.
 
-- ereditabilità: *h*² = 2 × (*r*~MZ~ − *r*~DZ~) = 2 × (0,86 − 0,60) ≈ 0,52;
-- ambiente condiviso: *c*² = 2 × *r*~DZ~ − *r*~MZ~ = 1,20 − 0,86 ≈ 0,34;
-- ambiente non condiviso ed errore di misura: *e*² = 1 − *r*~MZ~ ≈ 0,14.
+| Indice | Formula | Con i dati della tabella | Quota di varianza del QI attribuibile a… |
+|:-:|:-:|:-:|---|
+| *h*² | 2 × (*r*~MZ~ − *r*~DZ~) | 2 × (0,86 − 0,60) ≈ **52%** | variazioni genetiche additive (ereditabilità) |
+| *c*² | 2 × *r*~DZ~ − *r*~MZ~ | 1,20 − 0,86 ≈ **34%** | ambiente condiviso |
+| *e*² | 1 − *r*~MZ~ | 1 − 0,86 ≈ **14%** | esperienze ambientali diverse (ambiente non condiviso) ed errore di misura |
+
+: Le formule di Falconer applicate alle correlazioni fra gemelli monozigoti (MZ) e dizigoti (DZ) cresciuti insieme. Le tre quote sommano a 100%. {#tbl-falconer}
+
+La logica è semplice. I monozigoti condividono il doppio della variabilità
+genetica dei dizigoti: se la loro correlazione è più alta, la differenza misura
+metà dell'effetto genetico, e la si raddoppia. Ciò che rende diversi due gemelli
+monozigoti cresciuti insieme, identici nei geni e nella famiglia, può venire solo
+da esperienze non condivise o da errori di misura.
 
 L'**ambiente condiviso** comprende tutto ciò che rende simili i membri di una
 famiglia: reddito, quartiere, stile educativo, libri in casa. L'**ambiente non
@@ -120,29 +168,30 @@ differenze di QI è attribuibile a differenze genetiche.
 
 ## L'ereditabilità cresce con l'età
 
-Il dato più sorprendente è che l'ereditabilità del QI non è fissa. In un grande
-studio su gemelli di diversi paesi è risultata circa 0,41 nell'infanzia, 0,55
-nella prima adolescenza e 0,66 nella tarda adolescenza [@haworth2010heritability].
-Nell'età adulta le stime arrivano spesso a 0,7–0,8, mentre l'effetto
-dell'ambiente condiviso si riduce fin quasi a scomparire
-[@plomin2015genetics].
+Il dato più sorprendente è che l'ereditabilità del QI non è fissa. L'evidenza
+convergente di molti studi e meta-analisi indica un'ereditabilità attorno al
+20–40% nell'infanzia, al 40–60% nell'adolescenza e al 60–80% nell'età adulta
+[@plomin2015genetics; @haier2017neuroscience; @warne2020know]. Non è alta «da
+subito»: cresce progressivamente fino a coprire gran parte della varianza
+(@fig-eta). In un grande studio su gemelli di diversi paesi, per esempio, è
+passata da circa 0,41 a 9 anni a 0,55 a 12 e 0,66 a 17
+[@haworth2010heritability]. Nel frattempo l'effetto dell'ambiente condiviso si
+riduce fin quasi a scomparire [@plomin2015genetics].
 
 ```{r}
 #| label: fig-eta
-#| fig-cap: "Ereditabilità del QI a età diverse. Valori da Haworth et al. (2010) per infanzia e adolescenza; per l'età adulta l'intervallo indica le stime tipiche riportate da Plomin e Deary (2015)."
-#| fig-alt: "Grafico a punti dell'ereditabilità per fase della vita: 0,41 nell'infanzia, 0,55 nella prima adolescenza, 0,66 nella tarda adolescenza e un intervallo da 0,70 a 0,80 nell'età adulta."
+#| fig-cap: "L'ereditabilità del QI cresce con l'età. Le barre indicano gli intervalli tipici delle stime nelle tre fasi della vita, secondo le sintesi di Plomin e Deary (2015), Haier (2017) e Warne (2020)."
+#| fig-alt: "Tre barre verticali che salgono da sinistra a destra: infanzia dal 20 al 40 per cento, adolescenza dal 40 al 60 per cento, età adulta dal 60 all'80 per cento di varianza del QI attribuibile a differenze genetiche."
 #| fig-width: !expr if (stampa) 4.45 else 7
 #| fig-height: !expr if (stampa) 2.6 else 3.4
-d = data.frame(fase = factor(1:4, labels = c("Infanzia\n(circa 9 anni)", "Prima\nadolescenza\n(circa 12)", "Tarda\nadolescenza\n(circa 17)", "Età adulta")),
-               h2 = c(.41, .55, .66, .75), lo = c(NA, NA, NA, .70), hi = c(NA, NA, NA, .80))
-ggplot(d, aes(fase, h2)) +
-  geom_line(aes(group = 1), colour = "grey60", linetype = 2) +
-  geom_errorbar(aes(ymin = lo, ymax = hi), width = .15, colour = rosso, linewidth = 1) +
-  geom_point(data = subset(d, is.na(lo)), size = 3, colour = rosso) +
-  geom_text(aes(y = ifelse(is.na(hi), h2, hi), label = ifelse(is.na(lo), virgola(h2), "0,70-0,80")), vjust = -1, size = if (stampa) 3 else 3.6) +
-  scale_y_continuous(limits = c(0, 1), breaks = seq(0, 1, .2), labels = function(x) virgola(x, 1)) +
-  labs(x = NULL, y = "Ereditabilità") +
-  tema
+d = data.frame(fase = factor(1:3, labels = c("Infanzia", "Adolescenza", "Età adulta")),
+               lo = c(20, 40, 60), hi = c(40, 60, 80))
+ggplot(d, aes(fase)) +
+  geom_linerange(aes(ymin = lo, ymax = hi), colour = c("grey70", "grey50", rosso), linewidth = if (stampa) 9 else 14) +
+  geom_text(aes(y = hi, label = paste0(lo, "–", hi, "%")), vjust = -.8, size = if (stampa) 3.2 else 4.3) +
+  scale_y_continuous(limits = c(0, 100), breaks = seq(0, 100, 20), labels = function(x) paste0(x, "%")) +
+  labs(x = NULL, y = "Varianza del QI attribuibile\na differenze genetiche (h²)") +
+  tema + theme(panel.grid.major.x = element_blank(), axis.text.x = element_text(size = if (stampa) 9.5 else 13))
 ```
 
 Ci si aspetterebbe il contrario: con gli anni si accumulano esperienze, e
@@ -261,7 +310,7 @@ coincidono con quelle dei gemelli.
   differenze fra individui in una popolazione specifica.
 - Studi su famiglie, adozioni e gemelli indicano che le differenze genetiche
   spiegano circa metà della varianza del QI considerando tutte le età.
-- L'ereditabilità cresce con l'età, fino a 0,7–0,8 negli adulti, probabilmente
+- L'ereditabilità cresce con l'età, fino a 0,6–0,8 negli adulti, probabilmente
   perché le differenze genetiche iniziali vengono amplificate dall'ambiente.
 - Un'ereditabilità alta non implica immutabilità e non permette, da sola, di
   trarre conclusioni sulle differenze medie fra epoche o gruppi; dipende dalla

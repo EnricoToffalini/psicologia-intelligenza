@@ -50,44 +50,57 @@ principali.
 - La **risonanza di diffusione** misura come si muovono le molecole d'acqua nei
   tessuti. Nei fasci di fibre nervose l'acqua si muove soprattutto lungo la
   direzione delle fibre. Un indice come l'**anisotropia frazionaria** misura
-  questa coerenza ed è usato come indicatore dell'integrità della sostanza
-  bianca. Modelli più recenti stimano anche la densità e l'orientamento delle
+  questa coerenza, da 0 a 1, ed è usato come indicatore dell'integrità della
+  sostanza bianca: vicino a 0 nel liquido cerebrospinale, dove l'acqua si muove
+  in tutte le direzioni; fra 0,2 e 0,4 nella sostanza grigia o nella sostanza
+  bianca danneggiata; fra 0,5 e 0,9 nella sostanza bianca integra, con fibre ben
+  mielinizzate. Modelli più recenti stimano anche la densità e l'orientamento delle
   ramificazioni dei neuroni nella corteccia.
 
 ## Perché tanti risultati non hanno retto
 
 I dati di neuroimmagine sono molto rumorosi. Per molto tempo sono stati raccolti
-su campioni piccoli. Fra gli studi di risonanza funzionale più citati fino al
-2012, la numerosità mediana era di circa dodici partecipanti; nel 2017–2018 era
-salita a poco più di venti [@szucs2020sample]. Già nel 2013 si stimava che la
-potenza statistica tipica degli studi di neuroscienze fosse fra l'8 e il 31%
-[@button2013power]. Con potenze così basse, gli effetti veri spesso non vengono
-rilevati, e quelli che risultano significativi sono sistematicamente
-sovrastimati. Aggiungendo la pubblicazione selettiva dei risultati positivi e
-la mancata correzione per i molti confronti, si ottiene una letteratura piena di
-scoperte che non si replicano.
+su campioni piccoli, quasi sempre ben sotto i duecento partecipanti, e analizzati
+con procedure fragili: pubblicazione selettiva dei risultati positivi, mancata
+correzione per i molti confronti, fuga di informazione fra i dati usati per
+costruire un modello e quelli usati per verificarlo. Il risultato è una
+letteratura piena di scoperte che non si replicano, o che si replicano con
+effetti molto più piccoli di quanto si credesse. Tre esempi mostrano come.
 
-Un caso esemplare. Nel 2009 uno studio su 19 persone trovò che un indice
-globale di efficienza delle reti cerebrali a riposo correlava con il QI
-attorno a −0,5 [@vandenheuvel2009efficiency]. Sembrava rivoluzionario. Studi
-successivi su migliaia di partecipanti non hanno confermato un effetto di quella
-grandezza per gli indici globali di efficienza; quando emergono associazioni con
-la connettività, sono distribuite su molte reti e di entità modesta. Oggi
-sappiamo che associazioni affidabili fra misure cerebrali e caratteristiche
-psicologiche richiedono in genere migliaia di partecipanti, perché gli effetti
-reali sono piccoli [@marek2022reproducible].
+Il primo. Nel 2009 uno studio su 19 persone trovò che un indice globale di
+efficienza delle reti cerebrali a riposo correlava con il QI attorno a −0,5
+[@vandenheuvel2009efficiency]. Sembrava rivoluzionario. Studi successivi su
+migliaia di partecipanti non hanno confermato un effetto di quella grandezza per
+gli indici globali di efficienza; quando emergono associazioni con la
+connettività, sono distribuite su molte reti e di entità modesta. Oggi sappiamo
+che associazioni affidabili fra misure cerebrali e caratteristiche psicologiche
+richiedono in genere migliaia di partecipanti, perché gli effetti reali sono
+piccoli [@marek2022reproducible].
 
-Il secondo problema è l'**overfitting**. I dati di neuroimmagine contengono
-moltissime informazioni per ogni persona: migliaia di regioni, milioni di
-voxel. Se si usano tutte per prevedere il QI di poche centinaia di persone,
-un algoritmo abbastanza flessibile trova sempre una combinazione che «indovina»
-il QI di ciascuna. Ma ha imparato le particolarità di quel campione, non una
-regola generale. La @fig-overfitting mostra il fenomeno con una simulazione.
+Il secondo è una gara. Nel 2019 una competizione internazionale chiese a decine
+di gruppi di ricerca di prevedere l'intelligenza fluida di quasi quattromila
+ragazzi a partire dalla risonanza strutturale, al netto del volume totale del
+cervello [@pohl2019adolescent]. Molti usarono reti neurali profonde alimentate
+con le immagini grezze, nella speranza che milioni di parametri estraessero
+un'informazione che nessuna misura semplice coglie. Le previsioni furono
+verificate su un altro campione, di oltre quattromila ragazzi, tenuto nascosto
+fino alla fine. Il metodo vincitore, che peraltro non usava reti profonde, vi
+raggiunse una correlazione fra QI previsto e osservato di appena 0,03. Studi
+precedenti, in condizioni simili, avevano dichiarato correlazioni superiori a
+0,40 con l'apprendimento automatico classico e fino a 0,70 con le reti profonde.
+
+Il terzo esempio spiega il secondo: l'**overfitting**. I dati di neuroimmagine
+contengono moltissime informazioni per ogni persona: migliaia di regioni,
+milioni di voxel. Se si usano tutte per prevedere il QI di poche centinaia di
+persone, un algoritmo abbastanza flessibile trova sempre una combinazione che
+«indovina» il QI di ciascuna. Ma ha imparato le particolarità di quel campione,
+non una regola generale. La @fig-overfitting mostra il fenomeno con una
+simulazione.
 
 ```{r}
 #| label: fig-overfitting
-#| fig-cap: "Simulazione dell'overfitting. Si prevede un punteggio da un numero crescente di misure cerebrali, ciascuna con un legame debolissimo con il punteggio, in un campione di 200 persone. La correlazione fra punteggi previsti e osservati cresce nel campione usato per stimare il modello, ma resta bassa e poi crolla in un campione indipendente."
-#| fig-alt: "Due linee in funzione del numero di misure usate come predittori, da 5 a 180. La linea del campione di stima sale fino a quasi 1. La linea del campione indipendente resta bassa, attorno a 0,1, e poi scende verso zero."
+#| fig-cap: "Simulazione dell'overfitting. Si prevede il QI da un numero crescente di misure cerebrali, ciascuna con un legame debolissimo con il QI, in un campione di 200 persone. La correlazione fra QI previsto e osservato cresce nel campione usato per stimare il modello, ma resta bassa e poi scende verso zero in un campione indipendente."
+#| fig-alt: "Due linee in funzione del numero di misure cerebrali usate come predittori, da 5 a 180. La linea del campione di stima sale fino a quasi 1. La linea del campione indipendente resta bassa, sotto 0,2, e poi scende verso zero."
 #| fig-width: !expr if (stampa) 4.45 else 7
 #| fig-height: !expr if (stampa) 3.3 else 3.8
 set.seed(2019)
@@ -101,24 +114,31 @@ ris = do.call(rbind, lapply(ps, function(p) {
              r = c(cor(fitted(m), tr$y), cor(prev, te$y)))
 }))
 ggplot(ris, aes(p, r, colour = campione, linetype = campione)) +
+  geom_hline(yintercept = 0, colour = "grey60") +
   geom_line(linewidth = 1.1) + geom_point(size = 2) +
   scale_colour_manual(values = c("grey30", rosso), name = NULL) +
   scale_linetype_manual(values = c(2, 1), name = NULL) +
+  scale_x_continuous(breaks = seq(0, 180, 30)) +
   scale_y_continuous(limits = c(-.05, 1), breaks = seq(0, 1, .2), labels = function(x) virgola(x, 1)) +
-  labs(x = "Numero di misure cerebrali usate come predittori", y = "Correlazione previsto-osservato") +
+  labs(x = "Numero di misure cerebrali usate come predittori", y = "Correlazione fra QI\nprevisto e osservato") +
   tema + theme(legend.position = "top")
 ```
 
 La soluzione è verificare il modello su dati non usati per costruirlo, la
 **validazione incrociata**. Ma anche questa può ingannare, se i dati di stima e
-di verifica non sono davvero indipendenti: per esempio quando provengono dagli
-stessi centri o dalle stesse famiglie. Nel 2019 una competizione internazionale
-chiese a decine di gruppi di ricerca di prevedere l'intelligenza fluida di
-migliaia di ragazzi a partire dalla risonanza strutturale, escludendo il volume
-totale del cervello [@pohl2019adolescent]. Molti usarono reti neurali profonde
-alimentate con le immagini grezze. Sul campione di verifica tenuto nascosto,
-le previsioni furono quasi nulle per tutti i partecipanti alla gara. Studi
-precedenti più piccoli avevano dichiarato capacità predittive molto superiori.
+di verifica non sono davvero indipendenti. Nella gara del 2019 i ragazzi erano
+raggruppati per centro di raccolta e per famiglia, con fratelli e perfino
+gemelli: parte dell'informazione finiva sia nei dati di stima sia in quelli di
+verifica interni. I modelli sembravano funzionare finché non hanno incontrato il
+campione nascosto. Serve un campione distinto e del tutto indipendente.
+
+Sotto tutti questi problemi c'è la **potenza statistica**. Fra gli studi di
+risonanza funzionale più citati fino al 2012, la numerosità mediana era di circa
+dodici partecipanti; nel 2017–2018 era salita a poco più di venti
+[@szucs2020sample]. Già nel 2013 si stimava che la potenza tipica degli studi di
+neuroscienze fosse fra l'8 e il 31% [@button2013power]. Con potenze così basse,
+gli effetti veri spesso non vengono rilevati, e quelli che risultano
+significativi sono sistematicamente sovrastimati.
 
 La lezione generale vale per tutto il capitolo: un singolo studio non è mai
 definitivo. Conviene fidarsi dei risultati replicati da gruppi indipendenti su
@@ -138,8 +158,27 @@ che a singole aree particolari.
 
 È un effetto sicuro ma modesto. Con una correlazione di 0,25 il volume del
 cervello non permette di prevedere il QI di una persona: individui con lo stesso
-volume si distribuiscono su quasi tutta la scala. Un cervello più grande è un
-vantaggio statistico, non una garanzia.
+volume si distribuiscono su quasi tutta la scala (@fig-volume-qi). Un cervello
+più grande è un vantaggio statistico, non una garanzia.
+
+```{r}
+#| label: fig-volume-qi
+#| fig-cap: "Volume cerebrale e QI: un effetto sicuro ma modesto. Dati simulati su valori realistici, 300 persone con correlazione 0,24 fra volume e QI. La retta di regressione sale, ma a parità di volume il QI varia su quasi tutta la scala: il volume non predice il QI del singolo."
+#| fig-alt: "Diagramma di dispersione con il volume cerebrale in centimetri cubi, da circa 770 a 1.550, sull'asse orizzontale e il QI, da circa 55 a 140, sull'asse verticale. La nuvola di punti è ampia e appena inclinata; una retta rossa sale lentamente da circa 85 a circa 110."
+#| fig-width: !expr if (stampa) 4.45 else 7
+#| fig-height: !expr if (stampa) 3.2 else 4.2
+set.seed(24)
+n = 300
+z = MASS::mvrnorm(n, c(0, 0), matrix(c(1, .24, .24, 1), 2), empirical = TRUE)
+vq = data.frame(volume = 1250 + 110 * z[, 1], qi = 100 + 15 * z[, 2])
+ggplot(vq, aes(volume, qi)) +
+  geom_point(colour = "grey30", alpha = .55, size = 1.6) +
+  geom_smooth(method = "lm", formula = y ~ x, colour = rosso, fill = "grey80", linewidth = 1.1) +
+  scale_x_continuous(breaks = seq(800, 1600, 100), labels = function(x) formatC(x, big.mark = ".", decimal.mark = ",", format = "d")) +
+  scale_y_continuous(breaks = seq(55, 145, 15)) +
+  labs(x = "Volume cerebrale (cm³)", y = "QI") +
+  tema
+```
 
 C'è poi un'anomalia istruttiva. I cervelli maschili sono in media circa il 10%
 più grandi di quelli femminili, una differenza superiore a una deviazione

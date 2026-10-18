@@ -120,33 +120,65 @@ avanzata, finché si accumulano esperienze [@mcardle2002comparative].
 
 ```{r}
 #| label: fig-gf-gc
-#| fig-cap: "Andamento schematico dell'intelligenza fluida, dell'intelligenza cristallizzata e dei punteggi ai test tradizionali, che le mescolano, nel corso della vita. Curve illustrative costruite sulle tendenze descritte da @cattell1987intelligence e @mcardle2002comparative; non rappresentano dati osservati."
-#| fig-alt: "Tre curve in funzione dell'età, da 5 a 75 anni. L'intelligenza fluida, misurata per esempio con le matrici, cresce rapidamente fino a circa vent'anni e poi scende. L'intelligenza cristallizzata, misurata per esempio con il vocabolario, cresce più lentamente e continua a salire fino a età avanzata. I punteggi ai test tradizionali stanno in mezzo e restano quasi stabili nell'età adulta."
+#| fig-cap: "Andamento dell'intelligenza fluida, dell'intelligenza cristallizzata e dei punteggi ai test tradizionali, che le mescolano, nel corso della vita, in unità di età mentale. Curve schematiche ridisegnate dal grafico di @cattell1987intelligence, con le tendenze confermate da @mcardle2002comparative; non sono dati osservati."
+#| fig-alt: "Tre curve in funzione dell'età, da 3 a 70 anni, in unità di età mentale da 5 a 20. Partono tutte intorno a 5. L'intelligenza fluida, misurata per esempio con le matrici, cresce rapidamente fino a circa 15 verso i 16 anni e poi scende fino a circa 9 a 70 anni. L'intelligenza cristallizzata, misurata per esempio con il vocabolario, cresce più lentamente fino a circa 19 verso i 55 anni e resta alta. I punteggi ai test tradizionali stanno in mezzo e restano quasi stabili intorno a 14-15 nell'età adulta."
 #| fig-width: !expr if (stampa) 4.45 else 7
 #| fig-height: !expr if (stampa) 2.9 else 3.8
-eta = seq(5, 75, .5)
-gf = 15 * (1 - exp(-(eta - 3) / 5)) - .09 * pmax(eta - 17, 0)
-gc = 19 * (1 - exp(-(eta - 3) / 14)) + .02 * pmax(eta - 30, 0)
+eta = seq(3, 70, .5)
+# curve calibrate sul grafico di Cattell (1987) in unità di età mentale:
+# partenza comune intorno a 5, picco di Gf verso i 16 anni, Gc in crescita fino a 55-60
+gf = 5 + 10.3 * (1 - exp(-(eta - 3) / 3.2)) - .108 * pmax(eta - 16, 0)
+gc = 5 + 14.3 * (1 - exp(-(eta - 3) / 13)) - .025 * pmax(eta - 58, 0)
 d = rbind(data.frame(eta, v = gf, tipo = "gf"), data.frame(eta, v = gc, tipo = "gc"), data.frame(eta, v = (gf + gc) / 2, tipo = "test"))
-fine = subset(d, eta == 75)
-fine$lab = c("intelligenza fluida (Gf)\nes. matrici", "intelligenza\ncristallizzata (Gc)\nes. vocabolario", "punteggi ai test\ntradizionali")[match(fine$tipo, c("gf", "gc", "test"))]
+et = data.frame(eta = c(24, 38, 30), v = c(20.4, 16.6, 10.2), tipo = c("gc", "test", "gf"),
+                lab = c("intelligenza cristallizzata (Gc), es. vocabolario", "punteggi ai test tradizionali", "intelligenza fluida (Gf)\nes. matrici"))
 ggplot(d, aes(eta, v, linetype = tipo, colour = tipo)) +
   geom_line(linewidth = 1.1) +
-  geom_text(data = fine, aes(label = lab), hjust = 0, nudge_x = 1.5, size = if (stampa) 2.6 else 3.4, lineheight = .9) +
-  scale_colour_manual(values = c(gf = rosso, gc = "grey25", test = "grey55"), guide = "none") +
+  geom_text(data = et, aes(label = lab), hjust = 0, size = if (stampa) 2.9 else 3.8, lineheight = .9) +
+  scale_colour_manual(values = c(gf = rosso, gc = "grey25", test = "grey45"), guide = "none") +
   scale_linetype_manual(values = c(gf = 1, gc = 3, test = 2), guide = "none") +
-  scale_x_continuous(breaks = seq(10, 70, 10), limits = c(5, 100)) +
-  scale_y_continuous(expand = expansion(c(.05, .18))) +
-  labs(x = "Età (anni)", y = "Livello (unità arbitrarie)") +
-  tema + theme(axis.text.y = element_blank(), panel.grid.major.x = element_blank())
+  scale_x_continuous(breaks = seq(10, 70, 10), limits = c(0, 72), expand = c(0, 0)) +
+  scale_y_continuous(breaks = c(5, 10, 15, 20), limits = c(4, 21)) +
+  labs(x = "Età (anni)", y = "Unità di età mentale") +
+  tema + theme(panel.grid.major.x = element_blank())
 ```
 
-Le due forme interagiscono. Si consideri questo problema: *X* + *Y* = 200,
-*X* + *Z* = 240, *Z* + *Y* = 110. Chi non ha mai visto un sistema di equazioni
-può arrivare alla soluzione ragionando per tentativi, con un notevole impegno di
-intelligenza fluida. Chi conosce il metodo lo risolve in pochi passaggi. Le
-conoscenze cristallizzate rendono facili problemi che la sola intelligenza
-fluida affronterebbe con fatica. Secondo la **teoria dell'investimento** di
+Le due forme interagiscono. Una pera e un fungo pesano insieme 200 grammi, la
+pera e una cipolla 240, la cipolla e il fungo 110: quanto pesano tutti e tre
+(@fig-bilance)? Chi non ha mai visto un sistema di equazioni può arrivare alla
+soluzione per tentativi, con un notevole impegno di intelligenza fluida. Chi lo
+riconosce come *X* + *Y* = 200, *X* + *Z* = 240, *Z* + *Y* = 110 somma le tre
+equazioni, ottiene 2(*X* + *Y* + *Z*) = 550 e risponde 275 grammi in due
+passaggi. L'apprendimento fornisce strategie e strutture concettuali, cioè
+intelligenza cristallizzata, che rendono facili problemi che la sola
+intelligenza fluida affronterebbe con fatica.
+
+```{r}
+#| label: fig-bilance
+#| fig-cap: "Lo stesso problema in due forme. Le pesate di tre oggetti a coppie si possono affrontare per tentativi, con la sola intelligenza fluida, oppure riconoscendovi un sistema di equazioni, una struttura appresa che rende la soluzione immediata."
+#| fig-alt: "Quattro bilance. Sulla prima pera e fungo, 200 grammi; sulla seconda pera e cipolla, 240 grammi; sulla terza cipolla e fungo, 110 grammi; sulla quarta pera, cipolla e fungo, con un punto interrogativo. Una freccia porta al sistema di equazioni X più Y uguale 200, X più Z uguale 240, Z più Y uguale 110, con X pera, Y fungo, Z cipolla."
+#| fig-width: !expr 4.45 * scala
+#| fig-height: !expr 2.3 * scala
+tela(c(0, 12), c(0, 10))
+bilancia = function(cx, cy, oggetti, peso) {
+  text(cx, cy + 1.15, oggetti, cex = .7, font = 3)
+  rect(cx - 1.35, cy + .05, cx + 1.35, cy + .3, col = "grey70", border = "grey35", lwd = scala)
+  rect(cx - 1.15, cy - 1.75, cx + 1.15, cy + .05, col = "grey95", border = "grey35", lwd = scala)
+  rect(cx - .85, cy - 1.45, cx + .85, cy - .25, col = "white", border = "grey35", lwd = scala)
+  text(cx, cy - .85, peso, cex = .85, font = 2, col = if (peso == "?") rosso else "black")
+}
+bilancia(1.55, 7.2, "pera + fungo", "200 g")
+bilancia(4.75, 7.2, "pera + cipolla", "240 g")
+bilancia(1.55, 2.0, "cipolla + fungo", "110 g")
+bilancia(4.75, 2.0, "pera + cipolla\n+ fungo", "?")
+freccia(6.45, 5, 7.25, 5, col = "grey35", lwd = 1.2)
+eq = c("X + Y = 200", "X + Z = 240", "Z + Y = 110")
+text(8.05, c(7.6, 5.6, 3.6), eq, adj = 0, cex = 1, family = "mono")
+lines(c(7.95, 7.75, 7.75, 7.55, 7.75, 7.75, 7.95), c(8.6, 8.4, 5.8, 5.6, 5.4, 2.8, 2.6), col = "grey20", lwd = 1.2 * scala)
+text(9.75, 1.3, "X = pera, Y = fungo,\nZ = cipolla", cex = .7, font = 3, col = "grey30")
+```
+
+Secondo la **teoria dell'investimento** di
 Cattell, l'intelligenza fluida emerge per prima e fornisce la capacità con cui,
 nel tempo, si costruisce quella cristallizzata.
 
@@ -174,26 +206,30 @@ completo le differenze individuali.
 ```{r}
 #| label: fig-sport-livelli
 #| fig-cap: "L'esempio sportivo con un livello in più. Oltre alle cause comuni generali, componenti intermedie, come la velocità o la capacità di stare in squadra, sono comuni solo a gruppi di prove; a ogni prova resta una componente specifica s. Esempio illustrativo, estraneo all'intelligenza."
-#| fig-alt: "In alto un ovale, cause comuni generali, atleticità, con frecce verso sei riquadri: nuoto, bicicletta, basket, calcetto, salto in lungo e puntini. Due ovali intermedi: velocità, con frecce verso nuoto e bicicletta, e stare in squadra, con frecce verso basket e calcetto. Sopra ciascun riquadro un piccolo cerchio s."
+#| fig-alt: "In alto un ovale, cause comuni generali, atleticità, con frecce verso sei riquadri: nuoto, bicicletta, basket, calcetto, salto in lungo e puntini. Due ovali intermedi: velocità, con frecce verso nuoto e bicicletta, e stare in squadra, con frecce verso basket e calcetto. Sotto ciascun riquadro un piccolo ovale s con una freccia verso il riquadro."
 #| fig-width: !expr 4.45 * scala
-#| fig-height: !expr 2.8 * scala
+#| fig-height: !expr 2.7 * scala
 tela(c(0, 12), c(0, 10))
-x = seq(1, 11, length.out = 6); hp = 2.2
-prove = c("Nuoto\n(tempo per\nvasca)", "Bicicletta\n(tempo sui\n10 km)", "Basket\n(tiri liberi)", "Calcetto\n(rendimento\nnel ruolo)", "Salto in\nlungo\n(metri)", "...")
+# stessa disposizione del modello a un fattore: prove in basso, componenti s sotto i riquadri
+wp = 1.96; x = c(1.08 + (0:4) * 2.18, 11.45); yb = 1.65; hp = 2.6; top = yb + hp + .08
+prove = c("Nuoto\n(tempo\nper vasca)", "Bicicletta\n(tempo sui\n10 km)", "Basket\n(tiri liberi)", "Calcetto\n(rendimento\nnel ruolo)", "Salto in\nlungo\n(metri)", "…")
 for (i in 1:6) {
-  x0 = 6 + (x[i] - 6) * .3; lato = if (x[i] < 6) -1 else 1
-  freccia(x0, 8.6, x[i] - lato * .5, hp + .2, col = rosso, lwd = .9)
-  nodo(x[i], hp / 2 + .1, prove[i], w = 1.8, h = hp, bg = "grey95", cex = .55)
-  nodo(x[i] + lato * .5, hp + 1, "s", w = .75, h = .85, forma = "ovale", bg = "grey88", font = 3, cex = .6)
-  freccia(x[i] + lato * .5, hp + .57, x[i] + lato * .5, hp + .2, col = "grey40", lwd = .9)
+  nodo(x[i], yb + hp / 2, prove[i], w = if (i < 6) wp else .9, h = hp, bg = "grey95", cex = .7)
+  nodo(x[i], .55, "s", w = .85, h = 1, forma = "ovale", bg = "white", border = "grey35", font = 3, cex = .75)
+  freccia(x[i], 1.05, x[i], yb - .06, col = "grey35", lwd = 1)
 }
-nodo(6, 9.1, "cause comuni generali\n(«atleticità»?)", w = 4.4, h = 1.5, forma = "ovale", bg = "white", border = rosso, col = rosso, font = 2, cex = .7, lwd = 1.4)
-inter = list(c(2, 1:2, "Velocità"), c(6, 3:4, "Stare in\nsquadra"))
-for (m in inter) {
-  xm = as.numeric(m[1]); im = nodo(xm, 6.2, m[4], w = 2.2, h = 1.4, forma = "ovale", bg = "grey95", border = "grey35", cex = .65, font = 2)
-  for (j in as.numeric(m[2:3])) freccia(xm + (x[j] - xm) * .35, 5.55, x[j] + (if (x[j] < 6) -1 else 1) * .05, hp + .2, col = "grey30", lwd = 1.1)
-}
-text(0, 8.3, "componenti «intermedie»\ncomuni a gruppi di prove", adj = 0, cex = .55, font = 3, col = "grey30")
+# fattore generale: le frecce partono da punti scelti del suo bordo e scendono
+# accanto ai fattori intermedi, senza attraversarli
+yg = function(x0) 8.7 - 1.1 * sqrt(1 - ((x0 - 6) / 2.5)^2)
+da = c(3.6, 4.6, 5.3, 7.7, 8.1, 8.4); a = c(.35, 3.95, 5.0, 8.2, 9.8, 11.25)
+for (i in 1:6) freccia(da[i], yg(da[i]), a[i], top, col = rosso, lwd = 1.2)
+nodo(6, 8.7, "cause comuni generali\n(«atleticità»?)", w = 5, h = 2.2, forma = "ovale", bg = "white", border = rosso, col = rosso, font = 2, cex = .8, lwd = 1.4)
+# fattori intermedi
+nodo(2.35, 5.6, "Velocità", w = 1.75, h = 1.1, forma = "ovale", bg = "grey95", border = "grey35", cex = .75, font = 2)
+freccia(1.95, 5.08, 1.45, top, col = "grey35", lwd = 1.2); freccia(2.75, 5.08, 2.8, top, col = "grey35", lwd = 1.2)
+nodo(6.65, 5.75, "Stare in\nsquadra", w = 1.85, h = 1.35, forma = "ovale", bg = "grey95", border = "grey35", cex = .75, font = 2)
+freccia(6.2, 5.12, 5.95, top, col = "grey35", lwd = 1.2); freccia(7.1, 5.12, 7.3, top, col = "grey35", lwd = 1.2)
+text(.05, 9.9, "componenti\n«intermedie», comuni\na gruppi di prove", adj = c(0, 1), cex = .68, font = 3, col = "grey30")
 ```
 
 Una delle prime formulazioni gerarchiche si deve a Philip Vernon, che sotto *g*
@@ -206,22 +242,23 @@ specifiche di ogni prova [@vernon1950structure] (@fig-vernon).
 #| fig-cap: "Il modello gerarchico di Vernon: il fattore g, due fattori principali che distinguono per tipo di materiale, fattori di gruppo minori e abilità specifiche di ciascuna prova. Elaborazione da Vernon (1950); elenco non completo."
 #| fig-alt: "In alto il fattore g, con frecce verso due fattori: verbale-istruzione, v:ed, e spaziale-pratico-meccanico, k:m. Dal primo frecce verso comprensione verbale, vocaboli e lessico, abilità matematiche; dal secondo verso ragionamento visivo, velocità percettiva, abilità psicomotorie. Da ciascuno partono frecce verso una barra in basso: abilità test-specifiche, s."
 #| fig-width: !expr 4.45 * scala
-#| fig-height: !expr 2.5 * scala
+#| fig-height: !expr 2.6 * scala
 tela(c(0, 12), c(0, 10))
-text(6, 9.4, "fattore g", font = 2, cex = .85, col = rosso)
+text(6, 9.4, "fattore g", font = 2, cex = 1, col = rosso)
+text(12, 9.6, "fattori principali,\nper tipo di materiale", adj = c(1, 1), cex = .68, font = 3, col = "grey30")
 gr = c(3.1, 8.9)
-text(gr, 7.3, c("fattore verbale-\nistruzione (v:ed)", "fattore spaziale-pratico-\nmeccanico (k:m)"), cex = .62, font = 2)
-for (k in gr) freccia(6 + (k - 6) * .15, 8.9, k + (6 - k) * .25, 8.0, col = rosso, lwd = 1.1)
-xm = c(.35, 1.6, 3.15, 4.7, 7.3, 8.85, 10.4, 11.65)
-mi = c("...", "Comprensione\nverbale", "Vocaboli\ne lessico", "Abilità\nmatematiche", "Ragionamento\nvisivo", "Velocità\npercettiva", "Abilità\npsicomotorie", "...")
-text(xm, 4.6, mi, cex = .55)
+text(gr, 7.2, c("fattore verbale-\nistruzione (v:ed)", "fattore spaziale-pratico-\nmeccanico (k:m)"), cex = .75, font = 2)
+for (k in gr) freccia(6 + (k - 6) * .15, 8.85, k + (6 - k) * .25, 8.05, col = rosso, lwd = 1.2)
+xm = c(.2, 1.55, 3.2, 4.85, 7.05, 8.75, 10.4, 11.8)
+mi = c("…", "Compren-\nsione\nverbale", "Vocaboli\ne lessico", "Abilità\nmatema-\ntiche", "Ragiona-\nmento\nvisivo", "Velocità\npercettiva", "Abilità\npsico-\nmotorie", "…")
+text(xm, 4.45, mi, cex = .7)
 for (j in 1:8) {
   k = if (j <= 4) gr[1] else gr[2]
-  freccia(k + (xm[j] - k) * .3, 6.5, xm[j], 5.35, col = "grey35", lwd = .9)
-  freccia(xm[j], 3.75, xm[j], 2.3, col = "grey55", lwd = .8)
+  freccia(k + (xm[j] - k) * .3, 6.4, xm[j] + (k - xm[j]) * .08, 5.6, col = "grey35", lwd = 1.1)
+  freccia(xm[j], 3.3, xm[j], 2.25, col = "grey35", lwd = 1.1)
 }
-rect(0, 1.1, 12, 2.15, col = "grey92", border = NA)
-text(6, 1.62, "abilità test-specifiche («s»)", cex = .62, font = 3, col = "grey30")
+rect(0, 1.0, 12, 2.15, col = "grey92", border = NA)
+text(6, 1.57, "abilità test-specifiche («s»)", cex = .75, font = 3, col = "grey30")
 ```
 
 La formulazione oggi più
@@ -250,35 +287,35 @@ ristr = list(c("Ragionamento induttivo", "Ragionamento deduttivo", "Ragionamento
              c("Rapidità percettiva", "Rapidità di svolgimento"),
              c("Conoscenze matematiche", "Successo in matematica"),
              c("Decodifica", "Comprensione in lettura", "Abilità di scrittura"))
-par(mar = c(0, 0, 0, 0), xpd = NA)
 if (stampa) {
   # Pagina A5: gli strati vanno da sinistra a destra
-  y = seq(9.2, .8, length.out = 9)
-  plot(0, 0, type = "n", xlim = c(0, 10), ylim = c(0, 10.6), axes = FALSE, xlab = "", ylab = "", xaxs = "i", yaxs = "i")
+  tela(c(0, 10), c(0, 10.6))
+  y = seq(9.25, .6, length.out = 9)
+  g = nodo(.6, 5, "g", w = 1.15, h = 1, forma = "ovale", bg = "white", border = rosso, col = rosso, font = 4, cex = 1.5, lwd = 1.6)
   for (i in 1:9) {
-    arrows(1.45, 5, 2.35, y[i], length = .05, angle = 22, col = rosso, lwd = 1)
-    symbols(3.55, y[i], rectangles = matrix(c(2.3, .82), 1), inches = FALSE, add = TRUE, bg = "grey95", fg = "grey35")
-    text(3.55, y[i], ampie[i], cex = .62, font = 2)
-    arrows(4.75, y[i], 5.05, y[i], length = .04, angle = 22, col = "grey35")
-    text(5.15, y[i], paste(strwrap(paste(c(ristr[[i]], "..."), collapse = ", "), 44), collapse = "\n"), adj = 0, cex = .56, col = "grey20")
+    # le frecce di g arrivano all'estremità sinistra di ciascun ovale, senza attraversare gli altri
+    nodo(3.35, y[i], ampie[i], w = 2.7, h = .9, forma = "ovale", bg = "grey95", border = "grey35", cex = .72, font = 2)
+    a = atan2(y[i] - 5, 1.6)
+    freccia(.6 + .58 * cos(a), 5 + .5 * sin(a), 1.97, y[i], col = rosso, lwd = 1)
+    freccia(4.72, y[i], 5.0, y[i], col = "grey35", lwd = 1)
+    text(5.08, y[i], paste(strwrap(paste(c(ristr[[i]], "…"), collapse = ", "), 34), collapse = "\n"), adj = 0, cex = .7, col = "grey20")
   }
-  symbols(.75, 5, circles = .6, inches = FALSE, add = TRUE, bg = "white", fg = rosso, lwd = 1.6)
-  text(.75, 5, "g", font = 4, cex = 1.5, col = rosso)
-  text(c(.75, 3.55), 10.25, c("Strato III", "Strato II"), cex = .62, col = "grey40", font = 3)
-  text(5.15, 10.25, "Strato I", adj = 0, cex = .62, col = "grey40", font = 3)
+  text(c(.6, 3.35), 10.3, c("Strato III", "Strato II"), cex = .7, col = "grey35", font = 3)
+  text(5.08, 10.3, "Strato I", adj = 0, cex = .7, col = "grey35", font = 3)
 } else {
+  par(mar = c(0, 0, 0, 0), xpd = NA)
   x = seq(1.6, 11.6, length.out = 9)
   plot(0, 0, type = "n", xlim = c(0, 12.3), ylim = c(0, 10), axes = FALSE, xlab = "", ylab = "", xaxs = "i", yaxs = "i")
   t = seq(0, 2 * pi, length.out = 120)
   polygon(6.6 + 2.6 * cos(t), 9.25 + .45 * sin(t), col = "white", border = rosso, lwd = 1.6)
   text(6.6, 9.25, "fattore g", font = 4, cex = 1.05, col = rosso)
   for (i in 1:9) {
-    arrows(6.6 + (x[i] - 6.6) * .45, 8.8, x[i], 7.35, length = .07, angle = 22, col = rosso, lwd = 1.1)
+    freccia(6.6 + (x[i] - 6.6) * .45, 8.8, x[i], 7.35, col = rosso, lwd = 1.1)
     polygon(x[i] + .5 * cos(t), 5.9 + 1.4 * sin(t), col = "grey95", border = "grey35")
     text(x[i], 5.9, ampie[i], srt = 90, cex = .8, font = 2)
-    arrows(x[i], 4.45, x[i], 3.85, length = .05, angle = 22, col = "grey35")
-    text(x[i], 3.6, paste(sapply(c(ristr[[i]], "..."), function(r) paste(strwrap(r, 13), collapse = "\n")), collapse = "\n\n"),
-         adj = c(.5, 1), cex = .7, col = "grey20")
+    freccia(x[i], 4.45, x[i], 3.85, col = "grey35")
+    text(x[i], 3.6, paste(sapply(c(ristr[[i]], "…"), function(r) paste(strwrap(r, 13), collapse = "\n")), collapse = "\n\n"),
+         adj = c(.5, 1), cex = .75, col = "grey20")
   }
   text(.35, c(9.25, 5.9, 2.2), c("GENERALE\n(strato III)", "ABILITÀ AMPIE\n(strato II)", "ABILITÀ RISTRETTE\n(strato I)"), srt = 90, cex = .68, col = "grey40", font = 2)
 }
@@ -311,25 +348,27 @@ teorico; quelli bassi, spesso, non sono interpretabili.
 ```{r}
 #| label: fig-livelli-prestazione
 #| fig-cap: "Che cosa spiega la prestazione a una prova cognitiva. Una prova di vocabolario e una di rotazione mentale riflettono lo stesso fattore generale, abilità di dominio diverse, abilità specifiche del compito e, infine, errore di misura ed effetti transitori. Andando verso l'alto cresce l'interesse teorico; verso il basso cresce la parte non interpretabile."
-#| fig-alt: "Schema a livelli sovrapposti. In alto due esempi di prova, vocabolario e rotazione mentale, con frecce verso il fattore generale g. Sotto: abilità in un dominio cognitivo, verbale o linguistico per la prima prova e visivo o spaziale per la seconda; poi una linea di separazione e le abilità specifiche del compito, conoscenza del vocabolario e abilità di rotazione mentale; più in basso, in grigio, errore di misura ed effetti transitori. A sinistra una freccia verso l'alto, di interesse teorico, e una verso il basso, spesso non interpretabile. A destra la nota: la varianza residua può superare il 30-40% del punteggio di un singolo subtest."
+#| fig-alt: "Schema a livelli sovrapposti. In alto due esempi di prova, vocabolario («che cosa significa ineffabile?») e rotazione mentale, con frecce verso il fattore generale g. Sotto: abilità in un dominio cognitivo, verbale o linguistico per la prima prova e visivo o spaziale per la seconda; poi una linea di separazione e le abilità specifiche del compito, conoscenza del vocabolario e abilità di rotazione mentale; più in basso, in grigio, errore di misura ed effetti transitori. A sinistra una freccia verso l'alto, di interesse teorico, e una verso il basso, spesso non interpretabile. Una graffa raccoglie gli ultimi due livelli con la nota: la varianza residua può superare il 30-40% di un singolo subtest."
 #| fig-width: !expr 4.45 * scala
 #| fig-height: !expr 3.2 * scala
 tela(c(0, 12), c(0, 10))
-e1 = nodo(2.8, 9.3, "vocabolario: «che cosa\nsignifica ineffabile?»", w = 3.6, h = 1.1, bg = "white", cex = .52, font = 3)
-e2 = nodo(9.2, 9.3, "rotazione mentale: quale figura\ncoincide con il modello ruotato?", w = 3.6, h = 1.1, bg = "white", cex = .52, font = 3)
-freccia(3.8, 8.7, 4.6, 8.05, col = "grey35"); freccia(8.2, 8.7, 7.4, 8.05, col = "grey35")
-text(6, 7.6, "Fattore generale «g»", font = 2, cex = .95, col = rosso)
-text(6, 6.2, "Abilità in un dominio cognitivo", font = 2, cex = .78)
-text(c(2.1, 9.9), 6.2, c("verbale /\nlinguistico", "visivo /\nspaziale"), font = 3, cex = .55, col = "grey30")
-segments(1, 5.35, 11.5, 5.35, col = "grey60", lwd = scala)
-text(6, 4.5, "Abilità compito-specifiche («s»)", font = 2, cex = .68)
-text(c(2.1, 9.9), 4.5, c("conoscenza specifica\ndel vocabolario", "abilità specifica di\nrotazione mentale"), font = 3, cex = .5, col = "grey30")
-text(6, 3.2, "Errore di misura (casualità, numero limitato di item)", cex = .58, col = "grey50", font = 2)
-text(6, 2.3, "Effetti transitori (sonno, ora del giorno, stimolanti...)", cex = .58, col = "grey50", font = 2)
-text(6, 1.0, "varianza residua: può superare il 30–40% della varianza di un singolo subtest", cex = .5, font = 3, col = "grey40")
-freccia(.35, 5.8, .35, 8.4, col = rosso); freccia(.35, 4.9, .35, 1.6, col = "grey55")
-text(.75, 7.1, "di interesse\nteorico", srt = 90, cex = .48, font = 3, col = rosso)
-text(.75, 3.25, "spesso non\ninterpretabile", srt = 90, cex = .48, font = 3, col = "grey40")
+nodo(2.9, 9.3, "vocabolario: «che cosa\nsignifica ineffabile?»", w = 4, h = 1.25, bg = "white", cex = .68, font = 3)
+nodo(9.1, 9.3, "rotazione mentale: quale\nfigura è quella ruotata?", w = 4, h = 1.25, bg = "white", cex = .68, font = 3)
+freccia(4.1, 8.62, 4.75, 8.1, col = "grey35", lwd = 1.2); freccia(7.9, 8.62, 7.25, 8.1, col = "grey35", lwd = 1.2)
+text(6, 7.55, "Fattore generale «g»", font = 2, cex = 1.05, col = rosso)
+text(6, 6.2, "Abilità in un\ndominio cognitivo", font = 2, cex = .85)
+text(c(2.25, 9.75), 6.2, c("verbale /\nlinguistico", "visivo /\nspaziale"), font = 3, cex = .7, col = "grey30")
+segments(1.2, 5.2, 11.9, 5.2, col = "grey55", lwd = scala)
+text(6, 4.35, "Abilità compito-\nspecifiche («s»)", font = 2, cex = .8)
+text(c(2.25, 9.75), 4.35, c("conoscenza\nspecifica del\nvocabolario", "abilità specifica\ndi rotazione\nmentale"), font = 3, cex = .68, col = "grey30")
+text(5.3, 2.75, "Errore di misura (casualità,\nnumero limitato di item)", cex = .72, col = "grey45", font = 2)
+text(5.3, 1.25, "Effetti transitori (sonno, ora\ndel giorno, stimolanti…)", cex = .72, col = "grey45", font = 2)
+# graffa che raccoglie errore ed effetti transitori
+lines(c(8.6, 8.8, 8.8, 9.0, 8.8, 8.8, 8.6), c(3.4, 3.2, 2.15, 2.0, 1.85, .8, .6), col = "grey35", lwd = scala)
+text(9.15, 2.0, "varianza residua:\npuò superare il\n30–40% di un\nsingolo subtest", adj = 0, cex = .68, font = 3, col = "grey30")
+freccia(.4, 5.6, .4, 8.4, col = rosso, lwd = 1.2); freccia(.4, 4.8, .4, 1.2, col = "grey45", lwd = 1.2)
+text(.9, 7.0, "di interesse\nteorico", srt = 90, cex = .68, font = 3, col = rosso)
+text(.9, 3.0, "spesso non\ninterpretabile", srt = 90, cex = .68, font = 3, col = "grey35")
 ```
 
 ## La prevalenza di *g*
@@ -382,30 +421,37 @@ modelli.
 ```{r}
 #| label: fig-causa-comune
 #| fig-cap: "Due modelli per gli stessi dati. Nel primo, abilità correlate fra loro sembrano prevedere ciascuna l'esito per conto proprio (gli asterischi indicano effetti «significativi»). Nel secondo, una causa comune, g, sostiene le abilità e l'esito: gli effetti diretti delle singole abilità si attenuano o spariscono (linee tratteggiate)."
-#| fig-alt: "Due pannelli. Nel primo, intitolato modello ingenuo, quattro ovali, abilità verbali, abilità visive, memoria di lavoro e ragionamento fluido, sono collegati fra loro da archi e mandano ciascuno una freccia con asterischi verso un ovale esito, per esempio l'adattamento scolastico. Nel secondo, intitolato modello con la causa comune, un ovale g in alto manda frecce rosse verso le quattro abilità e verso l'esito, con tre asterischi; le frecce dalle abilità all'esito sono tratteggiate e chiare."
+#| fig-alt: "Due pannelli. Nel primo, intitolato modello ingenuo, quattro ovali, abilità verbali, abilità visive, memoria di lavoro e ragionamento fluido, sono collegati a coppie da archi, che indicano le correlazioni, e mandano ciascuno una freccia con asterischi verso un ovale esito, per esempio l'adattamento. Nel secondo, intitolato modello con la causa comune, un ovale g in alto manda frecce rosse verso le quattro abilità e verso l'esito, con tre asterischi; le frecce dalle abilità all'esito sono tratteggiate e chiare."
 #| fig-width: !expr 4.45 * scala
-#| fig-height: !expr 2.6 * scala
+#| fig-height: !expr 2.8 * scala
 tela(c(0, 12), c(0, 10))
 ab = c("Abilità\nverbali", "Abilità\nvisive", "Memoria\ndi lavoro", "Ragion.\nfluido")
-ya = c(7.6, 5.6, 3.6, 1.6)
+ya = c(7.7, 5.5, 3.3, 1.1)
 for (k in 0:1) {
-  x0 = k * 6.3
-  text(x0 + 2.8, 9.6, c("modello ingenuo", "modello con la causa comune")[k + 1], cex = .62, font = 3, col = "grey30")
-  es = nodo(x0 + 4.5, 4.6, "esito", w = 1.8, h = 1.2, forma = "ovale", bg = "white", border = rosso, cex = .5)
-  a = lapply(1:4, function(i) nodo(x0 + 1.3, ya[i], ab[i], w = 1.9, h = 1.5, forma = "ovale", bg = "grey95", cex = .5))
+  x0 = k * 6.15; xa = x0 + 1.85
+  text(x0 + 3, 9.75, c("modello ingenuo", "modello con la causa comune")[k + 1], cex = .72, font = 3, col = "grey30")
+  es = nodo(x0 + 4.7, 4.2, "esito (es.\nadattamento)", w = 2.45, h = 1.6, forma = "ovale", bg = "white", border = rosso, cex = .68)
+  a = lapply(1:4, function(i) nodo(xa, ya[i], ab[i], w = 1.9, h = 1.55, forma = "ovale", bg = "grey95", cex = .68))
   for (i in 1:4) {
     if (k == 0) {
-      collega(a[[i]], es, col = "grey25", lwd = 1, etichetta = c("**", "*", "*", "**")[i], pos_et = .45, cex_et = .6, adj_et = c(.5, -.1))
-      if (i < 4) { t = seq(-pi / 2, pi / 2, length.out = 30); lines(x0 + .5 - .4 * cos(t), ya[i] - 1 + .9 * sin(t), col = "grey60", lwd = .8 * scala) }
-    } else collega(a[[i]], es, col = "grey75", lwd = .8, lty = 2)
+      collega(a[[i]], es, col = "grey25", lwd = 1.1, etichetta = c("**", "*", "*", "**")[i], pos_et = .45, cex_et = .85, adj_et = c(.5, -.1))
+    } else collega(a[[i]], es, col = "grey70", lwd = .9, lty = 2)
   }
-  if (k == 1) {
-    g = nodo(x0 + 3.3, 8.7, "g", w = 1.2, h = 1, forma = "ovale", bg = "white", border = rosso, col = rosso, font = 4, cex = .8, lwd = 1.4)
-    for (i in 1:4) collega(g, a[[i]], col = rosso, lwd = .9)
-    collega(g, es, col = rosso, lwd = 1.3, etichetta = "***", pos_et = .5, cex_et = .6, adj_et = c(-.3, .5))
+  if (k == 0) {
+    # correlazioni fra tutte le coppie di abilità: archi a sinistra
+    t = seq(-pi / 2, pi / 2, length.out = 40)
+    for (i in 1:3) for (j in (i + 1):4) {
+      r = (ya[i] - ya[j]) / 2
+      lines(xa - .95 - (.12 + .14 * (j - i)) * cos(t), (ya[i] + ya[j]) / 2 + r * sin(t), col = "grey55", lwd = .8 * scala)
+    }
+  } else {
+    g = nodo(x0 + 4.2, 8.6, "g", w = 1.3, h = 1.2, forma = "ovale", bg = "white", border = rosso, col = rosso, font = 4, cex = 1, lwd = 1.4)
+    # le frecce di g arrivano all'estremità destra delle abilità, senza attraversarle
+    for (i in 1:4) freccia(x0 + 4.2 - .35, 8.6 - .45, xa + 1.0, ya[i] + .12, col = rosso, lwd = 1.1)
+    collega(g, es, col = rosso, lwd = 1.5, etichetta = "***", pos_et = .45, cex_et = .85, adj_et = c(-.4, .5))
   }
 }
-segments(6.1, .5, 6.1, 9.8, col = "grey70", lwd = scala)
+segments(6.0, .3, 6.0, 9.5, col = "grey75", lwd = scala)
 ```
 
 ::: {.callout-tip icon=false}
@@ -432,31 +478,33 @@ diverso.
 
 ```{r}
 #| label: fig-sintesi
-#| fig-cap: "Una sintesi moderna. Numerosissimi fattori genetici, ambientali e di esperienza producono un assetto più o meno favorevole alla prestazione cognitiva generale, riassunto statisticamente da g; g sostiene le abilità di dominio, che si osservano nelle prove di un test del QI; lo stesso g prevede esiti importanti della vita reale, che dipendono anche da altre cause e, in misura minore, da abilità specifiche (frecce tratteggiate)."
-#| fig-alt: "In alto molte piccole frecce, numerosissimi fattori poligenici, ambientali e di esperienza, puntano verso un grande ovale rosso con la lettera g. Da g partono frecce verso sei ovali di abilità: verbali, visuo-spaziali, ragionamento fluido, memoria, velocità e puntini; gli ovali poggiano su un riquadro, test del QI, che elenca prove come vocabolario, nomina categorie, rotazione mentale, completa figure, completa serie logiche, completa matrici, barrage, cifrario, ripeti cifre e ricorda figure. A destra g manda frecce rosse verso quattro esiti: successo scolastico, prestazione lavorativa, condizione sociale, longevità e salute; frecce grigie dall'esterno indicano altre cause, e frecce tratteggiate collegano le abilità agli esiti."
+#| fig-cap: "Una sintesi moderna. Numerosissimi fattori genetici, ambientali e di esperienza producono un assetto più o meno favorevole alla prestazione cognitiva generale, riassunto statisticamente da g; g sostiene le abilità di dominio, che si osservano nelle prove di un test del QI; lo stesso g prevede esiti importanti della vita reale, che dipendono anche da altre cause (frecce grigie)."
+#| fig-alt: "In alto molte piccole frecce, numerosissimi fattori poligenici, ambientali e di esperienza, puntano verso un grande ovale rosso con la lettera g. Da g partono frecce verso sei ovali di abilità: verbali, visuo-spaziali, ragionamento fluido, memoria, velocità e puntini; gli ovali poggiano su un riquadro, test del QI, che elenca prove come vocabolario, nomina categorie, rotazione mentale, completa figure, completa serie logiche, completa matrici, barrage, cifrario, ripeti cifre e ricorda figure. A destra g manda frecce rosse verso quattro esiti: successo scolastico, prestazione lavorativa, condizione sociale, longevità e salute; piccole frecce grigie dall'esterno indicano altre cause."
 #| fig-width: !expr 4.45 * scala
-#| fig-height: !expr 3.3 * scala
+#| fig-height: !expr 3.6 * scala
 tela(c(0, 12), c(0, 10))
-text(4, 9.75, "numerosissimi fattori poligenici, ambientali, di esperienza", cex = .5, font = 3, col = "grey30")
-for (x in seq(1.7, 6.3, length.out = 13)) freccia(x, 9.35, x, 8.65, col = "grey50", lwd = .6)
-g = nodo(4, 7.6, "g", w = 4.2, h = 1.7, forma = "ovale", bg = rosso, border = rosso, col = "white", font = 4, cex = 1.3)
-rect(0, .1, 8.3, 3.2, col = "grey92", border = NA)
+text(4.2, 9.7, "numerosissimi fattori poligenici, ambientali, di esperienza", cex = .68, font = 3, col = "grey30")
+for (x in seq(2, 6.4, length.out = 10)) freccia(x, 9.3, x, 8.5, col = "grey45", lwd = .9)
+rect(0, 0, 8.45, 5.55, col = "grey92", border = NA)
+g = nodo(4.2, 7.55, "g", w = 4, h = 1.6, forma = "ovale", bg = rosso, border = rosso, col = "white", font = 4, cex = 1.5)
+ab = c("Abilità\nverbali", "Abilità\nvisuo-\nspaziali", "Ragion.\nfluido", "Memoria", "Velocità", "…")
+xa = c(.8, 2.25, 3.7, 5.15, 6.6, 7.85)
+abil = lapply(1:6, function(i) nodo(xa[i], 4.4, ab[i], w = if (i < 6) 1.38 else .9, h = 1.8, forma = "ovale", bg = "white", border = "grey35", cex = .68))
+for (a in abil) collega(g, a, col = "grey35", lwd = 1.1)
+# prove del test, in due colonne
 prove = c("Vocabolario", "Nomina categorie", "Rotazione mentale", "Completa figure", "Completa serie logiche",
           "Completa matrici", "Barrage", "Cifrario", "Ripeti cifre", "Ricorda figure")
-text(rep(c(.2, 2.4, 5.0), c(4, 3, 3)), c(2.6, 1.9, 1.2, .5, 2.6, 1.9, 1.2, 2.6, 1.9, 1.2), paste("•", prove), adj = 0, cex = .47)
-text(7.45, 1.3, "TEST\ndel QI", font = 2, cex = .78, col = "grey25")
-ab = c("Abilità\nverbali", "Abilità\nvisuo-\nspaziali", "Ragion.\nfluido", "Memoria", "Velocità", "...")
-xa = c(.85, 2.25, 3.65, 5.05, 6.45, 7.65)
-abil = lapply(1:6, function(i) nodo(xa[i], 4.35, ab[i], w = if (i < 6) 1.35 else .9, h = 1.6, forma = "ovale", bg = "white", border = "grey35", cex = .5))
-for (a in abil) collega(g, a, col = "grey30", lwd = .9)
+text(rep(c(.12, 4.3), each = 5), rep(seq(2.95, .55, length.out = 5), 2), paste("•", prove), adj = 0, cex = .68)
+text(8.3, 1.5, "TEST\ndel QI", adj = 1, font = 2, cex = .9, col = "grey25")
+# esiti della vita reale, previsti da g e influenzati anche da altre cause
 es = c("successo\nscolastico", "prestazione\nlavorativa", "condizione\nsociale", "longevità /\nsalute")
-ye = c(9.1, 7.35, 5.6, 3.85)
+ye = c(8.4, 6.75, 5.1, 3.45)
 for (i in 1:4) {
-  o = nodo(10.25, ye[i], es[i], w = 2.4, h = 1.45, forma = "ovale", bg = "white", border = rosso, cex = .52)
-  collega(g, o, col = rosso, lwd = 1.2)
-  for (dy in c(-.4, .4)) freccia(12, ye[i] + dy * 1.5, 11.5, ye[i] + dy, col = "grey55", lwd = .7)
-  if (i > 1) freccia(8.15, 4.5, 9.1, ye[i] - .35, col = "grey60", lwd = .7, lty = 2)
+  o = nodo(10.45, ye[i], es[i], w = 2.9, h = 1.35, forma = "ovale", bg = "white", border = rosso, cex = .72)
+  collega(g, o, col = rosso, lwd = 1.4)
+  freccia(11.95, ye[i] + .95, 11.55, ye[i] + .52, col = "grey45", lwd = .9)
 }
+text(11.9, 2.4, "frecce grigie:\naltre cause", adj = c(1, 1), cex = .68, font = 3, col = "grey35")
 ```
 
 Perché è importante? Perché si misura in modo affidabile, stabile e

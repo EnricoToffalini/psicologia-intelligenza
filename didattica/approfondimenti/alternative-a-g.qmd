@@ -23,9 +23,32 @@ tema = theme_minimal(base_size = if (stampa) 10 else 13) +
 La positive manifold è uno dei risultati più solidi della psicologia. Su questo
 non c'è disaccordo. Il disaccordo riguarda la spiegazione. Quella standard,
 presentata nei capitoli sui modelli dell'intelligenza, ipotizza un insieme di
-cause comuni riassunte dal fattore generale *g*. Ma quelle cause restano in buona
-parte misteriose, e a molti ricercatori l'idea di una variabile latente non
-osservata sembra un'ipotesi troppo comoda.
+cause comuni riassunte dal fattore generale *g* (@fig-manifold-g). Ma quelle
+cause restano in buona parte misteriose, e a molti ricercatori l'idea di una
+variabile latente non osservata sembra un'ipotesi troppo comoda.
+
+```{r}
+#| label: fig-manifold-g
+#| fig-cap: "Il dato e la spiegazione standard. Nel primo pannello il dato da spiegare, la positive manifold: le prove di una batteria correlano tutte positivamente fra loro (frecce doppie). Nel secondo la spiegazione standard: una causa comune, g, influenza tutte le prove, e le correlazioni ne sono la conseguenza. Adattamento da uno schema dell'autore."
+#| fig-alt: "Due pannelli con le stesse prove in riquadri: cifrario, vocabolario, ragionamento con matrici, memoria di cifre, puzzle, ragionamento aritmetico e altre prove indicate con puntini. Nel primo, intitolato il dato, le prove sono collegate fra loro da molte frecce doppie grigie. Una freccia etichettata spiegazione standard porta al secondo pannello, dove un ovale g in alto manda una freccia rossa a ciascuna prova e le prove non sono collegate fra loro."
+#| fig-width: !expr 4.45 * scala
+#| fig-height: !expr 3.1 * scala
+tela(c(0, 12), c(0, 10.2))
+prove = c("Cifrario", "Vocabolario", "Ragion.\nmatrici", "Memoria\ncifre", "Puzzle", "Ragion.\naritm.", "…")
+sx = list(x = c(1.0, 4.65, 1.0, 4.65, 1.0, 4.65, 2.8), y = c(7.9, 7.9, 5.4, 5.4, 2.9, 2.9, .7))
+dx = list(x = c(6.95, 11.05, 6.95, 11.05, 7.7, 11.05, 9.7), y = c(6.5, 6.6, 3.9, 4.4, 1.3, 2.2, .7))
+scatola = function(x, y, t) nodo(x, y, t, w = 1.8, h = 1.1, bg = "white", cex = .72)
+text(.1, 9.75, "Il dato: tutte le prove correlano", adj = c(0, .5), cex = .78, font = 2)
+s = lapply(1:7, function(i) scatola(sx$x[i], sx$y[i], prove[i]))
+coppie = rbind(c(1, 2), c(1, 3), c(1, 4), c(2, 3), c(2, 4), c(3, 4), c(3, 5), c(3, 6), c(4, 5), c(4, 6), c(5, 6), c(5, 7), c(6, 7))
+for (k in seq_len(nrow(coppie))) collega(s[[coppie[k, 1]]], s[[coppie[k, 2]]], code = 3, col = "grey40", lwd = .8)
+segments(5.95, .2, 5.95, 7.8, col = "grey60", lwd = scala)
+freccia(5.9, 8.75, 8.3, 8.75, col = "grey35")
+text(6.95, 9.3, "spiegazione standard", cex = .72, font = 3, col = "grey30")
+g = nodo(9.3, 8.75, "g", w = 1.5, h = 1.3, forma = "ovale", bg = "white", font = 4, cex = 1, lwd = 1.3)
+d = lapply(1:7, function(i) scatola(dx$x[i], dx$y[i], prove[i]))
+for (x in d) collega(g, x, col = rosso, lwd = 1.1)
+```
 
 Negli ultimi vent'anni sono emerse almeno due teorie che cercano di spiegare le
 correlazioni fra abilità senza un fattore generale. Sono alternative serie, che
@@ -78,58 +101,74 @@ misurati in modo abbastanza chiaro da metterla alla prova.
 
 Il **mutualismo** propone qualcosa di concettualmente più radicale
 [@vandermaas2006dynamical]. Immaginiamo che, all'inizio dello sviluppo, abilità
-diverse siano indipendenti. Durante la crescita, però, si sostengono a vicenda.
-Un vocabolario più ricco aiuta a capire concetti e spiegazioni, quindi a
-rappresentarsi meglio i problemi e a ragionare. Un ragionamento migliore aiuta a
-ricavare il significato di parole nuove dal contesto, quindi ad arricchire il
-vocabolario. Ripetuti per anni, questi scambi reciproci producono abilità
-correlate anche partendo da abilità indipendenti. La positive manifold sarebbe un
-fenomeno emergente, non il segno di una causa comune.
+diverse siano indipendenti. Durante la crescita, però, si sostengono a vicenda,
+in un intreccio di influenze reciproche che agisce soprattutto nel lungo periodo
+(@fig-rete-mutualismo).
 
 ```{r}
-#| label: fig-rete-g
-#| fig-cap: "Due spiegazioni della positive manifold. Nel primo pannello, la spiegazione standard: una causa comune, g, influenza tutte le prove. Nel secondo, un modello di rete: le abilità si influenzano direttamente a vicenda, senza una causa comune. Schema originale."
-#| fig-alt: "Due diagrammi affiancati con le stesse sei prove: vocabolario, matrici, memoria di cifre, ragionamento aritmetico, cifrario, puzzle. Nel primo un ovale g al centro ha frecce verso tutte le prove. Nel secondo le prove sono collegate fra loro da frecce doppie, senza alcun nodo centrale."
+#| label: fig-rete-mutualismo
+#| fig-cap: "Il mutualismo: un ipotetico beneficio reciproco fra abilità diverse, soprattutto durante lo sviluppo e nel lungo periodo. Ogni freccia indica un'influenza di un'abilità sulla crescita di un'altra; in rosso lo scambio fra abilità verbali e ragionamento, ripreso nella figura successiva. Nessun nodo è una causa comune di tutti gli altri. Adattamento da uno schema dell'autore."
+#| fig-alt: "Rete di sette ovali: abilità visive, abilità verbali, abilità uditive, memoria a lungo termine, ragionamento, memoria di lavoro, velocità di elaborazione. Frecce grigie collegano molte coppie: per esempio le abilità visive influenzano il ragionamento, la velocità di elaborazione influenza abilità visive, ragionamento e memoria di lavoro, le abilità uditive influenzano la memoria di lavoro, che a sua volta influenza ragionamento, abilità verbali e memoria a lungo termine. Due frecce rosse uniscono in entrambe le direzioni abilità verbali e ragionamento."
 #| fig-width: !expr 4.45 * scala
-#| fig-height: !expr 2.5 * scala
-tela(c(0, 12), c(-.2, 9.4))
-prove = c("Vocabolario", "Matrici", "Memoria\ncifre", "Ragion.\naritm.", "Cifrario", "Puzzle")
-ang = seq(90, -210, length.out = 6) * pi / 180
-disegna = function(cx, rete) {
-  p = lapply(1:6, function(i) nodo(cx + 2.2 * cos(ang[i]), 4.6 + 3.7 * sin(ang[i]), prove[i], w = 1.6, h = 1.35, bg = "grey95", cex = .52))
-  if (rete) {
-    coppie = rbind(c(1, 2), c(2, 3), c(3, 4), c(4, 5), c(5, 6), c(6, 1), c(1, 4), c(2, 5), c(3, 6))
-    for (k in seq_len(nrow(coppie))) collega(p[[coppie[k, 1]]], p[[coppie[k, 2]]], code = 3, col = "grey35", lwd = .8)
-  } else {
-    g = nodo(cx, 4.6, "g", w = 1.2, h = 1.3, forma = "ovale", bg = "white", font = 4, cex = .85, lwd = 1.3)
-    for (x in p) collega(g, x, col = rosso, lwd = 1.1)
-  }
+#| fig-height: !expr 3.1 * scala
+tela(c(0, 12), c(0, 10))
+ovale = function(x, y, t) nodo(x, y, t, w = 2.7, h = 1.55, forma = "ovale", bg = "white", cex = .75)
+# frecce parallele fra due nodi, spostate di `d` in perpendicolare
+parallela = function(a, b, d, ...) {
+  u = c(b$y - a$y, a$x - b$x); u = u / sqrt(sum(u^2)) * d
+  a2 = a; b2 = b; a2$x = a$x + u[1]; a2$y = a$y + u[2]; b2$x = b$x + u[1]; b2$y = b$y + u[2]
+  collega(a2, b2, ...)
 }
-disegna(2.85, FALSE)
-segments(6, .3, 6, 9.7, col = "grey40", lwd = 1.5 * scala)
-disegna(9.15, TRUE)
+vis = ovale(1.75, 8.5, "Abilità\nvisive")
+verb = ovale(5.6, 7.3, "Abilità\nverbali")
+udit = ovale(8.6, 9.0, "Abilità\nuditive")
+mlt = ovale(10.4, 5.4, "Memoria a\nlungo termine")
+rag = ovale(1.75, 4.1, "Ragionamento")
+mdl = ovale(8.4, 2.1, "Memoria di\nlavoro")
+vel = ovale(4.6, 1.0, "Velocità di\nelaborazione")
+collega(vis, rag); collega(vel, vis); collega(mlt, verb); collega(mlt, rag)
+collega(mdl, rag); collega(mdl, verb); collega(udit, mdl); collega(mdl, mlt)
+collega(vel, rag); collega(vel, mdl)
+parallela(rag, verb, .3, col = rosso, lwd = 1.3); parallela(verb, rag, .3, col = rosso, lwd = 1.3)
 ```
 
-Il mutualismo spiega anche perché, con il tempo, abilità inizialmente
-indipendenti finiscano per correlare (@fig-scambi).
+Un esempio aiuta (@fig-scambi). Un vocabolario più ricco aiuta a capire
+concetti e spiegazioni, quindi a rappresentarsi meglio i problemi e a ragionare,
+prima su problemi esposti a parole e poi anche su quelli non verbali. Un
+ragionamento migliore aiuta a ricavare il significato di parole nuove dal
+contesto, quindi ad arricchire il vocabolario. Ripetuti per anni, questi scambi
+reciproci producono abilità correlate anche partendo da abilità indipendenti. La
+positive manifold sarebbe un fenomeno emergente, non il segno di una causa
+comune.
 
 ```{r}
 #| label: fig-scambi
-#| fig-cap: "Il meccanismo del mutualismo in due abilità. All'inizio dello sviluppo vocabolario e ragionamento non sono correlati; a ogni passo ciascuna abilità contribuisce alla crescita dell'altra, e dopo molti scambi le due abilità risultano correlate. La correlazione finale è illustrativa. Schema originale, ispirato a Kievit et al. (2017)."
-#| fig-alt: "Due file di ovali nel tempo, da T0 a T1 fino a Tn: vocabolario in alto e ragionamento in basso. Frecce orizzontali collegano ogni abilità a sé stessa nel tempo; frecce diagonali collegano ciascuna abilità all'altra nel passo successivo. A T0 una linea tratteggiata indica correlazione zero, a Tn una freccia curva doppia indica correlazione 0,40."
+#| fig-cap: "Il meccanismo del mutualismo in due abilità. All'inizio dello sviluppo (T0) vocabolario e ragionamento non sono correlati; a ogni passo ciascuna abilità contribuisce alla crescita dell'altra (frecce rosse), e dopo molti scambi (Tn) le due abilità risultano correlate. La correlazione finale è illustrativa. Adattamento da uno schema dell'autore, sulla base di Kievit et al. (2017)."
+#| fig-alt: "Due file di ovali nel tempo, nelle colonne T0, T1 e Tn, separate da puntini: vocabolario in alto e ragionamento in basso. Frecce grigie orizzontali collegano ogni abilità a sé stessa nel passo successivo; frecce rosse diagonali collegano ciascuna abilità all'altra nel passo successivo, anche attraverso i passi intermedi indicati dai puntini. A T0 una freccia curva doppia tratteggiata e grigia indica r = 0; a Tn una freccia curva doppia nera indica r = 0,40."
 #| fig-width: !expr 4.45 * scala
-#| fig-height: !expr 2.2 * scala
+#| fig-height: !expr 2.4 * scala
 tela(c(0, 12), c(0, 10))
-xt = c(1.6, 5.2, 10); ab = c("Vocabolario", "Ragionamento"); yv = c(7, 2.4)
-text(xt, 9.6, c("T0", "T1", "Tn"), font = 2, cex = .72)
-n = lapply(1:3, function(t) lapply(1:2, function(a) nodo(xt[t], yv[a], ab[a], w = 2.6, h = 1.8, forma = "ovale", bg = "grey95", cex = .6)))
-for (a in 1:2) { collega(n[[1]][[a]], n[[2]][[a]]); collega(n[[2]][[a]], nodo(7.6, yv[a], "...", forma = "nulla", w = 0, h = 0, cex = .8)); freccia(8.1, yv[a], 8.6, yv[a]) }
+curva = function(x, y, col = "grey35", lwd = 1.1, lty = 1) {
+  p = xspline(x, y, shape = c(0, 1, 0), draw = FALSE); n = length(p$x)
+  a = punta(p$x[3], p$y[3], p$x[1], p$y[1], col = col)
+  b = punta(p$x[n - 2], p$y[n - 2], p$x[n], p$y[n], col = col)
+  lines(c(a[1], p$x[2:(n - 1)], b[1]), c(a[2], p$y[2:(n - 1)], b[2]), col = col, lwd = lwd * scala, lty = lty)
+}
+xt = c(1.85, 5.35, 10.25); ab = c("Vocabolario", "Ragionamento"); yv = c(7.1, 2.0)
+text(xt, 9.6, c(expression(T[0]), expression(T[1]), expression(T[n])), cex = .95)
+n = lapply(1:3, function(t) lapply(1:2, function(a) nodo(xt[t], yv[a], ab[a], w = 2.6, h = 1.8, forma = "ovale", bg = "white", cex = .75)))
+pt = lapply(c(yv[1], 4.55, yv[2]), function(y) nodo(7.8, y, "…", forma = "nulla", w = .7, h = .5, cex = 1))
+pt = lapply(pt, function(p) { p$forma = "scatola"; p })
+for (a in 1:2) {
+  collega(n[[1]][[a]], n[[2]][[a]]); collega(n[[2]][[a]], pt[[2 * a - 1]]); collega(pt[[2 * a - 1]], n[[3]][[a]])
+}
 collega(n[[1]][[1]], n[[2]][[2]], col = rosso); collega(n[[1]][[2]], n[[2]][[1]], col = rosso)
-segments(.1, 6.1, .1, 3.3, lty = 2, col = "grey55", lwd = scala)
-text(.25, 4.7, "r = 0", adj = 0, cex = .58, col = "grey40")
-xspline(c(11.35, 11.85, 11.35), c(6.4, 4.7, 3), shape = c(0, 1, 0), border = "grey20", lwd = scala)
-arrows(11.4, 6.35, 11.32, 6.45, length = .06 * scala, lwd = scala); arrows(11.4, 3.05, 11.32, 2.95, length = .06 * scala, lwd = scala)
-text(10, 4.7, "r = 0,40", cex = .62, font = 2)
+collega(n[[2]][[1]], pt[[2]], col = rosso); collega(n[[2]][[2]], pt[[2]], col = rosso)
+collega(pt[[2]], n[[3]][[1]], col = rosso); collega(pt[[2]], n[[3]][[2]], col = rosso)
+curva(c(.75, .1, .75), c(6.3, 4.55, 2.8), col = "grey55", lty = 2)
+text(.85, 4.55, "r = 0", adj = c(0, .5), cex = .75, col = "grey40")
+curva(c(11.35, 11.95, 11.35), c(6.3, 4.55, 2.8), col = "grey20")
+text(11.6, 4.55, "r = 0,40", adj = c(1, .5), cex = .75, font = 2)
 ```
 
 È l'unica vera alternativa logica alle cause comuni: se due variabili correlano e

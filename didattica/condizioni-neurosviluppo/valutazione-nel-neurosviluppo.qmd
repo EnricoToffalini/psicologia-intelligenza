@@ -28,6 +28,53 @@ costruita e tarata su una popolazione generale. Quando la si usa con persone che
 hanno un funzionamento diverso dalla media proprio negli aspetti che il test
 misura, sorgono problemi specifici.
 
+Oggi non esiste una cornice teorica unica per queste condizioni, se non il
+termine ombrello di **neurodiversità** (@fig-neurodiversita). Sotto
+l'ombrello stanno due concetti diversi. La *neurodivergenza* è una differenza
+rilevante del funzionamento neurologico e cognitivo rispetto a quello tipico. Il
+*disturbo* è un esito clinicamente significativo: disagio rilevante o
+compromissione del funzionamento in aree importanti della vita. Può associarsi a
+condizioni sindromiche, che si prestano a categorie nette, o, più spesso, a
+condizioni non sindromiche, dimensionali e dipendenti dal contesto, in cui la
+compromissione generale pesa di solito più di quella specifica. Una
+neurodivergenza può tradursi in disturbo in misura molto variabile; quando è
+eccezionale, può essere anche una risorsa: talento, creatività, capacità di
+concentrazione intensa, plusdotazione. Che risorsa e disturbo possano convivere
+nella stessa persona è una possibilità reale, ancora poco studiata. In tutti
+questi casi la valutazione dell'intelligenza, articolata in più componenti, è
+parte integrante della valutazione clinica e un tema centrale della ricerca.
+
+```{r}
+#| label: fig-neurodiversita
+#| fig-cap: "Neurodiversità, neurodivergenza e disturbo. La neurodivergenza può tradursi, in misura variabile, in un disturbo; quando è eccezionale può diventare una risorsa; il rapporto fra risorsa e disturbo resta una domanda aperta. Adattamento da uno schema dell'autore."
+#| fig-alt: "Schema con il termine neurodiversità in alto, da cui partono due frecce: verso neurodivergenza, a sinistra, definita come differenza rilevante del funzionamento neurologico e cognitivo rispetto al neurotipico, e verso disturbo, a destra, definito come esito clinicamente significativo, sindromico o più spesso non sindromico. Tre frecce vanno da neurodivergenza a disturbo. Una freccia curva rossa, etichettata eccezionalità, va da neurodivergenza a risorsa, in basso: talento, creatività, pensiero divergente, iperfocus, plusdotazione. Una freccia doppia con un punto di domanda collega risorsa e disturbo."
+#| fig-width: !expr 4.45 * scala
+#| fig-height: !expr 3.4 * scala
+tela(c(0, 12), c(0, 10))
+curva = function(x, y, col = "grey35", lwd = 1.1) {
+  p = xspline(x, y, shape = c(0, 1, 0), draw = FALSE); n = length(p$x)
+  b = punta(p$x[n - 2], p$y[n - 2], p$x[n], p$y[n], col = col)
+  lines(c(p$x[-n], b[1]), c(p$y[-n], b[2]), col = col, lwd = lwd * scala)
+}
+text(6, 9.6, "neurodiversità", font = 4, cex = .95)
+text(6, 9.0, "(termine ombrello)", cex = .7, col = "grey30")
+freccia(4.6, 9.3, 2.8, 8.1); freccia(7.4, 9.3, 8.6, 8.1)
+text(2.2, 7.6, "neurodivergenza", font = 4, cex = .9)
+text(2.2, 6.0, "differenza rilevante\ndel funzionamento\nneurologico e cognitivo\nrispetto al «neurotipico»", cex = .7, col = "grey30")
+text(8.75, 7.6, "disturbo", font = 4, cex = .9)
+text(8.75, 5.4, paste("esito clinicamente significativo:", "disagio rilevante o compromissione",
+                      "del funzionamento in aree", "importanti della vita;", "sindromico (categoriale) o, più",
+                      "spesso, non sindromico (dimensionale,", "transdiagnostico, legato al contesto)", sep = "\n"),
+     cex = .7, col = "grey30")
+for (y in c(6.7, 6.0, 5.3)) freccia(4.45, y, 5.6, y)
+curva(c(1.2, 1.7, 3.6), c(4.7, 2.6, 2.0), col = rosso)
+text(1.9, 3.4, "eccezionalità", cex = .7, col = rosso, adj = c(0, .5))
+text(5.3, 2.3, "risorsa?", font = 4, cex = .9)
+text(5.3, 1.2, "talento, creatività e pensiero\ndivergente, iperfocus,\nplusdotazione", cex = .7, col = "grey30")
+freccia(7.0, 2.3, 8.6, 3.7, code = 3)
+text(8.15, 2.75, "?", cex = 1, font = 2)
+```
+
 Questo capitolo esamina come si valuta l'intelligenza nelle principali
 condizioni, quali profili medi emergono dalla ricerca e perché quei profili vanno
 interpretati con cautela. Un avvertimento preliminare: i profili medi descrivono
@@ -53,15 +100,30 @@ attraverso un'intervista a chi conosce bene la persona, ed espresse sulla stessa
 metrica del QI. Il QI resta un criterio di fatto necessario ma non sufficiente.
 
 Le forme **sindromiche** tendono a mostrare profili cognitivi caratteristici, pur
-con grande variabilità individuale. Nella sindrome di Down sono descritte
-difficoltà particolarmente marcate nel linguaggio espressivo e nella memoria
-verbale a breve termine, con componenti visuospaziali relativamente meno
-compromesse; nella sindrome di Williams il quadro è spesso opposto, con abilità
-verbali relativamente preservate e difficoltà visuospaziali gravi
-[@grieco2015down; @martens2008williams]. Anche questi profili «tipici» sono
-tendenze di gruppo, da verificare sui casi concreti. Le forme **non sindromiche** sono estremamente eterogenee e non hanno
-profili caratteristici: ogni caso fa storia a sé, e il profilo va valutato
-sempre.
+con grande variabilità individuale. La sindrome di Down, la causa genetica più
+comune di disabilità intellettiva, e la sindrome dell'X fragile, la più comune
+fra quelle ereditarie, offrono un contrasto istruttivo (@tbl-sindromi): in linguaggio e abilità
+visuospaziali i loro profili sono quasi speculari [@grieco2015down;
+@quintin2016cognitive]. Nella sindrome di Williams il quadro
+somiglia a quello dell'X fragile, con abilità verbali relativamente preservate e
+difficoltà visuospaziali gravi [@martens2008williams]. In queste sindromi si
+osserva inoltre una tendenza del QI a diminuire con l'età: le abilità crescono,
+ma più lentamente della norma, e la distanza dai coetanei si allarga.
+
+| Area | Sindrome di Down | Sindrome dell'X fragile |
+|---|---|---|
+| Linguaggio | − difficoltà più gravi, soprattutto nell'espressione | + punto di forza relativo nelle abilità verbali |
+| Memoria a breve termine | − debolezza marcata, soprattutto verbale | − debolezza generale, insieme alle funzioni esecutive |
+| Memoria a lungo termine | | + discreta |
+| Abilità visuospaziali | + meno compromesse | − difficoltà più gravi |
+
+: Profili cognitivi tendenziali in due forme sindromiche di disabilità intellettiva: punti di forza (+) e di debolezza (−) rispetto al livello generale della persona. {#tbl-sindromi}
+
+Anche questi profili «tipici» sono tendenze di gruppo, da verificare sui casi
+concreti. Le forme **non sindromiche** sono estremamente eterogenee, sia nel
+fenotipo sia nelle cause genetiche, e non hanno profili caratteristici; il QI
+tende anche meno a diminuire con l'età. Ogni caso fa storia a sé, e il profilo
+va valutato sempre.
 
 ## Autismo: un paradosso
 
@@ -132,29 +194,35 @@ lettura, scrittura e calcolo [@cornoldi2003visuospatial].
 
 ```{r}
 #| label: fig-cono
-#| fig-cap: "Il modello a cono delle difficoltà cognitive. In verticale il livello di controllo richiesto dal compito, in orizzontale il tipo di compito: una compromissione di alto livello, come nella disabilità intellettiva, si estende a tutto il cono; le compromissioni di livello intermedio colpiscono diversi domini; quelle di base riguardano processi molto specifici. Elaborazione da Cornoldi e Vecchi (2003)."
-#| fig-alt: "Un cono con la punta in alto. Vicino alla punta è indicata la disabilità intellettiva, a metà altezza autismo e ADHD, alla base, in punti diversi della circonferenza, dislessia, disortografia e discalculia. Accanto, tre riquadri descrivono le compromissioni di alto livello, intermedie e specifiche."
+#| fig-cap: "Il modello a cono delle difficoltà cognitive. In verticale il livello di controllo esecutivo richiesto dal compito, in orizzontale il tipo di compito: una compromissione di alto livello, come nella disabilità intellettiva, si propaga a tutto il cono; le compromissioni di livello intermedio colpiscono diversi domini; quelle di base, come nei disturbi specifici dell'apprendimento (DSA), riguardano processi molto specifici. Elaborazione da Cornoldi e Vecchi (2003)."
+#| fig-alt: "Un cono con la punta in alto. Vicino alla punta una croce rossa indica la disabilità intellettiva, a metà altezza due croci indicano autismo e ADHD, alla base due croci indicano dislessia e discalculia, raggruppate come DSA. Una freccia verticale indica il livello di controllo esecutivo, una orizzontale il tipo di compito. Tre frecce collegano i tre livelli del cono a tre descrizioni: compromissione di alto livello con effetto a cascata su qualsiasi compito; compromissione intermedia in diversi domini con altri preservati; compromissione di processi molto specifici, con forte impatto nella vita quotidiana, evidenziata in un riquadro rosso."
 #| fig-width: !expr 4.45 * scala
-#| fig-height: !expr 3.2 * scala
-tela(c(0, 12), c(-.9, 10))
+#| fig-height: !expr 3.4 * scala
+tela(c(0, 12), c(-1.2, 10))
 t = seq(0, 2 * pi, length.out = 200)
-cx = 3; base = 1.6; rx = 2.6; ry = .7; apice = 9.4
+cx = 3.4; base = 1.5; rx = 2.4; ry = .65; apice = 9.6
 polygon(c(cx - rx, cx, cx + rx, cx + rx * cos(seq(0, -pi, length.out = 100))), c(base, apice, base, base + ry * sin(seq(0, -pi, length.out = 100))), col = "grey94", border = NA)
 segments(c(cx - rx, cx + rx), base, cx, apice, col = "grey30", lwd = scala)
 lines(cx + rx * cos(t), base + ry * sin(t), col = "grey30", lwd = scala)
 for (h in c(.33, .66)) lines(cx + rx * (1 - h) * cos(t), base + h * (apice - base) + ry * (1 - h) * sin(t), col = "grey60", lty = 2, lwd = scala)
-punti = data.frame(x = c(cx, cx - .9, cx + .9, cx - 1.7, cx + .3, cx + 1.9), y = c(8.1, 5.1, 5.1, 1.2, .95, 1.3),
-                   lab = c("disabilità\nintellettiva", "autismo", "ADHD", "dislessia", "disortografia", "discalculia"),
-                   pos = c(4, 2, 4, 1, 1, 1))
+punti = data.frame(x = c(cx, cx - .75, cx + .75, cx - 1.3, cx + 1.3), y = c(8.3, 5.2, 5.2, 1.2, 1.2))
 points(punti$x, punti$y, pch = 4, col = rosso, cex = 1.3, lwd = 2 * scala)
-adj = list(c(0, .5), c(1, .5), c(0, .5), c(.5, 1), c(.5, 1), c(.5, 1))
-for (i in 1:6) text(punti$x[i] + c(.6, -.25, .25, 0, 0, 0)[i], punti$y[i] + c(0, 0, 0, -.3, -.3, -.3)[i], punti$lab[i], adj = adj[[i]], cex = .6, col = rosso)
-text(.35, 5.5, "livello di controllo", srt = 90, cex = .56, font = 3, col = "grey35")
-text(cx, -.7, "tipo di compito", cex = .56, font = 3, col = "grey35")
-desc = c("Alto livello (fattore g): effetto a cascata su qualsiasi compito",
-         "Livello intermedio: compromissione in diversi domini, con altri risparmiati",
-         "Processi molto specifici (lettura, calcolo, ortografia): effetto circoscritto ma forte impatto quotidiano")
-for (i in 1:3) nodo(9.15, c(8.1, 5.1, 1.9)[i], paste(strwrap(desc[i], 30), collapse = "\n"), w = 5.6, h = 2.7, bg = "white", border = if (i == 3) rosso else "grey50", cex = .62)
+text(cx + .35, 8.95, "disabilità\nintellettiva", adj = c(0, .5), cex = .7, col = rosso)
+text(cx - 1, 5.2, "autismo", adj = c(1, .5), cex = .7, col = rosso)
+text(cx + 1, 5.2, "ADHD", adj = c(0, .5), cex = .7, col = rosso)
+text(cx + c(-1.3, 1.3), .45, c("dislessia", "discalculia"), cex = .7, col = rosso)
+text(cx, 1.2, "DSA", cex = .7, font = 2, col = rosso)
+freccia(.65, .9, .65, 9.4, code = 3, col = "grey35", lwd = .9)
+text(.25, 5.2, "livello di controllo esecutivo", srt = 90, cex = .7, font = 3, col = "grey30")
+freccia(cx - rx, -.35, cx + rx, -.35, code = 3, col = "grey35", lwd = .9)
+text(cx, -.85, "tipo di compito", cex = .7, font = 3, col = "grey30")
+desc = c("Compromissione di alto livello (fattore g): effetto «a cascata» marcato e pervasivo su qualsiasi tipo di compito cognitivo",
+         "Compromissione di livello intermedio: effetto marcato in diversi domini del funzionamento, preservato in altri",
+         "Compromissione di processi molto specifici: effetto marcato in aree delimitate (lettura, calcolo, ortografia, grafismo), con molto impatto nella vita quotidiana")
+yd = c(8.6, 5.2, 1.6)
+for (i in 1:3) text(6.9, yd[i], paste(strwrap(desc[i], 31), collapse = "\n"), adj = c(0, .5), cex = .7)
+rect(6.7, yd[3] - 1.6, 11.95, yd[3] + 1.6, border = rosso, lwd = 1.2 * scala)
+freccia(4.1, 8.1, 6.6, 8.6); freccia(5.5, 5.2, 6.6, 5.2); freccia(5.95, 1.4, 6.55, 1.6)
 ```
 
 La specificità, però, è imposta per definizione. La disabilità intellettiva è un
@@ -169,26 +237,31 @@ bassa (@fig-specificita).
 
 ```{r}
 #| label: fig-specificita
-#| fig-cap: "Dati simulati di una popolazione in cui l'abilità di calcolo correla 0,50 con l'abilità generale. Le etichette derivano da soglie applicate a due dimensioni continue: chi ha un'abilità generale molto bassa rientra nella disabilità intellettiva; fra gli altri, chi ha un calcolo molto debole rientra nella discalculia."
-#| fig-alt: "Diagramma di dispersione ellittico. Una linea verticale a meno 2 separa a sinistra i punti etichettati come disabilità intellettiva; una fascia fra meno 2 e meno 1 indica il funzionamento intellettivo limite. Una linea orizzontale a meno 2 nel calcolo individua, a destra della prima linea, i punti etichettati come discalculia."
+#| fig-cap: "Fissiamo delle soglie su una popolazione «normale» e attribuiamo delle etichette. Dati simulati in cui l'abilità di calcolo correla 0,50 con il QI totale. Le soglie (linee tratteggiate) sono QI 70 per la disabilità intellettiva (DI), QI 85 per il funzionamento intellettivo limite (FIL) e −1,5 punti z nel calcolo. Solo chi ha un calcolo molto debole e un QI di almeno 85 riceve l'etichetta di discalculia (in rosso); con un QI fra 70 e 85 il caso resta dubbio."
+#| fig-alt: "Diagramma di dispersione di mille punti, con il QI totale in ascissa, da 55 a 145, e l'abilità di calcolo in punti z in ordinata. La nuvola è inclinata verso l'alto e una retta di regressione indica r uguale 0,50. Due linee verticali tratteggiate a QI 70 e 85 e una linea orizzontale a meno 1,5 dividono il grafico in zone etichettate: DI a sinistra di 70, FIL fra 70 e 85, FIL con punto di domanda nella stessa fascia sotto la linea orizzontale, in norma al centro, discalculia in basso a destra, dove i punti sono rossi."
 #| fig-width: !expr if (stampa) 4.45 else 7
-#| fig-height: !expr if (stampa) 4.0 else 4.6
+#| fig-height: !expr if (stampa) 3.4 else 4.4
 set.seed(170)
-m = MASS::mvrnorm(3000, c(0, 0), matrix(c(1, .5, .5, 1), 2))
-d = data.frame(g = m[, 1], calc = m[, 2])
-d$gruppo = with(d, ifelse(g < -2, "Disabilità intellettiva",
-                   ifelse(calc < -2 & g >= -1, "Discalculia",
-                   ifelse(calc < -2, "Caso dubbio (FIL)", "Nessuna etichetta"))))
-d$gruppo = factor(d$gruppo, levels = c("Nessuna etichetta", "Disabilità intellettiva", "Caso dubbio (FIL)", "Discalculia"))
-ggplot(d, aes(g, calc, colour = gruppo)) +
-  annotate("rect", xmin = -2, xmax = -1, ymin = -Inf, ymax = Inf, fill = "grey92") +
-  geom_point(alpha = .55, size = 1.2) +
-  geom_vline(xintercept = -2, linetype = 2) +
-  geom_hline(yintercept = -2, linetype = 2) +
-  scale_colour_manual(values = c("grey70", "grey20", "#C98A00", rosso), name = NULL) +
-  labs(x = "Abilità generale (punti z)", y = "Abilità di calcolo (punti z)") +
-  tema + theme(legend.position = "top") +
-  guides(colour = guide_legend(nrow = 2, override.aes = list(size = 3, alpha = 1)))
+m = MASS::mvrnorm(1000, c(0, 0), matrix(c(1, .5, .5, 1), 2))
+d = data.frame(qi = 100 + 15 * m[, 1], calc = m[, 2])
+d$discalculia = d$qi >= 85 & d$calc < -1.5
+dimensione = if (stampa) 3.2 else 4.2
+ggplot(d, aes(qi, calc)) +
+  geom_point(aes(colour = discalculia), alpha = .6, size = if (stampa) .9 else 1.4) +
+  geom_smooth(method = "lm", formula = y ~ x, se = FALSE, colour = "grey20", linewidth = .7) +
+  annotate("segment", x = c(70, 85), xend = c(70, 85), y = -Inf, yend = Inf, linetype = 2, colour = rosso) +
+  annotate("segment", x = -Inf, xend = Inf, y = -1.5, yend = -1.5, linetype = 2, colour = rosso) +
+  annotate("label", x = c(61.5, 77.5, 77.5, 108, 120), y = c(1.6, 1.6, -2.4, .3, -2.4),
+           label = c("DI", "FIL", "FIL ?", "in norma", "discalculia"),
+           colour = c("grey10", "grey10", "grey10", "grey10", rosso), fontface = "bold",
+           size = dimensione, label.size = 0, fill = alpha("white", .85)) +
+  annotate("label", x = 147, y = .55, label = "r = 0,50", hjust = 1, size = dimensione * .9, label.size = 0, fill = alpha("white", .85)) +
+  scale_colour_manual(values = c("grey35", rosso), guide = "none") +
+  scale_x_continuous(breaks = seq(55, 145, 15)) +
+  scale_y_continuous(breaks = -3:3, labels = function(x) sub("-", "−", x)) +
+  coord_cartesian(xlim = c(52, 148), ylim = c(-3.2, 3.2)) +
+  labs(x = "QI totale", y = "Abilità di calcolo (punti z)") +
+  tema
 ```
 
 L'incoerenza dei criteri di inclusione ed esclusione fra gli studi, inevitabile
@@ -223,34 +296,41 @@ questione dell'**invarianza di misura**, che si articola in livelli successivi
 
 ```{r}
 #| label: fig-invarianza
-#| fig-cap: "Dove si collocano i parametri che l'invarianza di misura confronta fra gruppi, in un modello gerarchico di una batteria con quattro indici. Pesi (frecce): invarianza metrica. Intercette, cioè il punteggio atteso in un subtest quando l'abilità è nella media (triangoli): invarianza scalare. Varianze residue, cioè la parte non spiegata dai fattori (cerchi): invarianza stretta. Schema originale."
-#| fig-alt: "Un ovale g in alto collegato da frecce rosse a quattro ovali di indice: comprensione verbale, ragionamento percettivo, memoria di lavoro, velocità di elaborazione. Ogni indice ha frecce verso due o tre subtest rappresentati da rettangoli. Sotto ogni subtest un triangolo indica l'intercetta e un piccolo cerchio la varianza residua. Una legenda associa frecce, triangoli e cerchi ai livelli metrico, scalare e stretto."
+#| fig-cap: "Dove si collocano i parametri che l'invarianza di misura confronta fra gruppi, nel modello gerarchico della WISC-IV. Pesi (frecce rosse, da g agli indici e dagli indici ai subtest): invarianza metrica. Intercette, cioè il punteggio atteso in un subtest quando l'abilità vera è esattamente nella media (triangoli): invarianza scalare. Varianze residue, cioè la parte di un indice o di un subtest non spiegata dal fattore superiore (cerchi): invarianza stretta. Adattamento da uno schema dell'autore."
+#| fig-alt: "Un ovale g in alto collegato da frecce rosse a quattro ovali di indice: comprensione verbale, ragionamento percettivo, memoria di lavoro, velocità di elaborazione; accanto a ogni indice un piccolo cerchio indica la sua varianza residua. Ogni indice ha frecce rosse verso i suoi subtest, rettangoli con il nome scritto in verticale: somiglianze, vocabolario, comprensione; disegno con cubi, concetti illustrati, ragionamento con matrici; memoria di cifre, lettere e numeri; cifrario, ricerca di simboli. Sotto ogni subtest un triangolo indica l'intercetta e un cerchio la varianza residua, entrambi con una freccia verso il subtest. Una legenda associa frecce, triangoli e cerchi ai livelli metrico, scalare e stretto."
 #| fig-width: !expr 4.45 * scala
-#| fig-height: !expr 3.2 * scala
-tela(c(0, 12), c(-1.3, 10))
-g = nodo(6, 9.1, "g", w = 1.4, h = 1.2, forma = "ovale", bg = "white", font = 4, cex = .85, lwd = 1.3)
+#| fig-height: !expr 3.9 * scala
+tela(c(0, 12), c(-1.4, 10.4))
+residuo = function(x, y) symbols(x, y, circles = .2, inches = FALSE, add = TRUE, bg = "white", fg = "grey30", lwd = scala)
+g = nodo(6, 9.7, "g", w = 1.4, h = 1.2, forma = "ovale", bg = "white", font = 4, cex = .95, lwd = 1.3)
 ind = c("Compr.\nverbale", "Ragion.\npercett.", "Memoria\ndi lavoro", "Velocità\nelabor.")
-xi = c(1.5, 4.5, 7.5, 10.5); nsub = c(3, 3, 2, 2)
+sub = list(c("Somiglianze", "Vocabolario", "Comprensione"), c("Disegno cubi", "Concetti ill.", "Ragion. matrici"),
+           c("Memoria cifre", "Lettere-numeri"), c("Cifrario", "Ricerca simboli"))
+xi = c(1.55, 4.75, 7.75, 10.45); nsub = c(3, 3, 2, 2)
 for (k in 1:4) {
-  i = nodo(xi[k], 6.3, ind[k], w = 2.2, h = 1.6, forma = "ovale", bg = "grey93", cex = .56)
-  collega(g, i, col = rosso, lwd = 1.4)
-  xs = xi[k] + (seq_len(nsub[k]) - (nsub[k] + 1) / 2) * .95
-  for (x in xs) {
-    sb = nodo(x, 3.3, "", w = .75, h = .8, bg = "white")
+  i = nodo(xi[k], 7.2, ind[k], w = 2.3, h = 1.5, forma = "ovale", bg = "grey93", cex = .72)
+  collega(g, i, col = rosso, lwd = 1.3)
+  lato = if (k <= 2) -1 else 1  # cerchio sul lato esterno, lontano dalle frecce da g
+  residuo(xi[k] + lato * 1.15, 6.35); freccia(xi[k] + lato * 1.05, 6.52, xi[k] + lato * .88, 6.68, col = "grey30", lwd = .8)
+  xs = xi[k] + (seq_len(nsub[k]) - (nsub[k] + 1) / 2) * 1.02
+  for (j in seq_along(xs)) {
+    x = xs[j]
+    sb = nodo(x, 3.95, "", w = .8, h = 3.0, bg = "white")
+    text(x, 3.95, sub[[k]][j], srt = 90, cex = .7)
     collega(i, sb, col = rosso, lwd = .9)
-    polygon(x - .4 + c(0, .18, .36), c(1.3, 1.9, 1.3), col = "grey80", border = "grey30", lwd = scala)
-    freccia(x - .22, 1.95, x - .2, 2.88, col = "grey30", lwd = .8)
-    symbols(x + .22, 1.6, circles = .17, inches = FALSE, add = TRUE, bg = "white", fg = "grey30", lwd = scala)
-    freccia(x + .22, 1.9, x + .2, 2.88, col = "grey30", lwd = .8)
+    polygon(x - .44 + c(0, .2, .4), c(1.0, 1.65, 1.0), col = "grey80", border = "grey30", lwd = scala)
+    freccia(x - .24, 1.7, x - .2, 2.4, col = "grey30", lwd = .8)
+    residuo(x + .22, 1.3)
+    freccia(x + .22, 1.52, x + .2, 2.4, col = "grey30", lwd = .8)
   }
 }
-legenda_y = -.5
-segments(.4, legenda_y, 1.1, legenda_y, col = rosso, lwd = 1.4 * scala)
-text(1.3, legenda_y, "pesi: metrica", adj = 0, cex = .56)
-polygon(4.4 + c(0, .25, .5), legenda_y + c(-.3, .3, -.3), col = "grey80", border = "grey30", lwd = scala)
-text(5.1, legenda_y, "intercette: scalare", adj = 0, cex = .56)
-symbols(8.65, legenda_y, circles = .17, inches = FALSE, add = TRUE, bg = "white", fg = "grey30", lwd = scala)
-text(9.05, legenda_y, "residui: stretta", adj = 0, cex = .56)
+legenda_y = -.6
+segments(.1, legenda_y, .9, legenda_y, col = rosso, lwd = 1.4 * scala)
+text(1.05, legenda_y, "pesi: metrica", adj = 0, cex = .7)
+polygon(4.1 + c(0, .25, .5), legenda_y + c(-.3, .3, -.3), col = "grey80", border = "grey30", lwd = scala)
+text(4.75, legenda_y, "intercette: scalare", adj = 0, cex = .7)
+residuo(8.75, legenda_y)
+text(9.1, legenda_y, "residui: stretta", adj = 0, cex = .7)
 ```
 
 L'invarianza scalare è la più importante per l'interpretazione. Se un gruppo
