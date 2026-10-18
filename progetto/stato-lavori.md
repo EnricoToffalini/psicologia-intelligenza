@@ -1,7 +1,7 @@
 ---
 title: "Stato dei lavori"
 lang: it
-date: 2026-10-10
+date: 2026-10-18
 ---
 
 Documento di lavoro: non è un capitolo e non entra nel libro. Contiene solo lo
@@ -52,6 +52,45 @@ stato attuale e i punti aperti; la storia dettagliata è nella cronologia di git
    fattori vengono dalle slide (analisi dell'autore, N = 2.200); indicare la
    fonte pubblicata, se esiste, o dichiararle analisi originale.
 10. Nuovo riferimento Cattell (1987) inserito a mano come libro: verificare.
+
+## Revisione delle figure (ottobre 2026): punti da verificare
+
+Tutte le figure sono state riallineate alla logica delle slide (vedi
+`AGENTS.md`). Restano da controllare:
+
+1. `potenziamento-cognitivo`: numeri del Milwaukee Project (`fig-fadeout`)
+   presi dalla slide, da confrontare con Jensen (1989); valutare se citare le
+   irregolarità di Heber; Perry Preschool senza citazione specifica; Molloy et
+   al. (2025) non citato.
+2. `effetto-flynn`: coefficienti di Dworak et al. (2023) in `fig-dworak` presi
+   dalla slide, non confrontati con l'articolo.
+3. `geni-ambiente-ereditabilita`: in età adulta ora 0,6–0,8 (intervalli della
+   slide) invece di 0,7–0,8; formula h² e Falconer resi come equazione e
+   tabella, non come schemi.
+4. `intelligenza-e-lavoro`: AFQT (non oltre il 4% di categoria IV, almeno il 60%
+   sopra il 50° percentile) senza fonte in bibliografia; Project 100,000 («QI
+   inferiore a 92 e in parte fino a circa 70») contro la slide (categoria IV,
+   QI circa 80–92); valori di `tbl-oltre-g` e `tbl-criteri` verificati solo per
+   Sackett et al. (2024); la slide di p. 34 cita Sackett et al. (2023, IOP),
+   nel testo c'è `sackett2022revisiting`. Capitoli su lavoro e scuola forse sopra
+   le 2.500 parole.
+5. `neurosviluppo-dimensionale`: percentuali di `fig-comorbilita` verificate
+   solo in parte; Turk (2009) non identificato (43% di ADHD nella sindrome di
+   Down senza fonte); «Lee et al. (2016)» della slide sostituito da Quintin et
+   al. (2016).
+6. `alternative-a-g`: in `fig-rete-mutualismo` il legame memoria a lungo
+   termine–ragionamento, senza punta nella slide, è disegnato come freccia
+   verso il ragionamento.
+7. `modelli-gerarchici`: in `fig-sintesi` mancano le frecce ondulate «minori»
+   fra abilità ed esiti della slide; in `fattore-g` gli ovali s/ε stanno sotto
+   le prove, non sopra come nella slide, per evitare incroci.
+8. `origini-dei-test`: `fig-beta` imita il formato «Cosa manca?» dell'Army Beta
+   con disegni originali; gli item storici Binet-Simon e Army Alpha/Beta
+   (pubblico dominio) si potrebbero mostrare come immagini dalle fonti
+   originali, dopo verifica della provenienza.
+9. Grafici raster di articoli non ridisegnati (per esempio Turkheimer et al.
+   2003, Tucker-Drob e Bates 2016, Sundet 2004, Van Hootegem 2023): si possono
+   ricostruire solo da dati pubblicati.
 
 ## Note tecniche
 

@@ -211,8 +211,8 @@ immagine("rampicante-neurodivergenza.jpg", 1.5, 1.1, 2.4)
 immagine("albero-psicopatologia.jpg", 2.1, 1.15, 2.0)
 immagine("cespuglio-personalita.jpg", 3.15, 1.15, 1.45)
 voci = rbind(c(.62, 3.3, "Funzioni\nesecutive"), c(.98, 3.42, "..."), c(1.2, 3.18, "Memoria a\nlungo termine"),
-             c(.38, 3.0, "Memoria\ndi lavoro"), c(.4, 2.7, "Velocità di\nelaborazione"), c(1.2, 2.85, "Abilità\nscolastiche"),
-             c(.42, 2.38, "Abilità visuo-\nspaziali"), c(1.25, 2.5, "Abilità\nverbali"),
+             c(.38, 3.0, "Memoria\ndi lavoro"), c(.44, 2.7, "Velocità di\nelaborazione"), c(1.2, 2.85, "Abilità\nscolastiche"),
+             c(.46, 2.38, "Abilità visuo-\nspaziali"), c(1.25, 2.5, "Abilità\nverbali"),
              c(.44, 2.03, "Intelligenza\nfluida"), c(1.14, 2.08, "Intelligenza\ncristallizzata"),
              c(2.7, 3.3, "..."), c(2.45, 2.88, "Depressione"), c(2.95, 3.12, "Dipendenze"), c(2.95, 2.75, "Antisociale"),
              c(2.36, 2.6, "Burnout"), c(2.95, 2.45, "Impulsività"), c(2.42, 2.27, "Evitamento"), c(2.33, 1.97, "Ansia"),
@@ -229,9 +229,9 @@ text(.8, .88, "Intelligenza /\nabilità cognitive", font = 2, cex = .66, col = r
 text(.8, .6, "es. CHC", font = 3, cex = .56, col = "grey30")
 text(2.7, .88, "Psicopatologia\ndimensionale", font = 2, cex = .66, col = rosso)
 text(2.7, .6, "es. HiTOP", font = 3, cex = .56, col = "grey30")
-text(4.0, .88, "Personalità /\nstili e competenze", font = 2, cex = .66, col = rosso)
+text(3.93, .88, "Personalità /\nstili e competenze", font = 2, cex = .62, col = rosso)
 freccia(1.47, .88, 1.97, .88, code = 3, col = "grey35", lwd = 1.3)
-freccia(3.18, .88, 3.5, .88, code = 3, col = "grey35", lwd = 1.3)
+freccia(3.16, .88, 3.42, .88, code = 3, col = "grey35", lwd = 1.3)
 rect(0, 0, 4.45, .42, col = "grey90", border = NA)
 text(2.225, .21, "Basi comuni: pleiotropia, poligenicità, basi neurobiologiche, traiettorie\ndi sviluppo, esperienza, interazioni con l'ambiente, epigenetica", cex = .56, font = 3)
 ```

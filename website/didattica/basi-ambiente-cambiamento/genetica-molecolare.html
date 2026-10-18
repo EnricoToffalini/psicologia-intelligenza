@@ -73,6 +73,35 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 <script data-goatcounter="https://intelligenza.goatcounter.com/count" async="" src="//gc.zgo.at/count.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../assets/custom.css">
 </head>
@@ -421,10 +450,10 @@ ul.task-list li input[type="checkbox"] {
 <p>Qui nasce un problema. Per l’intelligenza l’ereditabilità SNP si colloca attorno al 20–30% <span class="citation" data-cites="plomin2018new">(Plomin &amp; von Stumm, 2018)</span>. Gli studi sui gemelli, negli adulti, indicano il 60–80%. Dov’è finito il resto? È il problema dell’<strong>ereditabilità mancante</strong>, che riguarda quasi tutti i tratti complessi <span class="citation" data-cites="manolio2009finding">(Manolio et al., 2009)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-mancante" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Tre barre orizzontali di varianza spiegata: studi sui gemelli negli adulti dal 60 all'80 per cento; ereditabilità SNP dal 20 al 30 per cento; punteggio poligenico dal 7 al 10 per cento.">
+<div id="fig-mancante" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Tre barre orizzontali su una scala da 0 a 100 per cento, con l'intervallo evidenziato in rosso: studi sui gemelli negli adulti dal 60 all'80 per cento; ereditabilità SNP dal 20 al 30 per cento; punteggio poligenico dal 7 al 10 per cento.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-mancante-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="genetica-molecolare_files/figure-html/fig-mancante-1.png" class="img-fluid figure-img" alt="Tre barre orizzontali di varianza spiegata: studi sui gemelli negli adulti dal 60 all'80 per cento; ereditabilità SNP dal 20 al 30 per cento; punteggio poligenico dal 7 al 10 per cento." width="672">
+<img src="genetica-molecolare_files/figure-html/fig-mancante-1.png" class="img-fluid figure-img" alt="Tre barre orizzontali su una scala da 0 a 100 per cento, con l'intervallo evidenziato in rosso: studi sui gemelli negli adulti dal 60 all'80 per cento; ereditabilità SNP dal 20 al 30 per cento; punteggio poligenico dal 7 al 10 per cento." width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mancante-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figura&nbsp;11.1: L’ereditabilità mancante. Quota di varianza del QI attribuita alle differenze genetiche dagli studi sui gemelli (adulti) e dall’analisi di tutti gli SNP comuni, e quota prevista oggi da un punteggio poligenico costruito sui GWAS degli anni di istruzione. Intervalli indicativi dalle fonti citate nel testo.
@@ -447,16 +476,16 @@ Figura&nbsp;11.1: L’ereditabilità mancante. Quota di varianza del QI attribui
 <p>Noi semplifichiamo: geni più ambiente uguale tratto. La realtà è più intricata. Due esempi estremi, fuori dall’intelligenza in senso stretto, aiutano a capire.</p>
 <p>La <strong>fenilchetonuria</strong> è una condizione genetica recessiva. Chi eredita due copie alterate del gene che codifica un enzima non riesce a metabolizzare la fenilalanina, un aminoacido presente in molti alimenti. La sostanza si accumula e danneggia il cervello, causando una disabilità intellettiva grave. Ma la causa diretta è l’accumulo dovuto alla dieta. Se la condizione viene individuata alla nascita, come accade con lo screening neonatale, e si segue una dieta povera di fenilalanina, la disabilità non si sviluppa <span class="citation" data-cites="blau2010phenylketonuria">(Blau et al., 2010)</span>. Una condizione interamente genetica nella causa ha una soluzione interamente ambientale nel trattamento.</p>
 <p>Un esempio più sfumato riguarda alcune varianti del gene FTO, fra le più associate al peso corporeo. Il loro effetto si riduce sensibilmente nelle persone fisicamente attive <span class="citation" data-cites="kilpelainen2011physical">(Kilpeläinen et al., 2011)</span>. La variante aumenta il rischio, ma il rischio si esprime in misura diversa a seconda dello stile di vita.</p>
-<p>Per l’intelligenza, l’interazione con lo status socioeconomico vista nel capitolo precedente è un caso dello stesso tipo. Fra geni e punteggi ci sono lo sviluppo prenatale, la salute, il reddito familiare, lo stile educativo, i coetanei, la scuola, l’organizzazione progressiva del sistema nervoso. Ciascun passaggio può modulare gli effetti degli altri.</p>
+<p>Per l’intelligenza, l’interazione con lo status socioeconomico vista nel capitolo precedente è un caso dello stesso tipo. Per semplicità si scrive «genetica + ambiente → tratto», ma la realtà è molto più intricata (<a href="#fig-sviluppo" class="quarto-xref">Figura&nbsp;<span>11.2</span></a>). Molti geni e molti fattori ambientali, dall’ordine di nascita all’ambiente prenatale, dalla salute allo status socioeconomico, dallo stile educativo dei genitori alla scuola, si intrecciano lungo lo sviluppo individuale. Ciascuno modula gli effetti degli altri, e tutti passano per l’organizzazione progressiva del sistema neurocognitivo. Il tratto che ne risulta, poi, non è un punto d’arrivo: un bambino più o meno capace suscita risposte diverse dai genitori, riceve rinforzi diversi, frequenta coetanei e percorsi scolastici diversi. È la correlazione gene-ambiente incontrata nel capitolo precedente, vista dall’interno.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-sviluppo" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A sinistra in alto molti geni, in basso molti fattori ambientali: ambiente prenatale, salute, status socioeconomico, stile educativo, coetanei, scuola. Tutti puntano a un ovale centrale, sviluppo e organizzazione del sistema nervoso, che punta al tratto a destra, per esempio il QI. Dal tratto partono frecce tratteggiate che tornano verso coetanei e scuola.">
+<div id="fig-sviluppo" class="quarto-float quarto-figure quarto-figure-center anchored" alt="A sinistra in alto un elenco di geni (gene 1, gene 2, gene 3 e altri), sotto un elenco di fattori ambientali: ordine di nascita, ambiente prenatale, salute generale, stato socioeconomico, stile educativo, rinforzi, presenza dei coetanei, scolarizzazione. Da tutti partono linee curve che si intrecciano attorno alla scritta organizzazione del sistema neurocognitivo e terminano con frecce sul tratto fenotipico, per esempio il QI, a destra. In alto una grande freccia indica la direzione dello sviluppo individuale. Dal tratto partono quattro frecce curve che tornano in basso verso stile educativo, rinforzi, coetanei e scolarizzazione.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-sviluppo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="genetica-molecolare_files/figure-html/fig-sviluppo-1.png" class="img-fluid figure-img" alt="A sinistra in alto molti geni, in basso molti fattori ambientali: ambiente prenatale, salute, status socioeconomico, stile educativo, coetanei, scuola. Tutti puntano a un ovale centrale, sviluppo e organizzazione del sistema nervoso, che punta al tratto a destra, per esempio il QI. Dal tratto partono frecce tratteggiate che tornano verso coetanei e scuola." width="640">
+<img src="genetica-molecolare_files/figure-html/fig-sviluppo-1.png" class="img-fluid figure-img" alt="A sinistra in alto un elenco di geni (gene 1, gene 2, gene 3 e altri), sotto un elenco di fattori ambientali: ordine di nascita, ambiente prenatale, salute generale, stato socioeconomico, stile educativo, rinforzi, presenza dei coetanei, scolarizzazione. Da tutti partono linee curve che si intrecciano attorno alla scritta organizzazione del sistema neurocognitivo e terminano con frecce sul tratto fenotipico, per esempio il QI, a destra. In alto una grande freccia indica la direzione dello sviluppo individuale. Dal tratto partono quattro frecce curve che tornano in basso verso stile educativo, rinforzi, coetanei e scolarizzazione." width="640">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sviluppo-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;11.2: Geni e ambiente non si sommano semplicemente: agiscono insieme lungo lo sviluppo, attraverso l’organizzazione progressiva del sistema nervoso, e il tratto che ne risulta modifica a sua volta l’ambiente in cui la persona vive (frecce tratteggiate). Schema originale, ispirato a Turkheimer (2000).
+Figura&nbsp;11.2: Genetica e ambiente non si sommano: si intrecciano lungo lo sviluppo individuale, passando per l’organizzazione del sistema neurocognitivo, e il tratto che ne risulta torna a modificare l’ambiente (frecce in basso). Adattamento da uno schema di Turkheimer (2000).
 </figcaption>
 </figure>
 </div>
@@ -466,7 +495,21 @@ Figura&nbsp;11.2: Geni e ambiente non si sommano semplicemente: agiscono insieme
 <section id="pleiotropia-gli-stessi-geni-molti-tratti" class="level2" data-number="11.6">
 <h2 data-number="11.6" class="anchored" data-anchor-id="pleiotropia-gli-stessi-geni-molti-tratti"><span class="header-section-number">11.6</span> Pleiotropia: gli stessi geni, molti tratti</h2>
 <p>Le varianti associate all’intelligenza non sono solo numerosissime: tendono a ricorrere in tratti diversi. È la <strong>pleiotropia</strong>, cioè la capacità dello stesso gene di influenzare più caratteristiche.</p>
-<p>Questo spiega in parte la positive manifold. Le basi genetiche di abilità cognitive diverse si sovrappongono in larga misura: le stesse varianti contribuiscono alla memoria, al linguaggio, al ragionamento. Si parla per questo di <strong>geni generalisti</strong> <span class="citation" data-cites="kovas2006generalist">(Kovas &amp; Plomin, 2006)</span>. Gli stessi geni influenzano lo sviluppo di molte aree cerebrali, e ogni area partecipa a molti processi cognitivi. Le cause comuni ipotizzate da Spearman hanno, almeno in parte, una base genetica.</p>
+<p>Questo spiega in parte la positive manifold. Le basi genetiche di abilità cognitive diverse si sovrappongono in larga misura: le stesse varianti contribuiscono alla memoria, al linguaggio, al ragionamento. Si parla per questo di <strong>geni generalisti</strong> <span class="citation" data-cites="kovas2006generalist">(Kovas &amp; Plomin, 2006)</span>. Gli stessi geni influenzano lo sviluppo di diverse aree del cervello o caratteristiche neurobiologiche, e ciascuna di queste influenza numerosi processi cognitivi (<a href="#fig-pleiotropia" class="quarto-xref">Figura&nbsp;<span>11.3</span></a>). I processi finiscono così per correlare fra loro perché hanno cause comuni. Le cause comuni ipotizzate da Spearman hanno, almeno in parte, una base genetica.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-pleiotropia" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Da sinistra a destra: un ovale gene 1, da cui partono tre frecce rosse verso tre piccoli riquadri numerati 1, 2 e 3 dentro un grande ovale, il cervello. Da ciascun riquadro partono due o tre frecce verso tre riquadri a destra, processo cognitivo 1, 2 e 3. Archi con doppia punta, etichettati r, collegano fra loro i tre processi.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pleiotropia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="genetica-molecolare_files/figure-html/fig-pleiotropia-1.png" class="img-fluid figure-img" alt="Da sinistra a destra: un ovale gene 1, da cui partono tre frecce rosse verso tre piccoli riquadri numerati 1, 2 e 3 dentro un grande ovale, il cervello. Da ciascun riquadro partono due o tre frecce verso tre riquadri a destra, processo cognitivo 1, 2 e 3. Archi con doppia punta, etichettati r, collegano fra loro i tre processi." width="640">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pleiotropia-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;11.3: Geni generalisti e pleiotropia. Uno stesso gene influenza più aree o caratteristiche del cervello, e ciascuna di queste partecipa a più processi cognitivi: i processi risultano correlati (r) perché hanno cause comuni. Elaborazione da Kovas e Plomin (2006).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <p>La sovrapposizione si estende oltre la cognizione. Le varianti associate all’intelligenza sono fortemente associate anche agli anni di istruzione e, in misura minore, a molte condizioni psichiatriche e neurologiche. Con alcune la correlazione genetica è negativa, come per ADHD e malattia di Alzheimer; con altre, come l’autismo, è debolmente positiva <span class="citation" data-cites="savage2018genome">(Savage et al., 2018)</span>. Una correlazione genetica indica che gli stessi fattori genetici contribuiscono alle differenze in entrambi i tratti. Non indica che un tratto causi l’altro.</p>
 <div class="callout callout-style-default callout-tip no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -478,7 +521,12 @@ Per approfondire: la correlazione genetica nei gemelli
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Anche gli studi sui gemelli permettono di stimare quanto due tratti abbiano basi genetiche comuni. Si usano le <strong>correlazioni incrociate</strong>: il punteggio di un gemello in lettura con il punteggio dell’altro gemello in matematica. Se questa correlazione è più alta nei monozigoti che nei dizigoti, una parte di ciò che lega lettura e matematica è genetica. La correlazione genetica <em>r</em><sub>G</sub> si ottiene rapportando la covarianza genetica fra i due tratti, stimata come 2 × (<em>r</em><sub>MZ,incrociata</sub> − <em>r</em><sub>DZ,incrociata</sub>), alla radice del prodotto delle due ereditabilità.</p>
+<p>Anche gli studi sui gemelli permettono di stimare quanto due tratti abbiano basi genetiche comuni. Si usano le <strong>correlazioni incrociate</strong>: il punteggio di un gemello in lettura con il punteggio dell’altro gemello in matematica. Se questa correlazione è più alta nei monozigoti che nei dizigoti, una parte di ciò che lega lettura e matematica è genetica. La <strong>correlazione genetica</strong> <em>r</em><sub>G</sub> dice quanto sono sovrapposte le basi genetiche dei due tratti, <em>x</em> e <em>y</em>. Si ottiene rapportando la covarianza genetica fra i tratti alla radice del prodotto delle due ereditabilità:</p>
+<p><span class="math display">\[
+r_G = \frac{A_{12}}{\sqrt{A_{11}\,A_{22}}}
+    = \frac{2\,(\overbrace{r^{xy}_{MZ}}^{\text{incrociata, MZ}} - \overbrace{r^{xy}_{DZ}}^{\text{incrociata, DZ}})}{\sqrt{\underbrace{h^2_x}_{\text{tratto }x}\;\underbrace{h^2_y}_{\text{tratto }y}}}
+\]</span></p>
+<p>Un esempio con numeri plausibili. In lettura <em>r</em><sub>MZ</sub> = 0,80 e <em>r</em><sub>DZ</sub> = 0,47, quindi <em>h</em>²<sub><em>x</em></sub> = 2 × (0,80 − 0,47) = 0,66. In matematica <em>r</em><sub>MZ</sub> = 0,72 e <em>r</em><sub>DZ</sub> = 0,48, quindi <em>h</em>²<sub><em>y</em></sub> = 0,48. Le correlazioni incrociate valgono in media 0,51 nei monozigoti (0,53 e 0,49, a seconda di quale gemello si prende per la lettura) e 0,305 nei dizigoti (0,32 e 0,29). La covarianza genetica è 2 × (0,51 − 0,305) = 0,41, e <em>r</em><sub>G</sub> = 0,41 / √(0,66 × 0,48) ≈ 0,73. Se la correlazione fra lettura e matematica nella popolazione è 0,60, circa due terzi di essa (0,41 su 0,60) hanno origine genetica.</p>
 </div>
 </div>
 </section>

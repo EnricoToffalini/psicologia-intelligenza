@@ -432,11 +432,11 @@ window.Quarto = {
 <h2 data-number="10.1" class="anchored" data-anchor-id="basi-genetiche-ed-ereditabilità"><span class="header-section-number">10.1</span> Basi genetiche ed ereditabilità</h2>
 <p>Una caratteristica ha <strong>basi genetiche</strong> quando dipende da meccanismi biologici codificati nel genoma. Può essere identica in tutti gli individui di una specie: abbiamo cinque dita per mano, i cani scodinzolano. L’<strong>ereditabilità</strong>, invece, riguarda le differenze: indica quanto la variazione di una caratteristica fra gli individui di una popolazione riflette variazioni genetiche fra loro. I figli di persone alte tendono a essere più alti della media; i pulcini di galline che crescono in fretta tendono a crescere in fretta.</p>
 <p>Una caratteristica con basi genetiche chiarissime può avere ereditabilità quasi nulla, se tutti condividono le stesse varianti. E una caratteristica fortemente ereditabile può essere molto influenzata dall’ambiente. Un esempio efficace è quello dei fenicotteri <span class="citation" data-cites="serpico2022intelligenza">(Serpico, 2022)</span>. Il loro colore rosa ha una base genetica? Sì, ma si manifesta solo se si nutrono di crostacei ricchi di carotenoidi. Sono rosa per effetto dell’alimentazione, allora? Sì, ma solo perché la loro genetica organizza il metabolismo e il deposito di quei pigmenti nelle piume. Un gabbiano può mangiare gli stessi crostacei e non diventerà mai rosa. Geni e ambiente non si sommano come ingredienti separati: agiscono insieme.</p>
-<p>L’ereditabilità, indicata con <em>h</em>², è una proporzione di varianza:</p>
+<p>L’ereditabilità, indicata con <em>h</em>², è una proporzione di varianza: al numeratore la variabilità del fenotipo che dipende da differenze genetiche fra individui, al denominatore la variabilità totale del fenotipo, attribuita a qualsiasi causa.</p>
 <p><span class="math display">\[
-h^2 = \frac{\text{varianza dovuta a differenze genetiche}}{\text{varianza totale del tratto}}
+h^2 = \frac{\overbrace{\mathrm{Var}(G)}^{\text{solo genetica}}}{\underbrace{\mathrm{Var}(P_{\text{totale}})}_{\text{genetica + ambiente}}}
 \]</span></p>
-<p>L’ambiente compare nella formula, al denominatore. Se in una popolazione le condizioni ambientali sono molto diverse da persona a persona, la varianza totale cresce e l’ereditabilità scende. Se sono simili, l’ereditabilità sale. L’ereditabilità non è una proprietà del tratto in assoluto, ma del tratto in una popolazione con una certa distribuzione di geni e di ambienti.</p>
+<p>L’ambiente, quindi, è perfino nella formula: sta al denominatore. Per uno stesso tratto, se molta variabilità proviene dall’ambiente l’ereditabilità è bassa; se ne proviene poca, l’ereditabilità è alta. In una popolazione in cui le condizioni di vita sono molto diverse da persona a persona la varianza totale cresce e l’ereditabilità scende; dove sono simili, l’ereditabilità sale. L’ereditabilità non è una proprietà del tratto in assoluto, ma del tratto in una popolazione con una certa distribuzione di geni e di ambienti.</p>
 </section>
 <section id="come-si-stima-famiglie-adozioni-gemelli" class="level2" data-number="10.2">
 <h2 data-number="10.2" class="anchored" data-anchor-id="come-si-stima-famiglie-adozioni-gemelli"><span class="header-section-number">10.2</span> Come si stima: famiglie, adozioni, gemelli</h2>
@@ -523,27 +523,83 @@ Tabella&nbsp;10.1: Correlazioni del QI fra persone con diversi gradi di parentel
 </div>
 </figure>
 </div>
+<p>Che cosa significhino concretamente questi numeri lo mostra la <a href="#fig-coppie" class="quarto-xref">Figura&nbsp;<span>10.1</span></a>: con una correlazione di 0,86 i QI dei due gemelli monozigoti si dispongono attorno alla diagonale, con 0,42–0,60 la nuvola si allarga molto. Anche fra fratelli o fra gemelli dizigoti, cioè, i punteggi possono differire di parecchio.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-coppie" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Quattro grafici a dispersione con il QI di una persona sull'asse orizzontale e quello dell'altra persona della coppia sull'asse verticale, entrambi da circa 55 a 145. Gemelli monozigoti cresciuti insieme, r 0,86: nuvola stretta lungo la diagonale. Gemelli dizigoti cresciuti insieme, r 0,60: nuvola più larga. Genitori e figli biologici, r 0,42, e fratelli cresciuti insieme, r 0,47: nuvole larghe, con una tendenza crescente ancora visibile.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-coppie-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="geni-ambiente-ereditabilita_files/figure-html/fig-coppie-1.png" class="img-fluid figure-img" alt="Quattro grafici a dispersione con il QI di una persona sull'asse orizzontale e quello dell'altra persona della coppia sull'asse verticale, entrambi da circa 55 a 145. Gemelli monozigoti cresciuti insieme, r 0,86: nuvola stretta lungo la diagonale. Gemelli dizigoti cresciuti insieme, r 0,60: nuvola più larga. Genitori e figli biologici, r 0,42, e fratelli cresciuti insieme, r 0,47: nuvole larghe, con una tendenza crescente ancora visibile." width="768">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-coppie-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;10.1: Che aspetto hanno le correlazioni della tabella: QI simulati di 600 coppie per quattro tipi di parentela, con le correlazioni riportate da Plomin et al.&nbsp;(2001). Ogni punto è una coppia; la linea rossa è la retta di regressione. Adattamento da una slide dell’autore.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <p>Una precisazione sulle percentuali. Dire che i gemelli dizigoti condividono il 50% non significa che condividano metà del genoma: tutti gli esseri umani ne condividono quasi la totalità. Significa che condividono, in media, metà delle varianti che differiscono nella popolazione.</p>
-<p>Il confronto più informativo è quello fra gemelli monozigoti e dizigoti cresciuti insieme. Hanno la stessa età, crescono nella stessa famiglia, ma condividono rispettivamente tutta e metà della variabilità genetica. Se i monozigoti si somigliano più dei dizigoti, la differenza va attribuita ai geni. Oggi si usano modelli di equazioni strutturali, ma la logica è riassunta dalle formule di Falconer:</p>
-<ul>
-<li>ereditabilità: <em>h</em>² = 2 × (<em>r</em><sub>MZ</sub> − <em>r</em><sub>DZ</sub>) = 2 × (0,86 − 0,60) ≈ 0,52;</li>
-<li>ambiente condiviso: <em>c</em>² = 2 × <em>r</em><sub>DZ</sub> − <em>r</em><sub>MZ</sub> = 1,20 − 0,86 ≈ 0,34;</li>
-<li>ambiente non condiviso ed errore di misura: <em>e</em>² = 1 − <em>r</em><sub>MZ</sub> ≈ 0,14.</li>
-</ul>
+<p>Il confronto più informativo è quello fra gemelli monozigoti e dizigoti cresciuti insieme. Hanno la stessa età, crescono nella stessa famiglia, ma condividono rispettivamente tutta e metà della variabilità genetica. Se i monozigoti si somigliano più dei dizigoti, la differenza va attribuita ai geni. Oggi si usano modelli di equazioni strutturali più sofisticati, ma la logica del calcolo è ben riassunta dalle formule di Falconer (<a href="#tbl-falconer" class="quarto-xref">Tabella&nbsp;<span>10.2</span></a>), che usano solo le due correlazioni: <em>r</em><sub>MZ</sub> = 0,86 e <em>r</em><sub>DZ</sub> = 0,60.</p>
+<div id="tbl-falconer" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-falconer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabella&nbsp;10.2: Le formule di Falconer applicate alle correlazioni fra gemelli monozigoti (MZ) e dizigoti (DZ) cresciuti insieme. Le tre quote sommano a 100%.
+</figcaption>
+<div aria-describedby="tbl-falconer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Indice</th>
+<th style="text-align: center;">Formula</th>
+<th style="text-align: center;">Con i dati della tabella</th>
+<th>Quota di varianza del QI attribuibile a…</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>h</em>²</td>
+<td style="text-align: center;">2 × (<em>r</em><sub>MZ</sub> − <em>r</em><sub>DZ</sub>)</td>
+<td style="text-align: center;">2 × (0,86 − 0,60) ≈ <strong>52%</strong></td>
+<td>variazioni genetiche additive (ereditabilità)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><em>c</em>²</td>
+<td style="text-align: center;">2 × <em>r</em><sub>DZ</sub> − <em>r</em><sub>MZ</sub></td>
+<td style="text-align: center;">1,20 − 0,86 ≈ <strong>34%</strong></td>
+<td>ambiente condiviso</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><em>e</em>²</td>
+<td style="text-align: center;">1 − <em>r</em><sub>MZ</sub></td>
+<td style="text-align: center;">1 − 0,86 ≈ <strong>14%</strong></td>
+<td>esperienze ambientali diverse (ambiente non condiviso) ed errore di misura</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>La logica è semplice. I monozigoti condividono il doppio della variabilità genetica dei dizigoti: se la loro correlazione è più alta, la differenza misura metà dell’effetto genetico, e la si raddoppia. Ciò che rende diversi due gemelli monozigoti cresciuti insieme, identici nei geni e nella famiglia, può venire solo da esperienze non condivise o da errori di misura.</p>
 <p>L’<strong>ambiente condiviso</strong> comprende tutto ciò che rende simili i membri di una famiglia: reddito, quartiere, stile educativo, libri in casa. L’<strong>ambiente non condiviso</strong> comprende ciò che li rende diversi: amicizie, insegnanti, malattie, eventi casuali. Con questi dati, che mescolano età diverse, circa metà delle differenze di QI è attribuibile a differenze genetiche.</p>
 </section>
 <section id="lereditabilità-cresce-con-letà" class="level2" data-number="10.3">
 <h2 data-number="10.3" class="anchored" data-anchor-id="lereditabilità-cresce-con-letà"><span class="header-section-number">10.3</span> L’ereditabilità cresce con l’età</h2>
-<p>Il dato più sorprendente è che l’ereditabilità del QI non è fissa. In un grande studio su gemelli di diversi paesi è risultata circa 0,41 nell’infanzia, 0,55 nella prima adolescenza e 0,66 nella tarda adolescenza <span class="citation" data-cites="haworth2010heritability">(Haworth et al., 2010)</span>. Nell’età adulta le stime arrivano spesso a 0,7–0,8, mentre l’effetto dell’ambiente condiviso si riduce fin quasi a scomparire <span class="citation" data-cites="plomin2015genetics">(Plomin &amp; Deary, 2015)</span>.</p>
+<p>Il dato più sorprendente è che l’ereditabilità del QI non è fissa. L’evidenza convergente di molti studi e meta-analisi indica un’ereditabilità attorno al 20–40% nell’infanzia, al 40–60% nell’adolescenza e al 60–80% nell’età adulta <span class="citation" data-cites="plomin2015genetics haier2017neuroscience warne2020know">(Haier, 2017; Plomin &amp; Deary, 2015; Warne, 2020)</span>. Non è alta «da subito»: cresce progressivamente fino a coprire gran parte della varianza (<a href="#fig-eta" class="quarto-xref">Figura&nbsp;<span>10.2</span></a>). In un grande studio su gemelli di diversi paesi, per esempio, è passata da circa 0,41 a 9 anni a 0,55 a 12 e 0,66 a 17 <span class="citation" data-cites="haworth2010heritability">(Haworth et al., 2010)</span>. Nel frattempo l’effetto dell’ambiente condiviso si riduce fin quasi a scomparire <span class="citation" data-cites="plomin2015genetics">(Plomin &amp; Deary, 2015)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-eta" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Grafico a punti dell'ereditabilità per fase della vita: 0,41 nell'infanzia, 0,55 nella prima adolescenza, 0,66 nella tarda adolescenza e un intervallo da 0,70 a 0,80 nell'età adulta.">
+<div id="fig-eta" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Tre barre verticali che salgono da sinistra a destra: infanzia dal 20 al 40 per cento, adolescenza dal 40 al 60 per cento, età adulta dal 60 all'80 per cento di varianza del QI attribuibile a differenze genetiche.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-eta-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="geni-ambiente-ereditabilita_files/figure-html/fig-eta-1.png" class="img-fluid figure-img" alt="Grafico a punti dell'ereditabilità per fase della vita: 0,41 nell'infanzia, 0,55 nella prima adolescenza, 0,66 nella tarda adolescenza e un intervallo da 0,70 a 0,80 nell'età adulta." width="672">
+<img src="geni-ambiente-ereditabilita_files/figure-html/fig-eta-1.png" class="img-fluid figure-img" alt="Tre barre verticali che salgono da sinistra a destra: infanzia dal 20 al 40 per cento, adolescenza dal 40 al 60 per cento, età adulta dal 60 all'80 per cento di varianza del QI attribuibile a differenze genetiche." width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eta-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;10.1: Ereditabilità del QI a età diverse. Valori da Haworth et al.&nbsp;(2010) per infanzia e adolescenza; per l’età adulta l’intervallo indica le stime tipiche riportate da Plomin e Deary (2015).
+Figura&nbsp;10.2: L’ereditabilità del QI cresce con l’età. Le barre indicano gli intervalli tipici delle stime nelle tre fasi della vita, secondo le sintesi di Plomin e Deary (2015), Haier (2017) e Warne (2020).
 </figcaption>
 </figure>
 </div>
@@ -556,11 +612,11 @@ Figura&nbsp;10.1: Ereditabilità del QI a età diverse. Valori da Haworth et al.
 <li><strong>Riduzione dell’ambiente condiviso.</strong> Crescendo si condivide sempre meno con la famiglia d’origine.</li>
 <li><strong>Stabilizzazione del QI.</strong> Nell’infanzia i punteggi oscillano di più, per i diversi ritmi di maturazione cerebrale; poi si stabilizzano.</li>
 </ul>
-<p>Un esempio chiarisce il meccanismo della correlazione gene-ambiente. Due bambini partono quasi uguali: uno esattamente nella media, l’altro un po’ sopra. Il secondo ottiene voti leggermente migliori e preferisce attività un po’ più impegnative. Nell’adolescenza sceglie una scuola più esigente, riceve più attenzione da qualche insegnante, frequenta amici con interessi simili. Da adulto sceglie un’università selettiva e un lavoro intellettualmente stimolante. Il primo fa scelte tipiche e arriva dove era partito. Il secondo, partito un po’ sopra la media, arriva molto sopra. L’effetto genetico iniziale è stato amplificato dall’ambiente, e l’analisi lo attribuirà ai geni. La <a href="#tbl-amplificazione" class="quarto-xref">Tabella&nbsp;<span>10.2</span></a> riassume l’esempio.</p>
+<p>Un esempio chiarisce il meccanismo della correlazione gene-ambiente. Due bambini partono quasi uguali: uno esattamente nella media, l’altro un po’ sopra. Il secondo ottiene voti leggermente migliori e preferisce attività un po’ più impegnative. Nell’adolescenza sceglie una scuola più esigente, riceve più attenzione da qualche insegnante, frequenta amici con interessi simili. Da adulto sceglie un’università selettiva e un lavoro intellettualmente stimolante. Il primo fa scelte tipiche e arriva dove era partito. Il secondo, partito un po’ sopra la media, arriva molto sopra. L’effetto genetico iniziale è stato amplificato dall’ambiente, e l’analisi lo attribuirà ai geni. La <a href="#tbl-amplificazione" class="quarto-xref">Tabella&nbsp;<span>10.3</span></a> riassume l’esempio.</p>
 <div id="tbl-amplificazione" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-amplificazione-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabella&nbsp;10.2: Un esempio di correlazione gene-ambiente: l’effetto genetico iniziale viene amplificato dall’ambiente.
+Tabella&nbsp;10.3: Un esempio di correlazione gene-ambiente: l’effetto genetico iniziale viene amplificato dall’ambiente.
 </figcaption>
 <div aria-describedby="tbl-amplificazione-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -639,7 +695,7 @@ In breve
 <ul>
 <li>Basi genetiche ed ereditabilità sono concetti diversi: la seconda riguarda le differenze fra individui in una popolazione specifica.</li>
 <li>Studi su famiglie, adozioni e gemelli indicano che le differenze genetiche spiegano circa metà della varianza del QI considerando tutte le età.</li>
-<li>L’ereditabilità cresce con l’età, fino a 0,7–0,8 negli adulti, probabilmente perché le differenze genetiche iniziali vengono amplificate dall’ambiente.</li>
+<li>L’ereditabilità cresce con l’età, fino a 0,6–0,8 negli adulti, probabilmente perché le differenze genetiche iniziali vengono amplificate dall’ambiente.</li>
 <li>Un’ereditabilità alta non implica immutabilità e non permette, da sola, di trarre conclusioni sulle differenze medie fra epoche o gruppi; dipende dalla distribuzione degli ambienti.</li>
 <li>La moderazione da parte dello status socioeconomico è stata osservata negli Stati Uniti ma non in Europa occidentale e Australia.</li>
 </ul>
